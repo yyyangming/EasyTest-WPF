@@ -115,7 +115,7 @@ namespace Test
         }
 
 
-
+        #region  假定这是从数据库提出的 ，使用使用conboBox类创建数据，使用此方法调用数据
         private List<ClassInfo> GetItemInfos()
         {
             List < ClassInfo > list = new List<ClassInfo>();
@@ -150,10 +150,10 @@ namespace Test
             );
             return list ;
         }
+        #endregion
 
+        # region 定义了一个在comboBox的类，其_classid为序号，_className为内容
 
-
-        //定义了一个在comboBox的类，其_classid为序号，_className为内容
         public class ClassInfo
         {
             int _classId;
@@ -161,7 +161,7 @@ namespace Test
             public int ClassId { get => _classId; set => _classId = value; }
             public string ClassName { get => _className; set => _className = value; }
         }
-
+        #endregion
         //在选中配置的时候提示选择了**配置
         private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

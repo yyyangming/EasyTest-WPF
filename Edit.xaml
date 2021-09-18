@@ -160,28 +160,11 @@
                     <Border HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="215">
                         <TextBlock  Text="自定义控件显示信息" />
                     </Border>
-                    <WrapPanel Width="215" >
-                        <ListBox Height="200" Width="105" FontSize="8" BorderThickness="0">
-                            <ListBoxItem HorizontalAlignment="Left" Width="104" BorderBrush="Black" BorderThickness="1" Content="属性"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="Image Name1"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="Image Name2"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="—>(1)Image Offset X(毫米)"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="—>(2)Image Offset Y(毫米)"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="名字"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="Length(毫米)"></ListBoxItem>
-                            <ListBoxItem BorderBrush="Black" BorderThickness="1" Content="Width(毫米)"></ListBoxItem>
-                        </ListBox >
-                        <ListBox BorderThickness="0" FontSize="8" Height="200" Width="105" Margin="0,0,0,0" HorizontalAlignment="Right">
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="值"></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content=""></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content=""></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="-0.24"></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="0.00"></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="新建子程序"></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="450"></ListBoxItem>
-                            <ListBoxItem Height="14" BorderBrush="Black" BorderThickness="1" Content="300"></ListBoxItem>
-                        </ListBox>
-                    </WrapPanel>
+                    <WrapPanel Width="215" />
+                    <DataGrid>
+                        <DataGrid.Columns></DataGrid.Columns>
+                        
+                    </DataGrid>
                     <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" 
                             Margin="50,205,0,0"
                     Height="20" Width="100">
