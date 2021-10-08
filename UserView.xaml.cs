@@ -27,7 +27,9 @@ namespace Test
         private void UserView_initoalized(object sender, EventArgs e)
         {
             Canvas mainPanel = new Canvas();
+            
         }
+        
         /// <summary>
         /// 绘制线段
         /// </summary>

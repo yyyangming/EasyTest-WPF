@@ -39,5 +39,18 @@ namespace Test
         {
 
         }
+
+        private void btnEdit(object sender, RoutedEventArgs e)
+        {
+            Edit editForm = new Edit();
+            editForm.Show();
+
+        }
+
+        private void btnLive(object sender, RoutedEventArgs e)
+        {
+            UserView userView = new UserView();
+            userView.Show();
+        }
     }
 }

@@ -1,0 +1,33 @@
+﻿<Window x:Class="Test.MaintenanceConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test"
+        mc:Ignorable="d"
+        Title="MaintenanceConfiguration" Height="300" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*" ></RowDefinition>
+            <RowDefinition Height="11*" ></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Margin="38,10,396,197">name:</Label>
+        <ComboBox HorizontalAlignment="Left" Margin="38,38,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Time Period:" HorizontalAlignment="Left" Margin="38,98,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="130,102,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Days" HorizontalAlignment="Left" Margin="255,98,0,0" VerticalAlignment="Top"/>
+        <Button Content="Advanced" HorizontalAlignment="Left" Margin="38,167,0,0" VerticalAlignment="Top" Height="23" Width="132"/>
+        <GroupBox Header="units" Margin="346,34,36,34" FontSize="15">
+            <WrapPanel Height="121">
+                <RadioButton Content="Weeks" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Days" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Hours" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Minutes" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Sceond" HorizontalAlignment="Left" Margin="11,5,0,0" VerticalAlignment="Top"/>
+            </WrapPanel>
+        </GroupBox>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="158,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="35" Width="135"/>
+
+    </Grid>
+</Window>

@@ -23,7 +23,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,17 +48,72 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfEasyUserControl">
+      <HintPath>..\EasyCoatWpf\WpfEasyUserControl\bin\Debug\WpfEasyUserControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="comboBoxInfos.cs" />
+    <Compile Include="ConveyorSettings.xaml.cs">
+      <DependentUpon>ConveyorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\FixtureConfigure.xaml.cs">
+      <DependentUpon>FixtureConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ToolConfigureChooseColor.xaml.cs">
+      <DependentUpon>ToolConfigureChooseColor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ControlStateQ.xaml.cs">
+      <DependentUpon>ControlStateQ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomButtons.xaml.cs">
+      <DependentUpon>CustomButtons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomJog.cs" />
+    <Compile Include="ToolConfigureX\FanWidth.xaml.cs">
+      <DependentUpon>FanWidth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Jog.xaml.cs">
+      <DependentUpon>Jog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\MaintenanceConfiguration.xaml.cs">
+      <DependentUpon>MaintenanceConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\NeedleFinderZ.xaml.cs">
+      <DependentUpon>NeedleFinderZ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PressureState.xaml.cs">
+      <DependentUpon>PressureState.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ProductionConfiguration.xaml.cs">
+      <DependentUpon>ProductionConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test926.xaml.cs">
+      <DependentUpon>Test926.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestDraw.xaml.cs">
       <DependentUpon>TestDraw.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ToolConfigure.xaml.cs">
+      <DependentUpon>ToolConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ToolConfigureConfigure.xaml.cs">
+      <DependentUpon>ToolConfigureConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucMove.xaml.cs">
+      <DependentUpon>ucMove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserJog.xaml.cs">
+      <DependentUpon>UserJog.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -65,6 +121,38 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
+    <Page Include="ConveyorSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\FixtureConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ToolConfigureChooseColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ControlStateQ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\FanWidth.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Jog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\MaintenanceConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,7 +165,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ToolConfigureX\NeedleFinderZ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PressureState.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ProductionConfiguration.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Test926.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TestDraw.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ToolConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ToolConfigureConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucMove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserJog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,6 +235,61 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Image\向上抬.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向下降.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向上.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向上1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\最左.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\左.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\右.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\最右.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向下.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向下1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向上2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向上3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\左1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\左2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\右1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\右2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向下2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\向下3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\desket\workspace\wpf\Test\obj\Debug\
+E:\desket\Test\Test\obj\Debug\
 Test
 none
 false
 DEBUG;TRACE
-E:\desket\workspace\wpf\Test\App.xaml
-42027143266
+E:\desket\Test\Test\App.xaml
+20-955531080
 
-9-817737575
-14-1290796308
-MainWindow.xaml;TestDraw.xaml;UserView.xaml;Edit.xaml;
+271470968429
+18310629755
+ConveyorSettings.xaml;ToolConfigureX\FixtureConfigure.xaml;ToolConfigureX\ToolConfigureChooseColor.xaml;ToolConfigureX\ControlStateQ.xaml;CustomButtons.xaml;ToolConfigureX\FanWidth.xaml;Jog.xaml;ToolConfigureX\MaintenanceConfiguration.xaml;MainWindow.xaml;ToolConfigureX\NeedleFinderZ.xaml;PressureState.xaml;ToolConfigureX\ProductionConfiguration.xaml;Test926.xaml;TestDraw.xaml;ToolConfigureX\ToolConfigure.xaml;ToolConfigureX\ToolConfigureConfigure.xaml;ucMove.xaml;UserJog.xaml;UserView.xaml;Edit.xaml;
 
-False
+True
 
