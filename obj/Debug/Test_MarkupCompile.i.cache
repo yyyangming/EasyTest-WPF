@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\desket\Test\Test\obj\Debug\
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\
 Test
 none
 false
 DEBUG;TRACE
-E:\desket\Test\Test\App.xaml
-20-955531080
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\App.xaml
+222016019686
 
-271470968429
-18310629755
-ConveyorSettings.xaml;ToolConfigureX\FixtureConfigure.xaml;ToolConfigureX\ToolConfigureChooseColor.xaml;ToolConfigureX\ControlStateQ.xaml;CustomButtons.xaml;ToolConfigureX\FanWidth.xaml;Jog.xaml;ToolConfigureX\MaintenanceConfiguration.xaml;MainWindow.xaml;ToolConfigureX\NeedleFinderZ.xaml;PressureState.xaml;ToolConfigureX\ProductionConfiguration.xaml;Test926.xaml;TestDraw.xaml;ToolConfigureX\ToolConfigure.xaml;ToolConfigureX\ToolConfigureConfigure.xaml;ucMove.xaml;UserJog.xaml;UserView.xaml;Edit.xaml;
+29-771094809
+18337036587
+ConfigureProductMap.xaml;ToolConfigureX\ConveyorSettings.xaml;ToolConfigureX\logConfigure.xaml;ToolConfigureX\logDisplay.xaml;MainWindow\MWChangeProduct.xaml;ToolConfigureX\FixtureConfigure.xaml;ToolConfigureX\ToolConfigureChooseColor.xaml;ToolConfigureX\ControlStateQ.xaml;ToolConfigureX\CustomButtons.xaml;ToolConfigureX\FanWidth.xaml;Jog.xaml;ToolConfigureX\MaintenanceConfiguration.xaml;MainWindow.xaml;ToolConfigureX\NeedleFinderZ.xaml;PressureState.xaml;ToolConfigureX\ProductionConfiguration.xaml;ToolConfigureX\ToolConfigure.xaml;ToolConfigureX\ToolConfigureConfigure.xaml;ucMove.xaml;UserJog.xaml;UserView.xaml;Edit.xaml;
 
-True
+False
 

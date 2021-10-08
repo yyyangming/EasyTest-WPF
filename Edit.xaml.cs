@@ -311,5 +311,18 @@ namespace Test
             ConveyorSettings conveyorSettings= new ConveyorSettings();
             conveyorSettings.Show();
         }
+
+        private void logConfigure_click(object sender, RoutedEventArgs e)
+        {
+            logConfigure logConfigure= new logConfigure();
+            logConfigure.Show();
+        }
+
+
+        private void ConfigureProductMap_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigureProductMap configureProductMap = new ConfigureProductMap();
+            configureProductMap.Show();
+        }
     }
 }

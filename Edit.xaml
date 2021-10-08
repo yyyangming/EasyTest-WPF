@@ -63,13 +63,13 @@
                         </MenuItem>
                         <MenuItem Header="配置">
                             <MenuItem Header="生产" Click="ProductionConguration"></MenuItem>
-                            <MenuItem Header="产品图"></MenuItem>
+                            <MenuItem Header="产品图" Click="ConfigureProductMap_Click"></MenuItem>
                             <MenuItem Header="工具" Click="ToolConfigure_click" ></MenuItem>
                             <MenuItem Header="工具Z偏移量"></MenuItem>
                             <MenuItem Header="固定装置" Click="FixtureConfigure_click"></MenuItem>
                             <MenuItem Header="重新装配"></MenuItem>
                             <MenuItem Header="事件监测"></MenuItem>
-                            <MenuItem Header="日志"></MenuItem>
+                            <MenuItem Header="日志" Click="logConfigure_click"></MenuItem>
                             <MenuItem Header="维护管理器" Click="MaintenanceConfiguration" ></MenuItem>
                             <MenuItem Header="自定义按钮"></MenuItem>
                             <MenuItem Header="工艺限值"></MenuItem>

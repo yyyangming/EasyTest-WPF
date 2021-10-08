@@ -185,7 +185,7 @@
                     </Button>
                     </Border>
                     <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                        <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                        <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProductMap_click">
                         <Image Height="30" Source="E:\desket\图标\文件.png"/>
                     </Button>
                     </Border>

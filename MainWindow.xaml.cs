@@ -52,5 +52,11 @@ namespace Test
             UserView userView = new UserView();
             userView.Show();
         }
+
+        private void ProductMap_click(object sender, RoutedEventArgs e)
+        {
+            MWChangeProduct mWChangeProduct= new MWChangeProduct();
+            mWChangeProduct.Show();
+        }
     }
 }

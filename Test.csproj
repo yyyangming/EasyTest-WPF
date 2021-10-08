@@ -63,8 +63,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="comboBoxInfos.cs" />
-    <Compile Include="ConveyorSettings.xaml.cs">
+    <Compile Include="ConfigureProductMap.xaml.cs">
+      <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\ConveyorSettings.xaml.cs">
       <DependentUpon>ConveyorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\logConfigure.xaml.cs">
+      <DependentUpon>logConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureX\logDisplay.xaml.cs">
+      <DependentUpon>logDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow\MWChangeProduct.xaml.cs">
+      <DependentUpon>MWChangeProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolConfigureX\FixtureConfigure.xaml.cs">
       <DependentUpon>FixtureConfigure.xaml</DependentUpon>
@@ -75,7 +87,7 @@
     <Compile Include="ToolConfigureX\ControlStateQ.xaml.cs">
       <DependentUpon>ControlStateQ.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomButtons.xaml.cs">
+    <Compile Include="ToolConfigureX\CustomButtons.xaml.cs">
       <DependentUpon>CustomButtons.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomJog.cs" />
@@ -97,12 +109,6 @@
     <Compile Include="ToolConfigureX\ProductionConfiguration.xaml.cs">
       <DependentUpon>ProductionConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Test926.xaml.cs">
-      <DependentUpon>Test926.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TestDraw.xaml.cs">
-      <DependentUpon>TestDraw.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ToolConfigureX\ToolConfigure.xaml.cs">
       <DependentUpon>ToolConfigure.xaml</DependentUpon>
     </Compile>
@@ -121,7 +127,23 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
-    <Page Include="ConveyorSettings.xaml">
+    <Page Include="ConfigureProductMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\ConveyorSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\logConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureX\logDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow\MWChangeProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -137,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CustomButtons.xaml">
+    <Page Include="ToolConfigureX\CustomButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,14 +198,6 @@
     <Page Include="ToolConfigureX\ProductionConfiguration.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Test926.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TestDraw.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToolConfigureX\ToolConfigure.xaml">
       <SubType>Designer</SubType>
@@ -236,7 +250,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Edit\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\向上抬.png" />
   </ItemGroup>
