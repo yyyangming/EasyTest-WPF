@@ -143,3 +143,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainWindow.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Edit.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainWindow.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Edit.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\PasswordManager.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\PasswordManager.baml

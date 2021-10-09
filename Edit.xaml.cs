@@ -324,5 +324,17 @@ namespace Test
             ConfigureProductMap configureProductMap = new ConfigureProductMap();
             configureProductMap.Show();
         }
+
+        private void PasswordManager_Click(object sender, RoutedEventArgs e)
+        {
+            PasswordManager configurePasswordManager = new PasswordManager();
+            configurePasswordManager.Show();
+        }
+
+        private void NewPatternTeach_click(object sender, RoutedEventArgs e)
+        {
+            NewPatternTeach newPatternTeach = new NewPatternTeach();
+            newPatternTeach.Show();
+        }
     }
 }

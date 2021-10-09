@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="ConfigureProductMap" Height="450" Width="500">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="22,32,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="99,32,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="174,32,0,0" VerticalAlignment="Top"/>
+        <Button Content="New Part" Width="70" HorizontalAlignment="Left" Margin="22,32,0,0" VerticalAlignment="Top" Click="ProgramWizard_Click"/>
+        <Button Content="New Group" Width="70" HorizontalAlignment="Left" Margin="99,32,0,0" VerticalAlignment="Top"/>
+        <Button Content="Delete" Width="70" HorizontalAlignment="Left" Margin="174,32,0,0" VerticalAlignment="Top"/>
         <Label Content="Part Number:" HorizontalAlignment="Left" Margin="24,70,0,0" VerticalAlignment="Top"/>
         <Label Content="FileName:" HorizontalAlignment="Left" Margin="27,100,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="120,74,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="353"/>

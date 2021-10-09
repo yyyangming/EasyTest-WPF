@@ -13,7 +13,7 @@
         >
     <Viewbox>
         <Grid >
-            <Border Margin="0,0,0,0" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Border Margin="0,0,0,0" BorderBrush="Black" BorderThickness="0" CornerRadius="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Menu  HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="auto" Margin="0,0,0,0">
                     <MenuItem Header="文件" Width="auto" Height="auto" Name="MenuFile">
                         <MenuItem  Header="退出"/>
@@ -22,14 +22,14 @@
                         <MenuItem  Header="编辑模式" Click="btnEdit"/>
                     </MenuItem>
                     <MenuItem Header="观察">
-                        <MenuItem Background="DimGray" Header="现场视频" Click="btnLive"/>
+                        <MenuItem Header="现场视频" Click="btnLive"/>
                     </MenuItem>
                     <MenuItem Header="配置" Width="auto" Height="auto">
-                        <MenuItem Background="DimGray" Header="配置1"/>
-                        <MenuItem Background="DimGray" Header="配置2"/>
+                        <MenuItem  Header="配置1"/>
+                        <MenuItem Header="配置2"/>
                     </MenuItem>
                     <MenuItem Header="帮助" Width="auto" Height="auto">
-                        <MenuItem Background="DimGray" Header="帮助"></MenuItem>
+                        <MenuItem Header="帮助"></MenuItem>
                     </MenuItem>
                 </Menu>
                 

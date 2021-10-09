@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// ConfigureProductMap.xaml 的交互逻辑
+    /// PasswordManager.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigureProductMap : Window
+    public partial class PasswordManager : Window
     {
-        public ConfigureProductMap()
+        public PasswordManager()
         {
             InitializeComponent();
-        }
-
-        private void ProgramWizard_Click(object sender, RoutedEventArgs e)
-        {
-            ProgramWizard programWizard= new ProgramWizard();
-            programWizard.Show();
         }
     }
 }

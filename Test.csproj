@@ -66,6 +66,15 @@
     <Compile Include="ConfigureProductMap.xaml.cs">
       <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewPatternTeach.xaml.cs">
+      <DependentUpon>NewPatternTeach.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordManager.xaml.cs">
+      <DependentUpon>PasswordManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramWizard.xaml.cs">
+      <DependentUpon>ProgramWizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToolConfigureX\ConveyorSettings.xaml.cs">
       <DependentUpon>ConveyorSettings.xaml</DependentUpon>
     </Compile>
@@ -128,6 +137,18 @@
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
     <Page Include="ConfigureProductMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewPatternTeach.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordManager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

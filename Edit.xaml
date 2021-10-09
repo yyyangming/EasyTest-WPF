@@ -39,7 +39,7 @@
                             <MenuItem Header="复制"></MenuItem>
                             <MenuItem Header="粘贴"></MenuItem>
                             <MenuItem Header="删除"></MenuItem>
-                            <MenuItem Header="创建模式"></MenuItem>
+                            <MenuItem Header="创建模式" Click="NewPatternTeach_click"></MenuItem>
                             <MenuItem Header="创建工序"></MenuItem>
                             <MenuItem Header="剪切"></MenuItem>
                         </MenuItem>
@@ -77,6 +77,7 @@
                             <MenuItem Header="寻针器设置" Click="NeederFinder_click"></MenuItem>
                             <MenuItem Header="扇区宽度设置" Click="FanWidth_click" ></MenuItem>
                             <MenuItem Header="轨道设置" Click="ConveyorSeetings_click"></MenuItem>
+                            <MenuItem Header="密码管理器" Click="PasswordManager_Click"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="实用程序">
                             <MenuItem Header="机器人实用程序">
@@ -87,6 +88,7 @@
                                 <MenuItem Header="恢复默认值"></MenuItem>
                                 <MenuItem Header="下载ACL"></MenuItem>
                                 <MenuItem Header="张紧工序"></MenuItem>
+                                
                             </MenuItem>
                             <MenuItem Header="压力调节" >
                                 <MenuItem Header="工具1" Click="PressControl"></MenuItem>

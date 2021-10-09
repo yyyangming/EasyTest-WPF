@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\App.xaml
-222016019686
+25-1462539414
 
-29-771094809
+32-1288252989
 18337036587
-ConfigureProductMap.xaml;ToolConfigureX\ConveyorSettings.xaml;ToolConfigureX\logConfigure.xaml;ToolConfigureX\logDisplay.xaml;MainWindow\MWChangeProduct.xaml;ToolConfigureX\FixtureConfigure.xaml;ToolConfigureX\ToolConfigureChooseColor.xaml;ToolConfigureX\ControlStateQ.xaml;ToolConfigureX\CustomButtons.xaml;ToolConfigureX\FanWidth.xaml;Jog.xaml;ToolConfigureX\MaintenanceConfiguration.xaml;MainWindow.xaml;ToolConfigureX\NeedleFinderZ.xaml;PressureState.xaml;ToolConfigureX\ProductionConfiguration.xaml;ToolConfigureX\ToolConfigure.xaml;ToolConfigureX\ToolConfigureConfigure.xaml;ucMove.xaml;UserJog.xaml;UserView.xaml;Edit.xaml;
+ConfigureProductMap.xaml;NewPatternTeach.xaml;PasswordManager.xaml;ProgramWizard.xaml;ToolConfigureX\ConveyorSettings.xaml;ToolConfigureX\logConfigure.xaml;ToolConfigureX\logDisplay.xaml;MainWindow\MWChangeProduct.xaml;ToolConfigureX\FixtureConfigure.xaml;ToolConfigureX\ToolConfigureChooseColor.xaml;ToolConfigureX\ControlStateQ.xaml;ToolConfigureX\CustomButtons.xaml;ToolConfigureX\FanWidth.xaml;Jog.xaml;ToolConfigureX\MaintenanceConfiguration.xaml;MainWindow.xaml;ToolConfigureX\NeedleFinderZ.xaml;PressureState.xaml;ToolConfigureX\ProductionConfiguration.xaml;ToolConfigureX\ToolConfigure.xaml;ToolConfigureX\ToolConfigureConfigure.xaml;ucMove.xaml;UserJog.xaml;UserView.xaml;Edit.xaml;
 
-False
+True
 

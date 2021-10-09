@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// ConfigureProductMap.xaml 的交互逻辑
+    /// ProgramWizard.xaml 的交互逻辑
     /// </summary>
-    public partial class ConfigureProductMap : Window
+    public partial class ProgramWizard : Window
     {
-        public ConfigureProductMap()
+        public ProgramWizard()
         {
             InitializeComponent();
-        }
-
-        private void ProgramWizard_Click(object sender, RoutedEventArgs e)
-        {
-            ProgramWizard programWizard= new ProgramWizard();
-            programWizard.Show();
         }
     }
 }
