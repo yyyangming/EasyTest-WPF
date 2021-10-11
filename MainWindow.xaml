@@ -36,44 +36,47 @@
             </Border>
             <WrapPanel Height="660" Width="250" Margin="-680,0,0,0">
             <WrapPanel HorizontalAlignment="Left" Height="auto" Margin="2,30,0,236" Width="250" RenderTransformOrigin="0.5,0.469" AutomationProperties.Name="plnIcon">
-                    <WrapPanel Height="350"  Width="auto" AutomationProperties.Name="plnPress" >
-                        <WrapPanel Margin="10,0,0,0" Height="20"  VerticalAlignment="Top" AutomationProperties.Name="plnPressButton">
-                            <Button Content="文本" Height="20" VerticalAlignment="Top" Width="75" AutomationProperties.Name="btnText"/>
-                            <Button  Content="图形" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" AutomationProperties.Name="btnGraphical"/>
-                        </WrapPanel>
-                        <Border BorderThickness="2,0,2,2">
-                        <WrapPanel Height="150"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="250"  >
-                            <Line X1="20" Y1="30" X2="230" Y2="30" Stroke="Black" StrokeThickness="2"></Line>
-                            <Line X1="20" Y1="32" X2="230" Y2="32" Stroke="Black" StrokeThickness="2"></Line>
-                            <Line X1="20" Y1="34" X2="230" Y2="34" Stroke="Black" StrokeThickness="2"></Line>
-                            <Line X1="20" Y1="36" X2="230" Y2="36" Stroke="Black" StrokeThickness="2"></Line>
-                            <Line X1="20" Y1="38" X2="230" Y2="38" Stroke="Black" StrokeThickness="2"></Line>
+                    <Border  Height="350"  Width="220" Margin="20,0,0,0" BorderThickness="1" BorderBrush="Black">
+                        <WrapPanel AutomationProperties.Name="plnPress">
+                            <WrapPanel Margin="2,0,0,0" Height="20"  VerticalAlignment="Top" AutomationProperties.Name="plnPressButton">
+                                <Button Content="文本" Height="20" VerticalAlignment="Top" Width="75" Name="BtnTxt" PreviewMouseDown="BtnTxt_PreviewMouseDown"/>
+                                <Button  Content="图形" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Name="BtnG" PreviewMouseDown="BtnG_PreviewMouseDown"/>
+                            </WrapPanel>
+                            <Border BorderThickness="2" BorderBrush="LightSlateGray" Margin="02,0,0,0">
+                                <WrapPanel Height="150"  HorizontalAlignment="Right" VerticalAlignment="Top" Background="Black">
+                                    <Line X1="0" Y1="30" X2="210" Y2="30" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="32" X2="210" Y2="32" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="34" X2="210" Y2="34" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="36" X2="210" Y2="36" Stroke="Black" StrokeThickness="2"></Line>
+                                </WrapPanel>
+                            </Border>
+
+                            <WrapPanel Height="20"  VerticalAlignment="Top" Margin="2,2,0,0" >
+                                <Button Content="文本"  Height="20" VerticalAlignment="Top" Width="75" Name="BtnTxt2" Click="BtnTxt2_Click" BorderBrush="Black" PreviewMouseDown="BtnTxt2_PreviewMouseDown" />
+                                <Button Content="图形" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Name="BtnG2" Width="75" BorderBrush="Black" PreviewMouseDown="BtnG2_PreviewMouseDown"/>
+                                <Line X1="0" Y1="-1" X2="75" Y2="-1" Stroke="#00939A" StrokeThickness="2" Visibility="Collapsed" Name="LineBtnTxt2"></Line>
+                                <Line X1="75" Y1="-1" X2="150" Y2="-1" Stroke="#00939A" StrokeThickness="2" Visibility="Collapsed" Name="LineBtnG2"></Line>
+                            </WrapPanel>
+                            <Border BorderBrush="LightSlateGray" Margin="2,0,0,0" BorderThickness="2,0,2,2" Background="Black">
+                                <WrapPanel  Height="150"  HorizontalAlignment="Right" VerticalAlignment="Top">
+                                    <Line X1="0" Y1="30" X2="210" Y2="30" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="32" X2="210" Y2="32" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="34" X2="210" Y2="34" Stroke="Black" StrokeThickness="2"></Line>
+                                    <Line X1="0" Y1="36" X2="210" Y2="36" Stroke="Black" StrokeThickness="2"></Line>
+                                </WrapPanel>
+                            </Border>
                         </WrapPanel>
                     </Border>
-
-                    <WrapPanel Height="20"  VerticalAlignment="Top" Margin="10,2,0,0" >
-                        <Button Content="文本" Height="20" VerticalAlignment="Top" Width="75" >
-                        </Button>
-                        <Button Content="图形" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" />
-                    </WrapPanel>
-                    <WrapPanel  Height="150"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="250"  >
-                        <Line X1="20" Y1="30" X2="230" Y2="30" Stroke="Black" StrokeThickness="2"></Line>
-                        <Line X1="20" Y1="32" X2="230" Y2="32" Stroke="Black" StrokeThickness="2"></Line>
-                        <Line X1="20" Y1="34" X2="230" Y2="34" Stroke="Black" StrokeThickness="2"></Line>
-                        <Line X1="20" Y1="36" X2="230" Y2="36" Stroke="Black" StrokeThickness="2"></Line>
-                        <Line X1="20" Y1="38" X2="230" Y2="38" Stroke="Black" StrokeThickness="2"></Line>
-                    </WrapPanel>
                 </WrapPanel>
-            </WrapPanel>
             
-            <Border BorderThickness="1" BorderBrush="AliceBlue" Margin="0,-250,0,0">
+            <Border BorderThickness="1" Margin="0,-250,0,0">
                 <DockPanel Margin="10,40,0,0">
                     <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="胶阀" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="110" Margin="5,0,5,0"></Button>
                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="轨道" HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="110"></Button>
                     </WrapPanel>
                     <WrapPanel DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                        <ComboBox FontSize="10" Width="100" Height="18" Margin="5,10,0,0">
+                        <ComboBox FontSize="10" Width="100" Height="18" Margin="5,10,0,0" >
                             <ComboBoxItem IsSelected="True">定位1</ComboBoxItem>
                             <ComboBoxItem>定位2</ComboBoxItem>
                             <ComboBoxItem>定位3</ComboBoxItem>

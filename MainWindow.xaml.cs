@@ -58,5 +58,58 @@ namespace Test
             MWChangeProduct mWChangeProduct= new MWChangeProduct();
             mWChangeProduct.Show();
         }
+
+        private void BtnTxt2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnTxt2_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LineBtnG2.Visibility == Visibility.Visible)
+            {
+                LineBtnG2.Visibility = Visibility.Collapsed;
+                BtnG2.BorderThickness = new Thickness(1, 1, 1, 0);
+            }
+            LineBtnTxt2.Visibility = Visibility.Visible;
+            BtnTxt2.BorderThickness = new Thickness(2, 2, 0, 0);
+            BtnTxt2.Background = new SolidColorBrush(Color.FromArgb(1,165,167,159));
+        }
+
+        private void BtnG2_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(LineBtnTxt2.Visibility == Visibility.Visible)
+            {
+                LineBtnTxt2.Visibility = Visibility.Collapsed;
+                BtnTxt2.BorderThickness = new Thickness(1, 1, 1, 0);
+            }
+            LineBtnG2.Visibility = Visibility.Visible;
+            BtnG2.BorderThickness = new Thickness(2, 2, 0, 0);
+            BtnG2.Background = new SolidColorBrush(Color.FromArgb(1, 165, 167, 159));
+        }
+
+        private void BtnG_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LineBtnTxt2.Visibility == Visibility.Visible)
+            {
+                LineBtnTxt2.Visibility = Visibility.Collapsed;
+                BtnTxt.BorderThickness = new Thickness(1, 1, 1, 0);
+            }
+            LineBtnG2.Visibility = Visibility.Visible;
+            BtnG.BorderThickness = new Thickness(2, 2, 0, 0);
+            BtnG.Background = new SolidColorBrush(Color.FromArgb(1, 165, 167, 159));
+        }
+
+        private void BtnTxt_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (LineBtnG2.Visibility == Visibility.Visible)
+            {
+                LineBtnG2.Visibility = Visibility.Collapsed;
+                BtnG.BorderThickness = new Thickness(1, 1, 1, 0);
+            }
+            LineBtnTxt2.Visibility = Visibility.Visible;
+            BtnTxt.BorderThickness = new Thickness(2, 2, 0, 0);
+            BtnTxt.Background = new SolidColorBrush(Color.FromArgb(1, 165, 167, 159));
+        }
     }
 }
