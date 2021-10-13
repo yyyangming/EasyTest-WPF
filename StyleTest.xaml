@@ -6,10 +6,6 @@
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
         Title="StyleTest" Height="450" Width="800"
-        Name="WDGoto"
-        WindowStyle="None"
-        Background="Transparent"
-        AllowsTransparency="True"
         >
     <Window.Resources>
         <Style x:Key="commBtn" TargetType="Button">
@@ -181,188 +177,11 @@
             </Setter>
         </Style>
 
-
-        <Storyboard x:Key="showDW">
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="Opacity"
-                        From="0.2" To="1" Duration="0:0:2.5">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
-                        From="-90" To="0" Duration="0:0:2" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        From="0" To="1" Duration="0:0:2" 
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="0" To="1" Duration="0:0:2" 
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
-                        DecelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        To="0.98" BeginTime="0:0:2" Duration="0:0:0.05" 
-                        DecelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2"  
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"              
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        To="1" BeginTime="0:0:2.05" Duration="0:0:0.2" 
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-        </Storyboard>
-        <!--原始的旋转回去样例-->
-        <Storyboard x:Key="closeDW">
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
-                      To="360" Duration="0:0:1.5" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="Opacity"
-                      To="0" Duration="0:0:3">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                      To="0" Duration="0:0:1.5" AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                      Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                      To="0" Duration="0:0:1.5" AccelerationRatio="1">
-            </DoubleAnimation>
-        </Storyboard>
-        <!--转出来-->
-        <Storyboard x:Key="showDW1">
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="Opacity"
-                        From="0" To="1" Duration="0:0:0.2">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
-                        From="180" To="0" Duration="0:0:0.2" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        From="0.2" To="1" Duration="0:0:0.2" 
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="0.2" To="1" Duration="0:0:0.2" 
-                        AccelerationRatio="1">
-            </DoubleAnimation>
-        </Storyboard>
-        <!--弹出来-->
-        <Storyboard x:Key="showDW2">
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        From="0.2" To="0.5" Duration="0:0:0.1" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="0.2" To="0.5" Duration="0:0:0.1" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                          From="0.5" To="1" Duration="0:0:0.1" BeginTime="0:0:0.2" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                         From="0.5" To="1" Duration="0:0:0.1" BeginTime="0:0:0.2">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                         From="1" To="1.2" Duration="0:0:0.1" BeginTime="0:0:0.2" AutoReverse="True" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="1"  To="1.2" Duration="0:0:0.1" BeginTime="0:0:0.2" AutoReverse="True">
-            </DoubleAnimation>
-        </Storyboard>
-        <!--转回去-->
-        <Storyboard x:Key="closeDW1">
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="RenderTransform.Children[1].Angle"
-                      To="180" Duration="0:0:0.2" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="Opacity"
-                      To="0" Duration="0:0:0.2">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1" 
-                      Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                      To="0.2" Duration="0:0:0.2" AccelerationRatio="1">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                      Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                      To="0.2" Duration="0:0:0.2" AccelerationRatio="1">
-            </DoubleAnimation>
-        </Storyboard>
-
-        <!--弹回去-->
-        <Storyboard x:Key="closeDW2">
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                        From="1" To="1.2" Duration="0:0:0.04"  AutoReverse="True">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="1" To="1.2" Duration="0:0:0.04"  AutoReverse="True">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                          From="1" To="0.5" Duration="0:0:0.04" BeginTime="0:0:0.04" >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                         From="1" To="0.5" Duration="0:0:0.04" BeginTime="0:0:0.04">
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleX"
-                         From="0.5" To="0" Duration="0:0:0.04" BeginTime="0:0:0.08"  >
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="grid1"
-                        Storyboard.TargetProperty="RenderTransform.Children[0].ScaleY"
-                        From="0.5"  To="0" Duration="0:0:0.04" BeginTime="0:0:0.08" >
-            </DoubleAnimation>
-        </Storyboard>
     </Window.Resources>
 
-    <!--<Window.Triggers>
-        --><!--设置DW1的事件触发-->
-        <!--注意对窗体window的name取为DW1--><!--
-        <EventTrigger SourceName="WDGoto" RoutedEvent="Window.Loaded">
-            <BeginStoryboard Name="showQueryCanvasStoryboard2" 
-                      Storyboard="{StaticResource showDW1}">
-            </BeginStoryboard>
-        </EventTrigger>
-
-        --><!--注意对按钮的name取为button1-->
-        <!--<EventTrigger SourceName="button1" RoutedEvent="Image.MouseUp">
-            <BeginStoryboard Name="closeQueryCanvasStoryboard" Storyboard="{StaticResource closeDW1}">
-            </BeginStoryboard>
-        </EventTrigger>-->
+    <Grid >
         
-        <!--设置button1的事件触发-->
-        <!--注意对按钮的name取为button1--><!--
-    </Window.Triggers>-->
-
-    <Grid Name="grid1" Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="249*" />
-            <ColumnDefinition Width="192*" />
-        </Grid.ColumnDefinitions>
-        <Button Name="butten1" Content="Button" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="60" Width="160" Style="{StaticResource btnTransparentStyle}"/>
+        <Button  Content="Button" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Center" Height="60" Width="160" Style="{StaticResource btnTransparentStyle}"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="241,190,0,0" VerticalAlignment="Top" Height="60" Width="147" Style="{StaticResource ChangeButtonIsMouseOver}"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="240,278,0,0" VerticalAlignment="Top" Height="60" Width="148" Style="{StaticResource commBtn}"/>
         <Border HorizontalAlignment="Left" Margin="23,284,0,0" VerticalAlignment="Top"  BorderBrush="Black" BorderThickness="1">
@@ -370,15 +189,8 @@
                 <Image Source="E:\desket\图标\运行(1).png" Width="30" Height="30"></Image>
             </Button>
         </Border>
-        <Image HorizontalAlignment="Left" Height="100" Margin="241,48,0,0" VerticalAlignment="Top" Width="100"/>
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform CenterX="100" CenterY="50"></ScaleTransform>
-                <!--缩放中心为100,50。RenderTransform.Children[0]-->
-                <RotateTransform CenterX="100" CenterY="50"></RotateTransform>
-                <!--旋转中心为100,50。RenderTransform.Children[1]-->
-            </TransformGroup>
-        </Grid.RenderTransform>
+
+        
         
     </Grid>
 </Window>

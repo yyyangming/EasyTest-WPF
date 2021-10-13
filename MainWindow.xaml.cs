@@ -111,5 +111,17 @@ namespace Test
             BtnTxt.BorderThickness = new Thickness(2, 2, 0, 0);
             BtnTxt.Background = new SolidColorBrush(Color.FromArgb(1, 165, 167, 159));
         }
+
+        private void UserButten_Click(object sender, RoutedEventArgs e)
+        {
+            StyleTest styleTest= new StyleTest();
+            styleTest.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            WpfArcgis.WDGotoXY wDGotoXY    = new WpfArcgis.WDGotoXY();
+            wDGotoXY.Show();
+        }
     }
 }
