@@ -66,6 +66,9 @@
     <Compile Include="ConfigureProductMap.xaml.cs">
       <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="donghuaTEST.xaml.cs">
+      <DependentUpon>donghuaTEST.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewPatternTeach.xaml.cs">
       <DependentUpon>NewPatternTeach.xaml</DependentUpon>
     </Compile>
@@ -74,6 +77,9 @@
     </Compile>
     <Compile Include="ProgramWizard.xaml.cs">
       <DependentUpon>ProgramWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StyleTest.xaml.cs">
+      <DependentUpon>StyleTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolConfigureX\ConveyorSettings.xaml.cs">
       <DependentUpon>ConveyorSettings.xaml</DependentUpon>
@@ -140,6 +146,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="donghuaTEST.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewPatternTeach.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgramWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StyleTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

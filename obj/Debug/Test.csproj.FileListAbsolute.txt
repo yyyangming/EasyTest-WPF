@@ -149,3 +149,7 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewPatternTeach.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ProgramWizard.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewPatternTeach.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ProgramWizard.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\StyleTest.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\StyleTest.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.g.cs
