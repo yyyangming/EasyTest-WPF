@@ -189,8 +189,8 @@
     <Grid Name="grid1" Background="White">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="249*" />
-            <ColumnDefinition Width="192*" />
+            <ColumnDefinition Width="272*" />
+            <ColumnDefinition Width="191*" />
         </Grid.ColumnDefinitions>
         <Grid.RenderTransform>
             <TransformGroup>
@@ -200,12 +200,12 @@
                 <!--旋转中心为100,50。RenderTransform.Children[1]-->
             </TransformGroup>
         </Grid.RenderTransform>
-        <Label Content="X(经度)" Height="28" HorizontalAlignment="Left" Margin="23,56,0,0" Name="label1" VerticalAlignment="Top" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="79,58,0,0" Name="tbLongitude" VerticalAlignment="Top" Width="120" />
-        <Label Content="Y(纬度)" Height="28" HorizontalAlignment="Right" Margin="0,53,163,0" Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <Label Content="X" Height="28" HorizontalAlignment="Left" Margin="21,56,0,0" Name="label1" VerticalAlignment="Top" Width="18" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="62,58,0,0" Name="tbLongitude" VerticalAlignment="Top" Width="120" />
+        <Label Content="Y" Height="28" HorizontalAlignment="Left" Margin="15,53,0,0" Name="label2" VerticalAlignment="Top" Grid.Column="1" Width="17" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="50,58,0,0" Name="tbLatitude" VerticalAlignment="Top" Width="120" Grid.Column="1" />
-        <Button Content="确定" Height="23" HorizontalAlignment="Left" Margin="185,94,0,0" Name="btnSure" VerticalAlignment="Top" Width="75" Click="btnSure_Click" Grid.ColumnSpan="2">
-            
+        <Button Content="确定" Height="23" HorizontalAlignment="Left" Margin="200,105,0,0" Name="btnSure" VerticalAlignment="Top" Width="75" Click="btnSure_Click" Grid.ColumnSpan="2">
+
             <!--存在问题在于，不能改变背景色，只能进行颜色填充，而且如果在触发器中改变背景色，无效果-->
             <Button.Style>
                 <Style TargetType="Button">
@@ -225,7 +225,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Canvas Height="30" HorizontalAlignment="Stretch" Name="canvas1" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <Canvas Height="30" Name="canvas1" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <Label Canvas.Left="6" Canvas.Top="0" Content="跳转到" Height="28" Name="label3" />
             <Image Canvas.Right="3" Canvas.Top="3" Height="24" Name="button1" Width="24" Source="E:\desket\图标\运行(1).png" MouseUp="button1_MouseUp">
 

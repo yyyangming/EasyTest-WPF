@@ -153,3 +153,7 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\StyleTest.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\StyleTest.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainStyle.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\App.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\WindowChromeTest.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\WindowChromeTest.baml
