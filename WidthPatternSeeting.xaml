@@ -1,0 +1,20 @@
+﻿<Page x:Class="Test.WidthPatternSeeting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WidthPatternSeeting">
+
+    <Grid>
+        <Label Content="Setting width of the dispense pattern" HorizontalAlignment="Left" Margin="143,74,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="143,123,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="inches" HorizontalAlignment="Left" Margin="268,119,0,0" VerticalAlignment="Top"/>
+        <Button Content="Black" HorizontalAlignment="Left" Margin="319,380,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+        <Button Content="Next" HorizontalAlignment="Left" Margin="413,380,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="501,380,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+
+    </Grid>
+</Page>

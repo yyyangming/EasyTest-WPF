@@ -36,16 +36,17 @@
 
         <Border Margin="3,0,3,0" Grid.Row="1" BorderBrush="Black" BorderThickness="1">
             <WrapPanel Grid.Row="1" >
-                <TextBox MaxLength="3" Text="{Binding ElementName=sliderFontsize, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"></TextBox>
+                <TextBox  Text="{Binding ElementName=sliderFontsize, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"></TextBox>
                 <Label Content="PSI" Margin="20,0,0,0"></Label>
-                <Slider Name="sliderFontsize" SmallChange="1" Width="300" Margin="5,20,0,0" IsSnapToTickEnabled="True"></Slider>
+                <Slider Name="sliderFontsize" SmallChange="0.01" Width="300" Margin="5,20,0,0" IsSnapToTickEnabled="True" TickPlacement="Both"  TickFrequency="0.01"></Slider>
+                
             </WrapPanel>
         </Border>
         <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0">
             <WrapPanel Grid.Row="3" >
                 <TextBox MaxLength="3" Text="{Binding ElementName=SliderFontSize2, Path=Value, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"/>
                 <TextBlock Text="PSI" Margin="20,5,0,0"></TextBlock>
-                <Slider Name="SliderFontSize2"  Width="300" Margin="5,20,0,0"></Slider>
+                <Slider Name="SliderFontSize2"  Width="300" Margin="5,20,0,0" TickPlacement="Both"></Slider>
             </WrapPanel>
         </Border>
         <Border Grid.Row="5" BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0">

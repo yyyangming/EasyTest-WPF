@@ -157,3 +157,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainStyle.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\App.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\WindowChromeTest.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\WindowChromeTest.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserAndPassword.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserAndPassword.baml

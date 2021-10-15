@@ -16,7 +16,7 @@
     <Window.Template>
         <ControlTemplate TargetType="Window">
             <Border Padding="1" Background="Transparent">
-                <Border CornerRadius="16" Background="White">
+                <Border CornerRadius="60" Background="White">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="64" />
                     </Border.Effect>

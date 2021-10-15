@@ -62,9 +62,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CharacterizationFinsh.xaml.cs">
+      <DependentUpon>CharacterizationFinsh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharacterizationResponseTimes.xaml.cs">
+      <DependentUpon>CharacterizationResponseTimes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharacterizationValue.xaml.cs">
+      <DependentUpon>CharacterizationValue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="comboBoxInfos.cs" />
     <Compile Include="ConfigureProductMap.xaml.cs">
       <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConformalCoatingCharacterizationWizard.xaml.cs">
+      <DependentUpon>ConformalCoatingCharacterizationWizard.xaml</DependentUpon>
     </Compile>
     <Compile Include="donghuaTEST.xaml.cs">
       <DependentUpon>donghuaTEST.xaml</DependentUpon>
@@ -77,6 +89,9 @@
     </Compile>
     <Compile Include="ProgramWizard.xaml.cs">
       <DependentUpon>ProgramWizard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RobotSettings.xaml.cs">
+      <DependentUpon>RobotSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="StyleTest.xaml.cs">
       <DependentUpon>StyleTest.xaml</DependentUpon>
@@ -133,6 +148,9 @@
     <Compile Include="ucMove.xaml.cs">
       <DependentUpon>ucMove.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserAndPassword.xaml.cs">
+      <DependentUpon>UserAndPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserJog.xaml.cs">
       <DependentUpon>UserJog.xaml</DependentUpon>
     </Compile>
@@ -142,10 +160,29 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WidthPatternSeeting.xaml.cs">
+      <DependentUpon>WidthPatternSeeting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowChromeTest.xaml.cs">
       <DependentUpon>WindowChromeTest.xaml</DependentUpon>
     </Compile>
+    <Page Include="CharacterizationFinsh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterizationResponseTimes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterizationValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ConfigureProductMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConformalCoatingCharacterizationWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProgramWizard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RobotSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +294,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserAndPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserJog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WidthPatternSeeting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
