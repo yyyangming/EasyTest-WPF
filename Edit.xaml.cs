@@ -251,14 +251,84 @@ namespace Test
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             propertyValueList.Add(new propertyValue() { 
-                property = "X",
-                value="1"
+                property = "接近时高度",
+                value="9.00"
             });
 
             propertyValueList.Add(new propertyValue()
             {
-                property = "Y",
-                value = "2"
+                property = "->（1）开始时X（毫米）",
+                value = "-42.25"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "->（1）开始时Y（毫米）",
+                value = "9.25"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "离开时抬起高度（毫米）",
+                value = "9.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "点胶时高度（毫米）",
+                value = "6.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "点胶时速度（毫米/毫米）",
+                value = "9.25"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "（2）重点X轴坐标（毫米）",
+                value = "9.25"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "（2）终点Y轴坐标（毫米）",
+                value = "9.25"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "忽略保护区域（毫米）",
+                value = "错误"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "胶线重叠（毫米）",
+                value = "0.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "->（1）旋转（角度）",
+                value = "0.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "开始距离（毫米）",
+                value = "0.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "停止-距离（毫米）",
+                value = "0.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "->（1）倾斜角度（毫米）",
+                value = "0.00"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "胶阀配置",
+                value = "*****"
+            });
+            propertyValueList.Add(new propertyValue()
+            {
+                property = "X-方向（真）",
+                value = "9.25"
             });
             ((this.FindName("DATA_GRID")) as System.Windows.Controls.DataGrid).ItemsSource = propertyValueList;
         }
@@ -314,8 +384,8 @@ namespace Test
 
         private void logConfigure_click(object sender, RoutedEventArgs e)
         {
-            logConfigure logConfigure= new logConfigure();
-            logConfigure.Show();
+            logConfigure logConfigure1= new logConfigure();
+            logConfigure1.Show();
         }
 
 
@@ -335,6 +405,18 @@ namespace Test
         {
             NewPatternTeach newPatternTeach = new NewPatternTeach();
             newPatternTeach.Show();
+        }
+
+        private void Rabbit_Click(object sender, RoutedEventArgs e)
+        {
+            RobotSettings robotSettings = new RobotSettings();
+            robotSettings.Show();
+        }
+
+        private void Custom_click(object sender, RoutedEventArgs e)
+        {
+            CustomButtons customButtons = new CustomButtons();
+            customButtons.Show();
         }
     }
 }

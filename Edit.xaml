@@ -71,9 +71,9 @@
                             <MenuItem Header="事件监测"></MenuItem>
                             <MenuItem Header="日志" Click="logConfigure_click"></MenuItem>
                             <MenuItem Header="维护管理器" Click="MaintenanceConfiguration" ></MenuItem>
-                            <MenuItem Header="自定义按钮"></MenuItem>
+                            <MenuItem Header="自定义按钮" Click="Custom_click"></MenuItem>
                             <MenuItem Header="工艺限值"></MenuItem>
-                            <MenuItem Header="机器人设置"></MenuItem>
+                            <MenuItem Header="机器人设置" Click="Rabbit_Click"></MenuItem>
                             <MenuItem Header="寻针器设置" Click="NeederFinder_click"></MenuItem>
                             <MenuItem Header="扇区宽度设置" Click="FanWidth_click" ></MenuItem>
                             <MenuItem Header="轨道设置" Click="ConveyorSeetings_click"></MenuItem>
@@ -223,7 +223,7 @@
                         <ListBoxItem>值 ********</ListBoxItem>
                         <ListBoxItem>值 ********</ListBoxItem>
                     </ListBox>-->
-                    <DataGrid Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
+                    <DataGrid  Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="140" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
                             <DataGridTextColumn Width="110" Header="值" Binding="{Binding value}"></DataGridTextColumn>

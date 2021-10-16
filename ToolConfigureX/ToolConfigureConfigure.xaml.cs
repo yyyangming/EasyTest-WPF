@@ -23,5 +23,11 @@ namespace Test
         {
             InitializeComponent();
         }
+
+        private void CharacterResponse_Click(object sender, RoutedEventArgs e)
+        {
+            ConformalCoatingCharacterizationWizard conformalCoatingCharacterizationWizard= new ConformalCoatingCharacterizationWizard();
+            conformalCoatingCharacterizationWizard.Show();
+        }
     }
 }

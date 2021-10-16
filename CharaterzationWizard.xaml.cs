@@ -10,27 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Test
 {
     /// <summary>
-    /// logConfigure.xaml 的交互逻辑
+    /// CharaterzationWizard.xaml 的交互逻辑
     /// </summary>
-    public partial class logConfigure : Window
+    public partial class CharaterzationWizard : Page
     {
-        public logConfigure()
+        public CharaterzationWizard()
         {
             InitializeComponent();
         }
 
-
-
-        private void LogConfigure_Click(object sender, RoutedEventArgs e)
+        private void WizardToPattern_Click(object sender, RoutedEventArgs e)
         {
-            logDisplay p1 = new logDisplay();
-
-            LogConfigureDisplay.Content = p1;
+            CharacterzationPattern characterzationPattern= new CharacterzationPattern();    
         }
     }
 }

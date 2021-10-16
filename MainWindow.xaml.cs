@@ -123,5 +123,17 @@ namespace Test
             WpfArcgis.WDGotoXY wDGotoXY    = new WpfArcgis.WDGotoXY();
             wDGotoXY.Show();
         }
+
+
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            CustomButtons customButtons = new CustomButtons();
+            Custom_1.Content = customButtons.Custom1.Text;
+            Custom_2.Content = customButtons.Custom2.Text;
+            Custom_3.Content = customButtons.Custom3.Text;
+            Custom_4.Content = customButtons.Custom4.Text;
+            Custom_5.Content = customButtons.Custom5.Text;
+        }
     }
 }

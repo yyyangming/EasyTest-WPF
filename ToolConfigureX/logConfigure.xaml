@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="logConfigure" Height="360" Width="340">
+        Title="logConfigure" Height="360" Width="340" Loaded="LogConfigure_Click">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="33*"></RowDefinition>
             <RowDefinition Height="275*"></RowDefinition>
             <RowDefinition Height="37*" ></RowDefinition>
         </Grid.RowDefinitions>
-        <ContentControl Grid.Row="1" x:Name="ContentControl" Grid.RowSpan="2"/>
-        <Button Content="display" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top" Click="Button_Click" Width="45" Height="19"/>
+        <Frame Name="LogConfigureDisplay" Grid.Row="1"></Frame>
+        <Button Content="display" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top"  Width="45" Height="19"/>
         <Button Content="file" HorizontalAlignment="Left" Margin="58,9,0,0" VerticalAlignment="Top" Width="45" Height="19"/>
         <Button Grid.Row="2" Content="OK" Width="60" Height="20" Margin="105,8,175,9"></Button>
         <Button Grid.Row="2" Content="Cancel" Width="60" Height="20" Margin="175,8,105,9"></Button>

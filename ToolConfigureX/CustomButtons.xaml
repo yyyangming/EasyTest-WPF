@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="CustomButtons" Height="450" Width="800">
+        Title="CustomButtons" 
+        Height="400" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="71*"></RowDefinition>
             <RowDefinition Height="16*"></RowDefinition>
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0">
-            <ComboBoxItem>11111</ComboBoxItem>
-            <ComboBoxItem>11111</ComboBoxItem>
-            <ComboBoxItem>11111</ComboBoxItem>
-        </ComboBox>
+        <ListView Grid.Row="0">
+            <TextBlock Name="Custom1" Text="自定义1" FontSize="20" Width="580"></TextBlock>
+            <TextBlock Name="Custom2" Text="自定义2" FontSize="20" Width="580"></TextBlock>
+            <TextBlock Name="Custom3" Text="自定义3" FontSize="20" Width="580"></TextBlock>
+            <TextBlock Name="Custom4" Text="自定义4" FontSize="20" Width="580"></TextBlock>
+            <TextBlock Name="Custom5" Text="自定义5" FontSize="20" Width="580"></TextBlock>
+            <TextBlock Name="Custom6" Text="自定义6" FontSize="20" Width="580"></TextBlock>
+        </ListView>
         <Button Content="Button" HorizontalAlignment="Left" Margin="261,20,0,10" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Width="102"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="450,20,0,10" Grid.Row="1" Width="102" />
     </Grid>

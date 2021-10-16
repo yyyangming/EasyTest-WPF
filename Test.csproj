@@ -71,6 +71,12 @@
     <Compile Include="CharacterizationValue.xaml.cs">
       <DependentUpon>CharacterizationValue.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CharacterzationPattern.xaml.cs">
+      <DependentUpon>CharacterzationPattern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharaterzationWizard.xaml.cs">
+      <DependentUpon>CharaterzationWizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="comboBoxInfos.cs" />
     <Compile Include="ConfigureProductMap.xaml.cs">
       <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
@@ -175,6 +181,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CharacterizationValue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterzationPattern.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharaterzationWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

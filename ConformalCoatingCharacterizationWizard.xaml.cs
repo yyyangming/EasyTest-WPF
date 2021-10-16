@@ -23,5 +23,27 @@ namespace Test
         {
             InitializeComponent();
         }
+
+        //CharacterizationResponseTimes characterizationResponseTimes = new CharacterizationResponseTimes();
+
+
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            CharaterzationWizard charaterzationWizard= new CharaterzationWizard(); 
+            CharacterzationMain.Content = charaterzationWizard;
+
+        }
+        private void PatternToResponse_Click(object sender, RoutedEventArgs e)
+        {
+            CharacterizationResponseTimes characterizationResponseTimes = new CharacterizationResponseTimes();
+            CharacterzationMain.Content = characterizationResponseTimes;
+
+        }
+        private void WizardToPattern_Click(object sender, RoutedEventArgs e)
+        {
+            CharacterzationPattern characterzationPattern = new CharacterzationPattern();
+            CharacterzationMain.Content = characterzationPattern;
+        }
     }
 }

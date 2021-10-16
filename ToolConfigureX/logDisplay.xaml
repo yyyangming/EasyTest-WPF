@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Test"
       mc:Ignorable="d" 
-      d:DesignHeight="311" d:DesignWidth="340"
+      d:DesignHeight="275" d:DesignWidth="335"
       Title="logDisplay">
 
     <Grid>
@@ -17,6 +17,19 @@
                     <RadioButton Content="Error"></RadioButton>
                 </WrapPanel>
             </GroupBox>
+            <ListView  Margin="0,10,0,0">
+
+                    <CheckBox Width="323" Height="20">Starup</CheckBox>
+                    <CheckBox Width="323" Height="20">Shutdown</CheckBox>
+                    <CheckBox Width="323" Height="20">Conveyor</CheckBox>
+                    <CheckBox Width="323" Height="20">Comm</CheckBox>
+                    <CheckBox Width="323" Height="20">Robot</CheckBox>
+                    <CheckBox Width="323" Height="20">Production</CheckBox>
+                    <CheckBox Width="323" Height="20">Dispense</CheckBox>
+                    <CheckBox Width="323" Height="20">User</CheckBox>
+                    <CheckBox Width="323" Height="20">Runtime</CheckBox>
+
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>

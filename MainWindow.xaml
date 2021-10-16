@@ -9,7 +9,7 @@
         Height="667" Width="904" 
         ShowInTaskbar="True"
         WindowState="Maximized"
-        AllowsTransparency="False" ResizeMode="CanMinimize">
+        AllowsTransparency="False" ResizeMode="CanMinimize" Loaded="MainWindow_Loaded">
 
     <Viewbox>
         <Grid >
@@ -206,17 +206,17 @@
                     
                     
                     <WrapPanel Margin="0,4,0,0">
-                        <Button  Margin="-2,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click">
-                            <Image Source="E:\desket\图标\water.png"/>
+                        <Button Name="Custom_1"  Margin="-2,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click">
+                            <!--<Image Source="E:\desket\图标\water.png"/>-->
                         </Button>
-                        <Button Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}" Click="Button_Click_2">
-                            <Image Source="E:\desket\图标\清洁.png"/>
+                        <Button Name="Custom_2" Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}" Click="Button_Click_2">
+                            <!--<Image Source="E:\desket\图标\清洁.png"/>-->
                         </Button>
-                        <Button Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}">
-                            <Image Source="E:\desket\图标\排胶.png	"/>
+                        <Button Name="Custom_3" Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}">
+                            <!--<Image Source="E:\desket\图标\排胶.png	"/>-->
                         </Button>
-                        <Button Content="自定义" Margin="0,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
-                        <Button Content="自定义" Margin="0,0,0,0"  Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
+                        <Button Name="Custom_4"  Margin="0,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
+                        <Button Name="Custom_5"  Margin="0,0,0,0"  Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
                     </WrapPanel>
                     
                 </WrapPanel>

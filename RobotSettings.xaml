@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="RobotSettings" Height="200" Width="500">
     <Grid>
-        <DataGrid Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False" Margin="0,0,0,54">
+        <DataGrid Name="DATA_Rabbit" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="0,0,0,54" Loaded="DATA_Rabbit_loaded">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="250" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
                 <DataGridTextColumn Width="250" Header="值" Binding="{Binding value}"></DataGridTextColumn>
