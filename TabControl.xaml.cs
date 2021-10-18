@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// UserAndPassword.xaml 的交互逻辑
+    /// TabControl.xaml 的交互逻辑
     /// </summary>
-    public partial class UserAndPassword : Window
+    public partial class TabControl : Window
     {
-        public UserAndPassword()
+        public TabControl()
         {
             InitializeComponent();
-        }
-
-        private void btn_InMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtUserName.Text== "admin" && TxtUserPw.Text=="admin")
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
         }
     }
 }

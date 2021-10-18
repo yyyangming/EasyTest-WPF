@@ -141,7 +141,7 @@ namespace Test
         }
         #endregion
         #region  假定这是从数据库提出的 ，使用使用conboBox类创建数据，使用此方法调用数据
-        private List<ClassConfigInfo> GetConfigItemInfos()
+        public List<ClassConfigInfo> GetConfigItemInfos()
         {
             List <ClassConfigInfo> list = new List<ClassConfigInfo>();
             list.AddRange(new ClassConfigInfo[]
@@ -366,7 +366,7 @@ namespace Test
 
         private void ToolConfigure_click(object sender, RoutedEventArgs e)
         {
-            ToolConfigure toolConfigure = new ToolConfigure();
+            ToolConfigureTab toolConfigure = new ToolConfigureTab();
             toolConfigure.Show();
         }
 

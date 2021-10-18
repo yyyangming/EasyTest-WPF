@@ -87,6 +87,9 @@
     <Compile Include="donghuaTEST.xaml.cs">
       <DependentUpon>donghuaTEST.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImagePage.xaml.cs">
+      <DependentUpon>ImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewPatternTeach.xaml.cs">
       <DependentUpon>NewPatternTeach.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,15 @@
     </Compile>
     <Compile Include="StyleTest.xaml.cs">
       <DependentUpon>StyleTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureCamrea.xaml.cs">
+      <DependentUpon>ToolConfigureCamrea.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureCoater.xaml.cs">
+      <DependentUpon>ToolConfigureCoater.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToolConfigureTab.xaml.cs">
+      <DependentUpon>ToolConfigureTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolConfigureX\ConveyorSettings.xaml.cs">
       <DependentUpon>ConveyorSettings.xaml</DependentUpon>
@@ -150,6 +162,9 @@
     </Compile>
     <Compile Include="ToolConfigureX\ToolConfigureConfigure.xaml.cs">
       <DependentUpon>ToolConfigureConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TxtPage.xaml.cs">
+      <DependentUpon>TxtPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ucMove.xaml.cs">
       <DependentUpon>ucMove.xaml</DependentUpon>
@@ -204,6 +219,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +244,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StyleTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureCamrea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureCoater.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToolConfigureTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -301,6 +332,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ToolConfigureX\ToolConfigureConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TxtPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

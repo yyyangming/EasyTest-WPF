@@ -175,3 +175,13 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\WidthPatternSeeting.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharacterzationPattern.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharaterzationWizard.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharaterzationWizard.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureCamrea.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureTab.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureCamrea.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureTab.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureCoater.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureCoater.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\TxtPage.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\TxtPage.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.baml

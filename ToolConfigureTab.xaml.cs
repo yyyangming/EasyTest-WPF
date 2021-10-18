@@ -15,23 +15,19 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// UserAndPassword.xaml 的交互逻辑
+    /// ToolConfigureTab.xaml 的交互逻辑
     /// </summary>
-    public partial class UserAndPassword : Window
+    public partial class ToolConfigureTab : Window
     {
-        public UserAndPassword()
+        public ToolConfigureTab()
         {
             InitializeComponent();
         }
 
-        private void btn_InMainWindow_Click(object sender, RoutedEventArgs e)
+        private void ToolCongureTab_Loaded(object sender, RoutedEventArgs e)
         {
-            if (TxtUserName.Text== "admin" && TxtUserPw.Text=="admin")
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
+            Edit editTemp= new Edit();
+            //表头绑定配置，略
         }
     }
 }

@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Test
 {
     /// <summary>
-    /// UserAndPassword.xaml 的交互逻辑
+    /// ToolConfigureCoater.xaml 的交互逻辑
     /// </summary>
-    public partial class UserAndPassword : Window
+    public partial class ToolConfigureCoater : Page
     {
-        public UserAndPassword()
+        public ToolConfigureCoater()
         {
             InitializeComponent();
-        }
-
-        private void btn_InMainWindow_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtUserName.Text== "admin" && TxtUserPw.Text=="admin")
-            {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                this.Close();
-            }
         }
     }
 }
