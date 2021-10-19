@@ -71,15 +71,15 @@
                         <TabItem Header="文本">
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
-                        <TabItem Header="图形">
+                        <TabItem Header="图形" IsSelected="True">
                             <Frame Source="ImagePage.xaml"></Frame>
                         </TabItem>
                     </TabControl>
-                    <TabControl Width="250" Height="195" Margin="5,0,0,0">
+                    <TabControl Width="250" Height="195" Margin="5,0,0,0" Loaded="TabControl_Second_Loaded">
                         <TabItem Header="文本">
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
-                        <TabItem Header="图形">
+                        <TabItem Header="图形" IsSelected="True">
                             <Frame Source="ImagePage.xaml"></Frame>
                         </TabItem>
                     </TabControl>

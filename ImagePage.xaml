@@ -18,6 +18,8 @@
             <Line X1="-130" Y1="-90" X2="-130" Y2="50" Stroke="#D3D3D3" StrokeThickness="1"/>
             <Line X1="-80" Y1="-90" X2="-80" Y2="50" Stroke="#D3D3D3" StrokeThickness="1"/>
             <Line X1="-30" Y1="-90" X2="-30" Y2="50" Stroke="#D3D3D3" StrokeThickness="1"/>
+            <Path Stroke="#00939A" StrokeThickness="1" Data="M -200,0  L-160,-50  -120,-30 -80,-20 -40,0 0,-40"/>
+            
         </WrapPanel>
         <Label Foreground="Black" FontSize="10" Content="30" HorizontalAlignment="Left" Margin="0,36,0,0" VerticalAlignment="Top"/>
         <Label Foreground="Black" FontSize="10" Content="20" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top"/>

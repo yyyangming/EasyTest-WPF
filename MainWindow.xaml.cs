@@ -135,5 +135,10 @@ namespace Test
             Custom_4.Content = customButtons.Custom4.Text;
             Custom_5.Content = customButtons.Custom5.Text;
         }
+
+        private void TabControl_Second_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
