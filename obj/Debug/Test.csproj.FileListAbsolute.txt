@@ -185,3 +185,8 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\TxtPage.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\TxtPage.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion2.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion2.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.CopyComplete
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.baml

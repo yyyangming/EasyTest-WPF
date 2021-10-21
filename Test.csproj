@@ -90,6 +90,10 @@
     <Compile Include="ImagePage.xaml.cs">
       <DependentUpon>ImagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JogVersion2.xaml.cs">
+      <DependentUpon>JogVersion2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
     <Compile Include="NewPatternTeach.xaml.cs">
       <DependentUpon>NewPatternTeach.xaml</DependentUpon>
     </Compile>
@@ -181,6 +185,9 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserViewAndJog.xaml.cs">
+      <DependentUpon>UserViewAndJog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WidthPatternSeeting.xaml.cs">
       <DependentUpon>WidthPatternSeeting.xaml</DependentUpon>
     </Compile>
@@ -220,6 +227,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JogVersion2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -356,6 +367,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserViewAndJog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

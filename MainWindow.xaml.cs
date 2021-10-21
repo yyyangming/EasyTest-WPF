@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -139,6 +140,20 @@ namespace Test
         private void TabControl_Second_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            Process.GetCurrentProcess().Kill();
+        }
+
+        private void MainWindowMenu_Loaded(object sender, RoutedEventArgs e)
+        {
+            Main main = new Main();
+            if (main.OperationAuthority == 1 || main.OperationAuthority == 0 || main.OperationAuthority == 2)
+            {
+                MainWindowMenu.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

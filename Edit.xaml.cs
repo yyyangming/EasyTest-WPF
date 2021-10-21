@@ -418,5 +418,14 @@ namespace Test
             CustomButtons customButtons = new CustomButtons();
             customButtons.Show();
         }
+
+        private void Edit_loaded(object sender, RoutedEventArgs e)
+        {
+            Main main = new Main();
+            if ( main.OperationAuthority ==0)
+            {
+                Reconfigure.Visibility= Visibility.Collapsed;
+            }
+        }
     }
 }
