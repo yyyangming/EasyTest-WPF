@@ -53,8 +53,6 @@
                             <MenuItem Header="宏程序"></MenuItem>
                             <MenuItem Header="产品程序"></MenuItem>
                             <MenuItem Header="更改主题"></MenuItem>
-                            <!--<MenuItem Header="英制单位"></MenuItem>-->
-                            <!--<MenuItem Header="语言"></MenuItem>-->
                             <MenuItem Header="图形显示"></MenuItem>
                             <MenuItem Header="恢复默认"></MenuItem>
                             <MenuItem Header="数据"></MenuItem>
@@ -76,7 +74,10 @@
                             <MenuItem Header="寻针器设置" Click="NeederFinder_click"></MenuItem>
                             <MenuItem Header="扇区宽度设置" Click="FanWidth_click" ></MenuItem>
                             <MenuItem Header="轨道设置" Click="ConveyorSeetings_click"></MenuItem>
-                            <MenuItem Header="速度设置" Click="ConveyorSeetings_click"></MenuItem>
+                            <MenuItem Header="速度设置" Click="ConfigureSpeed_click"></MenuItem>
+                            <MenuItem Header="轴参数" Click="ConfigureSpeed_click"></MenuItem>
+                            <MenuItem Header="IO设置" Click="ConfigureSpeed_click"></MenuItem>
+                            <MenuItem Header="系统参数" Click="ConfigureSpeed_click"></MenuItem>
                             <MenuItem Header="密码管理器" Click="PasswordManager_Click"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="实用程序" Name="Utilities">
@@ -101,8 +102,12 @@
                             <MenuItem Header="逆变器"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="定位指针">
+                            <MenuItem Header="定位指针偏移"></MenuItem>
                             <MenuItem Header="摄像头"></MenuItem>
-                            <MenuItem Header="工具法兰"></MenuItem>
+                            <MenuItem Header="阀1"></MenuItem>
+                            <MenuItem Header="阀2"></MenuItem>
+                            <MenuItem Header="阀3"></MenuItem>
+                            <MenuItem Header="阀4"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="帮助">
                             <MenuItem Header="快捷键图例"></MenuItem>
@@ -144,13 +149,13 @@
                     </Button>
                     <Button Content="单步" VerticalAlignment="Center" HorizontalAlignment="Left"
                         Height="50" Width="40" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="停止" VerticalAlignment="Center" HorizontalAlignment="Left"
+                    <Button Content="指定" VerticalAlignment="Center" HorizontalAlignment="Left"
                         Height="50" Width="40" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
-
-                    <Button Content="打开摄像头" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="68" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                    
+                    <Button Content="停止" VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Height="50" Width="40" Margin="-13,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="报警消音" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="63" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="50" Width="63" Margin="12,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="清除故障" VerticalAlignment="Center" HorizontalAlignment="Left"
                         Height="50" Width="73" Margin="2,0,5,2" Style="{StaticResource btnTransparentStyle}"/>
                     <Image Margin="91,0,0,0" Height="50" Width="100" Source="E:\desket\图标\logo.png"></Image>
@@ -172,20 +177,18 @@
                 <Button Content="列表" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,200,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="收\放" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
-            </Border>
+                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,310,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
                 <Button Content="工具" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,360,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="指示" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="进料" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,410,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="校正" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="偏移" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
@@ -225,7 +228,7 @@
                     </ListBox>-->
                     <DataGrid  Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="140" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
+                            <DataGridTextColumn Width="120" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
                             <DataGridTextColumn Width="110" Header="值" Binding="{Binding value}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -233,21 +236,24 @@
             </Border>
             <Border BorderThickness="1" BorderBrush="Black" Width="130" Height="195"
                    VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="40,110,0,0">
-                <TreeView Margin="0,0,0,0" >
-                    <TreeViewItem Header="第一层">
-                        <TreeViewItem Header="第二层">
-                            <TreeViewItem Header="第三层">
-                                <TreeViewItem Header="第四层">
-                                    <TreeViewItem Header="第五层">
-                                        <TreeViewItem Header="第六层"></TreeViewItem>
+                <WrapPanel>
+                    
+                    <TreeView Margin="0,0,0,0" >
+                        <TreeViewItem Header="第一层">
+                            <TreeViewItem Header="第二层">
+                                <TreeViewItem Header="第三层">
+                                    <TreeViewItem Header="第四层">
+                                        <TreeViewItem Header="第五层">
+                                            <TreeViewItem Header="第六层"></TreeViewItem>
+                                        </TreeViewItem>
                                     </TreeViewItem>
                                 </TreeViewItem>
+                                <TreeViewItem Header="第三层2"></TreeViewItem>
                             </TreeViewItem>
-                            <TreeViewItem Header="第三层2"></TreeViewItem>
+                            <TreeViewItem Header="第二层2"></TreeViewItem>
                         </TreeViewItem>
-                        <TreeViewItem Header="第二层2"></TreeViewItem>
-                    </TreeViewItem>
-                </TreeView>
+                    </TreeView>
+                </WrapPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="120" Margin="180,110,0,0" 
                     VerticalAlignment="Top" HorizontalAlignment="Left">

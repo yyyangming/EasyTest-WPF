@@ -94,6 +94,12 @@
       <DependentUpon>JogVersion2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="NewFile.xaml.cs">
+      <DependentUpon>NewFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFile2.xaml.cs">
+      <DependentUpon>NewFile2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewPatternTeach.xaml.cs">
       <DependentUpon>NewPatternTeach.xaml</DependentUpon>
     </Compile>
@@ -105,6 +111,9 @@
     </Compile>
     <Compile Include="RobotSettings.xaml.cs">
       <DependentUpon>RobotSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpeedConfigure.xaml.cs">
+      <DependentUpon>SpeedConfigure.xaml</DependentUpon>
     </Compile>
     <Compile Include="StyleTest.xaml.cs">
       <DependentUpon>StyleTest.xaml</DependentUpon>
@@ -176,9 +185,6 @@
     <Compile Include="UserAndPassword.xaml.cs">
       <DependentUpon>UserAndPassword.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserJog.xaml.cs">
-      <DependentUpon>UserJog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
@@ -238,6 +244,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NewFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFile2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewPatternTeach.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -251,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RobotSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpeedConfigure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,10 +373,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserAndPassword.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserJog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -39,7 +39,7 @@
                         <Image Source="E:\desket\图标\最左.png"></Image>
                     </Button>
                     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="-50,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <Image Source="E:\desket\图标\左.png" />
+                        <Image Source="Image/左1.png" />
                     </Button>
                     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <Image Source="E:\desket\图标\右.png"/>

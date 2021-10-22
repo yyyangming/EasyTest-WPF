@@ -56,10 +56,12 @@ namespace Test
             if (developer.IsChecked == true && TxtUserPw.Text == "admin")
             {
                 MainWindow mainWindow = new MainWindow();
+                mainWindow.Custom_1.Content = main.OperationAuthority;
+                main.OperationAuthority = 4;
                 mainWindow.Show();
                 this.Close();
-                main.OperationAuthority = 4;
-                mainWindow.Custom_1.Content = main.OperationAuthority;
+                
+                
             }
 
             

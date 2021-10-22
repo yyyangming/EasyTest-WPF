@@ -1,0 +1,62 @@
+﻿<Page x:Class="Test.NewFile2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewFile2">
+
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TabControl>
+                <TabItem Header="基本参数">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="辅助参数">
+                    <Grid >
+                        <CheckBox Content="轨道调宽" HorizontalAlignment="Left" Margin="10,216,0,0" VerticalAlignment="Top"/>
+                        <GroupBox Header="GroupBox" Margin="10,50,10,212">
+                            <Grid>
+                                <Label Content="基 准  点" HorizontalAlignment="Left" Margin="10,25,0,89" Width="60"/>
+                                <Label Content="待 机  点" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+                                <Label Content="板子尺寸" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
+                                <TextBox HorizontalAlignment="Left" Margin="90,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <Label Content="X" HorizontalAlignment="Left" Margin="118,0,0,0" VerticalAlignment="Top"/>
+                                <TextBox HorizontalAlignment="Left" Margin="194,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <Label Content="Y" HorizontalAlignment="Left" Margin="220,-2,0,0" VerticalAlignment="Top"/>
+                                <Label Content="Z" HorizontalAlignment="Left" Margin="331,0,0,0" VerticalAlignment="Top"/>
+                                <TextBox HorizontalAlignment="Left" Margin="90,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="194,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="305,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="90,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="194,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="305,81,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                            </Grid>
+
+                        </GroupBox>
+                        <Label FontSize="15" Content="Z轴安全高度" HorizontalAlignment="Left" Margin="10,254,0,0" VerticalAlignment="Top"/>
+                        <TextBox FontSize="15" HorizontalAlignment="Left" Margin="131,259,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                        <Label FontSize="15" Content="定位失败模式" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" Width="104"/>
+                        <ComboBox HorizontalAlignment="Center" Margin="0,305,0,0" VerticalAlignment="Top" Width="234" Height="21"/>
+                        <Button Content="Mark设置" HorizontalAlignment="Left" Margin="3,353,0,0" VerticalAlignment="Top" Height="30" Width="81"/>
+                        <Label FontSize="15" Content="视觉速度:" HorizontalAlignment="Left" Margin="131,351,0,0" VerticalAlignment="Top" Height="30" Width="88"/>
+                        <TextBox FontSize="15" HorizontalAlignment="Left" Margin="219,355,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
+                        <Button Content="拾取" HorizontalAlignment="Left" Margin="427,93,0,0" VerticalAlignment="Top" Width="45"/>
+                        <Button Content="拾取" HorizontalAlignment="Left" Margin="427,121,0,0" VerticalAlignment="Top" Width="45"/>
+                    </Grid>
+                </TabItem>
+                <Grid  Grid.Column="1">
+                    <ContentControl></ContentControl>
+                </Grid>
+            </TabControl>
+        </Grid>
+
+
+    </Grid>
+</Page>

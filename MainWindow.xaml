@@ -29,8 +29,8 @@
                         <MenuItem Header="现场视频" Click="btnLive"/>
                     </MenuItem>
                     <MenuItem Header="配置" Width="auto" Height="auto">
-                        <MenuItem  Header="配置1"/>
-                        <MenuItem Header="配置2"/>
+                        <MenuItem  Header="系统参数"/>
+                        
                     </MenuItem>
                     <MenuItem Header="帮助" Width="auto" Height="auto">
                         <MenuItem Header="帮助"></MenuItem>
@@ -89,7 +89,7 @@
                     </TabControl>
                 </WrapPanel>
 
-                <Border BorderThickness="1" Margin="0,-260,0,0">
+                <!--<Border BorderThickness="1" Margin="0,-260,0,0">
                     <DockPanel Margin="10,40,0,0">
                         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="胶阀" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="110" Margin="5,0,5,0"></Button>
@@ -165,7 +165,7 @@
                             </DockPanel>
                         </WrapPanel>
                     </DockPanel>
-                </Border>
+                </Border>-->
                 <Button Margin="100,0,0,0" Content="显示信息" Style="{StaticResource commBtn}"/>
             </WrapPanel>
             <Border BorderThickness="0" BorderBrush="Black"  VerticalAlignment="Top" Margin="259,30,2,0" Grid.ColumnSpan="2">
@@ -205,12 +205,14 @@
                         </Border>
                         <Border  Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                <Image Height="30" Source="E:\desket\图标\卸载应用.png"/>
+                                <!--<Image Height="30" Source="E:\desket\图标\卸载应用.png"/>-->
+                                待定
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProductMap_click">
-                                <Image Height="30" Source="E:\desket\图标\文件.png"/>
+                                <!--<Image Height="30" Source="E:\desket\图标\文件.png"/>-->
+                                用户更改
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
@@ -243,7 +245,9 @@
                 </WrapPanel>
             </Border>
 
-            <StatusBar HorizontalAlignment="Center" Height="20" Margin="0,642,0,0" VerticalAlignment="Top" Width="912" Grid.Column="1"/>
+            <StatusBar HorizontalAlignment="Center" Height="20" VerticalAlignment="Bottom" Width="912">
+                <TextBlock Name="name"></TextBlock>
+            </StatusBar>
         </Grid>
     </Viewbox>
 </Window>

@@ -427,5 +427,17 @@ namespace Test
                 Reconfigure.Visibility= Visibility.Collapsed;
             }
         }
+
+        private void ConfigureSpeed_click(object sender, RoutedEventArgs e)
+        {
+            SpeedConfigure speedConfigure = new SpeedConfigure();
+            speedConfigure.Show();
+        }
+
+        private void btnLive(object sender, RoutedEventArgs e)
+        {
+            UserView userView = new UserView();
+            userView.Show();
+        }
     }
 }

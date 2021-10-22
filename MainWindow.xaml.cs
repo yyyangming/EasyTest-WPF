@@ -150,7 +150,7 @@ namespace Test
         private void MainWindowMenu_Loaded(object sender, RoutedEventArgs e)
         {
             Main main = new Main();
-            if (main.OperationAuthority == 1 || main.OperationAuthority == 0 || main.OperationAuthority == 2)
+            if (main.OperationAuthority == 1)
             {
                 MainWindowMenu.Visibility = Visibility.Collapsed;
             }

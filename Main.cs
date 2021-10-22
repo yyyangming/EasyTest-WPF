@@ -8,7 +8,7 @@ namespace Test
 {
     internal class Main
     {
-        private int _OperationAuthority;
+        private static int _OperationAuthority;
         public int OperationAuthority
         {
             get { return _OperationAuthority; }

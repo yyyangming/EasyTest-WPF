@@ -190,3 +190,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion2.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.CopyComplete
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\SpeedConfigure.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\SpeedConfigure.baml
