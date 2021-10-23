@@ -102,7 +102,6 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureX\ProductionConf
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureX\ToolConfigure.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ToolConfigureX\ToolConfigureConfigure.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ucMove.g.cs
-E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserJog.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserView.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\App.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test_MarkupCompile.cache
@@ -192,3 +191,7 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewAndJog.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\SpeedConfigure.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\SpeedConfigure.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile2.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile2.baml

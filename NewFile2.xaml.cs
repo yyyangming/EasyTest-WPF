@@ -18,7 +18,7 @@ namespace Test
     /// <summary>
     /// NewFile2.xaml 的交互逻辑
     /// </summary>
-    public partial class NewFile2 : Page
+    public partial class NewFile2 : Window
     {
         public NewFile2()
         {

@@ -34,7 +34,8 @@ namespace Test
         private void btnNewFile(object sender, RoutedEventArgs e)
         {
             
-
+            ProgramWizard programWizard = new ProgramWizard();
+            programWizard.Show();
             //使用TextBox和button完成新建文件
             //// Create OpenFileDialog 
             //Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();           
@@ -53,11 +54,15 @@ namespace Test
             //    string filename = dlg.FileName; 
             //    FileNameTextBox.Text = filename; 
             //}
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "所有文件.*|*.*";
-            fileDialog.InitialDirectory = "E:\\";
-            fileDialog.Multiselect = true;
-            fileDialog.ShowDialog();
+
+
+            //OpenFileDialog fileDialog = new OpenFileDialog();
+            //fileDialog.Filter = "所有文件.*|*.*";
+            //fileDialog.InitialDirectory = "E:\\";
+            //fileDialog.Multiselect = true;
+            //fileDialog.ShowDialog();
+
+
             //if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             //{
             //    string[] filenames = fileDialog.FileNames;

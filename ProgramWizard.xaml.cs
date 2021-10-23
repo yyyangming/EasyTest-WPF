@@ -23,5 +23,49 @@ namespace Test
         {
             InitializeComponent();
         }
+
+        private void BtnNewFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (Newlength.Text !=null&&NewWidth.Text!=null)
+            {
+                try
+                {
+                    if (int.Parse(Newlength.Text) < 0 && int.Parse(NewWidth.Text) < 0)
+                    {
+                        MessageBox.Show("宽高必须是正整数");
+                    }
+                    else if (int.Parse(Newlength.Text) > 100 && int.Parse(NewWidth.Text) > 300)
+                    {
+                        MessageBox.Show("宽高大于最高限制");
+                    }
+                    else
+                    {
+                        NewFile2 newFile21 = new NewFile2();
+                        this.Close();
+                        newFile21.ShowDialog();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("宽高必须是正整数");
+                }
+            }
+            else MessageBox.Show("宽高不能为空");
+        }
+
+
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            short val;
+            if (!Int16.TryParse(e.Text, out val))
+                e.Handled = true;
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
     }
 }
