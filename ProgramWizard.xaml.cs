@@ -42,7 +42,7 @@ namespace Test
                     {
                         NewFile2 newFile21 = new NewFile2();
                         this.Close();
-                        newFile21.ShowDialog();
+                        newFile21.Show();
                     }
                 }
                 catch (Exception)

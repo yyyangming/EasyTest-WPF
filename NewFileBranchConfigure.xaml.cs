@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// NewFile2.xaml 的交互逻辑
+    /// NewFileBranchConfigure.xaml 的交互逻辑
     /// </summary>
-    public partial class NewFile2 : Window
+    public partial class NewFileBranchConfigure : Page
     {
-        public NewFile2()
+        public NewFileBranchConfigure()
         {
             InitializeComponent();
-        }
-
-        private void NewFile2_Click(object sender, RoutedEventArgs e)
-        {
-            JogVersion2 jogVersion2 = new JogVersion2();
-            //MainPage.Content = jogVersion2;
         }
     }
 }

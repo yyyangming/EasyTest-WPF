@@ -100,6 +100,12 @@
     <Compile Include="NewFile2.xaml.cs">
       <DependentUpon>NewFile2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewFileBaseConfigure.xaml.cs">
+      <DependentUpon>NewFileBaseConfigure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewFileBranchConfigure.xaml.cs">
+      <DependentUpon>NewFileBranchConfigure.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewPatternTeach.xaml.cs">
       <DependentUpon>NewPatternTeach.xaml</DependentUpon>
     </Compile>
@@ -249,6 +255,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewFile2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFileBaseConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewFileBranchConfigure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
