@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Test
 {
     /// <summary>
-    /// JogVersion2.xaml 的交互逻辑
+    /// UserViewPage.xaml 的交互逻辑
     /// </summary>
-    public partial class JogVersion2 : Page
+    public partial class UserViewPage : Page
     {
-        public JogVersion2()
+        public UserViewPage()
         {
             InitializeComponent();
         }
-
-
     }
 }

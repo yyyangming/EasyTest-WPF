@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// JogVersion2.xaml 的交互逻辑
+    /// CoatConfigure.xaml 的交互逻辑
     /// </summary>
-    public partial class JogVersion2 : Page
+    public partial class CoatConfigure : Window
     {
-        public JogVersion2()
+        public CoatConfigure()
         {
             InitializeComponent();
         }
-
-
     }
 }

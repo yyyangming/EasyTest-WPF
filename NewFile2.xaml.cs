@@ -25,10 +25,18 @@ namespace Test
             InitializeComponent();
         }
 
-        private void NewFile2_Click(object sender, RoutedEventArgs e)
+        private void NewFile2_JogPage_Loaded(object sender, RoutedEventArgs e)
         {
             JogVersion2 jogVersion2 = new JogVersion2();
-            //MainPage.Content = jogVersion2;
+            JogPage.Content = new Frame() { Content = jogVersion2 };
+        }
+
+        private void btnMarkConfigure_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            MarkConfigure markConfigure = new MarkConfigure();
+            markConfigure.Owner = this;
+            markConfigure.ShowDialog();
         }
     }
 }

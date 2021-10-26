@@ -22,10 +22,8 @@
                     </Grid>
 
                 </GroupBox>
-                <Label Content="X" HorizontalAlignment="Left" Margin="32,45,0,0" VerticalAlignment="Top"/>
-                <Label Content="Y" HorizontalAlignment="Left" Margin="224,41,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Margin="244,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                <TextBox HorizontalAlignment="Left" Margin="55,49,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                <Label Content="编程模式" HorizontalAlignment="Left" Margin="30,45,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Margin="91,19,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
                 <CheckBox Content="使用测高" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
                 <Label Content="X" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Center"/>
                 <Label Content="Y" HorizontalAlignment="Left" Margin="224,0,0,0" VerticalAlignment="Center"/>
@@ -34,8 +32,8 @@
                 <Label Content="高 度  值" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top"/>
                 <Label Content="最大差值" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top"/>
 
-                <Label Content="高 度  值" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
-                <Label Content="最大差值" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top"/>
+                <Label Content="连续加速度" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top"/>
+                <Label Content="拐弯时间" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Margin="123,244,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63"/>
                 <TextBox HorizontalAlignment="Left" Margin="208,244,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63"/>
 
@@ -47,14 +45,23 @@
                 <TextBox HorizontalAlignment="Left" Margin="123,334,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63"/>
 
                 <TextBox HorizontalAlignment="Left" Margin="123,364,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="63"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="309,245,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="309,280,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="309,315,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="309,350,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
-                <Button Content="读高度" HorizontalAlignment="Left" Margin="209,342,0,0"  VerticalAlignment="Top" Width="63" Height="25"/>
-                <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Margin="55,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                <ComboBox HorizontalAlignment="Left" Margin="224,10,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button Content="读测高位置" HorizontalAlignment="Left" Margin="309,245,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
+                <Button Content="移动相机" HorizontalAlignment="Left" Margin="309,280,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
+                <Button Content="移动laser" HorizontalAlignment="Left" Margin="309,315,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
+                <Button Content="现场视频" HorizontalAlignment="Left" Margin="309,350,0,0" VerticalAlignment="Top" Width="63" Height="25"/>
+                <Label Content="程序名" HorizontalAlignment="Left" Margin="32,15,0,0" VerticalAlignment="Top"/>
+                <ComboBox HorizontalAlignment="Left" Margin="91,45,0,0" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.5,0.5">
+                    <ComboBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.035"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ComboBox.RenderTransform>
+                </ComboBox>
+                <Button Content="完成" HorizontalAlignment="Left" Margin="144,399,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
+                <Button Content="关闭" HorizontalAlignment="Left" Margin="240,399,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
             </Grid>
 
         </GroupBox>

@@ -8,38 +8,45 @@
         Title="SpeedConfigure" Height="450" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="210"></RowDefinition>
+            <RowDefinition Height="146"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Column="0">
-            <GroupBox Header="胶阀速度" Foreground="#00939A" Height="200" Width="280" BorderBrush="#00939A" BorderThickness="1">
+            <GroupBox Header="工作速度" Foreground="#00939A" Width="280" BorderBrush="#00939A" BorderThickness="1" Margin="10,5,10,10">
                 <Grid>
                     <Label Foreground="#00939A" Content="空行程" HorizontalAlignment="Left" Margin="1,22,0,0" VerticalAlignment="Top"/>
                     <TextBox  HorizontalAlignment="Left" Margin="54,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
                     <Label Foreground="#00939A" Content="运   行" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Margin="54,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
-                    <Label Foreground="#00939A" Content="回原点" HorizontalAlignment="Left" Margin="0,102,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="54,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
-                    <Label Foreground="#00939A" Content="速度" HorizontalAlignment="Left" Margin="0,142,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="54,146,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
-                    <Label Foreground="#00939A" Content="待机点" HorizontalAlignment="Left" Margin="146,22,0,0" VerticalAlignment="Top"/>
+                    <Label Foreground="#00939A" Content="速度" HorizontalAlignment="Left" Margin="146,62,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="205,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <Label Foreground="#00939A" Content="Mark" HorizontalAlignment="Left" Margin="146,22,0,0" VerticalAlignment="Top"/>
                     <TextBox  HorizontalAlignment="Left" Margin="203,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="54"/>
-                    <Label Foreground="#00939A" Content="去喷涂" HorizontalAlignment="Left" Margin="146,62,0,0" VerticalAlignment="Top"/>
-                    <TextBox  HorizontalAlignment="Left" Margin="203,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="54"/>
-                    <Label Foreground="#00939A" Content="清    洁" HorizontalAlignment="Left" Margin="146,102,0,0" VerticalAlignment="Top"/>
-                    <TextBox  HorizontalAlignment="Left" Margin="203,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="54"/>
                 </Grid>
             </GroupBox>
         </Grid>
         <Grid Grid.Row="1">
-            <GroupBox Foreground="#00939A" Header="轨道速度" BorderBrush="#00939A" Width="280">
+            <GroupBox Foreground="#00939A" Header="辅助速度" BorderBrush="#00939A" Width="280" Margin="10,0,10,136">
                 <Grid>
                     <Label Foreground="#00939A" Content="传    输" HorizontalAlignment="Left" Margin="0,22,0,0" VerticalAlignment="Top"/>
-                    <TextBox  HorizontalAlignment="Left" Margin="75,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <TextBox  HorizontalAlignment="Left" Margin="60,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
                     <Label Foreground="#00939A" Content="调   宽" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="75,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <TextBox HorizontalAlignment="Left" Margin="60,66,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
                     <Label Foreground="#00939A" Content="调    窄" HorizontalAlignment="Left" Margin="0,102,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="75,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <TextBox HorizontalAlignment="Left" Margin="60,106,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <Label Foreground="#00939A" Content="回原点" HorizontalAlignment="Left" Margin="149,22,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="205,26,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                    <Label Foreground="#00939A" ToolTip="包含：清洁，待机点，排胶，浸泡" Content="手动速度" HorizontalAlignment="Left" Margin="149,58,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="205,62,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="调幅速度" Foreground="#00939A" BorderBrush="#00939A" Margin="10,158,10,19">
+                <Grid  >
+                    <Label Foreground="#00939A" Content="传输低速" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox HorizontalAlignment="Left" Margin="60,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="53"/>
+                    <Label Foreground="#00939A" Content="传输高速" HorizontalAlignment="Left" Margin="147,36,0,0" VerticalAlignment="Top"/>
+                    <TextBox   HorizontalAlignment="Left" Margin="205,40,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="53"/>
+
                 </Grid>
             </GroupBox>
         </Grid>

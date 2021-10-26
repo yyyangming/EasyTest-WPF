@@ -198,3 +198,9 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.CoreCompileInputs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.CopyComplete
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.exe
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.pdb
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CoatConfigure.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MarkConfigure.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CoatConfigure.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MarkConfigure.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewPage.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewPage.baml

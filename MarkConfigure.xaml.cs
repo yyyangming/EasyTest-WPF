@@ -15,15 +15,26 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// JogVersion2.xaml 的交互逻辑
+    /// MarkConfigure.xaml 的交互逻辑
     /// </summary>
-    public partial class JogVersion2 : Page
+    public partial class MarkConfigure : Window
     {
-        public JogVersion2()
+        public MarkConfigure()
         {
             InitializeComponent();
         }
 
 
+
+        protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
+        {
+            this.Owner.Visibility = Visibility.Visible;//显示父窗体
+            base.OnClosing(e);
+        }
+
+        private void btnShowJog_Click(object sender, RoutedEventArgs e)
+        {
+            JogPage.Visibility = Visibility.Visible;
+        }
     }
 }

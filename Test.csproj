@@ -77,6 +77,9 @@
     <Compile Include="CharaterzationWizard.xaml.cs">
       <DependentUpon>CharaterzationWizard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CoatConfigure.xaml.cs">
+      <DependentUpon>CoatConfigure.xaml</DependentUpon>
+    </Compile>
     <Compile Include="comboBoxInfos.cs" />
     <Compile Include="ConfigureProductMap.xaml.cs">
       <DependentUpon>ConfigureProductMap.xaml</DependentUpon>
@@ -94,6 +97,9 @@
       <DependentUpon>JogVersion2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="MarkConfigure.xaml.cs">
+      <DependentUpon>MarkConfigure.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewFile.xaml.cs">
       <DependentUpon>NewFile.xaml</DependentUpon>
     </Compile>
@@ -200,6 +206,9 @@
     <Compile Include="UserViewAndJog.xaml.cs">
       <DependentUpon>UserViewAndJog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserViewPage.xaml.cs">
+      <DependentUpon>UserViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WidthPatternSeeting.xaml.cs">
       <DependentUpon>WidthPatternSeeting.xaml</DependentUpon>
     </Compile>
@@ -226,6 +235,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CoatConfigure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ConfigureProductMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -247,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MarkConfigure.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserViewAndJog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

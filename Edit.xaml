@@ -8,7 +8,7 @@
         WindowState="Maximized"
         ResizeMode="CanMinimize"
         Title="编辑页面" Height="600" Width="864" Initialized="Window_Initialized" Loaded="Edit_loaded">
-    <Viewbox>
+    <Viewbox Stretch="Fill">
         <Grid   Width="904" Height="600">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -284,7 +284,7 @@
                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="通用" Width="120"/>
                     </Border>
                     <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="运动" Width="120"/>
+                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="胶阀" Width="120"/>
                     </Border>
                     <Border>
                         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Camera and Visual" Width="120"/>
