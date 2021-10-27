@@ -130,6 +130,9 @@
     <Compile Include="StyleTest.xaml.cs">
       <DependentUpon>StyleTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="text.xaml.cs">
+      <DependentUpon>text.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToolConfigureCamrea.xaml.cs">
       <DependentUpon>ToolConfigureCamrea.xaml</DependentUpon>
     </Compile>
@@ -190,9 +193,6 @@
     </Compile>
     <Compile Include="TxtPage.xaml.cs">
       <DependentUpon>TxtPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ucMove.xaml.cs">
-      <DependentUpon>ucMove.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserAndPassword.xaml.cs">
       <DependentUpon>UserAndPassword.xaml</DependentUpon>
@@ -307,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="text.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ToolConfigureCamrea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -396,10 +400,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TxtPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ucMove.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

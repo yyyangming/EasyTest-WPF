@@ -36,5 +36,17 @@ namespace Test
         {
             JogPage.Visibility = Visibility.Visible;
         }
+
+        private void btnOpenJog_Click(object sender, RoutedEventArgs e)
+        {
+            if (markConfigure.Width == 500)
+            {
+                markConfigure.Width = 800;
+                //JogVersion2 jogVersion2 = new JogVersion2();
+                //JogPage.Source = new Uri(Convert.ToString( jogVersion2));
+            }
+            else
+                markConfigure.Width = 500;
+        }
     }
 }
