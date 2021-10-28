@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
         Title="PressureState" Height="433" Width="320">
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -38,6 +39,7 @@
             <WrapPanel Grid.Row="1" >
                 <TextBox  Text="{Binding ElementName=sliderFontsize, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"></TextBox>
                 <Label Content="PSI" Margin="20,0,0,0"></Label>
+                
                 <Slider Name="sliderFontsize" SmallChange="0.01" Width="300" Margin="5,20,0,0" IsSnapToTickEnabled="True" TickPlacement="Both"  TickFrequency="0.01"></Slider>
                 
             </WrapPanel>
