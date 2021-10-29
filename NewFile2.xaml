@@ -15,56 +15,78 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid>
-
-            <Grid>
-                <GroupBox Header="GroupBox" Margin="10,70,10,227">
+            <TabControl>
+                <TabItem Header="必要参数">
                     <Grid>
-                        <Label Content="基 准  点" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="60"/>
-                        <TextBox HorizontalAlignment="Left" Margin="90,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
-                        <Label Content="X" HorizontalAlignment="Left" Margin="118,0,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Margin="194,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
-                        <Label Content="Y" HorizontalAlignment="Left" Margin="220,-2,0,0" VerticalAlignment="Top"/>
-                        <Button Content="拾取" HorizontalAlignment="Left" Margin="326,28,0,0" VerticalAlignment="Top" Width="45"/>
-                        <Label  Content="Z轴安全高度：" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top"/>
-                        <TextBox  HorizontalAlignment="Left" Margin="94,80,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
+                        <GroupBox Header="GroupBox" Margin="10,58,10,216">
+                            <Grid Height="108">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="217*"/>
+                                    <ColumnDefinition Width="246*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="基 准  点" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="60"/>
+                                <TextBox HorizontalAlignment="Left" Margin="90,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
+                                <Label Content="X" HorizontalAlignment="Left" Margin="118,0,0,0" VerticalAlignment="Top"/>
+                                <TextBox HorizontalAlignment="Left" Margin="194,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
+                                <Label Content="Y" HorizontalAlignment="Left" Margin="4,-2,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                <Button Content="拾取" HorizontalAlignment="Left" Margin="110,26,0,0" VerticalAlignment="Top" Width="45" Grid.Column="1"/>
+                                <Label  Content="Z轴安全高度：" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                                <TextBox  HorizontalAlignment="Left" Margin="94,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
+                                <Label Content="待 机  点" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="60"/>
+                                <TextBox HorizontalAlignment="Left" Margin="90,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="70"/>
+                                <TextBox HorizontalAlignment="Left" Margin="194,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="70" Grid.ColumnSpan="2"/>
+                                <Button Content="拾取" HorizontalAlignment="Left" Margin="110,0,0,0" VerticalAlignment="Center" Width="45" Grid.Column="1"/>
+                            </Grid>
+
+                        </GroupBox>
+
+
+
+                        <Button ToolTip="显示相机" Content="显示相机" HorizontalAlignment="Left" Margin="22,18,0,0" VerticalAlignment="Top" Height="31" Width="81"/>
+                        <Label Content="X:" HorizontalAlignment="Left" Margin="354,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Y:" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="122" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="122" HorizontalAlignment="Left" Margin="425,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Z:" HorizontalAlignment="Left" Margin="329,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="122" HorizontalAlignment="Left" Margin="341,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="W:" HorizontalAlignment="Left" Margin="380,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="122" HorizontalAlignment="Left" Margin="393,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="U:" HorizontalAlignment="Left" Margin="430,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="122" HorizontalAlignment="Left" Margin="442,36,0,0" VerticalAlignment="Top"/>
+                        <Button Content="完成" HorizontalAlignment="Left" Margin="179,372,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+                        <Button Content="取消" HorizontalAlignment="Left" Margin="270,372,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
                     </Grid>
-
-                </GroupBox>
-                <Label FontSize="15" Content="定位失败模式:" HorizontalAlignment="Left" Margin="195,257,0,0" VerticalAlignment="Top" Width="104"/>
-                <ComboBox HorizontalAlignment="Left" Margin="322,261,0,0" VerticalAlignment="Top" Width="120" Height="21">
-                    <ComboBoxItem Content="报警" IsSelected="True"></ComboBoxItem>
-                    <ComboBoxItem Content="不提示"></ComboBoxItem>
-                </ComboBox>
-                <Button Content="Mark设置" HorizontalAlignment="Left" Margin="10,257,0,0" VerticalAlignment="Top" Height="30" Width="80" Click="btnMarkConfigure_Click"/>
-                <GroupBox Header="清洁" Margin="10,306,10,70">
+                </TabItem>
+                <TabItem Header="Mark">
                     <Grid>
-                        <Label Content="模式" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="清洁间隔" HorizontalAlignment="Left" Margin="169,10,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="52,10,0,0" VerticalAlignment="Top" Width="80">
-                            <ComboBoxItem Content="关闭" IsEnabled="True"></ComboBoxItem>
+
+                        <Label FontSize="15" Content="定位失败模式:" HorizontalAlignment="Left" Margin="372,287,0,0" VerticalAlignment="Top" Width="104"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="372,321,0,0" VerticalAlignment="Top" Width="120" Height="21">
+                            <ComboBoxItem Content="报警" IsSelected="True"></ComboBoxItem>
+                            <ComboBoxItem Content="不提示"></ComboBoxItem>
                         </ComboBox>
-                        <TextBox HorizontalAlignment="Left" Margin="227,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
-                        <Label Content="无料清洁时间" HorizontalAlignment="Left" Margin="313,10,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Margin="400,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
-                        <Button Content="" HorizontalAlignment="Left" Margin="281,10,0,0" VerticalAlignment="Top" Height="8.5" Width="26"/>
-                        <Button Content="" HorizontalAlignment="Left" Margin="281,18.5,0,0" VerticalAlignment="Top" Height="8" Width="26"/>
                     </Grid>
 
-                </GroupBox>
-                <Button ToolTip="显示相机" Content="显示相机" HorizontalAlignment="Left" Margin="22,18,0,0" VerticalAlignment="Top" Height="31" Width="81"/>
-                <Label Content="X:" HorizontalAlignment="Left" Margin="354,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="Y:" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="122" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="122" HorizontalAlignment="Left" Margin="425,10,0,0" VerticalAlignment="Top"/>
-                <Label Content="Z:" HorizontalAlignment="Left" Margin="329,36,0,0" VerticalAlignment="Top"/>
-                <Label Content="122" HorizontalAlignment="Left" Margin="341,36,0,0" VerticalAlignment="Top"/>
-                <Label Content="W:" HorizontalAlignment="Left" Margin="380,36,0,0" VerticalAlignment="Top"/>
-                <Label Content="122" HorizontalAlignment="Left" Margin="393,36,0,0" VerticalAlignment="Top"/>
-                <Label Content="U:" HorizontalAlignment="Left" Margin="430,36,0,0" VerticalAlignment="Top"/>
-                <Label Content="122" HorizontalAlignment="Left" Margin="442,36,0,0" VerticalAlignment="Top"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="179,398,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-                <Button Content="Button" HorizontalAlignment="Left" Margin="270,398,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-            </Grid>
+                </TabItem>
+                <TabItem Header="清洁">
+                    <Grid>
+                        <GroupBox Header="清洁" Margin="10,15,10,301">
+                            <Grid>
+                                <Label Content="模式" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                <Label Content="清洁间隔" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+                                <ComboBox HorizontalAlignment="Left" Margin="44,14,0,0" VerticalAlignment="Top" Width="80">
+                                    <ComboBoxItem Content="关闭" IsEnabled="True"></ComboBoxItem>
+                                </ComboBox>
+                                <TextBox HorizontalAlignment="Left" Margin="73,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
+                                <Label Content="无料清洁时间" HorizontalAlignment="Left" Margin="167,12,0,0" VerticalAlignment="Top" />
+                                <TextBox HorizontalAlignment="Left" Margin="254,16,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
+                            </Grid>
+
+                        </GroupBox>
+                    </Grid>
+
+                </TabItem>
+            </TabControl>
         </Grid>
         <Frame Grid.Column="1" Name="JogPage"></Frame>
     </Grid>

@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="主控制" Height="450" Width="369" Initialized="UserView_initoalized">
+        Title="主控制" Height="450" Width="320" Initialized="UserView_initoalized">
     <Grid>
-        <DockPanel HorizontalAlignment="Center" Height="345" 
-                   Margin="0,0,1,0" VerticalAlignment="Top" Width="360" Name="mainPanel"/>
+        <DockPanel HorizontalAlignment="Center" Height="240" 
+                   Margin="0,0,1,0" VerticalAlignment="Top" Width="320" Name="mainPanel"/>
         <Path Stroke="Black" StrokeThickness="1" >
             <Path.Data>
-                <LineGeometry StartPoint="180,0" EndPoint="180,300" />
+                <LineGeometry StartPoint="160,0" EndPoint="160,240" />
             </Path.Data>
         </Path>
         <Path Stroke="Black" StrokeThickness="1" >
             <Path.Data>
-                <LineGeometry StartPoint="0,150" EndPoint="360,150" />
+                <LineGeometry StartPoint="0,120" EndPoint="320,120" />
             </Path.Data>
         </Path>
         <Border VerticalAlignment="Bottom" BorderBrush="SlateBlue" BorderThickness="2,2,2,2" 

@@ -101,6 +101,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="camera.xaml.cs">
+      <DependentUpon>camera.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CharacterizationFinsh.xaml.cs">
       <DependentUpon>CharacterizationFinsh.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
       <DependentUpon>JogVersion2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="Mark.xaml.cs">
+      <DependentUpon>Mark.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MarkConfigure.xaml.cs">
       <DependentUpon>MarkConfigure.xaml</DependentUpon>
     </Compile>
@@ -254,6 +260,10 @@
     <Compile Include="WindowChromeTest.xaml.cs">
       <DependentUpon>WindowChromeTest.xaml</DependentUpon>
     </Compile>
+    <Page Include="camera.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CharacterizationFinsh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -299,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Mark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

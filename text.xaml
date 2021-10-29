@@ -3,11 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="exSplitter.MainWindow"
-       Title="text" Height="350" Width="525">
-
+       Title="text" Height="350" Width="525"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}">
 
     <Grid >
+        <Button Style="{StaticResource MaterialDesignRaisedSecondaryButton}" Width="80" ToolTip="Resource name: MaterialDesignRaisedSecondaryButton"  Content="MID"  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+        
+        
+        <Slider Orientation="Vertical" Minimum="0" Maximum="10" Value="9" Style="{StaticResource MaterialDesignDiscreteSlider}" TickFrequency="{Binding DiscreteVertical.TickFrequency}" TickPlacement="Both" Margin="0,0,307,36" />
+        <ComboBox HorizontalAlignment="Left" Margin="680,17,0,0" VerticalAlignment="Top" Width="120"/>
 
+        
     </Grid>
 </Window>
 
