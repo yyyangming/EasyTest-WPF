@@ -204,3 +204,12 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewPage.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserViewPage.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\text.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\text.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignColors.dll
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Microsoft.Xaml.Behaviors.dll
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\ShowMeTheXAML.dll
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignColors.pdb
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Microsoft.Xaml.Behaviors.pdb
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Microsoft.Xaml.Behaviors.xml
