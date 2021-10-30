@@ -213,3 +213,9 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignThemes.Wpf.pdb
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\MaterialDesignThemes.Wpf.xml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Microsoft.Xaml.Behaviors.pdb
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Microsoft.Xaml.Behaviors.xml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\camera.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Mark.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\camera.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Mark.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserControl1.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserControl1.g.cs

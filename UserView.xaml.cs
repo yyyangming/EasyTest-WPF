@@ -38,5 +38,10 @@ namespace Test
 
         }
 
+        private void UserView_Loaded(object sender, RoutedEventArgs e)
+        {
+            camera camera1 = new camera();
+            UserViewCamera.Content = camera1;
+        }
     }
 }

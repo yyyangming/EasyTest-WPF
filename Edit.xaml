@@ -22,7 +22,7 @@
             <Border Height="25" VerticalAlignment="Top" 
                 Margin="0,0,0,0"  Width="auto" >
                 <DockPanel Height="25" LastChildFill="False" VerticalAlignment="Top" Margin="0,0,9,0">
-                    <Menu Background="White">
+                    <Menu Background="White" Padding="0" FontSize="10" Margin="0,-10,0,0">
                         <MenuItem Header="文件">
                             <MenuItem Header="新建工程" Click="btnNewFile"></MenuItem>
                             <MenuItem Header="新建宏程序" Click="btnNewFile"></MenuItem>
@@ -34,7 +34,7 @@
                             <MenuItem Header="打印预览"></MenuItem>
                             <MenuItem Header="退出"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="编辑">
+                        <MenuItem Header="编辑" Margin="-20,0,0,0">
                             <MenuItem Header="剪切"></MenuItem>
                             <MenuItem Header="复制"></MenuItem>
                             <MenuItem Header="粘贴"></MenuItem>
@@ -43,13 +43,13 @@
                             <MenuItem Header="创建工序"></MenuItem>
                             <MenuItem Header="剪切"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="运行">
+                        <MenuItem Header="运行" Margin="-20,0,0,0">
                             <MenuItem Header="运行"></MenuItem>
                             <MenuItem Header="逐步运行"></MenuItem>
                             <MenuItem Header="停止"></MenuItem>
                             <MenuItem Header="运行工序"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="观察">
+                        <MenuItem Header="观察" Margin="-20,0,0,0">
                             <MenuItem Header="宏程序"></MenuItem>
                             <MenuItem Header="产品程序"></MenuItem>
                             <MenuItem Header="更改主题"></MenuItem>
@@ -58,7 +58,7 @@
                             <MenuItem Header="数据"></MenuItem>
                             <MenuItem Header="现场视频" Click="btnLive"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="配置">
+                        <MenuItem Header="配置" Margin="-20,0,0,0">
                             <MenuItem Header="生产" Click="ProductionConguration"></MenuItem>
                             <MenuItem Header="产品图" Click="ConfigureProductMap_Click"></MenuItem>
                             <MenuItem Header="工具" Click="ToolConfigure_click" Name="ConfigureTool"></MenuItem>
@@ -80,7 +80,7 @@
                             <MenuItem Header="系统参数" Click="ConfigureSpeed_click"></MenuItem>
                             <MenuItem Header="密码管理器" Click="PasswordManager_Click"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="实用程序" Name="Utilities">
+                        <MenuItem Header="实用程序" Name="Utilities" Margin="-20,0,0,0">
                             <MenuItem Header="机器人实用程序">
                                 <MenuItem Header="机器人归位"></MenuItem>
                                 <MenuItem Header="终端"></MenuItem>
@@ -101,7 +101,7 @@
                             <MenuItem Header="轨道实用程序"></MenuItem>
                             <MenuItem Header="逆变器"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="定位指针">
+                        <MenuItem Header="定位指针" Margin="-20,0,0,0">
                             <MenuItem Header="定位指针偏移"></MenuItem>
                             <MenuItem Header="摄像头"></MenuItem>
                             <MenuItem Header="阀1"></MenuItem>
@@ -109,7 +109,7 @@
                             <MenuItem Header="阀3"></MenuItem>
                             <MenuItem Header="阀4"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="帮助">
+                        <MenuItem Header="帮助" Margin="-20,0,0,0">
                             <MenuItem Header="快捷键图例"></MenuItem>
                             <MenuItem Header="显示提示"></MenuItem>
                             <MenuItem Header="复制配置到磁盘"></MenuItem>
@@ -123,81 +123,80 @@
                 <WrapPanel HorizontalAlignment="Left" Width="906" Height="auto"  
                        VerticalAlignment="Top" Margin="0,1,-46,-43" >
                     <Button  VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="20,0,5,1" Click="btnNewFile" 
+                        Height="30" Width="30" Margin="20,0,5,1" Click="btnNewFile" 
                              Name="btnNewFile10" Style="{StaticResource btnTransparentStyle}">
                         新建
                     </Button>
                     <Button VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,5,1" Click="btnOpenFile" 
+                        Height="30" Width="30" Margin="2,0,5,1" Click="btnOpenFile" 
                             Style="{StaticResource btnTransparentStyle}">
                         打开
                     </Button>
 
                     <Button Content="保存" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,20,1" Click="btnFileSave" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,20,1" Click="btnFileSave" Style="{StaticResource btnTransparentStyle}"/>
 
                     <Button Content="剪切" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="复制" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="粘贴" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
 
                     <Button VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}">
+                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}">
                         运行
                     </Button>
                     <Button Content="单步" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="指定" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
-                    
-                    <Button Content="停止" VerticalAlignment="Top" HorizontalAlignment="Left"
-                        Height="50" Width="40" Margin="-13,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="30" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
+
+                    <Button Content="停止" VerticalAlignment="Center" HorizontalAlignment="Left"
+                        Height="30" Width="30" Margin="-13,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="报警消音" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="63" Margin="12,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
+                        Height="30" Width="40" Margin="12,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
                     <Button Content="清除故障" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="50" Width="73" Margin="2,0,5,2" Style="{StaticResource btnTransparentStyle}"/>
-                    <Image Margin="91,0,0,0" Height="50" Width="100" Source="E:\desket\图标\logo.png"></Image>
+                        Height="30" Width="40" Margin="2,0,5,2" Style="{StaticResource btnTransparentStyle}"/>
+                    <Image Margin="284,0,0,0" Height="30" Width="100" Source="E:\desket\图标\logo.png"></Image>
                     <!--logo-->
 
-                    <TextBox Foreground="White" Text="文件所在位置"  Width="490" Height="25" HorizontalAlignment="Left"
-                             ></TextBox>
-                    <Button Content="浸泡" Margin="60,0,0,0" Width="40" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <TextBox Foreground="White" Text="文件所在位置"  Width="400" Height="20" HorizontalAlignment="Left"></TextBox>
+                    <Button Content="浸泡" Margin="230,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
                     <!--自定义按钮5个，此前为默认自定义按钮-->
-                    <Button Content="排胶" Margin="5,0,0,0" Width="40" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="周期" Margin="5,0,0,0" Width="40" Style="{StaticResource btnTransparentStyle}"  Height="30"></Button>
-                    <Button Content="上步" Margin="5,0,0,0" Width="40" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="z高" Margin="5,0,0,0" Width="40" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="开关灯" Margin="74,0,0,0" Width="60" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <Button Content="排胶" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <Button Content="周期" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}"  Height="30"></Button>
+                    <Button Content="上步" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <Button Content="z高" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <Button Content="开关灯" Margin="74,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
                 </WrapPanel>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,110,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="列表" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="列表" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,200,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,310,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="工具" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="工具" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,360,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="进料" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="进料" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,410,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="偏移" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="偏移" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
-                <Button Content="Jog" Height="35" Width="35" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
             </Border>
             <!--<Button></Button>-->
-            <Border Width="260" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Border Width="139" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      BorderBrush="Black" BorderThickness="1">
-                <WrapPanel Width="260" Height="260">
+                <WrapPanel Width="139" Height="260">
                     <!--<ListBox Width="150">
                         <ListBoxItem>属性</ListBoxItem>
                         <ListBoxItem>属性 ********</ListBoxItem>
@@ -226,19 +225,58 @@
                         <ListBoxItem>值 ********</ListBoxItem>
                         <ListBoxItem>值 ********</ListBoxItem>
                     </ListBox>-->
-                    <DataGrid  Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
+                    <!--<DataGrid  Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="120" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
                             <DataGridTextColumn Width="110" Header="值" Binding="{Binding value}"></DataGridTextColumn>
                         </DataGrid.Columns>
-                    </DataGrid>
+                    </DataGrid>-->
+
+
+
                 </WrapPanel>
             </Border>
-            <Border BorderThickness="1" BorderBrush="Black" Width="130" Height="195"
-                   VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="40,110,0,0">
+            <Border BorderThickness="1" BorderBrush="Black" Width="116" Height="460"
+                   VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="185,110,0,0">
                 <WrapPanel>
-                    
-                    <TreeView Margin="0,0,0,0" >
+                    <TreeView MaxWidth="116">
+                        <TreeViewItem Padding="0" Margin="-10 0 0 0" FontSize="9" Header="Untitled">
+                            <TreeViewItem Margin="-10 0 0 0 " Padding="0">
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Margin="0 0 0 0" FontSize="8"  Text="PROCEDURES" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem  Header="SECOND" Margin="-10 0 0 0 " FontSize="8" Padding="0"/>
+                            <TreeViewItem Margin="-10 0 0 0" FontSize="8" Header="PATTERNS" Padding="0">
+                                <TextBlock> <Run Text="Grapes for us" />
+                                </TextBlock>
+                            </TreeViewItem>
+                            <TreeViewItem Margin="-10 0 0 0" Header="pattren1" Padding="0" FontSize="7"/>
+                            <TreeViewItem Margin="-10 0 0 0" Header="pattren2" Padding="0" FontSize="7"/>
+                            <TreeViewItem Margin="-10 0 0 0" Header="pattren3" Padding="0" FontSize="7"/>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="-10 0 0 0" Header="演示" IsExpanded="True" FontSize="8" Padding="0">
+                            <TreeViewItem Margin="-10 0 0 0" Header="演示1" Padding="0" FontSize="7"/>
+                            <TreeViewItem Margin="-10 0 0 0" FontSize="7" Padding="0">
+                                <TreeViewItem.Header>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Viewbox  Width="10" Height="10">
+                                            <Canvas  Width="24" Height="24">
+                                                <Path Data="M15,5H14V4H15M10,5H9V4H10M15.53,2.16L16.84,0.85C17.03,0.66 17.03,0.34 16.84,0.14C16.64,-0.05 16.32,-0.05 16.13,0.14L14.65,1.62C13.85,1.23 12.95,1 12,1C11.04,1 10.14,1.23 9.34,1.63L7.85,0.14C7.66,-0.05 7.34,-0.05 7.15,0.14C6.95,0.34 6.95,0.66 7.15,0.85L8.46,2.16C6.97,3.26 6,5 6,7H18C18,5 17,3.25 15.53,2.16M20.5,8A1.5,1.5 0 0,0 19,9.5V16.5A1.5,1.5 0 0,0 20.5,18A1.5,1.5 0 0,0 22,16.5V9.5A1.5,1.5 0 0,0 20.5,8M3.5,8A1.5,1.5 0 0,0 2,9.5V16.5A1.5,1.5 0 0,0 3.5,18A1.5,1.5 0 0,0 5,16.5V9.5A1.5,1.5 0 0,0 3.5,8M6,18A1,1 0 0,0 7,19H8V22.5A1.5,1.5 0 0,0 9.5,24A1.5,1.5 0 0,0 11,22.5V19H13V22.5A1.5,1.5 0 0,0 14.5,24A1.5,1.5 0 0,0 16,22.5V19H17A1,1 0 0,0 18,18V8H6V18Z"  Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Foreground}" />
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="1 0 0 0" Text="演示2" FontSize="7"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                            <TreeViewItem Margin="-10 0 0 0" Header="演示3" Padding="0" FontSize="7"/>
+                        </TreeViewItem>
+                        <TreeViewItem Margin="-10 0 0 0" Header="END" Padding="0" FontSize="9"/>
+                    </TreeView>
+
+                    <!--<TreeView FontSize="10" Height="20" Margin="0,0,0,0" >
                         <TreeViewItem Header="第一层">
                             <TreeViewItem Header="第二层">
                                 <TreeViewItem Header="第三层">
@@ -252,53 +290,29 @@
                             </TreeViewItem>
                             <TreeViewItem Header="第二层2"></TreeViewItem>
                         </TreeViewItem>
-                    </TreeView>
+                    </TreeView>-->
+                    
+                    
                 </WrapPanel>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="120" Margin="180,110,0,0" 
+            <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="139" Margin="40,110,0,0" 
                     VerticalAlignment="Top" HorizontalAlignment="Left">
                 <WrapPanel>
-                    <ComboBox Name="ccbConfig" Height="20" VerticalAlignment="Top" 
-                              HorizontalAlignment="Center" Width="120" ItemsSource="{Binding}" SelectedIndex="0" >
-                    </ComboBox >
 
-                    <WrapPanel Height="15">
-                        <RadioButton FontSize="10" Width="30" Margin="0,0,0,0" Content="点"></RadioButton>
-                        <RadioButton FontSize="10" Width="29" Content="线"></RadioButton>
-                        <RadioButton FontSize="10" Width="29" Content="弧"></RadioButton>
-                        <RadioButton FontSize="10" Width="30" Content="圆"></RadioButton>
-                    </WrapPanel>
-                    <ComboBox Background="White" Name="cbbRunMode" Width="120"  SelectedIndex="0" >
-                        <RadioButton>点</RadioButton>
-                        <RadioButton>点</RadioButton>
-                        <RadioButton>点</RadioButton>
-                        <RadioButton>点</RadioButton>
-                    </ComboBox>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="轨道" Width="120"/>
-                    </Border>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="控制" Width="120"/>
-                    </Border>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="通用" Width="120"/>
-                    </Border>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="胶阀" Width="120"/>
-                    </Border>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="Camera and Visual" Width="120"/>
-                    </Border>
-                    <Border>
-                        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="z头" Width="120"/>
-                    </Border>
+                    <WrapPanel Height="18"/>
+                    <Border/>
+                    <Border/>
+                    <Border/>
+                    <Border/>
+                    <Border/>
+                    <Border/>
                 </WrapPanel>
             </Border>
 
 
             <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" 
                     Margin="310,110,0,0" VerticalAlignment="Top" Width="559">
-                <WrapPanel Margin="0,0,0,0" HorizontalAlignment ="Left" Width="557" Height="367"></WrapPanel>
+                <WrapPanel Margin="-1,-1,0,-1" HorizontalAlignment ="Left" Width="557" Height="367"></WrapPanel>
             </Border>
             <Button Content="指针"  HorizontalAlignment="Right" Margin="0,110,0,0" VerticalAlignment="Top"
                     Height="30" Width="30" Style="{StaticResource btnTransparentStyle}"/>
@@ -320,11 +334,11 @@
                 <Image Source="E:\desket\图标\缩小.png"></Image>
             </Button>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Bottom" >
-                <WrapPanel Height="25">
-                    <Label Height="25" Content="            Progress:               "></Label>
-                    <Label Height="25" Content="            Base:               "></Label>
-                    <Label Height="25" Content="            Pointor:               "></Label>
-                    <Label Height="25" Content="            Tool:               "></Label>
+                <WrapPanel Height="15">
+                    <Label FontSize="8" Height="25" Content="            Progress:               "></Label>
+                    <Label FontSize="8" Height="25" Content="            Base:               "></Label>
+                    <Label FontSize="8" Height="25" Content="            Pointor:               "></Label>
+                    <Label FontSize="8" Height="25" Content="            Tool:               "></Label>
                 </WrapPanel>
             </Border>
         </Grid>

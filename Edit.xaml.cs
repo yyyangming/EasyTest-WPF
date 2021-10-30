@@ -108,7 +108,7 @@ namespace Test
             List<ClassConfigInfo> listConfig = GetConfigItemInfos();
             #region 1.指定数据源
             //指定数据源
-            ccbConfig.ItemsSource = listConfig;
+            //ccbConfig.ItemsSource = listConfig;
             //DATA_GRID.ItemsSource = propertyValueList;
             //如果使用指定数据源，不能直接移除，动态的添加移除//
             //如果需要动态添加，利用循环进行添加，把数组里面的全部添加进去
@@ -116,12 +116,13 @@ namespace Test
             #region 2.绑定DataContent
             //或者使用DataContent属性绑定数据源
             //不指指定数据源，绑定数据源
-            ccbConfig.DataContext = listConfig;
+            //ccbConfig.DataContext = listConfig;
             //接着在wpf中comboBox中添加绑定ItemSource = "{Banding}"
             #endregion
             //本来应该是使用数据库，这边为了简化，直接指定   
-            ccbConfig.SelectedValuePath = "ClassId";//项的值对应的属性名
-            ccbConfig.DisplayMemberPath = "ClassName";//项的显示值对应的属性值
+
+            //ccbConfig.SelectedValuePath = "ClassId";//项的值对应的属性名
+            //ccbConfig.DisplayMemberPath = "ClassName";//项的显示值对应的属性值
             
             
 

@@ -9,15 +9,6 @@
       Title="camera">
 
     <Grid>
-        <Path Stroke="Black" StrokeThickness="1" >
-            <Path.Data>
-                <LineGeometry StartPoint="320,0" EndPoint="320,480" />
-            </Path.Data>
-        </Path>
-        <Path Stroke="Black" StrokeThickness="1" >
-            <Path.Data>
-                <LineGeometry StartPoint="0,240" EndPoint="640,240" />
-            </Path.Data>
-        </Path>
+        <Label FontSize="50" Content="这是一个相机模块" HorizontalAlignment="Left" Margin="126,169,0,0" VerticalAlignment="Top" Height="71" Width="459"/>
     </Grid>
 </Page>

@@ -4,13 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Test"
-      mc:Ignorable="d" 
-      d:DesignHeight="420" d:DesignWidth="490"
-      Title="Mark">
+      mc:Ignorable="d"
+      Title="Mark" Height="450" Width="500">
 
     <Grid>
-        <Grid Width="320" Height="240" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,160,170">
-            
-        </Grid>
+        <Border BorderBrush="Black" BorderThickness="1" Width="480" Height="360" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,10,0,0">
+
+            </Grid>
+        </Border>
+
+
+
+        <Button Content="移动" HorizontalAlignment="Left" Margin="256,412,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="Mark清空" HorizontalAlignment="Left" Margin="387,412,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="加入Mark" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="94"/>
+        <Button Content="删除Mark" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="保存Mark" HorizontalAlignment="Left" Margin="130,368,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="测试" HorizontalAlignment="Left" Margin="128,412,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="重读投影" HorizontalAlignment="Left" Margin="256,368,0,0" VerticalAlignment="Top" Width="90"/>
+        <Button Content="其他操作" HorizontalAlignment="Left" Margin="387,368,0,0" VerticalAlignment="Top" Width="90"/>
     </Grid>
 </Page>

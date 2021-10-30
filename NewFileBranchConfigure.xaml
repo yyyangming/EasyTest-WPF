@@ -54,7 +54,7 @@
 
                 <TabItem Header="Mark">
                     <Grid>
-                        <Button Content="完成" HorizontalAlignment="Left" Margin="144,393,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
+                        <Button FontSize="10" Content="完成" HorizontalAlignment="Left" Margin="144,393,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
                         <Button Content="关闭" HorizontalAlignment="Left" Margin="240,393,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
                     </Grid>
                 </TabItem>
