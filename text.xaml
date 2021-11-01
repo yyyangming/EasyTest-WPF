@@ -15,14 +15,31 @@
         materialDesign:ColorZoneAssist.Background="{DynamicResource PrimaryHueLightBrush}"
         materialDesign:ColorZoneAssist.Foreground="{DynamicResource PrimaryHueLightForegroundBrush}">
 
-    <Grid >
-        <Button Style="{StaticResource MaterialDesignRaisedSecondaryButton}" Width="80" ToolTip="Resource name: MaterialDesignRaisedSecondaryButton"  Content="MID"  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
-        
-        
-        <Slider Orientation="Vertical" Minimum="0" Maximum="10" Value="9" Style="{StaticResource MaterialDesignDiscreteSlider}" TickFrequency="{Binding DiscreteVertical.TickFrequency}" TickPlacement="Both" Margin="0,0,307,36" />
-        <ComboBox HorizontalAlignment="Left" Margin="680,17,0,0" VerticalAlignment="Top" Width="120"/>
+    <Grid>
+        <Menu IsMainMenu="True" Margin="0 -10 0 0" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <MenuItem Header="_File">
+                <MenuItem Header="Save" Icon="{materialDesign:PackIcon Kind=ContentSave}"></MenuItem>
+                <MenuItem Header="Save As.." />
+                <MenuItem Header="Exit"  InputGestureText="Ctrl+E" Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
+                <Separator />
+                <MenuItem  Header="Excellent" IsCheckable="True" IsChecked="True" />
+                <MenuItem Header="Rubbish" IsCheckable="True" />
+                <MenuItem Header="Dig Deeper"  InputGestureText="Ctrl+D">
+                    <MenuItem  Header="Enlightenment?"  IsCheckable="True" />
+                    <MenuItem Header="Disappointment"  IsCheckable="True" />
+                </MenuItem>
+                <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+                    <MenuItem  Header="Plain" />
+                    <MenuItem  Header="Ice Cream" />
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem  Header="_Cut" Command="Cut"  Icon="{materialDesign:PackIcon Kind=ContentCut}" />
+                <MenuItem Header="_Copy" Command="Copy"  Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
+                <MenuItem Header="_Paste" Command="Paste" Icon="{materialDesign:PackIcon Kind=ContentPaste}" />
+            </MenuItem>
+        </Menu>
 
-        <TextBox x:Name="HintTextBox" materialDesign:HintAssist.Hint="HintAssist.Hint" Text="Hint" Margin="160,43,103,212" />
     </Grid>
 </Window>
 

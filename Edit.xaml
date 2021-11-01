@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Test"
+        xmlns:local="clr-namespace:Test" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowState="Maximized"
         ResizeMode="CanMinimize"
@@ -15,17 +15,17 @@
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="217*"/>
+                <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <Border Height="25" VerticalAlignment="Top" 
-                Margin="0,0,0,0"  Width="auto" >
+            <Border Height="25" VerticalAlignment="Top"  Width="auto" Grid.ColumnSpan="2" >
                 <DockPanel Height="25" LastChildFill="False" VerticalAlignment="Top" Margin="0,0,9,0">
-                    <Menu Background="White" Padding="0" FontSize="10" Margin="0,-10,0,0">
-                        <MenuItem Header="文件">
+                    <Menu Background="White" Padding="0" FontSize="10"  Margin="0,-10,0,0" Height="35">
+                        <MenuItem Header="文件" Padding="5" Margin="0">
                             <MenuItem Header="新建工程" Click="btnNewFile"></MenuItem>
-                            <MenuItem Header="新建宏程序" Click="btnNewFile"></MenuItem>
+                            <MenuItem  Header="新建宏程序" Click="btnNewFile"></MenuItem>
                             <MenuItem Header="保存工程"></MenuItem>
                             <MenuItem Header="文件另存为" Click="btnFileSave"></MenuItem>
                             <MenuItem Header="导入板图像"></MenuItem>
@@ -34,8 +34,8 @@
                             <MenuItem Header="打印预览"></MenuItem>
                             <MenuItem Header="退出"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="编辑" Margin="-20,0,0,0">
-                            <MenuItem Header="剪切"></MenuItem>
+                        <MenuItem  Header="编辑" Margin="0,0,0,0" Padding="5">
+                            <MenuItem Padding="5" Header="剪切"></MenuItem>
                             <MenuItem Header="复制"></MenuItem>
                             <MenuItem Header="粘贴"></MenuItem>
                             <MenuItem Header="删除"></MenuItem>
@@ -43,13 +43,13 @@
                             <MenuItem Header="创建工序"></MenuItem>
                             <MenuItem Header="剪切"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="运行" Margin="-20,0,0,0">
+                        <MenuItem Padding="5" Header="运行" >
                             <MenuItem Header="运行"></MenuItem>
                             <MenuItem Header="逐步运行"></MenuItem>
                             <MenuItem Header="停止"></MenuItem>
                             <MenuItem Header="运行工序"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="观察" Margin="-20,0,0,0">
+                        <MenuItem Header="观察" Padding="5">
                             <MenuItem Header="宏程序"></MenuItem>
                             <MenuItem Header="产品程序"></MenuItem>
                             <MenuItem Header="更改主题"></MenuItem>
@@ -58,7 +58,7 @@
                             <MenuItem Header="数据"></MenuItem>
                             <MenuItem Header="现场视频" Click="btnLive"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="配置" Margin="-20,0,0,0">
+                        <MenuItem Header="配置" Padding="5">
                             <MenuItem Header="生产" Click="ProductionConguration"></MenuItem>
                             <MenuItem Header="产品图" Click="ConfigureProductMap_Click"></MenuItem>
                             <MenuItem Header="工具" Click="ToolConfigure_click" Name="ConfigureTool"></MenuItem>
@@ -80,7 +80,7 @@
                             <MenuItem Header="系统参数" Click="ConfigureSpeed_click"></MenuItem>
                             <MenuItem Header="密码管理器" Click="PasswordManager_Click"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="实用程序" Name="Utilities" Margin="-20,0,0,0">
+                        <MenuItem Header="实用程序" Name="Utilities" Padding="5">
                             <MenuItem Header="机器人实用程序">
                                 <MenuItem Header="机器人归位"></MenuItem>
                                 <MenuItem Header="终端"></MenuItem>
@@ -89,7 +89,6 @@
                                 <MenuItem Header="恢复默认值"></MenuItem>
                                 <MenuItem Header="下载ACL"></MenuItem>
                                 <MenuItem Header="张紧工序"></MenuItem>
-
                             </MenuItem>
                             <MenuItem Header="压力调节" >
                                 <MenuItem Header="工具1" Click="PressControl"></MenuItem>
@@ -101,7 +100,7 @@
                             <MenuItem Header="轨道实用程序"></MenuItem>
                             <MenuItem Header="逆变器"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="定位指针" Margin="-20,0,0,0">
+                        <MenuItem Header="定位指针" Padding="5">
                             <MenuItem Header="定位指针偏移"></MenuItem>
                             <MenuItem Header="摄像头"></MenuItem>
                             <MenuItem Header="阀1"></MenuItem>
@@ -109,7 +108,7 @@
                             <MenuItem Header="阀3"></MenuItem>
                             <MenuItem Header="阀4"></MenuItem>
                         </MenuItem>
-                        <MenuItem Header="帮助" Margin="-20,0,0,0">
+                        <MenuItem Header="帮助" Padding="5">
                             <MenuItem Header="快捷键图例"></MenuItem>
                             <MenuItem Header="显示提示"></MenuItem>
                             <MenuItem Header="复制配置到磁盘"></MenuItem>
@@ -118,15 +117,11 @@
                 </DockPanel>
             </Border>
             <Border   VerticalAlignment="Top" HorizontalAlignment="Left"
-                Margin="0,24,0,0"  Width="860"  Height="79"
-                     BorderThickness="0">
-                <WrapPanel HorizontalAlignment="Left" Width="906" Height="auto"  
-                       VerticalAlignment="Top" Margin="0,1,-46,-43" >
-                    <Button  VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="20,0,5,1" Click="btnNewFile" 
-                             Name="btnNewFile10" Style="{StaticResource btnTransparentStyle}">
-                        新建
-                    </Button>
+                Margin="-1,30,0,0"  Width="906"  Height="75"
+                     BorderThickness="0" Grid.ColumnSpan="4">
+                <WrapPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Width="906" Height="75" >
+                    <!--<Button  VerticalAlignment="Top" HorizontalAlignment="Left"  Height="30"  Margin="20,0,5,1" Click="btnNewFile"   Name="btnNewFile10"  Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" Content="新建" Width="45" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Padding="0"/>
+
                     <Button VerticalAlignment="Center" HorizontalAlignment="Left"
                         Height="30" Width="30" Margin="2,0,5,1" Click="btnOpenFile" 
                             Style="{StaticResource btnTransparentStyle}">
@@ -159,16 +154,109 @@
                     <Button Content="清除故障" VerticalAlignment="Center" HorizontalAlignment="Left"
                         Height="30" Width="40" Margin="2,0,5,2" Style="{StaticResource btnTransparentStyle}"/>
                     <Image Margin="284,0,0,0" Height="30" Width="100" Source="E:\desket\图标\logo.png"></Image>
+                    -->
                     <!--logo-->
+                    <!--
 
-                    <TextBox Foreground="White" Text="文件所在位置"  Width="400" Height="20" HorizontalAlignment="Left"></TextBox>
+                    <TextBox Foreground="White" Text="文件所在位置"  Width="400" Height="20" HorizontalAlignment="Center"></TextBox>
                     <Button Content="浸泡" Margin="230,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    -->
                     <!--自定义按钮5个，此前为默认自定义按钮-->
+                    <!--
                     <Button Content="排胶" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
                     <Button Content="周期" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}"  Height="30"></Button>
                     <Button Content="上步" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
                     <Button Content="z高" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="开关灯" Margin="74,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
+                    <Button Content="开关灯" Margin="74,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>-->
+
+
+                    <Viewbox Height="30">
+                        <ToolBarTray Margin="4,0,0,0" Background="White">
+                            <ToolBar Background="White" Padding="0" Margin="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="902">
+                                <Button ToolTip="新建工程文件"  Click="btnNewFile" Content="新建" Margin="0" Padding="5" />
+                                <Button ToolTip="打开文件" Content="打开" Padding="5" />
+                                <Button ToolTip="保存工程" Content="{materialDesign:PackIcon Kind=ContentPaste}" ToolBar.OverflowMode="AsNeeded" Padding="5" />
+                                <Separator />
+                                <Button  ToolTip="剪切"  Content="{materialDesign:PackIcon Kind=ContentCut}" Padding="5" />
+                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="{materialDesign:PackIcon Kind=ContentCopy}" Padding="5"/>
+
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
+                                <Separator />
+
+
+                                <Button  ToolTip="剪切"  Content="运行" Padding="5" />
+                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
+
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="指定" Padding="5"/>
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="停止" Padding="5"/>
+                                <Separator />
+                                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
+                                <Label Content="Coat:" VerticalAlignment="Center" />
+                                <ComboBox Margin="0 5 0 0 ">
+                                    <ComboBoxItem Content="胶阀1" />
+                                    <ComboBoxItem IsSelected="True"  Content="胶阀2" />
+                                    <ComboBoxItem Content="胶阀3" />
+                                    <ComboBoxItem Content="胶阀4" />
+                                </ComboBox>
+                                <Separator />
+                                <CheckBox Content="开胶" Padding="0" Margin="0"/>
+                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组1" />
+                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组2" />
+                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组3" />
+                                <Separator />
+
+                                <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=Radio}" />
+                                <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=EmoticonPoop}" />
+
+                                <Separator />
+                                <Viewbox Width="25">
+                                    <ToggleButton />
+                                </Viewbox>
+
+                            </ToolBar>
+                        </ToolBarTray>
+                    </Viewbox>
+                    <Viewbox Height="25" Margin="550 17 0 0">
+                        <ToolBarTray Margin="4,0,0,0" Background="White">
+                            <ToolBar Background="White" Padding="0" Margin="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="auto">
+                                
+                               
+                                <Button  ToolTip="剪切"  Content="{materialDesign:PackIcon Kind=ContentCut}" Padding="5" />
+                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="{materialDesign:PackIcon Kind=ContentCopy}" Padding="5"/>
+
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
+                                <Separator />
+
+
+                                <Button  ToolTip="剪切"  Content="运行" Padding="5" />
+                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
+
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="指定" Padding="5"/>
+                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="停止" Padding="5"/>
+                                <Separator />
+                                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
+                                <Label Content="Coat:" VerticalAlignment="Center" />
+                                <ComboBox Margin="0 5 0 0 ">
+                                    <ComboBoxItem Content="胶阀1" />
+                                    <ComboBoxItem IsSelected="True"  Content="胶阀2" />
+                                    <ComboBoxItem Content="胶阀3" />
+                                    <ComboBoxItem Content="胶阀4" />
+                                </ComboBox>
+                                <Separator />
+
+                                <Label Content="自动清洁:" VerticalAlignment="Center" />
+                                <Viewbox Width="25">
+                                    <ToggleButton />
+                                </Viewbox>
+
+                            </ToolBar>
+                        </ToolBarTray>
+                    </Viewbox>
+
+
+
+
+
                 </WrapPanel>
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,110,0,0"
@@ -197,6 +285,7 @@
             <Border Width="139" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      BorderBrush="Black" BorderThickness="1">
                 <WrapPanel Width="139" Height="260">
+
                     <!--<ListBox Width="150">
                         <ListBoxItem>属性</ListBoxItem>
                         <ListBoxItem>属性 ********</ListBoxItem>
@@ -250,12 +339,11 @@
                             </TreeViewItem>
                             <TreeViewItem  Header="SECOND" Margin="-10 0 0 0 " FontSize="8" Padding="0"/>
                             <TreeViewItem Margin="-10 0 0 0" FontSize="8" Header="PATTERNS" Padding="0">
-                                <TextBlock> <Run Text="Grapes for us" />
-                                </TextBlock>
+                                <TreeViewItem Margin="-10 0 0 0" Header="pattren1" Padding="0" FontSize="7"/>
+                                <TreeViewItem Margin="-10 0 0 0" Header="pattren2" Padding="0" FontSize="7"/>
+                                <TreeViewItem Margin="-10 0 0 0" Header="pattren3" Padding="0" FontSize="7"/>
                             </TreeViewItem>
-                            <TreeViewItem Margin="-10 0 0 0" Header="pattren1" Padding="0" FontSize="7"/>
-                            <TreeViewItem Margin="-10 0 0 0" Header="pattren2" Padding="0" FontSize="7"/>
-                            <TreeViewItem Margin="-10 0 0 0" Header="pattren3" Padding="0" FontSize="7"/>
+
                         </TreeViewItem>
                         <TreeViewItem Margin="-10 0 0 0" Header="演示" IsExpanded="True" FontSize="8" Padding="0">
                             <TreeViewItem Margin="-10 0 0 0" Header="演示1" Padding="0" FontSize="7"/>
@@ -275,30 +363,11 @@
                         </TreeViewItem>
                         <TreeViewItem Margin="-10 0 0 0" Header="END" Padding="0" FontSize="9"/>
                     </TreeView>
-
-                    <!--<TreeView FontSize="10" Height="20" Margin="0,0,0,0" >
-                        <TreeViewItem Header="第一层">
-                            <TreeViewItem Header="第二层">
-                                <TreeViewItem Header="第三层">
-                                    <TreeViewItem Header="第四层">
-                                        <TreeViewItem Header="第五层">
-                                            <TreeViewItem Header="第六层"></TreeViewItem>
-                                        </TreeViewItem>
-                                    </TreeViewItem>
-                                </TreeViewItem>
-                                <TreeViewItem Header="第三层2"></TreeViewItem>
-                            </TreeViewItem>
-                            <TreeViewItem Header="第二层2"></TreeViewItem>
-                        </TreeViewItem>
-                    </TreeView>-->
-                    
-                    
                 </WrapPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="139" Margin="40,110,0,0" 
                     VerticalAlignment="Top" HorizontalAlignment="Left">
                 <WrapPanel>
-
                     <WrapPanel Height="18"/>
                     <Border/>
                     <Border/>
@@ -311,29 +380,29 @@
 
 
             <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" 
-                    Margin="310,110,0,0" VerticalAlignment="Top" Width="559">
+                    Margin="310,110,0,0" VerticalAlignment="Top" Width="559" Grid.ColumnSpan="2">
                 <WrapPanel Margin="-1,-1,0,-1" HorizontalAlignment ="Left" Width="557" Height="367"></WrapPanel>
             </Border>
-            <Button Content="指针"  HorizontalAlignment="Right" Margin="0,110,0,0" VerticalAlignment="Top"
-                    Height="30" Width="30" Style="{StaticResource btnTransparentStyle}"/>
+            <Button Content="指针"  HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top"
+                    Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" 
-                    Margin="310,480,0,0" VerticalAlignment="Top" Width="559">
+                    Margin="310,480,0,0" VerticalAlignment="Top" Width="559" Grid.ColumnSpan="2">
                 <DockPanel Width="559" Height="88" HorizontalAlignment="Left"  VerticalAlignment="Top"  >
                 </DockPanel>
             </Border>
-            <Button Content="清晰"  HorizontalAlignment="Right" Margin="0,200,0,0" VerticalAlignment="Top"
-                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}"/>
-            <Button Content="模糊" HorizontalAlignment="Right" Margin="0,231,1,0" VerticalAlignment="Top"
-                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}"/>
-            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right"
-                    Margin="0,414,1,0" VerticalAlignment="Top" Height="30" Width="30">
+            <Button Content="清晰"  HorizontalAlignment="Center" Margin="0,200,0,0" VerticalAlignment="Top"
+                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1"/>
+            <Button Content="模糊" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top"
+                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1"/>
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Center"
+                    Margin="0,414,0,0" VerticalAlignment="Top" Height="30" Width="30" Grid.Column="1">
                 <Image Source="E:\desket\图标\放大.png"></Image>
             </Button>
-            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right"
-                    Margin="0,447,1,0" VerticalAlignment="Top" Height="30" Width="30">
+            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Center"
+                    Margin="0,447,0,0" VerticalAlignment="Top" Height="30" Width="30" Grid.Column="1">
                 <Image Source="E:\desket\图标\缩小.png"></Image>
             </Button>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Bottom" >
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="17" Margin="0,583,0,0" >
                 <WrapPanel Height="15">
                     <Label FontSize="8" Height="25" Content="            Progress:               "></Label>
                     <Label FontSize="8" Height="25" Content="            Base:               "></Label>

@@ -13,7 +13,6 @@ namespace Test
         {
             get { return _OperationAuthority; }
             set { _OperationAuthority = value; }
-         }
-
+        }
     }
 }
