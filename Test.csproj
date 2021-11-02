@@ -135,6 +135,9 @@
     <Compile Include="ImagePage.xaml.cs">
       <DependentUpon>ImagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JogCk.xaml.cs">
+      <DependentUpon>JogCk.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JogVersion2.xaml.cs">
       <DependentUpon>JogVersion2.xaml</DependentUpon>
     </Compile>
@@ -304,6 +307,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JogCk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

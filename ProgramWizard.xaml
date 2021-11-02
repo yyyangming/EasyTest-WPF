@@ -33,16 +33,16 @@
             </WrapPanel>
         </GroupBox>
         <Label Content="第一侧名称:" HorizontalAlignment="Left" Margin="17,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="127"/>
-        <TextBox HorizontalAlignment="Left" Margin="17,40,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227" Height="22"/>
+        <TextBox HorizontalAlignment="Left" Margin="17,36,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227" Height="22"/>
         <Label Content="第二侧名称:" HorizontalAlignment="Left" Margin="300,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="127"/>
-        <TextBox HorizontalAlignment="Left" Margin="300,40,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227" Height="22"/>
-        <Label Content="第一侧图形:" HorizontalAlignment="Left" Margin="17,69,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
-        <Border HorizontalAlignment="Left" Margin="17,99,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
-            <Button />
+        <TextBox HorizontalAlignment="Left" Margin="300,36,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227" Height="22"/>
+        <Label Content="第一侧图形:" HorizontalAlignment="Left" Margin="17,65,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
+        <Border HorizontalAlignment="Left" Margin="17,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
+            <Button  Height="121" Margin="0,0,0,-2" />
         </Border>
-        <Label Content="第二侧图形:" HorizontalAlignment="Left" Margin="300,69,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
-        <Border HorizontalAlignment="Left" Margin="300,99,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
-            <Button />
+        <Label Content="第二侧图形:" HorizontalAlignment="Left" Margin="300,65,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
+        <Border HorizontalAlignment="Left" Margin="300,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
+            <Button Height="121" Margin="0,0,0,-2" />
         </Border>
         <Button Content="OK" HorizontalAlignment="Left" Margin="183,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="30" Click="BtnNewFile_Click"/>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="302,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="30"/>

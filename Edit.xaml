@@ -279,7 +279,7 @@
             </Border>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
-                <Button Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
+                <Button  Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}" Click="btnJogShow_click"></Button>
             </Border>
             <!--<Button></Button>-->
             <Border Width="139" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"

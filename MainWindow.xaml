@@ -34,13 +34,14 @@
                     </MenuItem>
                     <MenuItem Header="帮助" Padding="5">
                         <MenuItem Header="帮助"></MenuItem>
+                        <MenuItem Header="切换用户"></MenuItem>
                     </MenuItem>
                 </Menu>
 
             </Border>
             <WrapPanel Width="250" Margin="0,44,671,1">
                 <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Margin="0,0,0,0" Width="250" RenderTransformOrigin="0.5,0.469" AutomationProperties.Name="plnIcon">
-                    <TabControl Width="250" Height="195" Margin="5,0,0,0">
+                    <TabControl Width="250" Height="140" Margin="5,0,0,0">
                         <TabItem Header="文本">
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
@@ -48,7 +49,7 @@
                             <Frame Source="ImagePage.xaml"></Frame>
                         </TabItem>
                     </TabControl>
-                    <TabControl Width="250" Height="195" Margin="5,0,0,0" Loaded="TabControl_Second_Loaded">
+                    <TabControl Width="250" Height="140" Margin="5,0,0,0" Loaded="TabControl_Second_Loaded">
                         <TabItem Header="文本">
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
@@ -56,6 +57,9 @@
                             <Frame Source="ImagePage.xaml"></Frame>
                         </TabItem>
                     </TabControl>
+                    <Grid Width="245" Height="317" Margin="2 0 0 0">
+                        <!--<Frame Name="MainWindowJog" ></Frame>-->
+                    </Grid>
                 </WrapPanel>
 
                 <!--<Border BorderThickness="1" Margin="0,-260,0,0">
@@ -138,7 +142,7 @@
                 <Button Margin="100,0,0,0" Content="显示信息" Style="{StaticResource commBtn}"/>
             </WrapPanel>
             <Border BorderThickness="0" BorderBrush="Black"  VerticalAlignment="Top" Margin="259,30,2,0" Grid.ColumnSpan="2">
-                <WrapPanel Width="653"  Height="60" Margin="-3,0,0,0" Background="#00939A">
+                <WrapPanel Width="620"  Height="60" Margin="30,0,0,0" Background="#00939A">
                     <Label Width="400">当前报警信息</Label>
                     <Image>
                     </Image>
@@ -150,8 +154,8 @@
                     </Button>
                 </WrapPanel>
             </Border>
-            <Border Margin="259,95,5,135" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2">
-                <WrapPanel Height="430" Margin="0,0,0,0"  Width="650" >
+            <Border Width="620" Margin="290,95,5,135" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2">
+                <WrapPanel Height="430" Margin="0,0,0,0"  Width="620" >
                     <Label Height="30" Margin="0,0,0,0" Name="lblCoatName" Content="型号："></Label>
                     <Label Height="30" Margin="-9,0,0,0" Name="lblCoatState" Content="Sc9091"></Label>
                     <Image Source="E:\desket\图标\MainWindow.png" Height="365" Width="630" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,0,0,0" Stretch="Fill"/>
@@ -159,56 +163,67 @@
                     <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="轨迹" Width="50" Height="30" Margin="0,0,0,0"/>
                 </WrapPanel>
             </Border>
-            <Border  Width="653" Height="110" VerticalAlignment="Bottom" Margin="260,0,0,22" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <Border  Width="620" Height="110" VerticalAlignment="Bottom" Margin="292,0,0,22" HorizontalAlignment="Left" Grid.ColumnSpan="2">
                 <WrapPanel >
                     <WrapPanel>
-                        <Border Height="70" Width="105" Margin="-2,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="70" Width="105">
-                                <Image Source="E:\desket\图标\运行(1).png" Width="30" Height="30"></Image>
+                        <Border Height="50" Width="73" VerticalAlignment="Top" Margin="0,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Height="50" Width="70">
+                                运行
                             </Button>
                         </Border>
-                        <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                <Image Height="30" Source="E:\desket\图标\载入数据.png"></Image>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                载入
                             </Button>
                         </Border>
-                        <Border  Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                <!--<Image Height="30" Source="E:\desket\图标\卸载应用.png"/>-->
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
                                 待定
                             </Button>
                         </Border>
-                        <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ProductMap_click">
-                                <!--<Image Height="30" Source="E:\desket\图标\文件.png"/>-->
-                                用户更改
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                待定
                             </Button>
                         </Border>
-                        <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                <Image Height="30" Source="E:\desket\图标\停止.png"/>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                待定
                             </Button>
                         </Border>
-                        <Border Margin="3,0,0,0" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
-                            <Button Height="70" Width="105" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                <Image Height="30" Source="E:\desket\图标\退出.png"/>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                待定
                             </Button>
                         </Border>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                停止
+                            </Button>
+                        </Border>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
+                            <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
+                                退出
+                                <!--<Image Height="30" Source="E:\desket\图标\载入数据.png"></Image>-->
+                            </Button>
+                        </Border>
+                        <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black"/>
                     </WrapPanel>
 
 
-                    <WrapPanel Margin="0,4,0,0">
-                        <Button Name="Custom_1" Content="{Binding }" FontSize="15"  Margin="-2,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click">
+                    <WrapPanel Margin="3,5,0,0">
+                        <Button Name="Custom_1" Content="{Binding }" FontSize="15"  Margin="-2,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click">
                             <!--<Image Source="E:\desket\图标\water.png"/>-->
                         </Button>
-                        <Button Name="Custom_2" Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}" Click="Button_Click_2">
+                        <Button Name="Custom_2" Margin="0,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}" Click="Button_Click_2">
                             <!--<Image Source="E:\desket\图标\清洁.png"/>-->
                         </Button>
-                        <Button Name="Custom_3" Margin="0,0,3,0" Height="30" Width="128" Style="{StaticResource btnTransparentStyle}">
+                        <Button Name="Custom_3" Margin="0,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}">
                             <!--<Image Source="E:\desket\图标\排胶.png	"/>-->
                         </Button>
-                        <Button Name="Custom_4"  Margin="0,0,3,0" Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
-                        <Button Name="Custom_5"  Margin="0,0,0,0"  Height="30" Width="129" Style="{StaticResource btnTransparentStyle}"/>
+                        <Button Name="Custom_4"  Margin="0,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}"/>
+                        <Button Name="Custom_5"  Margin="0,0,0,0"  Height="40" Width="100" Style="{StaticResource btnTransparentStyle}"/>
+                        <Button Name="Custom_6"  Margin="0,0,0,0"  Height="40" Width="100" Style="{StaticResource btnTransparentStyle}"/>
                     </WrapPanel>
 
                 </WrapPanel>

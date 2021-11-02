@@ -219,3 +219,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\camera.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Mark.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserControl1.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UserControl1.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogCk.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogCk.baml

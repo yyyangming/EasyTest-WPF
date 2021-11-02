@@ -38,5 +38,11 @@ namespace Test
             markConfigure.Owner = this;
             markConfigure.ShowDialog();
         }
+
+        private void btnToBranchConfigure_click(object sender, RoutedEventArgs e)   
+        {
+            NewFileBranchConfigure newFileBranchConfigure = new NewFileBranchConfigure();
+
+        }
     }
 }

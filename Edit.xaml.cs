@@ -445,5 +445,11 @@ namespace Test
             UserView userView = new UserView();
             userView.Show();
         }
+
+        private void btnJogShow_click(object sender, RoutedEventArgs e)
+        {
+            JogCk jogCk = new JogCk();
+            jogCk.Show();
+        }
     }
 }

@@ -8,21 +8,35 @@
       Title="Mark" Height="450" Width="500">
 
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" Width="480" Height="360" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,4,0,0">
+        <Border BorderBrush="Black" BorderThickness="1" Width="320" Height="240" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,4,0,0">
             <Grid  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,10,0,0">
 
             </Grid>
         </Border>
+        <Grid Margin="0,249,0,92">
+            <GroupBox Header="Mark设置" Padding="0" Margin="0,0,0,10">
+                <Grid Margin="0,0,0,-5">
+                    <Button Content="移动" HorizontalAlignment="Left" Margin="256,46,0,0" VerticalAlignment="Top" Width="90"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="387,44,0,0" VerticalAlignment="Top" Width="90" Height="30" ToolTip="定位失败模式">
+                        <ComboBoxItem Content="报警" IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="不提示"></ComboBoxItem>
+                    </ComboBox>
+                    <Button Content="加入Mark" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="94"/>
+                    <Button Content="删除Mark" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Button Content="保存Mark" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Button Content="测试" HorizontalAlignment="Left" Margin="128,48,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Button Content="Mark清空" HorizontalAlignment="Left" Margin="256,6,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Button Content="重读投影" HorizontalAlignment="Left" Margin="387,6,0,0" VerticalAlignment="Top" Width="90"/>
+                </Grid>
+            </GroupBox>
 
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="240" Margin="325,4,0,0" VerticalAlignment="Top" Width="165">
+            <GroupBox Header="相机设置">
 
-
-        <Button Content="移动" HorizontalAlignment="Left" Margin="256,412,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="Mark清空" HorizontalAlignment="Left" Margin="387,412,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="加入Mark" HorizontalAlignment="Left" Margin="10,368,0,0" VerticalAlignment="Top" Width="94"/>
-        <Button Content="删除Mark" HorizontalAlignment="Left" Margin="10,412,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="保存Mark" HorizontalAlignment="Left" Margin="130,368,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="测试" HorizontalAlignment="Left" Margin="128,412,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="重读投影" HorizontalAlignment="Left" Margin="256,368,0,0" VerticalAlignment="Top" Width="90"/>
-        <Button Content="其他操作" HorizontalAlignment="Left" Margin="387,368,0,0" VerticalAlignment="Top" Width="90"/>
+            </GroupBox>
+        </Grid>
+        <Button Content="完成" HorizontalAlignment="Left" Margin="162,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Content="取消" HorizontalAlignment="Left" Margin="274,355,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
     </Grid>
 </Page>
