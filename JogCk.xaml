@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="JogCk" Height="370" Width="275">
+        Title="JogCk" Height="370" Width="275" Topmost="True">
     <Grid>
         <Frame Source="JogVersion2.xaml"/>
-        
     </Grid>
 </Window>

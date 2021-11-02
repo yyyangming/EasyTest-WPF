@@ -451,5 +451,11 @@ namespace Test
             JogCk jogCk = new JogCk();
             jogCk.Show();
         }
+
+        private void btnJogAndViewShow_click(object sender, RoutedEventArgs e)
+        {
+            JogAndView jogAndView = new JogAndView();
+            jogAndView.Show();
+        }
     }
 }

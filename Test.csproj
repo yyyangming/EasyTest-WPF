@@ -145,8 +145,8 @@
     <Compile Include="Mark.xaml.cs">
       <DependentUpon>Mark.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MarkConfigure.xaml.cs">
-      <DependentUpon>MarkConfigure.xaml</DependentUpon>
+    <Compile Include="JogAndView.xaml.cs">
+      <DependentUpon>JogAndView.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewFile.xaml.cs">
       <DependentUpon>NewFile.xaml</DependentUpon>
@@ -326,7 +326,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MarkConfigure.xaml">
+    <Page Include="JogAndView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

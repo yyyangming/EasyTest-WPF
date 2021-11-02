@@ -20,12 +20,12 @@
             </Border>
         </ControlTemplate>
     </Window.Template>-->
-    <Viewbox>
+
         <Grid>
             <TabControl>
                 <TabItem Header="胶阀">
                     <Grid>
-                        <Grid Margin="10">
+                        <Grid >
                             <CheckBox Content="一组" HorizontalAlignment="Left" VerticalAlignment="Top"></CheckBox>
                             <CheckBox Content="二组" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,0,0,0"></CheckBox>
                             <CheckBox Content="三组" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="132,0,0,0"></CheckBox>
@@ -76,10 +76,9 @@
 
                     </Grid>
                 </TabItem>
-                <TabItem Header="辅助">
-                    <Grid>
+                <TabItem Header="辅助" >
+                    <Grid Width="271">
                         <GroupBox Header="轨道调整" Margin="0,208,10,10">
-
                             <Grid>
                                 <TextBox HorizontalAlignment="Left" Margin="0,8,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="70"/>
                                 <Button Content="调整" HorizontalAlignment="Left" Margin="84,6,0,0" VerticalAlignment="Top" Width="40"/>
@@ -101,5 +100,5 @@
                 </TabItem>
             </TabControl>
         </Grid>
-    </Viewbox>
+
 </Page>

@@ -31,18 +31,12 @@ namespace Test
             JogPage.Content = new Frame() { Content = jogVersion2 };
         }
 
-        private void btnMarkConfigure_Click(object sender, RoutedEventArgs e)
-        {
-            this.Visibility = Visibility.Hidden;
-            MarkConfigure markConfigure = new MarkConfigure();
-            markConfigure.Owner = this;
-            markConfigure.ShowDialog();
-        }
+
+        
 
         private void btnToBranchConfigure_click(object sender, RoutedEventArgs e)   
         {
-            NewFileBranchConfigure newFileBranchConfigure = new NewFileBranchConfigure();
-
+            //NewFileBranchConfigure newFileBranchConfigure = new NewFileBranchConfigure();
         }
     }
 }
