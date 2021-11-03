@@ -12,7 +12,7 @@
             <RowDefinition Height="109*"></RowDefinition>
             <RowDefinition Height="108*"></RowDefinition>
             <RowDefinition Height="229*"></RowDefinition>
-            <RowDefinition Height="38*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Margin="10,10,10,10">
             <Label Content="新建文件名：" HorizontalAlignment="Left" Margin="0,54,0,0" VerticalAlignment="Top"/>
@@ -37,15 +37,15 @@
         <Label Content="第二侧名称:" HorizontalAlignment="Left" Margin="300,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="127"/>
         <TextBox HorizontalAlignment="Left" Margin="300,36,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="227" Height="22"/>
         <Label Content="第一侧图形:" HorizontalAlignment="Left" Margin="17,65,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
-        <Border HorizontalAlignment="Left" Margin="17,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
-            <Button  Height="121" Margin="0,0,0,-2" />
+        <Border HorizontalAlignment="Left" Margin="17,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="111" BorderBrush="Black" BorderThickness="1">
+            <Button  Height="108" Margin="0,0,0,-2" />
         </Border>
         <Label Content="第二侧图形:" HorizontalAlignment="Left" Margin="300,65,0,0" Grid.Row="2" VerticalAlignment="Top" Height="26" Width="98"/>
-        <Border HorizontalAlignment="Left" Margin="300,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="121" BorderBrush="Black" BorderThickness="1">
-            <Button Height="121" Margin="0,0,0,-2" />
+        <Border HorizontalAlignment="Left" Margin="300,95,0,0" Grid.Row="2"   VerticalAlignment="Top" Width="227" Height="111" BorderBrush="Black" BorderThickness="1">
+            <Button Height="108" Margin="0,0,0,-2" />
         </Border>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="183,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="30" Click="BtnNewFile_Click"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="302,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="30"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="183,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="25" Click="BtnNewFile_Click"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="302,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="62" Height="25"/>
         <CheckBox Content="自动调宽" HorizontalAlignment="Left" Margin="13,74,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -221,3 +221,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogCk.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogCk.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogAndView.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogAndView.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobalParameters.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobalParameters.baml

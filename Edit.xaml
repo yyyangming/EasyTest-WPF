@@ -36,7 +36,7 @@
                             <MenuItem Header="退出"></MenuItem>
                         </MenuItem>
                         <MenuItem  Header="编辑" Margin="0,0,0,0" Padding="5">
-                            <MenuItem Padding="5" Header="剪切"></MenuItem>
+                            <MenuItem Header="剪切"></MenuItem>
                             <MenuItem Header="复制"></MenuItem>
                             <MenuItem Header="粘贴"></MenuItem>
                             <MenuItem Header="删除"></MenuItem>
@@ -60,7 +60,7 @@
                             <MenuItem Header="现场视频" Click="btnLive"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="配置" Padding="5">
-                            <MenuItem Header="生产" Click="ProductionConguration"></MenuItem>
+                            <MenuItem Header="生产" Height="25" Click="ProductionConguration" Margin=" 0 -10 0 -10"></MenuItem>
                             <MenuItem Header="产品图" Click="ConfigureProductMap_Click"></MenuItem>
                             <MenuItem Header="工具" Click="ToolConfigure_click" Name="ConfigureTool"></MenuItem>
                             <MenuItem Header="工具Z偏移量" Name="ToolZOffset"></MenuItem>

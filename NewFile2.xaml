@@ -18,7 +18,7 @@
             <TabControl>
                 <TabItem Header="必要参数">
                     <Grid>
-                        <GroupBox Header="GroupBox" Margin="10,58,10,118">
+                        <!--<GroupBox Header="GroupBox" Margin="10,58,10,118">
                             <Grid Margin="0,4,0,4" Width="464">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="217*"/>
@@ -29,7 +29,7 @@
                                 <Label Content="X" HorizontalAlignment="Left" Margin="118,0,0,0" VerticalAlignment="Top"/>
                                 <TextBox HorizontalAlignment="Left" Margin="195,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
                                 <Label Content="Y" HorizontalAlignment="Left" Margin="4,-2,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <Button Content="拾取" HorizontalAlignment="Left" Margin="110,26,0,0" VerticalAlignment="Top" Width="45" Grid.Column="1"/>
+                                <Button Content="拾取" HorizontalAlignment="Left" Margin="190,26,0,0" VerticalAlignment="Top" Width="45" Grid.Column="1"/>
                                 <Label  Content="Z轴安全高度：" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
                                 <TextBox  HorizontalAlignment="Left" Margin="94,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
                                 <Label Content="待   机   点   :" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="78"/>
@@ -54,7 +54,9 @@
                         <Label Content="U:" HorizontalAlignment="Left" Margin="430,36,0,0" VerticalAlignment="Top"/>
                         <Label Content="122" HorizontalAlignment="Left" Margin="442,36,0,0" VerticalAlignment="Top"/>
                         <Button Content="完成" HorizontalAlignment="Left" Margin="179,328,0,0" VerticalAlignment="Top" Height="25" Width="58" Click="btnToBranchConfigure_click"/>
-                        <Button Content="取消" HorizontalAlignment="Left" Margin="270,328,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+                        <Button Content="取消" HorizontalAlignment="Left" Margin="270,328,0,0" VerticalAlignment="Top" Height="25" Width="58"/>-->
+
+                        <Frame Name="GlobalParameter" Source="NewFileGlobalParameters.xaml"></Frame>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Mark">

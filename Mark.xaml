@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Test"
+      xmlns:local="clr-namespace:Test" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d"
       Title="Mark" Height="450" Width="500">
 
@@ -13,30 +13,55 @@
 
             </Grid>
         </Border>
-        <Grid Margin="0,249,0,92">
+        <Grid Margin="0,249,0,0">
             <GroupBox Header="Mark设置" Padding="0" Margin="0,0,0,10">
-                <Grid Margin="0,0,0,-5">
-                    <Button Content="移动" HorizontalAlignment="Left" Margin="256,46,0,0" VerticalAlignment="Top" Width="90"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="387,44,0,0" VerticalAlignment="Top" Width="90" Height="30" ToolTip="定位失败模式">
-                        <ComboBoxItem Content="报警" IsSelected="True"></ComboBoxItem>
+                <Grid Margin="0,0,0,2">
+                    <Button Padding="0" Content="移动" HorizontalAlignment="Left" Margin="128,48,0,0" VerticalAlignment="Top" Width="60"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="421,48,0,0" VerticalAlignment="Top" Width="55" Height="30" ToolTip="定位失败模式">
+                        <ComboBoxItem Content="  报警" IsSelected="True"></ComboBoxItem>
                         <ComboBoxItem Content="不提示"></ComboBoxItem>
                     </ComboBox>
-                    <Button Content="加入Mark" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Width="94"/>
-                    <Button Content="删除Mark" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top" Width="90"/>
-                    <Button Content="保存Mark" HorizontalAlignment="Left" Margin="130,6,0,0" VerticalAlignment="Top" Width="90"/>
-                    <Button Content="测试" HorizontalAlignment="Left" Margin="128,48,0,0" VerticalAlignment="Top" Width="90"/>
-                    <Button Content="Mark清空" HorizontalAlignment="Left" Margin="256,6,0,0" VerticalAlignment="Top" Width="90"/>
-                    <Button Content="重读投影" HorizontalAlignment="Left" Margin="387,6,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Button Content="修改" HorizontalAlignment="Left" Margin="243,48,0,0" VerticalAlignment="Top" Width="60"/>
+                    <Label Content="定位失败：" HorizontalAlignment="Left" Margin="348,52,0,0" VerticalAlignment="Top"/>
+                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="348,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="421,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+
                 </Grid>
             </GroupBox>
 
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="240" Margin="325,4,0,0" VerticalAlignment="Top" Width="165">
-            <GroupBox Header="相机设置">
+        <Grid HorizontalAlignment="Left" Height="240" Margin="325,4,0,0" VerticalAlignment="Top" Width="170">
+            <GroupBox Header="选择Mark" Padding="5">
+                <Grid>
+                    <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 35 0 0" Height="120" Width="120" BorderBrush="Black" BorderThickness="1">
+                        <Image Margin="0,0,0,0">
+                        </Image>
+                    </Border>
+                    <ComboBox HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" Width="160" Height="30"  x:Name="OutlinedComboBox" Style="{StaticResource MaterialDesignOutlinedComboBox}" Padding="0 0 10 0" ItemsSource="{Binding}">
+                    </ComboBox>
 
+                    <Viewbox Margin="10,130,0,0" Width="40" Height="30">
+                        <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" >
+                            <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
+                                <materialDesign:PackIcon.RenderTransform>
+                                    <RotateTransform Angle="45" />
+                                </materialDesign:PackIcon.RenderTransform>
+                            </materialDesign:PackIcon>
+                            <materialDesign:ToggleButtonAssist.OnContent>
+                                <materialDesign:PackIcon  Kind="Pin" />
+                            </materialDesign:ToggleButtonAssist.OnContent>
+                        </ToggleButton>
+                    </Viewbox>
+                    <Label FontFamily="华文琥珀" Content="形状定位模式：" FontSize="10" HorizontalAlignment="Left" Margin="0,158,0,0" VerticalAlignment="Top"/>
+                    <Button FontSize="10" Padding="0" Content="加入" HorizontalAlignment="Left" Margin="125,38,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="删除" HorizontalAlignment="Left" Margin="125,99,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="重取" HorizontalAlignment="Left" Margin="125,131,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="测试" HorizontalAlignment="Left" Margin="125,68,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+
+                </Grid>
             </GroupBox>
         </Grid>
-        <Button Content="完成" HorizontalAlignment="Left" Margin="162,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-        <Button Content="取消" HorizontalAlignment="Left" Margin="274,355,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Padding="0" Content="完成" HorizontalAlignment="Left" Margin="162,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Padding="0" Content="取消" HorizontalAlignment="Left" Margin="274,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
     </Grid>
 </Page>

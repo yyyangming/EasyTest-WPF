@@ -40,29 +40,29 @@ namespace Test
 
         private void btnOpenJog_Click(object sender, RoutedEventArgs e)
         {
-            if (jogAndView.Width > 500 && markConfigure.Width < 820)
+            if (markConfigure.Width > 500 && markConfigure.Width < 820)
             {
-                jogAndView.Width = jogAndView.Width - 300;
+                markConfigure.Width = markConfigure.Width - 290;
                 //JogVersion2 jogVersion2 = new JogVersion2();
                 //JogPage.Source = new Uri(Convert.ToString( jogVersion2));
             }
-            else if (jogAndView.Width == 340)
+            else if (markConfigure.Width < 360&& markConfigure.Width >300)
             {
-                jogAndView.Width += 300;
+                markConfigure.Width += 290;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (jogAndView.Width > 500)
+            if (markConfigure.Width > 500)
             {
-                jogAndView.Width = jogAndView.Width - 300;
+                markConfigure.Width = markConfigure.Width - 300;
                 //JogVersion2 jogVersion2 = new JogVersion2();
                 //JogPage.Source = new Uri(Convert.ToString( jogVersion2));
             }
-            else if (jogAndView.Width < 360)
+            else if (markConfigure.Width < 360)
             {
-                jogAndView.Width += 300;
+                markConfigure.Width += 300;
             }
             //if (jogAndView.Width>600&& jogAndView.Width <800)
             //{
