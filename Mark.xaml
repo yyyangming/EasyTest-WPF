@@ -40,7 +40,7 @@
                     <ComboBox HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" Width="160" Height="30"  x:Name="OutlinedComboBox" Style="{StaticResource MaterialDesignOutlinedComboBox}" Padding="0 0 10 0" ItemsSource="{Binding}">
                     </ComboBox>
 
-                    <Viewbox Margin="10,130,0,0" Width="40" Height="30">
+                    <Viewbox Margin="40,130,0,0" Width="40" Height="30">
                         <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" >
                             <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
                                 <materialDesign:PackIcon.RenderTransform>

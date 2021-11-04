@@ -452,10 +452,12 @@ namespace Test
             jogCk.Show();
         }
 
+        
         private void btnJogAndViewShow_click(object sender, RoutedEventArgs e)
         {
             JogAndView jogAndView = new JogAndView();
             jogAndView.Show();
+            btnJogandView.IsEnabled = false;
         }
     }
 }

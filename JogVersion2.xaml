@@ -25,14 +25,8 @@
         <TabControl>
             <TabItem Header="胶阀">
                 <Grid>
-                    <Grid >
-                        <CheckBox Content="一组" HorizontalAlignment="Left" VerticalAlignment="Top"></CheckBox>
-                        <CheckBox Content="二组" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="55,0,0,0"></CheckBox>
-                        <CheckBox Content="三组" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="122,0,0,0"></CheckBox>
-                        <CheckBox Content="四组" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="180,0,0,0"></CheckBox>
-                    </Grid>
 
-                    <Grid Margin="10,30,10,0" Width="auto" Height="auto">
+                    <Grid Margin="10,0,10,0" Width="auto" Height="auto">
                         <GroupBox Padding="0" FontSize="10" Header="组阀" HorizontalAlignment="Left" VerticalAlignment="Top" Height="53" Width="auto">
                             <Grid>
                                 <StackPanel Orientation="Horizontal">
@@ -53,7 +47,10 @@
                         <Button Content="右" HorizontalAlignment="Left" Margin="200,138,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
                         <Button Content="Z上" HorizontalAlignment="Left" Margin="175,103,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
                         <Button Content="Z下" HorizontalAlignment="Left" Margin="175,175,0,0" VerticalAlignment="Top" Width="30" Height="30"/>
-                        <Button Padding="0" Content="0.5" HorizontalAlignment="Left" Margin="60,255,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+                        <Border Margin="0 210 0 0 " Width="240" Height="110" BorderBrush="Black" BorderThickness="1"></Border>
+                        
+                        
+                        <!--<Button Padding="0" Content="0.5" HorizontalAlignment="Left" Margin="60,255,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
                         <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="116,255,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
                         <Button Padding="0" Content="5.0" HorizontalAlignment="Left" Margin="169,255,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
                         <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="60,220,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
@@ -61,7 +58,9 @@
                         <Button Padding="0" Content="200.0" HorizontalAlignment="Left" Margin="169,220,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
 
                         <Label Content="速度" HorizontalAlignment="Left" Margin="15,222,0,0" VerticalAlignment="Top"/>
-                        <Label Content="定长" HorizontalAlignment="Left" Margin="15,262,0,0" VerticalAlignment="Top"/>
+                        <Label Content="定长" HorizontalAlignment="Left" Margin="15,262,0,0" VerticalAlignment="Top"/>-->
+                        
+                        
                         <Button  Padding="0" Content="左偏" ToolTip="开启胶阀" HorizontalAlignment="Left" Margin="66,58,0,0" VerticalAlignment="Top" Height="25" Width="50"/>
                         <Button Padding="0" Content="水平转" ToolTip="开启胶阀" HorizontalAlignment="Left" Margin="190,58,0,0" VerticalAlignment="Top" Height="25" Width="50"/>
                         <Button Padding="0" Content="右偏" ToolTip="开启胶阀" HorizontalAlignment="Left" Margin="128,58,0,0" VerticalAlignment="Top" Height="25" Width="50"/>

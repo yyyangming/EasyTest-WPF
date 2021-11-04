@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d" ResizeMode="NoResize" 
-        Title="JogAndView" Height="390" Width="646" Name="markConfigure" >
+        Title="JogAndView" Height="390" Width="356" Name="markConfigure" Topmost="True" Closed="markConfigure_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="340"></ColumnDefinition>
@@ -40,6 +40,14 @@
                     </Button>
                 </Grid>
             </Border>
+            <Label Content="速度:" HorizontalAlignment="Left" Margin="15,262,0,0" VerticalAlignment="Top"/>
+            <Label Content="定长:" HorizontalAlignment="Left" Margin="15,302,0,0" VerticalAlignment="Top"/>
+            <Button Padding="0" Content="0.5" HorizontalAlignment="Left" Margin="70,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="140,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Button Padding="0" Content="5.0" HorizontalAlignment="Left" Margin="210,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="70,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Button Padding="0" Content="10.0" HorizontalAlignment="Left" Margin="140,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Button Padding="0" Content="200.0" HorizontalAlignment="Left" Margin="210,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
         </Grid>
 
 
