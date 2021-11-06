@@ -13,24 +13,19 @@
 
             </Grid>
         </Border>
-        <Grid Margin="0,249,0,0">
-            <GroupBox Header="Mark设置" Padding="0" Margin="0,0,0,10">
+        <Grid Margin="0,249,180,0">
+            <GroupBox Header="相机参数" Padding="0" Margin="0,0,0,10">
                 <Grid Margin="0,0,0,2">
-                    <Button Padding="0" Content="移动" HorizontalAlignment="Left" Margin="128,48,0,0" VerticalAlignment="Top" Width="60"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="421,48,0,0" VerticalAlignment="Top" Width="55" Height="30" ToolTip="定位失败模式">
-                        <ComboBoxItem Content="  报警" IsSelected="True"></ComboBoxItem>
-                        <ComboBoxItem Content="不提示"></ComboBoxItem>
-                    </ComboBox>
-                    <Button Content="修改" HorizontalAlignment="Left" Margin="243,48,0,0" VerticalAlignment="Top" Width="60"/>
-                    <Label Content="定位失败：" HorizontalAlignment="Left" Margin="348,52,0,0" VerticalAlignment="Top"/>
-                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="348,10,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="421,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="116*"/>
+                        <ColumnDefinition Width="385*"/>
+                    </Grid.ColumnDefinitions>
 
                 </Grid>
             </GroupBox>
 
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="240" Margin="325,4,0,0" VerticalAlignment="Top" Width="170">
+        <Grid HorizontalAlignment="Left" Height="434" Margin="325,4,0,0" VerticalAlignment="Top" Width="170">
             <GroupBox Header="选择Mark" Padding="5">
                 <Grid>
                     <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0 35 0 0" Height="120" Width="120" BorderBrush="Black" BorderThickness="1">
@@ -40,7 +35,7 @@
                     <ComboBox HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" Width="160" Height="30"  x:Name="OutlinedComboBox" Style="{StaticResource MaterialDesignOutlinedComboBox}" Padding="0 0 10 0" ItemsSource="{Binding}">
                     </ComboBox>
 
-                    <Viewbox Margin="40,130,0,0" Width="40" Height="30">
+                    <Viewbox Margin="40,-60,0,0" Width="40" Height="30">
                         <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}" >
                             <materialDesign:PackIcon Kind="Pin" RenderTransformOrigin=".5,.5">
                                 <materialDesign:PackIcon.RenderTransform>
@@ -57,11 +52,28 @@
                     <Button FontSize="10" Padding="0" Content="删除" HorizontalAlignment="Left" Margin="125,99,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
                     <Button FontSize="10" Padding="0" Content="重取" HorizontalAlignment="Left" Margin="125,131,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
                     <Button FontSize="10" Padding="0" Content="测试" HorizontalAlignment="Left" Margin="125,68,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="修改" HorizontalAlignment="Left" Margin="126,160,0,0" VerticalAlignment="Top" Height="22" Width="34"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="93,356,0,0" VerticalAlignment="Top" Width="55" Height="30" ToolTip="定位失败模式">
+                        <ComboBoxItem Content="  报警" IsSelected="True"/>
+                        <ComboBoxItem Content="不提示"/>
+                    </ComboBox>
+                    <TextBox HorizontalAlignment="Left" Margin="93,308,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+                    <Label Content="定位失败：" ToolTip="单位mm" HorizontalAlignment="Left" Margin="21,367,0,0" VerticalAlignment="Top"/>
+                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="23,314,0,0" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="62,197,0,0" VerticalAlignment="Top" Width="100" Height="30" ToolTip="其他设置">
+                        <ComboBoxItem Content="设置搜索区域" IsSelected="True"/>
+                        <ComboBoxItem Content="设置匹配分值"/>
+
+                        <ComboBoxItem Content="只读相机参数"/>
+                        <ComboBoxItem Content="定位"/>
+                        <ComboBoxItem Content="标定"/>
+                    </ComboBox>
+                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="2,197,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
             </GroupBox>
         </Grid>
-        <Button Padding="0" Content="完成" HorizontalAlignment="Left" Margin="162,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-        <Button Padding="0" Content="取消" HorizontalAlignment="Left" Margin="274,353,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Padding="0" Content="完成" HorizontalAlignment="Left" Margin="162,397,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Padding="0" Content="取消" HorizontalAlignment="Left" Margin="264,397,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
     </Grid>
 </Page>

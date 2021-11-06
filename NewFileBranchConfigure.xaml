@@ -12,7 +12,7 @@
             <ColumnDefinition Width="500"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Frame Grid.Column="1" Source="JogVersion2.xaml"></Frame>
+        <Frame Grid.Column="1" Source="JogVersion3.xaml"></Frame>
         <Grid Grid.Column="0">
             <TabControl>
                 <TabItem Header="必要参数">

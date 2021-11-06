@@ -102,7 +102,6 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ConformalCoatingCharacterizat
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion2.g.cs
-E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile2.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileBaseConfigure.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileBranchConfigure.g.cs
@@ -223,3 +222,5 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogAndView.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogAndView.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobalParameters.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobalParameters.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion3.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion3.baml

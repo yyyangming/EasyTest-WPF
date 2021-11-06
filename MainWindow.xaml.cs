@@ -26,7 +26,7 @@ namespace Test
             InitializeComponent();
         }
 
-        public int editExit = 0;
+        public static int editExit;
         Edit editForm = new Edit();
         private void close(object sender, RoutedEventArgs e)
         {
@@ -48,7 +48,9 @@ namespace Test
             
             if (!Convert.ToBoolean(editExit))
             {
+                MainWindow main = new MainWindow();
                 editForm.Show();
+                //menuedit.IsEnabled = false;
                 editExit = 1;
             }
             else
@@ -131,10 +133,12 @@ namespace Test
             //    BtnTxt.Background = new SolidColorBrush(Color.FromArgb(1, 165, 167, 159));
             //}
 
-            private void UserButten_Click(object sender, RoutedEventArgs e)
+        private void UserButten_Click(object sender, RoutedEventArgs e)
         {
-            StyleTest styleTest= new StyleTest();
-            styleTest.Show();
+            //StyleTest styleTest= new StyleTest();
+            //styleTest.Show();
+            Jog jog= new Jog();
+            jog.Show();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

@@ -452,12 +452,49 @@ namespace Test
             jogCk.Show();
         }
 
-        
+        //public static bool b;
+
         private void btnJogAndViewShow_click(object sender, RoutedEventArgs e)
         {
+            //b = false;
             JogAndView jogAndView = new JogAndView();
-            jogAndView.Show();
-            btnJogandView.IsEnabled = false;
+            jogAndView.ShowDialog();
+            //btnJogandView.IsEnabled = b;
+        }
+
+        //private void EditClosed(object sender, EventArgs e)
+        //{
+            
+        //    this.Hide();
+        //}
+
+        private void EditClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //e.Cancel = true;
+            //main.menuedit.IsEnabled = true;
+        
+            //this.Hide();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnHide_click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
+        private MainWindow main = null;
+        public Edit(MainWindow mainwindow) 
+        {
+            InitializeComponent();
+           main = mainwindow;
         }
     }
 }

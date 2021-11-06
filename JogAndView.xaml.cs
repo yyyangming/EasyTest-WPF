@@ -76,8 +76,7 @@ namespace Test
 
         private void markConfigure_Closed(object sender, EventArgs e)
         {
-            Edit edit = new Edit();
-            edit.btnJogandView.IsEnabled = true;
+            //Edit.b = true;
         }
 
         //private void btnOpenView_Click(object sender, RoutedEventArgs e)

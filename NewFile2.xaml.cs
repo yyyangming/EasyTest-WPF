@@ -27,8 +27,8 @@ namespace Test
 
         private void NewFile2_JogPage_Loaded(object sender, RoutedEventArgs e)
         {
-            JogVersion2 jogVersion2 = new JogVersion2();
-            JogPage.Content = new Frame() { Content = jogVersion2 };
+            JogVersion3 jogVersion3 = new JogVersion3();
+            JogPage.Content = new Frame() { Content = jogVersion3 };
         }
 
 

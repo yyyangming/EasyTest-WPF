@@ -8,7 +8,9 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         ResizeMode="CanMinimize"
-        Title="编辑页面" Height="600" Width="864" Initialized="Window_Initialized" Loaded="Edit_loaded">
+        Title="编辑页面" Height="600" Width="864" Initialized="Window_Initialized" Loaded="Edit_loaded"
+        Closing="EditClosing"
+        >
     <Viewbox Stretch="Fill">
         <Grid   Width="904" Height="600">
             <Grid.RowDefinitions>
@@ -65,13 +67,13 @@
                             <MenuItem Header="工具" Click="ToolConfigure_click" Name="ConfigureTool"></MenuItem>
                             <MenuItem Header="工具Z偏移量" Name="ToolZOffset"></MenuItem>
                             <MenuItem Header="固定装置" Name="Fixtures" Click="FixtureConfigure_click"></MenuItem>
-                            <MenuItem Name="Reconfigure" Header="重新装配"></MenuItem>
+                            <MenuItem Header="重新装配" Name="Reconfigure"></MenuItem>
                             <MenuItem Header="事件监测"></MenuItem>
                             <MenuItem Header="日志" Click="logConfigure_click"></MenuItem>
                             <MenuItem Header="维护管理器" Click="MaintenanceConfiguration" ></MenuItem>
                             <MenuItem Header="自定义按钮" Click="Custom_click"></MenuItem>
                             <MenuItem Header="工艺限值"></MenuItem>
-                            <MenuItem Header="机器人设置" Click="Rabbit_Click"></MenuItem>
+                            <MenuItem Header="胶阀设置" Click="Rabbit_Click"></MenuItem>
                             <MenuItem Header="寻针器设置" Click="NeederFinder_click"></MenuItem>
                             <MenuItem Header="扇区宽度设置" Click="FanWidth_click" ></MenuItem>
                             <MenuItem Header="轨道设置" Click="ConveyorSeetings_click"></MenuItem>
@@ -385,7 +387,11 @@
                     <TabControl>
                         <TabItem Header="轨迹">
                             <Grid Margin="0,0,14,0">
-                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="476*"/>
+                                    <ColumnDefinition Width="61*"/>
+                                </Grid.ColumnDefinitions>
+
                             </Grid>
                         </TabItem>
                         <TabItem Header="相机">
@@ -397,7 +403,7 @@
                 </Grid>
             </Border>
             <Button Content="指针"  HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top"
-                    Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1"/>
+                    Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Click="btnHide_click" />
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" 
                     Margin="330,480,0,0" VerticalAlignment="Top" Width="570" Grid.ColumnSpan="2">
                 <DockPanel HorizontalAlignment="Left"  VerticalAlignment="Top"  >

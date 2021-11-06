@@ -141,15 +141,18 @@
     <Compile Include="JogVersion2.xaml.cs">
       <DependentUpon>JogVersion2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JogVersion3.xaml.cs">
+      <DependentUpon>JogVersion3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs" />
+    <Compile Include="MainCoatWindow.xaml.cs">
+      <DependentUpon>MainCoatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Mark.xaml.cs">
       <DependentUpon>Mark.xaml</DependentUpon>
     </Compile>
     <Compile Include="JogAndView.xaml.cs">
       <DependentUpon>JogAndView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="NewFile.xaml.cs">
-      <DependentUpon>NewFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewFile2.xaml.cs">
       <DependentUpon>NewFile2.xaml</DependentUpon>
@@ -321,6 +324,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="JogVersion3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainCoatWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -330,10 +341,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="JogAndView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NewFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -589,12 +596,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\向下3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Image2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.3.0-ci62\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.3.0-ci62\build\MaterialDesignThemes.targets')" />

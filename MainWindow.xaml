@@ -26,15 +26,16 @@
                         <MenuItem Header="新建宏程序"  Margin="0" Click="btnNewFile"></MenuItem>
                         <MenuItem  Header="退出"   Margin="0"/>
                     </MenuItem>
-                    <MenuItem Header="编辑模式" Padding="5" Click="btnEdit">
+                    <MenuItem Header="编辑模式" Padding="5" Click="btnEdit" Name="menuedit" >
                     </MenuItem>
                     <MenuItem Header="现场视频" Padding="5" Click="btnLive">
                     </MenuItem>
                     <MenuItem Header="系统参数" Padding="5">
+                        <MenuItem Header="气压调节"></MenuItem>
                     </MenuItem>
                     <MenuItem Header="帮助" Padding="5">
                         <MenuItem Header="帮助"></MenuItem>
-                        <MenuItem Header="切换用户"></MenuItem>
+                        <MenuItem Header="登录用户"></MenuItem>
                     </MenuItem>
                 </Menu>
 
@@ -61,84 +62,7 @@
                         <!--<Frame Name="MainWindowJog" ></Frame>-->
                     </Grid>
                 </WrapPanel>
-
-                <!--<Border BorderThickness="1" Margin="0,-260,0,0">
-                    <DockPanel Margin="10,40,0,0">
-                        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="胶阀" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="110" Margin="5,0,5,0"></Button>
-                            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Content="轨道" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="110"></Button>
-                        </WrapPanel>
-                        <WrapPanel DockPanel.Dock="Left" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                            <ComboBox FontSize="10" Width="100" Height="18" Margin="5,10,0,0" >
-                                <ComboBoxItem IsSelected="True">定位1</ComboBoxItem>
-                                <ComboBoxItem>定位2</ComboBoxItem>
-                                <ComboBoxItem>定位3</ComboBoxItem>
-                                <ComboBoxItem>定位4</ComboBoxItem>
-                                <ComboBoxItem>定位5</ComboBoxItem>
-                            </ComboBox>
-                            <WrapPanel Margin="38,10,0,0">
-                                <Button Height="20" Margin="0,0,15,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                    <Image Source="E:\desket\图标\向上抬.png"/>
-                                </Button>
-                                <Button Height="20" Margin="10,0,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                    <Image Source="E:\desket\图标\向下降.png"/>
-                                </Button>
-                            </WrapPanel>
-                            <DockPanel Height="100" Width="100" Margin="10,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="30,-5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\向上.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-30,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向上.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="-70,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\最左.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="-50,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\左.png" />
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\右.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\最右.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-70,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向下.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-70,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向下.png"/>
-                                </Button>
-                            </DockPanel>
-                            <DockPanel Height="100" Width="100" Margin="25,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="30,-5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\向上.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-30,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向上.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="-70,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\左.png"></Image>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="-50,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\左.png" />
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\右.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="20" Height="30" Margin="0,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Image Height="15" Source="E:\desket\图标\右.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-70,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向下.png"/>
-                                </Button>
-                                <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="30" Height="20" Margin="-70,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                    <Image Height="15" Source="E:\desket\图标\向下.png"/>
-                                </Button>
-                            </DockPanel>
-                        </WrapPanel>
-                    </DockPanel>
-                </Border>-->
+                
                 <Button Margin="100,0,0,0" Content="显示信息" Style="{StaticResource commBtn}"/>
             </WrapPanel>
             <Border BorderThickness="0" BorderBrush="Black"  VerticalAlignment="Top" Margin="259,30,2,0" Grid.ColumnSpan="2">
@@ -178,22 +102,22 @@
                         </Border>
                         <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                待定
+                                暂停
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                待定
+                                原点
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                待定
+                                待机点
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
                             <Button Height="50" Width="73" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}">
-                                待定
+                                登出
                             </Button>
                         </Border>
                         <Border Margin="3,0,0,0" VerticalAlignment="Top" CornerRadius="1" BorderThickness="1" BorderBrush="Black">
@@ -212,7 +136,7 @@
 
 
                     <WrapPanel Margin="3,5,0,0">
-                        <Button Name="Custom_1" Content="{Binding }" FontSize="15"  Margin="-2,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click">
+                        <Button Name="Custom_1" Content="jog" FontSize="15"  Margin="-2,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}" Click="UserButten_Click" >
                             <!--<Image Source="E:\desket\图标\water.png"/>-->
                         </Button>
                         <Button Name="Custom_2" Margin="0,0,3,0" Height="40" Width="100" Style="{StaticResource btnTransparentStyle}" Click="Button_Click_2">

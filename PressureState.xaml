@@ -60,7 +60,6 @@
         </Border>
         <Button Content="Button" Margin="10,23,162,4" Grid.Row="5"/>
         <Button Content="Button" Margin="159,23,10,4" Grid.Row="5"/>
-        <Image Margin="0,0,-289,95" Grid.RowSpan="2" Source="/Image1.png" Stretch="Fill"/>
-        <Image Margin="0,0,-289,95" Grid.RowSpan="2" Source="/Image2.png" Stretch="Fill"/>
+
     </Grid>
 </Window>
