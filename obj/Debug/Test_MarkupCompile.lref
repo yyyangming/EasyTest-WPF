@@ -12,12 +12,14 @@ FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ConformalCoatingCharacterizationWizard
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ImagePage.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogCk.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogVersion2.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogVersion3.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\MainCoatWindow.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\Mark.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogAndView.xaml;;
-FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFile.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFile2.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileBaseConfigure.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileBranchConfigure.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileGlobalParameters.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewPatternTeach.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\PasswordManager.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ProgramWizard.xaml;;
@@ -52,6 +54,4 @@ FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\UserViewAndJog.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\UserViewPage.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\WidthPatternSeeting.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\WindowChromeTest.xaml;;
-FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileGlobalParameters.xaml;;
-FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogVersion3.xaml;;
 

@@ -80,12 +80,9 @@
                             <MenuItem Header="速度设置" Click="ConfigureSpeed_click"></MenuItem>
                             <MenuItem Header="轴参数" Click="ConfigureSpeed_click"></MenuItem>
                             <MenuItem Header="IO设置" Click="ConfigureSpeed_click"></MenuItem>
-                            <MenuItem Header="系统参数" Click="ConfigureSpeed_click"></MenuItem>
-                            <MenuItem Header="密码管理器" Click="PasswordManager_Click"></MenuItem>
                         </MenuItem>
                         <MenuItem Header="实用程序" Name="Utilities" Padding="5">
                             <MenuItem Header="机器人实用程序">
-                                <MenuItem Header="机器人归位"></MenuItem>
                                 <MenuItem Header="终端"></MenuItem>
                                 <MenuItem Header="模拟输出"></MenuItem>
                                 <MenuItem Header="箭头键移动机器人"></MenuItem>
@@ -175,18 +172,11 @@
 
                     <Viewbox Height="30">
                         <ToolBarTray Margin="4,0,0,0" Background="White">
-                            <ToolBar Background="White" Padding="0" Margin="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="902">
+                            <ToolBar Background="White" Padding="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="902">
                                 <Button ToolTip="新建工程文件"  Click="btnNewFile" Content="新建" Margin="0" Padding="5" />
                                 <Button ToolTip="打开文件" Content="打开" Padding="5" />
-                                <Button ToolTip="保存工程" Content="{materialDesign:PackIcon Kind=ContentPaste}" ToolBar.OverflowMode="AsNeeded" Padding="5" />
+                                <Button ToolTip="保存工程" Content="保存" ToolBar.OverflowMode="AsNeeded" Padding="5" />
                                 <Separator />
-                                <Button  ToolTip="剪切"  Content="{materialDesign:PackIcon Kind=ContentCut}" Padding="5" />
-                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="{materialDesign:PackIcon Kind=ContentCopy}" Padding="5"/>
-
-                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
-                                <Separator />
-
-
                                 <Button  ToolTip="剪切"  Content="运行" Padding="5" />
                                 <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
 
@@ -208,13 +198,21 @@
                                 <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组3" />
                                 <Separator />
 
-                                <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=Radio}" />
-                                <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=EmoticonPoop}" />
+                                <!--<RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=Radio}" />
+                                <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=EmoticonPoop}" />-->
 
-                                <Separator />
-                                <Viewbox Width="25">
-                                    <ToggleButton />
-                                </Viewbox>
+                                <!--<Separator />-->
+                                <Label Content="进料方式:" VerticalAlignment="Top" />
+                                <ComboBox>
+                                    <ComboBoxItem IsSelected="True" Content="一块" />
+                                    <ComboBoxItem Content="两块" />
+
+                                </ComboBox>
+                                <ComboBox>
+                                    <ComboBoxItem IsSelected="True" Content="从左向右" />
+                                    <ComboBoxItem Content="从右向左" />
+                                </ComboBox>
+
 
                             </ToolBar>
                         </ToolBarTray>
@@ -228,24 +226,18 @@
 
                                 <Button ToolTip="偏移" ToolBar.OverflowMode="AsNeeded" Content="偏移" Padding="5"/>
                                 <Separator />
-
-
-                                <Button  ToolTip="剪切"  Content="运行" Padding="5" />
-                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
-
-                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="指定" Padding="5"/>
-                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="停止" Padding="5"/>
-                                <Separator />
+                                <!--<Separator />-->
                                 <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
-                                <Label Content="Coat:" VerticalAlignment="Center" />
+                                <!--<Label Content="Coat:" VerticalAlignment="Center" />
                                 <ComboBox Margin="0 5 0 0 ">
                                     <ComboBoxItem Content="胶阀1" />
                                     <ComboBoxItem IsSelected="True"  Content="胶阀2" />
                                     <ComboBoxItem Content="胶阀3" />
                                     <ComboBoxItem Content="胶阀4" />
-                                </ComboBox>
-                                <Separator />
-
+                                </ComboBox>-->
+                                <!--<Separator />-->
+                                <Button Content="原点"></Button>
+                                <Button Content="待机点"></Button>
                                 <Label Content="自动清洁:" VerticalAlignment="Center" />
                                 <Viewbox Width="25">
                                     <ToggleButton />
@@ -265,17 +257,11 @@
 
 
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,310,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="工具" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
-            </Border>
+                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,360,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="进料" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
-            </Border>
+                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,410,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37">
-                <Button Content="偏移" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}"></Button>
-            </Border>
+                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
                 <Button  Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}" Click="btnJogShow_click"></Button>
@@ -396,7 +382,7 @@
                         </TabItem>
                         <TabItem Header="相机">
                             <Grid Margin="0,0,14,0">
-                                
+
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -432,10 +418,10 @@
             <Viewbox HorizontalAlignment="Left" Height="194" Margin="5,111,0,0" VerticalAlignment="Top" Width="35">
                 <ToolBarTray Orientation="Vertical" Background="White" Margin="0">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Background="White" Width="45" Padding="0">
-                        <ToggleButton  Content="点" Style="{StaticResource MaterialDesignActionAccentToggleButton}" IsChecked="False" ToolTip="做一个点" />
-                        <ToggleButton Content="线" Style="{StaticResource MaterialDesignActionAccentToggleButton}" IsChecked="False" ToolTip="做一个线" />
-                        <ToggleButton Content="弧" Style="{StaticResource MaterialDesignActionAccentToggleButton}" IsChecked="False" ToolTip="做一个点" />
-                        <ToggleButton Content="圆" Style="{StaticResource MaterialDesignActionLightToggleButton}" IsChecked="False" ToolTip="MaterialDesignActionLightToggleButton" />
+                        <ToggleButton Name="orderPoint" Content="点" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderPoint_click" IsChecked="False" ToolTip="做一个点" />
+                        <ToggleButton Name="orderString" Content="线" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderString_click" IsChecked="False" ToolTip="做一个线" />
+                        <ToggleButton Name="orderArc" Content="弧" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderArc_click" IsChecked="False" ToolTip="做一个点" />
+                        <ToggleButton Name="orderRound" Content="圆" Style="{StaticResource MaterialDesignActionLightToggleButton}" Click="orderRound_click" IsChecked="False" ToolTip="MaterialDesignActionLightToggleButton" />
                         <Button ToolTip="保存工程" Content="{materialDesign:PackIcon Kind=ContentPaste}" ToolBar.OverflowMode="AsNeeded" Padding="5" />
                         <Separator />
                         <Button  ToolTip="剪切"  Content="{materialDesign:PackIcon Kind=ContentCut}" Padding="5" />
@@ -446,6 +432,10 @@
                     </ToolBar>
                 </ToolBarTray>
             </Viewbox>
+            <Button Content="放大"  HorizontalAlignment="Center" VerticalAlignment="Top"
+                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Margin="0,407,0,0"/>
+            <Button Content="缩小"  HorizontalAlignment="Center" VerticalAlignment="Top"
+                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Margin="0,447,0,0"/>
         </Grid>
     </Viewbox>
 </Window>

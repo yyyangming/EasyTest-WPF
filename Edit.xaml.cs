@@ -496,5 +496,45 @@ namespace Test
             InitializeComponent();
            main = mainwindow;
         }
+
+        private void orderPoint_click(object sender, RoutedEventArgs e)
+        {
+            if (orderPoint.IsChecked == true)
+            {
+                orderString.IsChecked = false;
+                orderArc.IsChecked = false;
+                orderRound.IsChecked = false;
+            }
+        }
+
+        private void orderString_click(object sender, RoutedEventArgs e)
+        {
+            if (orderString.IsChecked == true)
+            {
+                orderPoint.IsChecked = false;
+                orderArc.IsChecked = false;
+                orderRound.IsChecked = false;
+            }
+        }
+
+        private void orderArc_click(object sender, RoutedEventArgs e)
+        {
+            if (orderArc.IsChecked == true)
+            {
+                orderPoint.IsChecked = false;
+                orderString.IsChecked = false;
+                orderRound.IsChecked = false;
+            }
+        }
+
+        private void orderRound_click(object sender, RoutedEventArgs e)
+        {
+            if (orderRound.IsChecked == true)
+            {
+                orderPoint.IsChecked = false;
+                orderString.IsChecked = false;
+                orderArc.IsChecked = false;
+            }
+        }
     }
 }
