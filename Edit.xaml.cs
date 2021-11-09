@@ -86,6 +86,7 @@ namespace Test
             saveFile.Filter = "轨道文件(*GD)|*.GD";
             string strName = saveFile.FileName;
             saveFile.InitialDirectory = "E:\\";
+            LabFileName.Content = saveFile.FileName;
         }
 
 

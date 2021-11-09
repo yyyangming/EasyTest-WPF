@@ -15,10 +15,6 @@
     <Viewbox Stretch="Fill">
 
         <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
             <Border Margin="0,0,0,0" BorderBrush="Black" BorderThickness="0" CornerRadius="1" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.ColumnSpan="2">
                 <Menu FontSize="10" Name="MainWindowMenu" Loaded="MainWindowMenu_Loaded" Padding="0"  HorizontalAlignment="Left" Height="35" VerticalAlignment="Top"  Margin="0,-10,0,0" Background="White">
                     <MenuItem Padding="5" Header="文件" Name="MenuFile">
@@ -47,7 +43,9 @@
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
                         <TabItem Header="图形" IsSelected="True">
-                            <Frame Source="ImagePage.xaml"></Frame>
+                            <Viewbox>
+                                <Frame Source="ImagePage.xaml"></Frame>
+                            </Viewbox>
                         </TabItem>
                     </TabControl>
                     <TabControl Width="250" Height="140" Margin="5,0,0,0" Loaded="TabControl_Second_Loaded">
@@ -55,7 +53,9 @@
                             <Frame Source="TxtPage.xaml"></Frame>
                         </TabItem>
                         <TabItem Header="图形" IsSelected="True">
-                            <Frame Source="ImagePage.xaml"></Frame>
+                            <Viewbox>
+                                <Frame Source="ImagePage.xaml"></Frame>
+                            </Viewbox>
                         </TabItem>
                     </TabControl>
                     <Grid Width="245" Height="317" Margin="2 0 0 0">
@@ -79,7 +79,7 @@
                 </WrapPanel>
             </Border>
             <Border Width="620" Margin="290,95,5,135" BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2">
-                <WrapPanel Height="430" Margin="0,0,0,0"  Width="620" >
+                <WrapPanel Height="430" Margin="-5,0,-2,0" >
                     <Label Height="30" Margin="0,0,0,0" Name="lblCoatName" Content="型号："></Label>
                     <Label Height="30" Margin="-9,0,0,0" Name="lblCoatState" Content="Sc9091"></Label>
                     <Image Source="E:\desket\图标\MainWindow.png" Height="365" Width="630" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,0,0,0" Stretch="Fill"/>

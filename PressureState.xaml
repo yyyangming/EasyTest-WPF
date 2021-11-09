@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d"
-        Title="PressureState" Height="433" Width="320">
+        Title="气压设置" Height="433" Width="320">
     
     <Grid>
 
@@ -20,13 +20,13 @@
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0">
             <WrapPanel Grid.Row="0">
-                <Label Content="Actuation Pressure" HorizontalAlignment="Left" Margin="80,0,0,0" VerticalAlignment="Center" Width="124"/>
+                <Label Content="胶阀气压" Block.TextAlignment="Center" HorizontalAlignment="Center" Margin="130,0,0,0" VerticalAlignment="Top" />
             </WrapPanel>
         </Border>
 
         <Border BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0" Grid.Row="2">
             <WrapPanel>
-                <Label Content="Fluid Pressure" HorizontalAlignment="Left" Margin="96,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+                <Label Content="雾化气压" HorizontalAlignment="Center" Margin="130,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
             </WrapPanel>
         </Border>
         <Border Grid.Row="4" BorderThickness="1" BorderBrush="Black" Margin="3,0,3,0">
@@ -37,18 +37,21 @@
 
         <Border Margin="3,0,3,0" Grid.Row="1" BorderBrush="Black" BorderThickness="1">
             <WrapPanel Grid.Row="1" >
-                <TextBox  Text="{Binding ElementName=sliderFontsize, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"></TextBox>
-                <Label Content="PSI" Margin="20,0,0,0"></Label>
                 
-                <Slider Name="sliderFontsize" SmallChange="0.01" Width="300" Margin="5,20,0,0" IsSnapToTickEnabled="True" TickPlacement="Both"  TickFrequency="0.01"></Slider>
+                <TextBox Block.TextAlignment="Center"  Text="{    Binding ElementName=sliderFontsize, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"></TextBox>
+                
+                <Label Content="PSI" Margin="20,0,0,0"></Label>
+
+                <Slider Name="sliderFontsize" TickPlacement="Both" SmallChange="0.01" Width="300" Margin="5,20,0,0" IsSnapToTickEnabled="True"  ></Slider>
                 
             </WrapPanel>
         </Border>
         <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0">
             <WrapPanel Grid.Row="3" >
-                <TextBox MaxLength="3" Text="{Binding ElementName=SliderFontSize2, Path=Value, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"/>
+                <TextBox MaxLength="3" Block.TextAlignment="Center" Text="{Binding ElementName=SliderFontSize2, Path=Value, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="90,5,0,0" Width="54"/>
                 <TextBlock Text="PSI" Margin="20,5,0,0"></TextBlock>
-                <Slider Name="SliderFontSize2"  Width="300" Margin="5,20,0,0" TickPlacement="Both"></Slider>
+
+                <Slider Name="SliderFontSize2"  Width="300" Margin="5,20,0,0" TickPlacement="Both" SmallChange="0.01"></Slider>
             </WrapPanel>
         </Border>
         <Border Grid.Row="5" BorderBrush="Black" BorderThickness="1" Margin="3,0,3,0">
@@ -58,8 +61,8 @@
 
             </WrapPanel>
         </Border>
-        <Button Content="Button" Margin="10,23,162,4" Grid.Row="5"/>
-        <Button Content="Button" Margin="159,23,10,4" Grid.Row="5"/>
+        <Button Content="确定" Margin="10,48,196,29" Grid.Row="5"/>
+        <Button Content="取消" Margin="196,48,10,29" Grid.Row="5"/>
 
     </Grid>
 </Window>

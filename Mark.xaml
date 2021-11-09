@@ -15,11 +15,11 @@
         </Border>
         <Grid Margin="0,249,180,0">
             <GroupBox Header="相机参数" Padding="0" Margin="0,0,0,10">
-                <Grid Margin="0,0,0,2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="116*"/>
-                        <ColumnDefinition Width="385*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid Margin="0,0,0,66">
+                    <Label Content="曝光时间" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,21,0,0" Width="57"></Label>
+                    <Slider   HorizontalAlignment="Left" Margin="58,22,0,0" VerticalAlignment="Top" Width="246"/>
+                    <Label Content="  光  源：" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,56,0,0" Width="57"/>
+                    <Slider   HorizontalAlignment="Left" Margin="58,56,0,0" VerticalAlignment="Top" Width="246"/>
 
                 </Grid>
             </GroupBox>
@@ -49,31 +49,31 @@
                     </Viewbox>
                     <Label FontFamily="华文琥珀" Content="形状定位模式：" FontSize="10" HorizontalAlignment="Left" Margin="0,158,0,0" VerticalAlignment="Top"/>
                     <Button FontSize="10" Padding="0" Content="加入" HorizontalAlignment="Left" Margin="125,38,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
-                    <Button FontSize="10" Padding="0" Content="删除" HorizontalAlignment="Left" Margin="125,99,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
-                    <Button FontSize="10" Padding="0" Content="重取" HorizontalAlignment="Left" Margin="125,131,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
-                    <Button FontSize="10" Padding="0" Content="测试" HorizontalAlignment="Left" Margin="125,68,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
-                    <Button FontSize="10" Padding="0" Content="修改" HorizontalAlignment="Left" Margin="126,160,0,0" VerticalAlignment="Top" Height="22" Width="34"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="93,356,0,0" VerticalAlignment="Top" Width="55" Height="30" ToolTip="定位失败模式">
+                    <Button FontSize="10" Padding="0" Content="删除" HorizontalAlignment="Left" Margin="125,86,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="重取" HorizontalAlignment="Left" Margin="125,110,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="测试" HorizontalAlignment="Left" Margin="125,62,0,0" VerticalAlignment="Top" Height="22" Width="35"/>
+                    <Button FontSize="10" Padding="0" Content="修改" HorizontalAlignment="Left" Margin="126,134,0,0" VerticalAlignment="Top" Height="22" Width="34"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="93,280,0,0" VerticalAlignment="Top" Width="55" Height="30" ToolTip="定位失败模式">
                         <ComboBoxItem Content="  报警" IsSelected="True"/>
                         <ComboBoxItem Content="不提示"/>
                     </ComboBox>
-                    <TextBox HorizontalAlignment="Left" Margin="93,308,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
-                    <Label Content="定位失败：" ToolTip="单位mm" HorizontalAlignment="Left" Margin="21,367,0,0" VerticalAlignment="Top"/>
-                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="23,314,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Margin="93,238,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+                    <Label Content="定位失败：" ToolTip="单位mm" HorizontalAlignment="Left" Margin="21,288,0,0" VerticalAlignment="Top"/>
+                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="23,242,0,0" VerticalAlignment="Top"/>
                     <ComboBox HorizontalAlignment="Left" Margin="62,197,0,0" VerticalAlignment="Top" Width="100" Height="30" ToolTip="其他设置">
-                        <ComboBoxItem Content="设置搜索区域" IsSelected="True"/>
+                        <ComboBoxItem Content="  设置搜索区域" IsSelected="True"/>
                         <ComboBoxItem Content="设置匹配分值"/>
-
                         <ComboBoxItem Content="只读相机参数"/>
                         <ComboBoxItem Content="定位"/>
                         <ComboBoxItem Content="标定"/>
                     </ComboBox>
-                    <Label Content="视觉速度：" HorizontalAlignment="Left" Margin="2,197,0,0" VerticalAlignment="Top"/>
+                    <Label Content="其他设置：" HorizontalAlignment="Left" Margin="2,199,0,0" VerticalAlignment="Top"/>
+                    <Button FontSize="10" Padding="0" Content="到位" HorizontalAlignment="Left" Margin="126,158,0,0" VerticalAlignment="Top" Height="22" Width="34"/>
 
                 </Grid>
             </GroupBox>
         </Grid>
-        <Button Padding="0" Content="完成" HorizontalAlignment="Left" Margin="162,397,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-        <Button Padding="0" Content="取消" HorizontalAlignment="Left" Margin="264,397,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Grid.Column="0" Padding="0" Content="完成" HorizontalAlignment="Left" Margin="162,357,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
+        <Button Padding="0" Content="取消" HorizontalAlignment="Left" Margin="264,357,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
     </Grid>
 </Page>

@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="JogCk" Height="370" Width="275" Topmost="True">
     <Grid>
-        <Frame Source="JogVersion2.xaml"/>
+        <Frame Source="JogVersion3.xaml"/>
     </Grid>
 </Window>

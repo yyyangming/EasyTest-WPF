@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Test"
-        mc:Ignorable="d" Background="White" Foreground="White"
-        Title="操作员页面" Height="900" Width="1440">
+        mc:Ignorable="d" Background="White" Foreground="White" WindowState="Maximized"
+        Title="操作员页面" Height="900" Width="1440" Style="{Binding }">
     <Viewbox Stretch="Fill">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -15,9 +15,11 @@
                 <ColumnDefinition Width="720"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid>
-                <Menu HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <MenuItem Header="文件" Padding="5"></MenuItem>
-                    <MenuItem Header="编辑模式" Padding="5"></MenuItem>
+                <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 -10 0 0 " Height=" 35" Background="White" FontFamily="行书">
+                    <MenuItem Header="文件" Padding="5">
+                        <MenuItem Padding="5" Margin="0 -10 0 -10 " Header="退出" ></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="编辑模式" Padding="5" ></MenuItem>
                     <MenuItem Header="现场视频" Padding="5"></MenuItem>
                     <MenuItem Header="系统参数" Padding="5">
                         <MenuItem Header="气压调节"></MenuItem>
@@ -27,25 +29,30 @@
                         <MenuItem Header="登录用户"></MenuItem>
                     </MenuItem>
                 </Menu>
-                <TabControl Margin="15,70,366,401" BorderBrush="Black" BorderThickness="1">
+                <TabControl Style="{Binding}" Margin="15,90,0,0" Width="250" Height="190" HorizontalAlignment="Left" BorderBrush="Black" BorderThickness="1" VerticalAlignment="Top">
                     <TabItem Header="传感器信息"></TabItem>
-                    <TabItem Header="气压"></TabItem>
+                    <TabItem Header="气压">
+                        <Frame Source="ImagePage.xaml"></Frame>
+                    </TabItem>
                 </TabControl>
-                <TabControl Margin="359,70,22,401" BorderBrush="Black" BorderThickness="1">
+                <TabControl Margin="278,90,192,416" BorderBrush="Black" BorderThickness="1" Width="250" Height="190">
                     <TabItem Header="传感器信息"/>
                     <TabItem Header="气压"/>
                 </TabControl>
             </Grid>
+            
+            
+            
             <Grid Grid.Column="1">
                 <Border Height="100" VerticalAlignment="Top" Margin="0 70 0 0" Background="#00939A">
                     <Label Margin="0,10,591,56" Content="当前报警信息" FontSize="15"></Label>
                 </Border>
                 <Border Height="400" Margin="10 180 10 30" BorderThickness="2" BorderBrush="Black" VerticalAlignment="Top">
-                    <Image></Image>
+                    <Image Source="E:\desket\图标\MainWindow.png" Height="400" Width="696" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill"/>
                 </Border>
 
-                <WrapPanel Margin="10,581,10,0" Height="115" VerticalAlignment="Top">
-                    <Button Margin="8" Width="70" Height="50"></Button>
+                <WrapPanel Margin="10,581,10,0" Height="115" >
+                    <Button Margin="8" Width="70" Height="50" Padding="0">开始\暂停</Button>
                     <Button Margin="9" Width="70" Height="50"></Button>
                     <Button Margin="9" Width="70" Height="50"></Button>
                     <Button Margin="9" Width="70" Height="50"></Button>
