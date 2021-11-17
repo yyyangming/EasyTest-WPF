@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
+using ContextMenu = System.Windows.Controls.ContextMenu;
+using MenuItem = System.Windows.Controls.MenuItem;
 
 namespace Test
 {
@@ -23,10 +25,12 @@ namespace Test
     public partial class Edit : Window
     {
         ObservableCollection<propertyValue> propertyValueList = new ObservableCollection<propertyValue>();
+        ObservableCollection<DGCommond_list> dGCommond_Lists = new ObservableCollection<DGCommond_list>();
         public Edit()
         {
             
             InitializeComponent();
+
         }
 
 
@@ -86,7 +90,7 @@ namespace Test
             saveFile.Filter = "轨道文件(*GD)|*.GD";
             string strName = saveFile.FileName;
             saveFile.InitialDirectory = "E:\\";
-            LabFileName.Content = saveFile.FileName;
+            //LabFileName.Content = saveFile.FileName;
         }
 
 
@@ -536,6 +540,139 @@ namespace Test
                 orderString.IsChecked = false;
                 orderArc.IsChecked = false;
             }
+        }
+        public class DGCommond_list
+        {
+            public string property { get; set; }
+        }
+
+        private void DGcommondList_Loaded(object sender, RoutedEventArgs e)
+        {
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "1",
+            });
+
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "2",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "33",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "44",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "555",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "6",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "7",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "8",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "9",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "0",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "11",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "12",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "121",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "14",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "15",
+            });
+            dGCommond_Lists.Add(new DGCommond_list()
+            {
+                property = "16",
+            });
+            (this.FindName("DGcommondList") as System.Windows.Controls.DataGrid).ItemsSource = dGCommond_Lists;
+        }
+
+        private void btnArea_Click(object sender, RoutedEventArgs e)
+        {
+            AreaCoat areaCoat = new AreaCoat();
+            areaCoat.Show();
+        }
+
+        private void dataGridGJ_RightClick(object sender, MouseButtonEventArgs e)
+        {
+            ContextMenu context = new ContextMenu();
+            
+            MenuItem item = new MenuItem();
+            item.Header = "点击删除该行数据";
+            item.Height = 20;
+            item.Padding = new Thickness(0, 0, 0, 0);
+            item.Margin = new Thickness(0, -5, 0, 0);
+            item.Click += new RoutedEventHandler(item_click);
+
+            MenuItem AddPoint = new MenuItem();
+            AddPoint.Header = "添加点";
+            AddPoint.Height = 20;
+            AddPoint.Padding = new Thickness(0, 0, 0, 0);
+            AddPoint.Margin = new Thickness(0, 0, 0, 0);
+            AddPoint.Click += new RoutedEventHandler(item_click);
+
+            MenuItem AddLine = new MenuItem();
+            AddLine.Header = "添加线";
+            AddLine.Height = 20;
+            AddLine.Padding = new Thickness(0, 0, 0, 0);
+            AddLine.Margin = new Thickness(0, 0, 0, 0);
+            AddLine.Click += new RoutedEventHandler(item_click);
+
+            MenuItem AddHu = new MenuItem();
+            AddHu.Header = "添加弧";
+            AddHu.Height = 20;
+            AddHu.Padding = new Thickness(0, 0, 0, 0);
+            AddHu.Margin = new Thickness(0, 0, 0, 0);
+            AddHu.Click += new RoutedEventHandler(item_click);
+
+            MenuItem AddSome = new MenuItem();
+            AddSome.Header = "添加";
+            AddSome.Height = 20;
+            AddSome.Padding = new Thickness(0, 0, 0, 0);
+            AddSome.Margin = new Thickness(0,0, 0, -5);
+            AddSome.Click += new RoutedEventHandler(item_click);
+            AddSome.Items.Add(AddPoint);
+            AddSome.Items.Add(AddLine);
+            AddSome.Items.Add(AddHu);
+
+
+            context.Items.Add(item);
+            context.Items.Add(AddSome);
+            context.IsOpen = true;
+        }
+
+        void item_click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

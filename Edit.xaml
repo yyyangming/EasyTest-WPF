@@ -18,10 +18,8 @@
                 <RowDefinition Height="0*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="217*"/>
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="0*"/>
-                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="869*"/>
+                <ColumnDefinition Width="35*"/>
             </Grid.ColumnDefinitions>
             <Border Height="25" VerticalAlignment="Top"  Width="auto" Grid.ColumnSpan="2" >
                 <DockPanel Height="25" LastChildFill="False" VerticalAlignment="Top" Margin="0,0,9,0">
@@ -89,6 +87,17 @@
                                 <MenuItem Header="恢复默认值"></MenuItem>
                                 <MenuItem Header="下载ACL"></MenuItem>
                                 <MenuItem Header="张紧工序"></MenuItem>
+                                <MenuItem Header="编辑G码"></MenuItem>
+                                <MenuItem Header="清洁周期"></MenuItem>
+                                <MenuItem Header="清洁打开"></MenuItem>
+                                <MenuItem Header="切换胶桶">
+                                    <MenuItem Header="胶桶"></MenuItem>
+                                    <MenuItem Header="稀释剂"></MenuItem>
+                                </MenuItem>
+                                <MenuItem Header="快捷操作">
+                                    <MenuItem Header="打开挡板气缸"></MenuItem>
+                                    <MenuItem Header="打开抽风"></MenuItem>
+                                </MenuItem>
                             </MenuItem>
                             <MenuItem Header="压力调节" >
                                 <MenuItem Header="工具1" Click="PressControl"></MenuItem>
@@ -118,129 +127,101 @@
             </Border>
             <Border   VerticalAlignment="Top" HorizontalAlignment="Left"
                 Margin="-1,30,0,0"  Width="906"  Height="75"
-                     BorderThickness="0" Grid.ColumnSpan="4">
+                     BorderThickness="0" Grid.ColumnSpan="2">
                 <WrapPanel HorizontalAlignment="Center"  VerticalAlignment="Center" Width="906" Height="75" >
-                    <!--<Button  VerticalAlignment="Top" HorizontalAlignment="Left"  Height="30"  Margin="20,0,5,1" Click="btnNewFile"   Name="btnNewFile10"  Style="{StaticResource MaterialDesignOutlinedSecondaryDarkButton}" Content="新建" Width="45" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Padding="0"/>
-
-                    <Button VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,5,1" Click="btnOpenFile" 
-                            Style="{StaticResource btnTransparentStyle}">
-                        打开
-                    </Button>
-
-                    <Button Content="保存" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,20,1" Click="btnFileSave" Style="{StaticResource btnTransparentStyle}"/>
-
-                    <Button Content="剪切" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="复制" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="粘贴" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
-
-                    <Button VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}">
-                        运行
-                    </Button>
-                    <Button Content="单步" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="指定" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="2,0,20,1" Style="{StaticResource btnTransparentStyle}"/>
-
-                    <Button Content="停止" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="30" Margin="-13,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="报警消音" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="40" Margin="12,0,5,1" Style="{StaticResource btnTransparentStyle}"/>
-                    <Button Content="清除故障" VerticalAlignment="Center" HorizontalAlignment="Left"
-                        Height="30" Width="40" Margin="2,0,5,2" Style="{StaticResource btnTransparentStyle}"/>
-                    <Image Margin="284,0,0,0" Height="30" Width="100" Source="E:\desket\图标\logo.png"></Image>
-                    -->
-                    <!--logo-->
-                    <!--
-
-                    <TextBox Foreground="White" Text="文件所在位置"  Width="400" Height="20" HorizontalAlignment="Center"></TextBox>
-                    <Button Content="浸泡" Margin="230,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    -->
-                    <!--自定义按钮5个，此前为默认自定义按钮-->
-                    <!--
-                    <Button Content="排胶" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="周期" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}"  Height="30"></Button>
-                    <Button Content="上步" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="z高" Margin="5,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>
-                    <Button Content="开关灯" Margin="74,0,0,0" Width="30" Style="{StaticResource btnTransparentStyle}" Height="30"></Button>-->
 
 
-                    <Viewbox Height="30">
-                        <ToolBarTray Margin="4,0,0,0" Background="White">
-                            <ToolBar Background="White" Padding="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="902">
-                                <Button ToolTip="新建工程文件"  Click="btnNewFile" Content="新建" Margin="0" Padding="5" />
-                                <Button ToolTip="打开文件" Content="打开" Padding="5" />
-                                <Button ToolTip="保存工程" Content="保存" ToolBar.OverflowMode="AsNeeded" Padding="5" />
-                                <Separator />
-                                <Button  ToolTip="剪切"  Content="运行" Padding="5" />
-                                <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
+                    <Grid Width="911">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="0,-10,300,-1">
+                            <Viewbox Margin="0,3,-67,51" >
+                                <ToolBarTray Margin="4,0,0,0" Background="White" >
+                                    <ToolBar Background="White" Padding="0" FontSize="25" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="1582" Height="77" VerticalAlignment="Center">
+                                        <Button ToolTip="新建工程文件"  Click="btnNewFile" Content="新建" Margin="0" Padding="5" />
+                                        <Button ToolTip="打开文件" Content="打开" Padding="5" />
+                                        <Button ToolTip="保存工程" Content="保存" ToolBar.OverflowMode="AsNeeded" Padding="5" />
+                                        <Separator />
+                                        <Button  ToolTip="剪切"  Content="运行" Padding="5" />
+                                        <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
 
-                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="指定" Padding="5"/>
-                                <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="停止" Padding="5"/>
+                                        <Button ToolTip="从指定行运行" ToolBar.OverflowMode="AsNeeded" Content="从指定行" Padding="5"/>
+                                        <Button ToolTip="运行指定行" ToolBar.OverflowMode="AsNeeded" Content="运行指定" Padding="5"/>
+                                        <CheckBox Content="测试" Padding="0" Margin="5" FontWeight="Bold"/>
+                                        <Button ToolTip="停止" ToolBar.OverflowMode="AsNeeded" Content="停止" Padding="5"/>
 
-                                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
-                                <Separator />
-                                <CheckBox Content="开胶" Padding="0" Margin="0"/>
-                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组1" />
-                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组2" />
-                                <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组3" />
-                                <Separator />
+                                        <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
+                                        <Separator />
+                                        <CheckBox Content="开胶" Padding="0" Margin="0"/>
+                                        <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组1" />
+                                        <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组2" />
+                                        <RadioButton Padding="0" Margin="0" GroupName="XXX" Content="组3" />
+                                        <Separator/>
+                                        <Button Padding="0" Margin="5" Content="默认参数"  />
+                                        <Button Padding="0" Margin="5" Content="胶阀配置"  />
+                                        <Button Padding="0" Margin="5" Content="胶量表"  />
+                                        <Separator />
 
-                                <!--<RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=Radio}" />
+                                        <!--<RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=Radio}" />
                                 <RadioButton GroupName="YYY" Style="{DynamicResource MaterialDesignToolRadioButton}" Content="{materialDesign:PackIcon Kind=EmoticonPoop}" />-->
 
-                                <!--<Separator />-->
-                                <Button Content="相机"  />
-                                <Separator></Separator>
-                                <Button Content="清除故障"  />
-                                <Button Content="静音"  />
-                            </ToolBar>
-                        </ToolBarTray>
-                    </Viewbox>
-                    <Label Name="LabFileName" Width="400" Content="未选择文件" Margin="40 0 0 0"></Label>
-                    <Viewbox Height="25" Margin="40 0 0 0">
-                        <ToolBarTray Margin="4,0,0,0" Background="White">
-                            <ToolBar FontSize="25" Background="White" Padding="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="1243">
+                                        <!--<Separator />-->
+                                        <Button Content="相机"  />
+                                        <Separator></Separator>
+                                        <Button Content="清除故障"  />
+                                        <Button Content="静音"  />
+                                    </ToolBar>
+                                </ToolBarTray>
+                            </Viewbox>
+                            <Viewbox Height="25" Margin="0 50 0 0">
 
-                                <Button  ToolTip="阵列"  Content="阵列" Padding="5" />
-                                <Button  ToolTip="旋转" ToolBar.OverflowMode="AsNeeded"  Content="旋转" Padding="5"/>
+                                <ToolBarTray Background="White" Width="1609">
+                                    <ToolBar FontSize="25" Background="White" Padding="0" Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="1334" Margin="102,0,-102,0">
 
-                                <Button ToolTip="偏移" ToolBar.OverflowMode="AsNeeded" Content="偏移" Padding="5"/>
-                                <Separator />
-                                <!--<Separator />-->
-                                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
-                                <!--<Label Content="Coat:" VerticalAlignment="Center" />
+                                        <Button  ToolTip="阵列"  Content="阵列" Padding="5" />
+                                        <Button  ToolTip="旋转" ToolBar.OverflowMode="AsNeeded"  Content="旋转" Padding="5"/>
+                                        <Button  ToolTip="镜像" Content="镜像"></Button>
+                                        <Button ToolTip="偏移" ToolBar.OverflowMode="AsNeeded" Content="偏移" Padding="5"/>
+                                        <Separator />
+                                        <!--<Separator />-->
+                                        <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and manually apply the button style -->
+                                        <!--<Label Content="Coat:" VerticalAlignment="Center" />
                                 <ComboBox Margin="0 5 0 0 ">
                                     <ComboBoxItem Content="胶阀1" />
                                     <ComboBoxItem IsSelected="True"  Content="胶阀2" />
                                     <ComboBoxItem Content="胶阀3" />
                                     <ComboBoxItem Content="胶阀4" />
                                 </ComboBox>-->
-                                <!--<Separator />-->
-                                <Button Content="原点"></Button>
-                                <Button Content="待机点"></Button>
-                                <Button Content="自动清洁:" VerticalAlignment="Center" />
-                                <Button Content="进板"></Button>
-                                <Button Content="出板"></Button>
-                                <Button Content="退板"></Button>
-                                <Label Content="自动清洁:" VerticalAlignment="Center" />
-                                <Viewbox Width="70">
-                                    <ToggleButton />
-                                </Viewbox>
+                                        <!--<Separator />-->
+                                        <Button Content="原点"></Button>
+                                        <Button Content="待机点"></Button>
+                                        <Separator/>
+                                        <Button>上移</Button>
+                                        <Button>下移</Button>
 
-                            </ToolBar>
-                        </ToolBarTray>
-                    </Viewbox>
+                                        <Separator/>
+
+                                        <Button Content="基参" ToolTip="默认参数设置"></Button>
+                                        <Button Content="胶表" ToolTip="胶量配置表"></Button>
+                                        <Button Content="胶配" ToolTip="胶阀配置"></Button>
+                                        <Label Content="自动清洁:" VerticalAlignment="Center" />
+                                        <Viewbox Width="70">
+                                            <ToggleButton />
+                                        </Viewbox>
+                                        <Label Content="整线命令:" VerticalAlignment="Center" />
+                                        <Viewbox Width="70">
+                                            <ToggleButton />
+                                        </Viewbox>
+                                    </ToolBar>
+                                </ToolBarTray>
+                            </Viewbox>
+
+                        </Grid>
 
 
-
-
-
+                    </Grid>
                 </WrapPanel>
             </Border>
 
@@ -262,42 +243,32 @@
             <!--<Button></Button>-->
             <Border Width="165" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      BorderBrush="Black" BorderThickness="1">
-                <WrapPanel Width="139" Height="260">
+                <WrapPanel Width="162" Height="260">
+                    
+                        <DataGrid  FontSize="10" Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False" Margin="0 -5 0 0 " Padding="-10 10 -10 0 "   Width="auto">
+                        <DataGrid.Columns >
 
-                    <!--<ListBox Width="150">
-                        <ListBoxItem>属性</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                        <ListBoxItem>属性 ********</ListBoxItem>
-                    </ListBox>
-                    <ListBox Width="110">
-                        <ListBoxItem>值</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                        <ListBoxItem>值 ********</ListBoxItem>
-                    </ListBox>-->
-                    <!--<DataGrid  Name="DATA_GRID" ItemsSource="{Binding}" Loaded="DataGrid_Loaded" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="120" Header="属性" Binding="{Binding property}"></DataGridTextColumn>
-                            <DataGridTextColumn Width="110" Header="值" Binding="{Binding value}"></DataGridTextColumn>
+                            <DataGridTextColumn  Width="2.1*" Header="属性" Binding="{Binding property}" IsReadOnly="True" FontSize="8">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Height" Value="14"></Setter>
+                                        <Setter Property="Padding" Value="0 2 0 0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+
+
+                            <DataGridTextColumn Width="*" Header="值" Binding="{Binding value}" FontSize="8">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Height" Value="14"></Setter>
+                                        <Setter Property="Padding" Value="0 45 0 0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
-                    </DataGrid>-->
+                            
+                        </DataGrid>
 
 
 
@@ -306,7 +277,26 @@
             <Border BorderThickness="1" BorderBrush="Black" Width="116" Height="460"
                    VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="210,110,0,0">
                 <WrapPanel>
-                    <TreeView MaxWidth="116">
+                    <Viewbox>
+                        <DataGrid Background="White" FontSize="10" Padding="0" Margin="0" Width="auto" CanUserResizeRows="False" CanUserResizeColumns="False" Name="DGcommondList" ItemsSource="{Binding}" Loaded="DGcommondList_Loaded" AutoGenerateColumns="False" MouseRightButtonDown="dataGridGJ_RightClick">
+                            
+                            <DataGrid.Columns>
+
+                                <DataGridTextColumn Width="135" Header="程序命令列表" Binding="{Binding property}" IsReadOnly="True">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="Height" Value="22"></Setter>
+                                            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+
+
+                    <!--<TreeView MaxWidth="116">
                         <TreeViewItem Padding="0" Margin="-10 0 0 0" FontSize="9" Header="Untitled">
                             <TreeViewItem Margin="-10 0 0 0 " Padding="0">
                                 <TreeViewItem.Header>
@@ -340,7 +330,7 @@
                             <TreeViewItem Margin="-10 0 0 0" Header="演示3" Padding="0" FontSize="7"/>
                         </TreeViewItem>
                         <TreeViewItem Margin="-10 0 0 0" Header="END" Padding="0" FontSize="9"/>
-                    </TreeView>
+                    </TreeView>-->
                 </WrapPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="165" Margin="40,110,0,0" 
@@ -355,20 +345,19 @@
 
             <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" 
                     Margin="330,110,0,0" VerticalAlignment="Top" Width="540" Grid.ColumnSpan="2">
-                <Grid Margin="-1,-1,0,-1" HorizontalAlignment ="Left" Width="557" Height="367">
+                <Grid Margin="0,-1,0,-1" HorizontalAlignment ="Center" Width="541" Height="367">
                     <TabControl>
                         <TabItem Header="轨迹">
-                            <Grid Margin="0,0,14,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="476*"/>
-                                    <ColumnDefinition Width="61*"/>
-                                </Grid.ColumnDefinitions>
+                            <Grid Margin="0,0,0,0" Background="Black">
+                                <Canvas>
+                                    
+                                </Canvas>
 
                             </Grid>
                         </TabItem>
                         <TabItem Header="相机">
-                            <Grid Margin="0,0,14,0">
-
+                            <Grid Margin="0,0,14,0" >
+                                <Image Source="E:\desket\图标\MainWindow.png"></Image>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -401,20 +390,28 @@
                     <Label FontSize="8" Height="25" Content="            Tool:               "></Label>
                 </WrapPanel>
             </Border>
-            <Viewbox HorizontalAlignment="Left" Height="194" Margin="5,111,0,0" VerticalAlignment="Top" Width="35">
+            <Viewbox HorizontalAlignment="Left" Height="287" Margin="5,111,0,0" VerticalAlignment="Top" Width="32">
                 <ToolBarTray Orientation="Vertical" Background="White" Margin="0">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Background="White" Width="45" Padding="0">
                         <ToggleButton Name="orderPoint" Content="点" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderPoint_click" IsChecked="False" ToolTip="做一个点" />
                         <ToggleButton Name="orderString" Content="线" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderString_click" IsChecked="False" ToolTip="做一个线" />
                         <ToggleButton Name="orderArc" Content="弧" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderArc_click" IsChecked="False" ToolTip="做一个点" />
-                        <ToggleButton Name="orderRound" Content="圆" Style="{StaticResource MaterialDesignActionLightToggleButton}" Click="orderRound_click" IsChecked="False" ToolTip="MaterialDesignActionLightToggleButton" />
-                        <Button ToolTip="保存工程" Content="{materialDesign:PackIcon Kind=ContentPaste}" ToolBar.OverflowMode="AsNeeded" Padding="5" />
+                        <ToggleButton Name="orderRound" Content="圆" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderRound_click" IsChecked="False" ToolTip="MaterialDesignActionLightToggleButton" />
+                        <Separator></Separator>
+                        <ToggleButton ToolTip="区域涂覆" Content="区" Style="{StaticResource MaterialDesignActionAccentToggleButton}" ToolBar.OverflowMode="AsNeeded" Padding="5" Click="btnArea_Click" />
+                        <ToggleButton ToolTip="调用工序" Content="调" Style="{StaticResource MaterialDesignActionAccentToggleButton}" ToolBar.OverflowMode="AsNeeded" Padding="5" Click="btnArea_Click" />
+                        <ToggleButton ToolTip="放置模式" Content="放" Style="{StaticResource MaterialDesignActionAccentToggleButton}" ToolBar.OverflowMode="AsNeeded" Padding="5" Click="btnArea_Click" />
+                        <ToggleButton ToolTip="在此处打一个断点" Content="断" Style="{StaticResource MaterialDesignActionAccentToggleButton}" ToolBar.OverflowMode="AsNeeded" Padding="5" Click="btnArea_Click" />
                         <Separator />
                         <Button  ToolTip="剪切"  Content="{materialDesign:PackIcon Kind=ContentCut}" Padding="5" />
                         <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="{materialDesign:PackIcon Kind=ContentCopy}" Padding="5"/>
 
                         <Button ToolTip="粘贴" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
                         <Separator />
+                        <Button ToolTip="返回U起点" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
+                        <Button ToolTip="返回U终点" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
+                        <Button ToolTip="到Z轴" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
+                        <Button ToolTip="定位W" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=ContentPaste}" Padding="5"/>
                     </ToolBar>
                 </ToolBarTray>
             </Viewbox>
@@ -422,6 +419,8 @@
                 Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Margin="0,407,0,0"/>
             <Button Content="缩小"  HorizontalAlignment="Center" VerticalAlignment="Top"
                 Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Margin="0,447,0,0"/>
+            <Button Content="跟随"  HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top"
+                Height="30" Width="30" Style="{StaticResource btnTransparentStyle}" Grid.Column="1" Click="btnHide_click" />
         </Grid>
     </Viewbox>
 </Window>

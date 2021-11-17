@@ -108,6 +108,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AreaCoat.xaml.cs">
+      <DependentUpon>AreaCoat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="camera.xaml.cs">
       <DependentUpon>camera.xaml</DependentUpon>
     </Compile>
@@ -279,6 +282,10 @@
     <Compile Include="WindowChromeTest.xaml.cs">
       <DependentUpon>WindowChromeTest.xaml</DependentUpon>
     </Compile>
+    <Page Include="AreaCoat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="camera.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

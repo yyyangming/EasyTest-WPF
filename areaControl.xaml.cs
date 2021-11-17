@@ -10,26 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Test
 {
     /// <summary>
-    /// JogVersion2.xaml 的交互逻辑
+    /// areaControl.xaml 的交互逻辑
     /// </summary>
-    public partial class JogVersion2 : Page
+    public partial class areaControl : Page
     {
-        public JogVersion2()
+        public areaControl()
         {
             InitializeComponent();
-        }
-
-        private void Mainwindows_Keydown(object sender, KeyEventArgs e) 
-        {
-            if (true)
-            {
-
-            }
         }
     }
 }

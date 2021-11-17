@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace Test
 {
     /// <summary>
-    /// JogVersion2.xaml 的交互逻辑
+    /// AreaCoat.xaml 的交互逻辑
     /// </summary>
-    public partial class JogVersion2 : Page
+    public partial class AreaCoat : Window
     {
-        public JogVersion2()
+        public AreaCoat()
         {
             InitializeComponent();
-        }
-
-        private void Mainwindows_Keydown(object sender, KeyEventArgs e) 
-        {
-            if (true)
-            {
-
-            }
         }
     }
 }

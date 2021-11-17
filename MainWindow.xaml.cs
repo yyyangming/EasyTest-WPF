@@ -47,7 +47,7 @@ namespace Test
         {
             Edit editForm = new Edit();
             MainWindow main = new MainWindow();
-            editForm.Show();
+            editForm.ShowDialog();
             //menuedit.IsEnabled = false;
             editExit = 1;
 

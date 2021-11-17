@@ -231,3 +231,6 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Fluent.pdb
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Fluent.xml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainCoatWindow.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainCoatWindow.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\AreaCoat.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\AreaCoat.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\areaControl.baml
