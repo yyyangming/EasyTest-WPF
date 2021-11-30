@@ -1,0 +1,22 @@
+﻿<Page x:Class="Test.FixedLengthAndSpeed"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Test" Background="White"
+      mc:Ignorable="d" 
+      d:DesignHeight="100" d:DesignWidth="265"
+      Title="FixedLengthAndSpeed">
+
+    <Grid>
+        <Button Padding="0" Content="0.5" HorizontalAlignment="Left" Margin="60,55,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+        <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="126,55,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+        <Button Padding="0" Content="5.0" HorizontalAlignment="Left" Margin="189,55,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+        <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="60,20,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+        <Button Padding="0" Content="10.0" HorizontalAlignment="Left" Margin="126,20,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+        <Button Padding="0" Content="200.0" HorizontalAlignment="Left" Margin="189,20,0,0" VerticalAlignment="Top" Height="30" Width="34"/>
+
+        <Label Content="速度" HorizontalAlignment="Left" Margin="15,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="定长" HorizontalAlignment="Left" Margin="15,62,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

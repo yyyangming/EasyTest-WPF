@@ -19,8 +19,12 @@ namespace Test
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
+    /// 
+
+
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -43,13 +47,12 @@ namespace Test
 
         }
 
-        protected void btnEdit(object sender, RoutedEventArgs e)
+        private void btnEdit(object sender, RoutedEventArgs e)
         {
             Edit editForm = new Edit();
-            MainWindow main = new MainWindow();
+            this.Visibility = Visibility.Hidden;//父窗体隐藏
+            editForm.Owner = this;//指定子窗体的父窗体是自己
             editForm.ShowDialog();
-            //menuedit.IsEnabled = false;
-            editExit = 1;
 
         }
 
@@ -109,8 +112,12 @@ namespace Test
 
         }
 
+
+
+
         private void MainWindow_Closed(object sender, EventArgs e)
         {
+
             Process.GetCurrentProcess().Kill();
         }
 
@@ -119,7 +126,7 @@ namespace Test
             Main main = new Main();
             if (main.OperationAuthority == 1)
             {
-                MainWindowMenu.Visibility = Visibility.Collapsed;
+                MainWindowMenu.Visibility = Visibility.Collapsed; 
             }
         }
     }

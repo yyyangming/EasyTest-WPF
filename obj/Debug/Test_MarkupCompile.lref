@@ -1,5 +1,6 @@
 ﻿
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\App.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\AreaCoat.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\camera.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\CharacterizationFinsh.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\CharacterizationResponseTimes.xaml;;
@@ -9,6 +10,9 @@ FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\CharaterzationWizard.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\CoatConfigure.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ConfigureProductMap.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ConformalCoatingCharacterizationWizard.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ControlPage1.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ControlPage2.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\FixedLengthAndSpeed.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ImagePage.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogCk.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogVersion2.xaml;;
@@ -19,7 +23,9 @@ FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\JogAndView.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFile2.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileBaseConfigure.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileBranchConfigure.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileGlobal.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewFileGlobalParameters.xaml;;
+FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewPage1.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\NewPatternTeach.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\PasswordManager.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\ProgramWizard.xaml;;
@@ -54,6 +60,4 @@ FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\UserViewAndJog.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\UserViewPage.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\WidthPatternSeeting.xaml;;
 FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\WindowChromeTest.xaml;;
-FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\areaControl.xaml;;
-FE:\desket\GitDevelop\MySelf\EasyCoat-WPF\AreaCoat.xaml;;
 

@@ -1,12 +1,18 @@
-﻿<Window x:Class="Test.JogCk"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Test.JogCk"
         mc:Ignorable="d"
         Title="JogCk" Height="370" Width="275" Topmost="True">
     <Grid>
-        <Frame Source="JogVersion3.xaml"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="37*"/>
+        </Grid.RowDefinitions>
+        <Frame Source="JogVersion3.xaml" Grid.RowSpan="2"/>
+        <materialDesign:TimePicker HorizontalAlignment="Left" Margin="585,189,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Window>

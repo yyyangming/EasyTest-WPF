@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Test"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
-      Title="NewFileBaseConfigure">
+      d:DesignHeight="380" d:DesignWidth="500"
+      Title="NewFileBaseConfigure" Background="White">
 
     <Grid >
-        <GroupBox Header="GroupBox" Margin="10,70,10,227">
+        <GroupBox VerticalAlignment="Top" Padding="0" Header="GroupBox" Margin="10,60,10,0" Height="114">
             <Grid>
                 <Label Content="基 准  点" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="60"/>
                 <Label Content="待 机  点" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
@@ -28,10 +28,10 @@
         <TextBox FontSize="15" HorizontalAlignment="Left" Margin="396,234,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
         <Label FontSize="15" Content="定位失败模式:" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="104"/>
         <ComboBox HorizontalAlignment="Left" Margin="119,237,0,0" VerticalAlignment="Top" Width="120" Height="21"/>
-        <Button Content="Mark设置" HorizontalAlignment="Left" Margin="10,365,0,0" VerticalAlignment="Top" Height="30" Width="81"/>
-        <Button Padding="0" Content="拾取" HorizontalAlignment="Left" Margin="427,126,0,0" VerticalAlignment="Top" Width="45"/>
-        <Button Padding="0" Content="拾取" HorizontalAlignment="Left" Margin="427,169,0,0" VerticalAlignment="Top" Width="45"/>
-        <GroupBox Header="清洁" Margin="127,290,10,40">
+        <Button Content="Mark设置" HorizontalAlignment="Left" Margin="10,341,0,0" VerticalAlignment="Top" Height="30" Width="81"/>
+        <Button Padding="0" Content="拾取" HorizontalAlignment="Left" Margin="427,105,0,0" VerticalAlignment="Top" Width="45" Height="21"/>
+        <Button Padding="0" Content="拾取" HorizontalAlignment="Left" Margin="427,135,0,0" VerticalAlignment="Top" Width="45" Height="19"/>
+        <GroupBox Padding="0" VerticalAlignment="Top" Header="清洁" Margin="127,272,10,0" Height="100">
             <Grid>
                 <Label Content="模式" HorizontalAlignment="Left" Margin="10,2,0,0" VerticalAlignment="Top"/>
                 <Label Content="清洁间隔" HorizontalAlignment="Left" Margin="169,2,0,0" VerticalAlignment="Top"/>
@@ -46,7 +46,7 @@
             </Grid>
 
         </GroupBox>
-        <Button Content="显示相机" HorizontalAlignment="Left" Margin="10,299,0,0" VerticalAlignment="Top" Height="31" Width="81"/>
+        <Button Content="显示相机" HorizontalAlignment="Left" Margin="10,273,0,0" VerticalAlignment="Top" Height="31" Width="81"/>
         <Label Content="X:" HorizontalAlignment="Left" Margin="354,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Y:" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top"/>
         <Label Content="122" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top"/>
@@ -57,7 +57,5 @@
         <Label Content="122" HorizontalAlignment="Left" Margin="393,36,0,0" VerticalAlignment="Top"/>
         <Label Content="U:" HorizontalAlignment="Left" Margin="430,36,0,0" VerticalAlignment="Top"/>
         <Label Content="122" HorizontalAlignment="Left" Margin="442,36,0,0" VerticalAlignment="Top"/>
-        <Button Content="下一步" HorizontalAlignment="Left" Margin="179,415,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
-        <Button Content="取消" HorizontalAlignment="Left" Margin="270,415,0,0" VerticalAlignment="Top" Height="25" Width="58"/>
     </Grid>
 </Page>

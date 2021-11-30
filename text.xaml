@@ -7,12 +7,7 @@
        Title="text" Height="350" Width="525" >
 
     <Grid>
-        <TextBox Name="stuName" HorizontalAlignment="Left" Margin="148,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="IsMaleY" HorizontalAlignment="Left" Margin="147,137,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="stuScore" HorizontalAlignment="Left" Margin="148,188,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Cursor="IBeam"/>
-        <Button Content="保存" HorizontalAlignment="Left" Margin="157,241,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-
-
+        <DataGrid AutoGenerateColumns="True"/>
     </Grid>
 </Window>
 

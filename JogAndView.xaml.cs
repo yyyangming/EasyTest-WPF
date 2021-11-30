@@ -76,7 +76,15 @@ namespace Test
 
         private void markConfigure_Closed(object sender, EventArgs e)
         {
+            Config.jogwidth = markConfigure.Width;
+            Config.SetGhostConfig();
             //Edit.b = true;
+        }
+
+        private void JogAndView_Loaded(object sender, RoutedEventArgs e)
+        {
+            Config.GetGhostConfig();
+            markConfigure.Width = Config.jogwidth;
         }
 
         //private void btnOpenView_Click(object sender, RoutedEventArgs e)

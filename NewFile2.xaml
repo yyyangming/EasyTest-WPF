@@ -5,86 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Test"
       mc:Ignorable="d" 
-      Height="450" 
+      Height="460" 
       Width="800" ResizeMode="NoResize"
-      Title="全局参数" Loaded="NewFile2_JogPage_Loaded" Topmost="True">
+      Title="参数" Loaded="NewFile2_JogPage_Loaded" Topmost="True">
 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"></ColumnDefinition>
             <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid>
-            <TabControl>
-                <TabItem Header="必要参数">
-                    <Grid>
-                        <!--<GroupBox Header="GroupBox" Margin="10,58,10,118">
-                            <Grid Margin="0,4,0,4" Width="464">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="217*"/>
-                                    <ColumnDefinition Width="246*"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Content="基   准   点   :" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="79"/>
-                                <TextBox HorizontalAlignment="Left" Margin="94,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
-                                <Label Content="X" HorizontalAlignment="Left" Margin="118,0,0,0" VerticalAlignment="Top"/>
-                                <TextBox HorizontalAlignment="Left" Margin="195,28,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
-                                <Label Content="Y" HorizontalAlignment="Left" Margin="4,-2,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                <Button Content="拾取" HorizontalAlignment="Left" Margin="190,26,0,0" VerticalAlignment="Top" Width="45" Grid.Column="1"/>
-                                <Label  Content="Z轴安全高度：" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
-                                <TextBox  HorizontalAlignment="Left" Margin="94,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
-                                <Label Content="待   机   点   :" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top" Width="78"/>
-                                <TextBox HorizontalAlignment="Left" Margin="93,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70"/>
-                                <TextBox HorizontalAlignment="Left" Margin="194,108,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="70" Grid.ColumnSpan="2"/>
-                                <Button Content="拾取" HorizontalAlignment="Left" Margin="110,0,0,0" VerticalAlignment="Center" Width="45" Grid.Column="1"/>
-                            </Grid>
-
-                        </GroupBox>
-
-
-
-                        <Button ToolTip="显示相机" Content="显示相机" HorizontalAlignment="Left" Margin="22,18,0,0" VerticalAlignment="Top" Height="31" Width="81"/>
-                        <Label Content="X:" HorizontalAlignment="Left" Margin="354,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Y:" HorizontalAlignment="Left" Margin="412,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="122" HorizontalAlignment="Left" Margin="366,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="122" HorizontalAlignment="Left" Margin="425,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Z:" HorizontalAlignment="Left" Margin="329,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="122" HorizontalAlignment="Left" Margin="341,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="W:" HorizontalAlignment="Left" Margin="380,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="122" HorizontalAlignment="Left" Margin="393,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="U:" HorizontalAlignment="Left" Margin="430,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="122" HorizontalAlignment="Left" Margin="442,36,0,0" VerticalAlignment="Top"/>
-                        <Button Content="完成" HorizontalAlignment="Left" Margin="179,328,0,0" VerticalAlignment="Top" Height="25" Width="58" Click="btnToBranchConfigure_click"/>
-                        <Button Content="取消" HorizontalAlignment="Left" Margin="270,328,0,0" VerticalAlignment="Top" Height="25" Width="58"/>-->
-
-                        <Frame Name="GlobalParameter" Source="NewFileGlobalParameters.xaml"></Frame>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Mark">
-                    <Grid>
-                        <Frame Name="NewFileMark" Source="Mark.xaml"></Frame>
-                    </Grid>
-
-                </TabItem>
-                <TabItem Header="清洁">
-                    <Grid>
-                        <GroupBox Header="清洁" Margin="10,15,10,301">
-                            <Grid>
-                                <Label Content="模式" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                <Label Content="清洁间隔" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
-                                <ComboBox HorizontalAlignment="Left" Margin="44,14,0,0" VerticalAlignment="Top" Width="80">
-                                    <ComboBoxItem Content="关闭" IsEnabled="True"></ComboBoxItem>
-                                </ComboBox>
-                                <TextBox HorizontalAlignment="Left" Margin="73,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
-                                <Label Content="无料清洁时间" HorizontalAlignment="Left" Margin="167,12,0,0" VerticalAlignment="Top" />
-                                <TextBox HorizontalAlignment="Left" Margin="254,16,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="80"/>
-                            </Grid>
-
-                        </GroupBox>
-                    </Grid>
-
-                </TabItem>
-            </TabControl>
+        <Grid Height="380" Margin="0 -30 0 0">
+            <ContentControl Name="NewFileConfigure">
+            </ContentControl>
         </Grid>
-        <Frame Grid.Column="1" Name="JogPage"></Frame>
+        <Frame Grid.Column="1" Name="JogPage" Margin="0 -20 0 0"></Frame>
+        <Button FontSize="15" Width="50" Content="上一步"  HorizontalAlignment="Left" Margin="356,388,0,0" Padding="0" VerticalAlignment="Top" Height="20" Click="btnBeforePage_Click"/>
+        <Button FontSize="15" Width="50" Click="btnNextPage_Click" Content="确定" HorizontalAlignment="Left" Margin="445,388,0,0" Padding="0" VerticalAlignment="Top" Height="20" Cursor="Hand"/>
     </Grid>
 </Window>

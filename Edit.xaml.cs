@@ -16,6 +16,11 @@ using System.IO;
 using System.Collections.ObjectModel;
 using ContextMenu = System.Windows.Controls.ContextMenu;
 using MenuItem = System.Windows.Controls.MenuItem;
+using System.Drawing;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Test
 {
@@ -24,8 +29,46 @@ namespace Test
     /// </summary>
     public partial class Edit : Window
     {
+        static String connetStr = "server=127.0.0.1;port=3306;user=root;password=123456;database=easycoat;";
+        string strsql = null;
+        MySqlConnection conn = new MySqlConnection(connetStr);
         ObservableCollection<propertyValue> propertyValueList = new ObservableCollection<propertyValue>();
-        ObservableCollection<DGCommond_list> dGCommond_Lists = new ObservableCollection<DGCommond_list>();
+        //ObservableCollection<DGCommond_list> dGCommond_Lists = new ObservableCollection<DGCommond_list>();
+
+
+        private void AddMessage_Click(object sender, EventArgs e)
+        {
+            string sql = "insert into trajectory values('" + cuowu.Content + "')";
+            MySqlCommand mySqlCommand = new MySqlCommand();
+
+
+            //ClsDB.ClsDBControl DBC = new OptDB.ClsDB.ClsDBControl();
+            //string strSql = "insert into trajectory values(" + this.cuowu.Content.Trim().ToString() + "," +
+            //this.textBox2.Text.Trim().ToString() + "," + this.textBox3.Text.Trim().ToString() + ")";
+            //if (DBC.insertDB(strSql))
+            //{
+            //    MessageBox.Show("OK");
+            //}
+        }
+
+        public bool insertDB(string strsql)
+        {
+            try
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand();
+                string strSqlStr = "insert easycoat values('第n条数据');";
+                mySqlCommand.CommandText = strsql;
+                mySqlCommand.Connection = conn;
+                mySqlCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch 
+            {
+                return false;
+            }
+        }
+
+
         public Edit()
         {
             
@@ -40,6 +83,7 @@ namespace Test
             
             ProgramWizard programWizard = new ProgramWizard();
             programWizard.Show();
+            #region winform 的文件夹操作，暂不需要
             //使用TextBox和button完成新建文件
             //// Create OpenFileDialog 
             //Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();           
@@ -79,7 +123,11 @@ namespace Test
             //}
             //}
             //}
+            #endregion
         }
+
+
+
 
 
 
@@ -105,38 +153,70 @@ namespace Test
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            //首先要是知道，获取数据源的方法是comboBox.ItemsSource()
-            //要知道在这个地方的数据类型是不一样的，是IEnumerable,list的类型是这个类型，可以直接用
-            //comboBox1.ItemsSource;
-            //获取数据源
-
             List<ClassConfigInfo> listConfig = GetConfigItemInfos();
-            #region 1.指定数据源
-            //指定数据源
-            //ccbConfig.ItemsSource = listConfig;
-            //DATA_GRID.ItemsSource = propertyValueList;
-            //如果使用指定数据源，不能直接移除，动态的添加移除//
-            //如果需要动态添加，利用循环进行添加，把数组里面的全部添加进去
-            #endregion
-            #region 2.绑定DataContent
-            //或者使用DataContent属性绑定数据源
-            //不指指定数据源，绑定数据源
-            //ccbConfig.DataContext = listConfig;
-            //接着在wpf中comboBox中添加绑定ItemSource = "{Banding}"
-            #endregion
-            //本来应该是使用数据库，这边为了简化，直接指定   
 
-            //ccbConfig.SelectedValuePath = "ClassId";//项的值对应的属性名
-            //ccbConfig.DisplayMemberPath = "ClassName";//项的显示值对应的属性值
-            
-            
+        }
 
-            //List<ClassRunMode> listRouteMode = GetRoutModeInfos();
-            //cbbRunMode.SelectedValuePath = "ClassId";
-            //cbbRunMode.DisplayMemberPath = "ClassName";
-            //cbbRunMode.ItemsSource = listRouteMode;
-            //comboBox1.DataContext = listRouteMode;
-            
+        public void Edit_loaded(object sender, RoutedEventArgs e)
+        {
+
+
+            DGcommondList.IsReadOnly = true;
+
+            Config.GetGhostConfig();
+            zhengxian.IsChecked = Config.Check_Time;
+
+
+            Trajectory trajectory = new Trajectory();
+
+            ///xml文件地址
+            string XMLPath = "XMLPath";
+            //
+            DGcommondList.ItemsSource = trajectory.OpenTarjectory(XMLPath);
+
+            #region 数据库调用，暂时不用，改用调用xml文件
+            //string insertsql = "";
+
+            //string query = "SELECT XuHao,type,List FROM trajectory ORDER BY XuHao ASC";
+            //if (conn.State == ConnectionState.Closed)
+            //{
+            //    conn.Open();
+            //}
+
+            //MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
+            //DataTable dt = new DataTable();
+            //da.Fill(dt);
+            //DGcommondList.ItemsSource = dt.DefaultView;
+            #endregion
+            //CDbMysql cDbMysql = new CDbMysql(connetStr);
+
+            //if (cDbMysql.db_header.State == ConnectionState.Closed)
+            //{
+            //    cuowu.Content = "连接有问题";
+            //}
+            //else
+            //    cuowu.Content = "连接正常";
+            //strsql = "SELECT * FROM trajectory";
+            ////DGcommondList.ItemsSource = cDbMysql.GetDataTable("strsql").DefaultView;
+
+
+        }
+
+
+
+        private void EditClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Config.Check_Time = (bool)zhengxian.IsChecked;
+            Config.SetGhostConfig();
+            CDbMysql cDbMysql = new CDbMysql("127.0.0.1", "root", "123456", "easycoat", "3006");
+            cDbMysql.db_header.Close();
+            this.Owner.Visibility = Visibility.Visible;//显示父窗体
+
+            //e.Cancel = true;
+            //main.menuedit.IsEnabled = true;
+
+            //this.Hide();
+
         }
 
 
@@ -430,14 +510,7 @@ namespace Test
             customButtons.Show();
         }
 
-        private void Edit_loaded(object sender, RoutedEventArgs e)
-        {
-            Main main = new Main();
-            if ( main.OperationAuthority ==0)
-            {
-                Reconfigure.Visibility= Visibility.Collapsed;
-            }
-        }
+        
 
         private void ConfigureSpeed_click(object sender, RoutedEventArgs e)
         {
@@ -469,17 +542,11 @@ namespace Test
 
         //private void EditClosed(object sender, EventArgs e)
         //{
-            
+
         //    this.Hide();
         //}
 
-        private void EditClosing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //e.Cancel = true;
-            //main.menuedit.IsEnabled = true;
         
-            //this.Hide();
-        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -548,72 +615,7 @@ namespace Test
 
         private void DGcommondList_Loaded(object sender, RoutedEventArgs e)
         {
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "1",
-            });
-
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "2",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "33",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "44",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "555",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "6",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "7",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "8",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "9",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "0",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "11",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "12",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "121",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "14",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "15",
-            });
-            dGCommond_Lists.Add(new DGCommond_list()
-            {
-                property = "16",
-            });
-            (this.FindName("DGcommondList") as System.Windows.Controls.DataGrid).ItemsSource = dGCommond_Lists;
+            
         }
 
         private void btnArea_Click(object sender, RoutedEventArgs e)
@@ -622,57 +624,87 @@ namespace Test
             areaCoat.Show();
         }
 
-        private void dataGridGJ_RightClick(object sender, MouseButtonEventArgs e)
-        {
-            ContextMenu context = new ContextMenu();
+        //private void dataGridGJ_RightClick(object sender, MouseButtonEventArgs e)
+        //{
+        //    ContextMenu context = new ContextMenu();
             
-            MenuItem item = new MenuItem();
-            item.Header = "点击删除该行数据";
-            item.Height = 20;
-            item.Padding = new Thickness(0, 0, 0, 0);
-            item.Margin = new Thickness(0, -5, 0, 0);
-            item.Click += new RoutedEventHandler(item_click);
+        //    MenuItem item = new MenuItem();
+        //    item.Header = "   删除";
+        //    item.Height = 20;
+        //    item.Padding = new Thickness(0, 0, 0, 0);
+        //    item.Margin = new Thickness(0,-10, 0, 0);
+        //    item.Click += new RoutedEventHandler(item_click);
 
-            MenuItem AddPoint = new MenuItem();
-            AddPoint.Header = "添加点";
-            AddPoint.Height = 20;
-            AddPoint.Padding = new Thickness(0, 0, 0, 0);
-            AddPoint.Margin = new Thickness(0, 0, 0, 0);
-            AddPoint.Click += new RoutedEventHandler(item_click);
+        //    MenuItem AddPoint = new MenuItem();
+        //    AddPoint.Header = "添加点";
+        //    AddPoint.Height = 20;
+        //    AddPoint.Padding = new Thickness(20, 0, 20, 0);
+        //    AddPoint.Margin = new Thickness(0, 0, 0, 0);
+        //    AddPoint.Click += new RoutedEventHandler(item_click);
 
-            MenuItem AddLine = new MenuItem();
-            AddLine.Header = "添加线";
-            AddLine.Height = 20;
-            AddLine.Padding = new Thickness(0, 0, 0, 0);
-            AddLine.Margin = new Thickness(0, 0, 0, 0);
-            AddLine.Click += new RoutedEventHandler(item_click);
+        //    MenuItem AddLine = new MenuItem();
+        //    AddLine.Header = "添加线";
+        //    AddLine.Height = 20;
+        //    AddLine.Padding = new Thickness(20, 0, 20, 0);
+        //    AddLine.Margin = new Thickness(0, 0, 0, 0);
+        //    AddLine.Click += new RoutedEventHandler(item_click);
 
-            MenuItem AddHu = new MenuItem();
-            AddHu.Header = "添加弧";
-            AddHu.Height = 20;
-            AddHu.Padding = new Thickness(0, 0, 0, 0);
-            AddHu.Margin = new Thickness(0, 0, 0, 0);
-            AddHu.Click += new RoutedEventHandler(item_click);
+        //    MenuItem AddHu = new MenuItem();
+        //    AddHu.Header = "添加弧";
+        //    AddHu.Height = 20;
+        //    AddHu.Padding = new Thickness(20, 0, 20, 0);
+        //    AddHu.Margin = new Thickness(0, 0, 0, 0);
+        //    AddHu.Click += new RoutedEventHandler(item_click);
 
-            MenuItem AddSome = new MenuItem();
-            AddSome.Header = "添加";
-            AddSome.Height = 20;
-            AddSome.Padding = new Thickness(0, 0, 0, 0);
-            AddSome.Margin = new Thickness(0,0, 0, -5);
-            AddSome.Click += new RoutedEventHandler(item_click);
-            AddSome.Items.Add(AddPoint);
-            AddSome.Items.Add(AddLine);
-            AddSome.Items.Add(AddHu);
+        //    MenuItem AddSome = new MenuItem();
+        //    AddSome.Header = "   添加";
+        //    AddSome.Height = 20;
+        //    AddSome.Padding = new Thickness(0, 0, 0, 0);
+        //    AddSome.Margin = new Thickness(0,0, 0, -10);
+        //    AddSome.Click += new RoutedEventHandler(item_click);
+        //    AddSome.Items.Add(AddPoint);
+        //    AddSome.Items.Add(AddLine);
+        //    AddSome.Items.Add(AddHu);
 
 
-            context.Items.Add(item);
-            context.Items.Add(AddSome);
-            context.IsOpen = true;
-        }
+        //    context.Items.Add(item);
+        //    context.Items.Add(AddSome);
+        //    context.IsOpen = true;
+        //}
 
         void item_click(object sender, RoutedEventArgs e)
         {
             
+        }
+
+        private void btnChage_click(object sender, RoutedEventArgs e)
+        {
+            ControlPage1 controlPage1 = new ControlPage1();
+            pageControl1.Content = new Frame() { Content = controlPage1};
+        }
+
+        private void btnChage_click2(object sender, RoutedEventArgs e)
+        {
+            ControlPage2 controlPage2 = new ControlPage2();
+            pageControl1.Content = new Frame() { Content = controlPage2 };
+        }
+
+        private void Config_Click(object sender, RoutedEventArgs e)
+        {
+            if (ConfigureAll.IsSelected == true)
+            {
+                ProgramWizard programWizard = new ProgramWizard();
+                programWizard.Show();
+            }
+            else if (ConfigureBase.IsSelected == true)
+            {
+                NewFileBaseConfigure sub = new NewFileBaseConfigure();
+                
+            }
+            else if (ConfigureSub.IsSelected == true)
+            {
+                
+            }
         }
     }
 }

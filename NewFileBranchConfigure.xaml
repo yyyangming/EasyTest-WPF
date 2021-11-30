@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Test"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="NewFileBranchConfigure">
+      d:DesignHeight="380"
+      Title="NewFileBranchConfigure" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="500"></ColumnDefinition>
@@ -46,8 +46,6 @@
                                 <Button Content="关闭" HorizontalAlignment="Left" Margin="189,399,0,0" VerticalAlignment="Top" Height="29" Width="56" Grid.Column="1"/>
                             </Grid>
                         </GroupBox>
-                        <Button Content="完成" HorizontalAlignment="Left" Margin="144,393,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
-                        <Button Content="关闭" HorizontalAlignment="Left" Margin="240,393,0,0" VerticalAlignment="Top" Height="29" Width="56"/>
                     </Grid>
                 </TabItem>
 
@@ -93,5 +91,5 @@
             </TabControl>
         </Grid>
     </Grid>
-    
+
 </Page>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test"
         mc:Ignorable="d" ResizeMode="NoResize" 
-        Title="JogAndView" Height="390" Width="356" Name="markConfigure" Topmost="True" Closed="markConfigure_Closed">
+        Title="JogAndView" Height="390" Width="356" Name="markConfigure" Topmost="True" Closed="markConfigure_Closed" Loaded="JogAndView_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="340"></ColumnDefinition>
@@ -32,22 +32,14 @@
                     <LineGeometry StartPoint="0,245" EndPoint="330,245" />
                 </Path.Data>
             </Path>
-            <Border VerticalAlignment="Top" BorderBrush="SlateBlue" BorderThickness="2,2,2,2" 
-                Background="AliceBlue" Padding="5" CornerRadius="2" Height="105" Margin="0,244,0,0">
-                <Grid>
-                    <Button VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="265 60 0 0" Height="30" Width="60" Click="btnOpenJog_Click" >
-                        展开Jog
-                    </Button>
-                </Grid>
-            </Border>
-            <Label Content="速度:" HorizontalAlignment="Left" Margin="15,262,0,0" VerticalAlignment="Top"/>
-            <Label Content="定长:" HorizontalAlignment="Left" Margin="15,302,0,0" VerticalAlignment="Top"/>
-            <Button Padding="0" Content="0.5" HorizontalAlignment="Left" Margin="70,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
-            <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="140,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
-            <Button Padding="0" Content="5.0" HorizontalAlignment="Left" Margin="210,302,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
-            <Button Padding="0" Content="1.0" HorizontalAlignment="Left" Margin="70,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
-            <Button Padding="0" Content="10.0" HorizontalAlignment="Left" Margin="140,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
-            <Button Padding="0" Content="200.0" HorizontalAlignment="Left" Margin="210,260,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="304" Background="AliceBlue"  Height="124" Margin="0,244,0,0">
+
+                    <Frame  Source="FixedLengthAndSpeed.xaml" ></Frame>
+
+                
+            </Grid>
+            <Button BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="0" Margin="303,244,0,0" Height="120" Width="32" Click="btnOpenJog_Click" Content="展开Jog" />
+
         </Grid>
 
 
@@ -55,7 +47,7 @@
 
         <Grid Grid.Column="1">
             <Frame Name="Jog" Source="JogVersion2.xaml" Margin="0 -2 0 0"></Frame>
-            
+
             <!--<TabControl>
                 <TabItem Header="胶阀">
                     <Grid>

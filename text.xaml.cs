@@ -15,39 +15,20 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 
-namespace exSplitter
+
+namespace Test
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class text : Window
     {
-        GridLength m_WidthCache;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-        [Serializable]
-        class collegeStudent 
-        {
-            public string Name = "杨";
-            public bool IsMale = true;
-            public int score = 100;
-        }
 
 
-        protected void Button_Click(object sender, RoutedEventArgs e)
+        public text()
         {
 
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            
-        }
-        private void SaveFile()
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            string fileName = "";
-            saveFileDialog.FileName = "student";
+            //InitializeComponent();
         }
     }
 }

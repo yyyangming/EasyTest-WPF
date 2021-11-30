@@ -9,7 +9,8 @@
         Height="667" Width="904" 
         ShowInTaskbar="True"
         WindowState="Maximized"
-        AllowsTransparency="False" ResizeMode="NoResize" Loaded="MainWindow_Loaded" Closed="MainWindow_Closed"
+        ResizeMode="CanMinimize" 
+        AllowsTransparency="False"  Loaded="MainWindow_Loaded" Closed="MainWindow_Closed" Name="mainwindow"
         Topmost="False" >
 
     <Viewbox Stretch="Fill">
