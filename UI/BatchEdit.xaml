@@ -1,0 +1,22 @@
+﻿<Window x:Class="Test.UI.BatchEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test.UI"
+        mc:Ignorable="d"
+        Title="BatchEdit" Height="450" Width="800" Topmost="True">
+    <Grid>
+        <Label Content="提前开胶时间" HorizontalAlignment="Left" Margin="384,51,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="472,46,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="延迟开胶时间" HorizontalAlignment="Left" Margin="384,78,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="472,75,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="关胶后延迟" HorizontalAlignment="Left" Margin="384,111,0,0" VerticalAlignment="Top"/>
+        <Label Content="关胶后延迟" HorizontalAlignment="Left" Margin="388,143,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="472,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="472,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <CheckBox Name="chkOpenCoat" Content="开胶" HorizontalAlignment="Left" Margin="23,67,0,0" VerticalAlignment="Top"/>
+        <Button Content="确定" HorizontalAlignment="Left" Margin="686,81,0,0" VerticalAlignment="Top" Click="BacthEdit_Click"/>
+
+    </Grid>
+</Window>

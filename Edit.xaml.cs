@@ -21,6 +21,8 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using MySql.Data.MySqlClient;
 using System.Data;
+using System.Xml;
+using System.ComponentModel;
 
 namespace Test
 {
@@ -35,6 +37,9 @@ namespace Test
         ObservableCollection<propertyValue> propertyValueList = new ObservableCollection<propertyValue>();
         //ObservableCollection<DGCommond_list> dGCommond_Lists = new ObservableCollection<DGCommond_list>();
 
+        TrajectoryPar trajectoryPar = new TrajectoryPar();
+        Trajectory trajectory1 = new Trajectory();
+        string XMLPath = "XMLPath";
 
         private void AddMessage_Click(object sender, EventArgs e)
         {
@@ -154,14 +159,22 @@ namespace Test
         private void Window_Initialized(object sender, EventArgs e)
         {
             List<ClassConfigInfo> listConfig = GetConfigItemInfos();
-
         }
 
         public void Edit_loaded(object sender, RoutedEventArgs e)
         {
+            
+            OptionsPropertyGrid.HelpVisible = false;
+            OptionsPropertyGrid.ToolbarVisible = false;
+            OptionsPropertyGrid.PropertySort = PropertySort.Categorized;
 
 
-            DGcommondList.IsReadOnly = true;
+
+
+
+
+
+            //DGcommondList.IsReadOnly = true;
 
             Config.GetGhostConfig();
             zhengxian.IsChecked = Config.Check_Time;
@@ -170,8 +183,7 @@ namespace Test
             Trajectory trajectory = new Trajectory();
 
             ///xml文件地址
-            string XMLPath = "XMLPath";
-            //
+
             DGcommondList.ItemsSource = trajectory.OpenTarjectory(XMLPath);
 
             #region 数据库调用，暂时不用，改用调用xml文件
@@ -198,8 +210,6 @@ namespace Test
             //    cuowu.Content = "连接正常";
             //strsql = "SELECT * FROM trajectory";
             ////DGcommondList.ItemsSource = cDbMysql.GetDataTable("strsql").DefaultView;
-
-
         }
 
 
@@ -624,53 +634,6 @@ namespace Test
             areaCoat.Show();
         }
 
-        //private void dataGridGJ_RightClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    ContextMenu context = new ContextMenu();
-            
-        //    MenuItem item = new MenuItem();
-        //    item.Header = "   删除";
-        //    item.Height = 20;
-        //    item.Padding = new Thickness(0, 0, 0, 0);
-        //    item.Margin = new Thickness(0,-10, 0, 0);
-        //    item.Click += new RoutedEventHandler(item_click);
-
-        //    MenuItem AddPoint = new MenuItem();
-        //    AddPoint.Header = "添加点";
-        //    AddPoint.Height = 20;
-        //    AddPoint.Padding = new Thickness(20, 0, 20, 0);
-        //    AddPoint.Margin = new Thickness(0, 0, 0, 0);
-        //    AddPoint.Click += new RoutedEventHandler(item_click);
-
-        //    MenuItem AddLine = new MenuItem();
-        //    AddLine.Header = "添加线";
-        //    AddLine.Height = 20;
-        //    AddLine.Padding = new Thickness(20, 0, 20, 0);
-        //    AddLine.Margin = new Thickness(0, 0, 0, 0);
-        //    AddLine.Click += new RoutedEventHandler(item_click);
-
-        //    MenuItem AddHu = new MenuItem();
-        //    AddHu.Header = "添加弧";
-        //    AddHu.Height = 20;
-        //    AddHu.Padding = new Thickness(20, 0, 20, 0);
-        //    AddHu.Margin = new Thickness(0, 0, 0, 0);
-        //    AddHu.Click += new RoutedEventHandler(item_click);
-
-        //    MenuItem AddSome = new MenuItem();
-        //    AddSome.Header = "   添加";
-        //    AddSome.Height = 20;
-        //    AddSome.Padding = new Thickness(0, 0, 0, 0);
-        //    AddSome.Margin = new Thickness(0,0, 0, -10);
-        //    AddSome.Click += new RoutedEventHandler(item_click);
-        //    AddSome.Items.Add(AddPoint);
-        //    AddSome.Items.Add(AddLine);
-        //    AddSome.Items.Add(AddHu);
-
-
-        //    context.Items.Add(item);
-        //    context.Items.Add(AddSome);
-        //    context.IsOpen = true;
-        //}
 
         void item_click(object sender, RoutedEventArgs e)
         {
@@ -699,12 +662,43 @@ namespace Test
             else if (ConfigureBase.IsSelected == true)
             {
                 NewFileBaseConfigure sub = new NewFileBaseConfigure();
-                
             }
             else if (ConfigureSub.IsSelected == true)
             {
                 
             }
+        }
+
+        public class XmlInsert
+        {
+            public void xmlinsert() 
+            {
+                Trajectory trajectory = new Trajectory();
+                trajectory.newTarjectory();
+
+            }
+            
+        }
+
+        private void AddPoint_Click(object sender, RoutedEventArgs e)
+        {
+            UI.BatchEdit batchEdit = new UI.BatchEdit();
+            DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
+            batchEdit.Sort = DRV.Row[0].ToString();
+            batchEdit.Show();
+        }
+
+        private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DGcommondList_Selected(object sender, RoutedEventArgs e)
+        {
+            DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
+            int SelectedSort = int.Parse(DRV.Row[0].ToString());
+            trajectoryPar = (trajectory1.OpenTarjectory(XMLPath, SelectedSort));
+            OptionsPropertyGrid.SelectedObject = trajectoryPar;
         }
     }
 }

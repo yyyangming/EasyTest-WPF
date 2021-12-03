@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test" 
+        xmlns:my="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowState="Maximized"
@@ -218,9 +219,9 @@
                                         <Button  ToolTip="旋转" ToolBar.OverflowMode="AsNeeded"  Content="旋转" Padding="5"/>
                                         <Button  ToolTip="镜像" Content="镜像"></Button>
                                         <Button ToolTip="偏移" ToolBar.OverflowMode="AsNeeded" Content="偏移" Padding="5"/>
-                                        
+
                                         <Separator Width="6" />
-                                        
+
                                         <Button Content="原点"></Button>
                                         <Button Content="待机点"></Button>
                                         <Separator Width="6"/>
@@ -249,22 +250,12 @@
 
                         </Grid>
                         <Grid Margin="607,0,0,0">
-                            
-                        </Grid>
 
+                        </Grid>
 
                     </Grid>
                 </WrapPanel>
             </Border>
-
-
-
-            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,310,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
-            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,360,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
-            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,410,0,0"
-                    BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Width="37"/>
             <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
                 <Button  Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}" Click="btnJogShow_click"></Button>
@@ -277,11 +268,13 @@
                      BorderBrush="Black" BorderThickness="1">
                 <WrapPanel Width="132" Height="260">
                     <WrapPanel Height="230">
-                        <DataGrid  FontSize="10" Name="DATA_GRID" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="0 -5 0 0 " Padding="-10 10 -10 0 "   Width="auto" VerticalScrollBarVisibility="Hidden" Loaded="DataGrid_Loaded">
+                        <WindowsFormsHost HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="windowsFormsHost1" VerticalAlignment="Top"  Padding="0 0 0 0">
+                            <my:PropertyGrid x:Name="OptionsPropertyGrid">
 
+                            </my:PropertyGrid>
+                        </WindowsFormsHost>
+                        <!--<DataGrid  FontSize="10" Name="DATA_GRID" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="0 -5 0 0 " Padding="-10 10 -10 0 "   Width="auto" VerticalScrollBarVisibility="Hidden" Loaded="DataGrid_Loaded">
                             <DataGrid.Columns >
-
-
                                 <DataGridTextColumn  Width="2.1*" Header="属性" Binding="{Binding property}" IsReadOnly="True" FontSize="8">
                                     <DataGridTextColumn.CellStyle>
                                         <Style TargetType="DataGridCell">
@@ -290,8 +283,6 @@
                                         </Style>
                                     </DataGridTextColumn.CellStyle>
                                 </DataGridTextColumn>
-
-
                                 <DataGridTextColumn Width="*" Header="值" Binding="{Binding value}" FontSize="8">
                                     <DataGridTextColumn.CellStyle>
                                         <Style TargetType="DataGridCell">
@@ -301,40 +292,49 @@
                                     </DataGridTextColumn.CellStyle>
                                 </DataGridTextColumn>
                             </DataGrid.Columns>
-
-                        </DataGrid>
+                        </DataGrid>-->
                     </WrapPanel>
-                    <Button FontSize="8" Margin="40 6 0 0" Padding="0" Content="确认" Height="20" Width="30"/>
+                    <Button FontSize="8" Margin="20 6 0 0" Padding="0" Content="确认" Height="20" Width="30" Click="trajectoryBatch_Click"/>
                     <Button FontSize="8" Margin="30 6 0 0" Padding="0" Content="结束" Height="20" Width="30"/>
 
 
 
                 </WrapPanel>
             </Border>
-            <Border BorderThickness="1" BorderBrush="Black" Width="176" Height="460"
+            <Border BorderThickness="1" BorderBrush="Black" Width="204" Height="460"
                    VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="180,110,0,0">
-                <WrapPanel Width="174" Height="460">
-                    <Viewbox>
-                    <DataGrid  FontSize="19"  ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="0 -8 0 0 " Padding="-10 10 -10 0 "   Width="auto" VerticalScrollBarVisibility="Hidden" Name="DGcommondList"   Style="{Binding}" Loaded="DGcommondList_Loaded" >
-                            <DataGrid.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="添加" ></MenuItem>
-                                    <MenuItem Header="删除" ></MenuItem>
-                                    <MenuItem Header="批量修改" ></MenuItem>
-                                </ContextMenu>
-                            </DataGrid.ContextMenu>
-                        <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="Sort" Header="序号" Binding="{Binding Sort}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="Type" Header="类型" Binding="{Binding Type}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="StartPoint"  Header="开始点" Binding="{Binding StartPoint}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="EndPoint"  Header="结束点" Binding="{Binding EndPoint}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="Lift"  Header="升降" Binding="{Binding Lift}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                                <DataGridTextColumn x:Name="Open" Header="开关" Binding="{Binding Open}" IsReadOnly="True" FontSize="19"></DataGridTextColumn>
-                            </DataGrid.Columns>
-                            <!--<DataGridTextColumn IsReadOnly="True"></DataGridTextColumn>-->
-                        </DataGrid>
-                    </Viewbox>
+                <WrapPanel  Height="460">
 
+
+
+                    <Viewbox>
+                        <DataGrid Width="204" FontSize="7"  ItemsSource="{Binding Mode=OneTime}"  AutoGenerateColumns="False" Margin="0 -8 0 0 " Padding="-10 10 -10 0 "   VerticalScrollBarVisibility="Hidden" Name="DGcommondList"   Style="{Binding}" Loaded="DGcommondList_Loaded" DataGridRow.Selected="DGcommondList_Selected">
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="添加" ToolTip="在此命令的上方添加一条命令">
+                                    <MenuItem Header="点" Click="AddPoint_Click"></MenuItem>
+                                    <MenuItem Header="线"></MenuItem>
+                                    <MenuItem Header="弧"></MenuItem>
+                                    <MenuItem Header="圆"></MenuItem>
+                                    <MenuItem Header="区域"></MenuItem>
+                                </MenuItem>
+                                <MenuItem Header="删除" ></MenuItem>
+                                <MenuItem Header="修改" ></MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn  x:Name="Sort" Header="序号" Binding="{Binding Sort,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                                <DataGridTextColumn  x:Name="Type" Header="类型" Binding="{Binding Type ,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                                <DataGridTextColumn  x:Name="StartPoint"  Header="开始点" Binding="{Binding StartPoint,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="EndPoint" Header="结束点" Binding="{Binding EndPoint,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="Lift"  Header="升降" Binding="{Binding Lift,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                                <DataGridTextColumn x:Name="Open" Header="开关" Binding="{Binding Open,Mode=OneWay}" IsReadOnly="True" ></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        
+                    <!--<DataGridTextColumn IsReadOnly="True"></DataGridTextColumn>-->
+                    
+                    </DataGrid>
+                    </Viewbox>
 
 
 
@@ -385,7 +385,7 @@
 
 
             <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" 
-                    Margin="360,110,0,0" VerticalAlignment="Top" Width="540" Grid.ColumnSpan="2">
+                    Margin="388,110,0,0" VerticalAlignment="Top" Width="512">
                 <Grid Margin="0,-1,0,-1" HorizontalAlignment ="Center" Width="541" Height="367">
                     <TabControl>
                         <TabItem Header="轨迹">
@@ -408,19 +408,11 @@
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" 
-                    Margin="360,480,0,0" VerticalAlignment="Top" Width="540" Grid.ColumnSpan="2">
+                    Margin="388,480,0,0" VerticalAlignment="Top" Width="512">
                 <Grid>
                     <ContentControl Name="pageControl1"></ContentControl>
                 </Grid>
             </Border>
-            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Center"
-                    Margin="0,414,0,0" VerticalAlignment="Top" Height="30" Width="30" Grid.Column="1">
-                <Image Source="E:\desket\图标\放大.png"></Image>
-            </Button>
-            <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Center"
-                    Margin="0,447,0,0" VerticalAlignment="Top" Height="30" Width="30" Grid.Column="1">
-                <Image Source="E:\desket\图标\缩小.png"></Image>
-            </Button>
             <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="17" Margin="0,583,0,0" >
                 <WrapPanel Height="15">
                     <Label FontSize="8" Height="20" Content="            Progress:               "></Label>
@@ -433,9 +425,8 @@
                 <ToolBarTray Orientation="Vertical" Background="White" Margin="0">
                     <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Background="White" Width="45" Padding="0">
                         <ToggleButton Name="orderPoint" Content="点"  Click="orderPoint_click" IsChecked="False" ToolTip="做一个点" Style="{StaticResource OnOffToggleImageStyle}">
-
                         </ToggleButton>
-                        <ToggleButton Name="orderString" Content="线" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderString_click" IsChecked="False" ToolTip="做一个线" />
+                        <ToggleButton Name="orderString" Content="线" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderString_click" IsChecked="False" ToolTip="做一个线"/>
                         <ToggleButton Name="orderArc" Content="弧" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderArc_click" IsChecked="False" ToolTip="做一个点" />
                         <ToggleButton Name="orderRound" Content="圆" Style="{StaticResource MaterialDesignActionAccentToggleButton}" Click="orderRound_click" IsChecked="False" ToolTip="MaterialDesignActionLightToggleButton" />
                         <Separator></Separator>

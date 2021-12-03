@@ -24,7 +24,6 @@ namespace Test
 
     public partial class MainWindow : Window
     {
-        
         public MainWindow()
         {
             InitializeComponent();
@@ -89,8 +88,7 @@ namespace Test
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            WpfArcgis.WDGotoXY wDGotoXY    = new WpfArcgis.WDGotoXY();
-            wDGotoXY.Show();
+
         }
 
 

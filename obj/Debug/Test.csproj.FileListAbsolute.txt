@@ -90,7 +90,6 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Test.exe
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\Test.pdb
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.AssemblyReference.cache
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test.csproj.SuggestedBindingRedirects.cache
-E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\MainStyle.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharacterizationFinsh.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharacterizationResponseTimes.g.cs
@@ -99,7 +98,6 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharacterzationPattern.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\CharaterzationWizard.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ConfigureProductMap.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ConformalCoatingCharacterizationWizard.g.cs
-E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\donghuaTEST.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ImagePage.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\JogVersion2.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFile2.g.cs
@@ -267,3 +265,9 @@ E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\ControlPage2.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewPage1.baml
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobal.g.cs
 E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\NewFileGlobal.baml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\NLog.config
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\NLog.dll
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\bin\Debug\NLog.xml
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\Test_Content.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UI\BatchEdit.g.cs
+E:\desket\GitDevelop\MySelf\EasyCoat-WPF\obj\Debug\UI\BatchEdit.baml
