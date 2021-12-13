@@ -20,6 +20,7 @@ namespace Test
     /// </summary>
     public partial class JogVersion2 : Page
     {
+        Config config = new Config();
         public JogVersion2()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace Test
 
         private void JogAndView_Loaded(object sender, RoutedEventArgs e)
         {
-            Config.GetGhostConfig();
+            config.ReadFile();
             TbFixedSpeedOne.Text = Config.fixedSpeedOne;
             TbFixedSpeedTwo.Text = Config.fixedSpeedTwo;
             TbFixedSpeedThree.Text = Config.fixedSpeedthree;
@@ -58,7 +59,7 @@ namespace Test
             Config.fixedSpeedOne = TbFixedSpeedOne.Text;
             Config.fixedSpeedTwo = TbFixedSpeedTwo.Text;
             Config.fixedSpeedthree = TbFixedSpeedThree.Text;
-            Config.SetGhostConfig();
+            config.WriteFile();
         }
     }
 }

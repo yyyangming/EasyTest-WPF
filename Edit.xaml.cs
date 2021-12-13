@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections.ObjectModel;
-using ContextMenu = System.Windows.Controls.ContextMenu;
-using MenuItem = System.Windows.Controls.MenuItem;
-using System.Drawing;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Xml;
 using System.ComponentModel;
+using Color = System.Windows.Media.Color;
+using Path = System.Windows.Shapes.Path;
+using Point = System.Windows.Point;
+using System.Threading;
 
 namespace Test
 {
@@ -31,20 +29,151 @@ namespace Test
     /// </summary>
     public partial class Edit : Window
     {
+        int MaxSort;
+
+        /// <summary>
+        /// 实例化所有子窗口
+        /// </summary>
+        NewFileBaseConfigure sub = new NewFileBaseConfigure();
+        ProgramWizard programWizard = new ProgramWizard();
+        ControlPage2 controlPage2 = new ControlPage2();
+
+
+        Config config = new Config();
+        TrajectoryPar propertyGrid = new TrajectoryPar();
+        SaveFileDialog saveFile = new SaveFileDialog();
+        // 创建打开文件夹
+        Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
         static String connetStr = "server=127.0.0.1;port=3306;user=root;password=123456;database=easycoat;";
         string strsql = null;
         MySqlConnection conn = new MySqlConnection(connetStr);
-        ObservableCollection<propertyValue> propertyValueList = new ObservableCollection<propertyValue>();
-        //ObservableCollection<DGCommond_list> dGCommond_Lists = new ObservableCollection<DGCommond_list>();
+        
+        ObservableCollection<TrajectoryPar> trajectoryPars = new ObservableCollection<TrajectoryPar>();
 
+        /// <summary>
+        /// 实例化所需要用的类
+        /// </summary>
         TrajectoryPar trajectoryPar = new TrajectoryPar();
-        Trajectory trajectory1 = new Trajectory();
-        string XMLPath = "XMLPath";
+        Trajectory trajectory = new Trajectory();
+        Line line1 = new Line();
+
+        //string XMLPath = "XMLPath";
+        string XMLPath;
+        public int Checksort = 0;
+
+
+
+        /// <summary>
+        /// 生成坐标系
+        /// </summary>
+        public void DrawArrow()
+        {
+            Line x_axis = new Line();//x轴
+            Line y_axis = new Line();//y轴
+            x_axis.Stroke = System.Windows.Media.Brushes.Black;
+            y_axis.Stroke = System.Windows.Media.Brushes.Black;
+            x_axis.StrokeThickness = 2;
+            y_axis.StrokeThickness = 2;
+            x_axis.X1 = 20;
+            x_axis.Y1 = 20;
+
+            x_axis.X2 = 500;
+            x_axis.Y2 = 20;
+
+            y_axis.X1 = 20;
+            y_axis.Y1 = 20;
+            y_axis.X2 = 20;
+            y_axis.Y2 = 330;
+            this.chartCanvas.Children.Add(x_axis);
+            this.chartCanvas.Children.Add(y_axis);
+
+            Path x_axisArrow = new Path();//x轴箭头
+            Path y_axisArrow = new Path();//y轴箭头
+            x_axisArrow.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            y_axisArrow.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            PathFigure x_axisFigure = new PathFigure();
+            x_axisFigure.IsClosed = true;
+            x_axisFigure.StartPoint = new Point(500, 16); // 路径的起点
+            x_axisFigure.Segments.Add(new LineSegment(new Point(500, 24), false)); //第2个点
+            x_axisFigure.Segments.Add(new LineSegment(new Point(510, 20), false)); //第3个点
+            PathFigure y_axisFigure = new PathFigure();
+            y_axisFigure.IsClosed = true;
+            y_axisFigure.StartPoint = new Point(16, 330);                          //路径的起点
+            y_axisFigure.Segments.Add(new LineSegment(new Point(24, 330), false)); //第2个点
+            y_axisFigure.Segments.Add(new LineSegment(new Point(20, 340), false)); //第3个点
+            PathGeometry x_axisGeometry = new PathGeometry();
+            PathGeometry y_axisGeometry = new PathGeometry();
+            x_axisGeometry.Figures.Add(x_axisFigure);
+            y_axisGeometry.Figures.Add(y_axisFigure);
+            x_axisArrow.Data = x_axisGeometry;
+            y_axisArrow.Data = y_axisGeometry;
+            this.chartCanvas.Children.Add(x_axisArrow);
+            this.chartCanvas.Children.Add(y_axisArrow);
+            DrawScale();
+        }
+
+        public void DrawScale() 
+        {
+            for (int i = 1; i < 13; i++)
+            {
+                Line x_scale = new Line(); //主x轴标尺
+                x_scale.StrokeEndLineCap = PenLineCap.Triangle;
+                x_scale.StrokeThickness = 1;
+                x_scale.Stroke = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                x_scale.X1 = 20 + i * 45;
+                x_scale.X2 = x_scale.X1;
+                x_scale.Y1 = 30;
+                x_scale.StrokeThickness = 2;
+                x_scale.Y2 = x_scale.Y1 - 10;
+                this.chartCanvas.Children.Add(x_scale);
+                Line x_in = new Line();//x轴轴辅助标尺
+                x_in.Stroke = System.Windows.Media.Brushes.LightGray;
+                x_in.StrokeThickness = 0.5;
+                x_in.X1 = 20 + i * 45;
+                x_in.Y1 = 310;
+                x_in.X2 = 20 + i * 45;
+                x_in.Y2 = 30;
+                this.chartCanvas.Children.Add(x_in);
+            }
+            for (int j = 0; j < 30; j++)
+            {
+                Line y_scale = new Line(); //主Y轴标尺
+                y_scale.StrokeEndLineCap = PenLineCap.Triangle;
+                y_scale.StrokeThickness = 1;
+                y_scale.Stroke = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+                y_scale.X1 = 20;            //原点x=40
+                if (j % 5 == 0)
+                {
+                    y_scale.StrokeThickness = 3;
+                    y_scale.X2 = y_scale.X1 + 8;//大刻度线
+                }
+                else
+                    y_scale.X2 = y_scale.X1 + 4;//小刻度线
+                y_scale.Y1 = 320 - j * 10;  //每10px作一个刻度
+                y_scale.Y2 = y_scale.Y1;
+                this.chartCanvas.Children.Add(y_scale);
+            }
+            for (int i = 1; i < 6; i++)
+            {
+                Line y_in = new Line();//y轴辅助标尺
+                y_in.Stroke = System.Windows.Media.Brushes.LightGray;
+                y_in.StrokeThickness = 0.5;
+                y_in.X1 = 30;
+                y_in.Y1 = 320 - i * 50;
+                y_in.X2 = 500;
+                y_in.Y2 = 320 - i * 50;
+                this.chartCanvas.Children.Add(y_in);
+            }
+        }
+
+
 
         private void AddMessage_Click(object sender, EventArgs e)
         {
-            string sql = "insert into trajectory values('" + cuowu.Content + "')";
-            MySqlCommand mySqlCommand = new MySqlCommand();
+            //string sql = "insert into trajectory values('" + cuowu.Content + "')";
+
+            //MySqlCommand mySqlCommand = new MySqlCommand();
 
 
             //ClsDB.ClsDBControl DBC = new OptDB.ClsDB.ClsDBControl();
@@ -73,12 +202,9 @@ namespace Test
             }
         }
 
-
         public Edit()
         {
-            
             InitializeComponent();
-
         }
 
 
@@ -86,66 +212,8 @@ namespace Test
         private void btnNewFile(object sender, RoutedEventArgs e)
         {
             
-            ProgramWizard programWizard = new ProgramWizard();
             programWizard.Show();
-            #region winform 的文件夹操作，暂不需要
-            //使用TextBox和button完成新建文件
-            //// Create OpenFileDialog 
-            //Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();           
-
-            //// Set filter for file extension and default file extension 
-            //dlg.DefaultExt = ".txt"; 
-            //dlg.Filter = "Text documents (.txt)|*.txt"; 
-
-            //// Display OpenFileDialog by calling ShowDialog method 
-            //Nullable<bool> result = dlg.ShowDialog(); 
-
-            //// Get the selected file name and display in a TextBox 
-            //if (result == true) 
-            //{ 
-            //    // Open document 
-            //    string filename = dlg.FileName; 
-            //    FileNameTextBox.Text = filename; 
-            //}
-
-
-            //OpenFileDialog fileDialog = new OpenFileDialog();
-            //fileDialog.Filter = "所有文件.*|*.*";
-            //fileDialog.InitialDirectory = "E:\\";
-            //fileDialog.Multiselect = true;
-            //fileDialog.ShowDialog();
-
-
-            //if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    string[] filenames = fileDialog.FileNames;
-            //    foreach (string str in fileDialog.FileNames)
-            //    {
-            //// 去除重复的
-            //if (!lsb_Files.Items.Contains(str))
-            //{
-            //    lsb_Files.Items.Add(str);
-            //}
-            //}
-            //}
-            #endregion
         }
-
-
-
-
-
-
-        private void btnFileSave(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog saveFile = new SaveFileDialog();
-            saveFile.ShowDialog();
-            saveFile.Filter = "轨道文件(*GD)|*.GD";
-            string strName = saveFile.FileName;
-            saveFile.InitialDirectory = "E:\\";
-            //LabFileName.Content = saveFile.FileName;
-        }
-
 
 
         private void btnOpenFile(object sender, RoutedEventArgs e)
@@ -158,33 +226,22 @@ namespace Test
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            List<ClassConfigInfo> listConfig = GetConfigItemInfos();
+
+            DrawArrow();
         }
 
         public void Edit_loaded(object sender, RoutedEventArgs e)
         {
-            
-            OptionsPropertyGrid.HelpVisible = false;
-            OptionsPropertyGrid.ToolbarVisible = false;
-            OptionsPropertyGrid.PropertySort = PropertySort.Categorized;
-
-
-
-
-
-
-
-            //DGcommondList.IsReadOnly = true;
-
-            Config.GetGhostConfig();
+            //配置文件赋值
+            config.ReadFile();
             zhengxian.IsChecked = Config.Check_Time;
 
+            
+            Trajectory proPertytrajectory = new Trajectory();
+            string xmlPathProperty = "E:\\desket\\GitDevelop\\MySelf\\EasyCoat-WPF\\XML\\Test.xml";
+            propertyGrid = proPertytrajectory.OpenTarjectory(xmlPathProperty, 1);
+            OptionsPropertyGrid.SelectedObject = propertyGrid;
 
-            Trajectory trajectory = new Trajectory();
-
-            ///xml文件地址
-
-            DGcommondList.ItemsSource = trajectory.OpenTarjectory(XMLPath);
 
             #region 数据库调用，暂时不用，改用调用xml文件
             //string insertsql = "";
@@ -217,16 +274,15 @@ namespace Test
         private void EditClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Config.Check_Time = (bool)zhengxian.IsChecked;
-            Config.SetGhostConfig();
-            CDbMysql cDbMysql = new CDbMysql("127.0.0.1", "root", "123456", "easycoat", "3006");
-            cDbMysql.db_header.Close();
-            this.Owner.Visibility = Visibility.Visible;//显示父窗体
+            config.WriteFile();
 
-            //e.Cancel = true;
+            //CDbMysql cDbMysql = new CDbMysql("127.0.0.1", "root", "123456", "easycoat", "3006");
+            //cDbMysql.db_header.Close();
+
+            e.Cancel = true;
             //main.menuedit.IsEnabled = true;
-
-            //this.Hide();
-
+            this.Hide();
+            this.Owner.Visibility = Visibility.Visible;//显示父窗体
         }
 
 
@@ -278,7 +334,7 @@ namespace Test
         }
         #endregion
 
-
+        
 
         public class ClassRunMode 
         {
@@ -343,96 +399,7 @@ namespace Test
         //}
 
 
-        public class propertyValue
-        {
-            public string property { get; set; }
-            public string value { get; set; }
-        }
 
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            propertyValueList.Add(new propertyValue() { 
-                property = "接近时高度",
-                value="9.00"
-            });
-
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "->（1）开始时X（毫米）",
-                value = "-42.25"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "->（1）开始时Y（毫米）",
-                value = "9.25"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "离开时抬起高度（毫米）",
-                value = "9.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "点胶时高度（毫米）",
-                value = "6.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "点胶时速度（毫米/毫米）",
-                value = "9.25"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "（2）重点X轴坐标（毫米）",
-                value = "9.25"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "（2）终点Y轴坐标（毫米）",
-                value = "9.25"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "忽略保护区域（毫米）",
-                value = "错误"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "胶线重叠（毫米）",
-                value = "0.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "->（1）旋转（角度）",
-                value = "0.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "开始距离（毫米）",
-                value = "0.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "停止-距离（毫米）",
-                value = "0.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "->（1）倾斜角度（毫米）",
-                value = "0.00"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "胶阀配置",
-                value = "*****"
-            });
-            propertyValueList.Add(new propertyValue()
-            {
-                property = "X-方向（真）",
-                value = "9.25"
-            });
-            ((this.FindName("DATA_GRID")) as System.Windows.Controls.DataGrid).ItemsSource = propertyValueList;
-        }
 
         private void ProductionConguration(object sender, RoutedEventArgs e)
         {
@@ -540,7 +507,7 @@ namespace Test
             jogCk.Show();
         }
 
-        //public static bool b;
+
 
         private void btnJogAndViewShow_click(object sender, RoutedEventArgs e)
         {
@@ -623,11 +590,6 @@ namespace Test
             public string property { get; set; }
         }
 
-        private void DGcommondList_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
         private void btnArea_Click(object sender, RoutedEventArgs e)
         {
             AreaCoat areaCoat = new AreaCoat();
@@ -648,7 +610,7 @@ namespace Test
 
         private void btnChage_click2(object sender, RoutedEventArgs e)
         {
-            ControlPage2 controlPage2 = new ControlPage2();
+            
             pageControl1.Content = new Frame() { Content = controlPage2 };
         }
 
@@ -656,12 +618,11 @@ namespace Test
         {
             if (ConfigureAll.IsSelected == true)
             {
-                ProgramWizard programWizard = new ProgramWizard();
                 programWizard.Show();
             }
             else if (ConfigureBase.IsSelected == true)
             {
-                NewFileBaseConfigure sub = new NewFileBaseConfigure();
+
             }
             else if (ConfigureSub.IsSelected == true)
             {
@@ -669,36 +630,184 @@ namespace Test
             }
         }
 
+
+
         public class XmlInsert
         {
-            public void xmlinsert() 
+            public void xmlinsert()
             {
                 Trajectory trajectory = new Trajectory();
                 trajectory.newTarjectory();
-
             }
-            
         }
+
 
         private void AddPoint_Click(object sender, RoutedEventArgs e)
         {
             UI.BatchEdit batchEdit = new UI.BatchEdit();
-            DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
-            batchEdit.Sort = DRV.Row[0].ToString();
-            batchEdit.Show();
+            //DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
+            //batchEdit.Sort = DRV.Row[0].ToString();
+            //batchEdit.Show();
         }
 
+
+
+        #region
+        /// <summary>
+        /// 执行wpf页面委托
+        /// </summary>
+        private delegate void UpdateUIDelegate( );
+
+        
+        /// <summary>
+        /// 绘图方法
+        /// </summary>
+        public void DrawTrajectory()
+        {
+            Line line = new Line();
+            line.Stroke = Brushes.Black;
+            line.StrokeThickness = 1;
+            line.X1 = trajectoryPar.StartPointX;
+            line.Y1 = trajectoryPar.StartPointY;
+            line.X2 = trajectoryPar.EndPointX;
+            line.Y2 = trajectoryPar.EndPointY;
+            this.chartCanvas.Children.Add(line);
+        }
+        private void ShowLines()
+        {
+            Line line = new Line();
+            line.Stroke = Brushes.Black;
+            line.StrokeThickness = 1;
+            line.X1 = 100;
+            line.Y1 = 100;
+            line.X2 = 300;
+            line.Y2 = 300;
+            this.chartCanvas.Children.Add(line);
+        }
+        #endregion
+
+        
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
-
+        public void Run()
+        {
+            DrawScale();
+            DrawArrow();
+            Trajectory3D trajectory3D1 = new Trajectory3D();
+            Trajectory3D trajectory3D2 = new Trajectory3D();
+            trajectory3D1.PointX = propertyGrid.StartPointX;
+            trajectory3D1.PointY = propertyGrid.StartPointY;
+            trajectory3D2.PointX = propertyGrid.EndPointX;
+            trajectory3D2.PointY = propertyGrid.EndPointY;
+            line1 = trajectory.trajectoryLine(trajectory3D1, trajectory3D2);
+            this.chartCanvas.Children.Add(line1);
+            Thread.Sleep(10);
+        }
         private void DGcommondList_Selected(object sender, RoutedEventArgs e)
         {
-            DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
-            int SelectedSort = int.Parse(DRV.Row[0].ToString());
-            trajectoryPar = (trajectory1.OpenTarjectory(XMLPath, SelectedSort));
-            OptionsPropertyGrid.SelectedObject = trajectoryPar;
+            //DataRowView DRV = (DataRowView)DGcommondList.SelectedItem;
+            //int SelectedSort = int.Parse(DRV.Row[0].ToString());
+            //trajectoryPar = (trajectory.OpenTarjectory(XMLPath, SelectedSort));
+            //OptionsPropertyGrid.SelectedObject = trajectoryPar;
+            //OptionsPropertyGrid.Refresh();
         }
+
+        /// <summary>
+        /// 利用OpenfileDiaglog控件打开轨迹文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            // 为文件扩展名和默认文件扩展名设置过滤器
+            dlg.DefaultExt = ".XML";
+            dlg.Filter = "轨迹文件(.XML)|*.XML";
+            MaxSort = 0;
+            // 显示窗口
+            Nullable<bool> result = dlg.ShowDialog();
+            CanvasTrajectory.Children.Clear();
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()
+            {
+                UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectory);
+                if (result == true)
+                {
+                    // 获取文件名
+                    XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
+                    trajectoryPars = trajectory.OpenTarjectory(XMLPath);
+                    
+                    //获取轨迹数量
+                    foreach (TrajectoryPar item in trajectoryPars)
+                    {
+                        trajectoryPar = item;
+                        createTrajectoryPar(item);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                }
+            }
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+        }
+
+        /// <summary>
+        /// 利用SavefileDiaglog控件打开轨迹文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFileSave(object sender, RoutedEventArgs e)
+        {
+            saveFile.InitialDirectory = "E:\\desket\\GitDevelop\\MySelf\\EasyCoat-WPF\\XML";
+            saveFile.Filter = "轨道文件(*XML)|*.XML";
+            
+            if (saveFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //string strName = saveFile.FileName;
+            }
+            //LabFileName.Content = saveFile.FileName;
+        }
+        /// <summary>
+        /// 通过传入的xml文件中的Sort最大值，自动创建对应数量的checkboxk控件
+        /// </summary>
+        /// <param name="x"></param>
+        private void createTrajectoryPar(TrajectoryPar trajectoryPar) 
+        {
+            //加入Dispatcher管理线程工作项队列
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                double height = 20;
+                double width = this.CanvasTrajectory.ActualWidth - 2;
+                System.Windows.Controls.CheckBox CB = new System.Windows.Controls.CheckBox()
+                {
+                    Height = height,
+                    Width = width
+                };
+
+                CanvasTrajectory.Children.Add(CB);
+                CB.FontSize = 7;
+
+                string openCoat;
+                if (trajectoryPar.Open == true)
+                {
+                    openCoat = "开";
+                }
+                else
+                    openCoat = "关";
+                string CoatLift;
+                if (trajectoryPar.Lift == true)
+                {
+                    CoatLift = "升";
+                }
+                else
+                    CoatLift = "降";
+                CB.Content = trajectoryPar.Sort + ": " + trajectoryPar.Type + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StartPoint + " 终" + trajectoryPar.EndPoint;
+            });
+        }
+
+        
+
     }
 }

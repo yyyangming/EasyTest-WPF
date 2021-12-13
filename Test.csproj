@@ -102,6 +102,7 @@
       <HintPath>packages\ShowMeTheXAML.2.0.0\lib\net472\ShowMeTheXAML.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -194,8 +195,8 @@
     <Compile Include="ControlPage2.xaml.cs">
       <DependentUpon>ControlPage2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="drawing.cs" />
     <Compile Include="FileConfigure.cs" />
+    <Compile Include="FileProcess\FileBase.cs" />
     <Compile Include="FixedLengthAndSpeed.xaml.cs">
       <DependentUpon>FixedLengthAndSpeed.xaml</DependentUpon>
     </Compile>
@@ -322,6 +323,7 @@
     <Compile Include="UI\BatchEdit.xaml.cs">
       <DependentUpon>BatchEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Drawing.cs" />
     <Compile Include="UserAndPassword.xaml.cs">
       <DependentUpon>UserAndPassword.xaml</DependentUpon>
     </Compile>
@@ -649,6 +651,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Edit\" />
+    <Folder Include="Style\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\向上抬.png" />

@@ -63,7 +63,6 @@ namespace Test
             //分支参数结束后退出参数设置
             else if (nextnum ==3)
             {
-                
                 this.Close();
                 nextnum = 0;
             }

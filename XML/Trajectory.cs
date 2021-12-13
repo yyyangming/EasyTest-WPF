@@ -5,19 +5,89 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.ComponentModel;
+using System.Windows;
+using System.Windows.Shapes;
+using System.Windows.Media;
+using Test.FileProcess;
 
 namespace Test
 {
-    [DefaultPropertyAttribute("SaveOnClose")]
+    /// <summary>
+    /// 两轴轨迹类
+    /// </summary>
+    public class BaseTrejectory2D
+    {
+        FileBase fileBase = new FileBase();
+        private double pointX;
+        private double pointY;
+         
+        /// <summary>
+        /// X轴坐标
+        /// </summary>
+        public double PointX { get => pointX; set => pointX = value; }
+        /// <summary>
+        /// Y轴坐标
+        /// </summary>
+        public double PointY { get => pointY; set => pointY = value; }
+    }
+
+
+    /// <summary>
+    /// 3轴轨迹类
+    /// </summary>
+    public class Trajectory3D:BaseTrejectory2D
+    {
+        private double pointZ;
+        /// <summary>
+        /// Z轴坐标
+        /// </summary>
+        public double PointZ { get => pointZ; set => pointZ = value; }
+
+
+    }
+    /// <summary>
+    /// 四轴轨迹类
+    /// </summary>
+    public class Trajectory4D :Trajectory3D
+    {
+
+        private bool pointW;
+
+        /// <summary>
+        /// 第四轴偏转轴
+        /// </summary>
+        public bool PointW { get => pointW; set => pointW = value; }
+
+    }
+    /// <summary>
+    /// 第五轴偏转轴
+    /// </summary>
+    public class Trejectory5D : Trajectory4D
+    {
+        private bool pointU;
+        public bool PointU { get => pointU; set => pointU = value; }
+    }
+
+    public class TrajectoryParAll
+    {
+        Trejectory5D StratPoint = new Trejectory5D();
+        Trejectory5D EndPoint = new Trejectory5D();
+    }
+
+
+
+
+
+
     /// <summary>
     /// 轨迹的实体类
     /// </summary>
-    public  class TrajectoryPar
+    public class TrajectoryPar : Trejectory5D
     {
         private  string sort;
-        private  double startPointX;
-        private  double startPointY;
-        private  double startPointZ;
+        private double startPointX;
+        private double startPointY;
+        private double startPointZ;
         private  bool startPointU;
         private  double startPointW;
         private  double endPointX;
@@ -32,7 +102,19 @@ namespace Test
         private  bool open;
         private string startPoint;
         private string endPoint;
-        private bool saveOnClose = true;
+        private bool saveOnClose;
+        private double inAdvanceOpenCoat;
+        private double inAdvanceCloseCoat;
+        private double delayOpenCoat;
+        private double delayCloseCoat;
+        private double voidSpeed;
+        private double zSpeed;
+        /// <summary>
+        /// z轴速度
+        /// 完成后到安全高度
+        /// 回抹参数？？？
+        /// 还需要添加基本参数，全局参数
+        /// </summary>
 
 
         [CategoryAttribute("文档设置"),
@@ -57,27 +139,29 @@ namespace Test
         [CategoryAttribute("状态"),
             DefaultValueAttribute(4.00)]
         public bool Open { get => open; set => open = value; }
-        /// <summary>
-        /// 轨迹开始点的X轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-            DefaultValueAttribute(4.00)]
-        public  double StartPointX { get => startPointX; set => startPointX = value; }
-
 
         /// <summary>
-        /// 轨迹开始点的Y轴坐标
+        /// 轨迹开始点的W轴坐标
         /// </summary>
         [CategoryAttribute("开始点"),
              DefaultValueAttribute(4)]
-        public  double StartPointY { get => startPointY; set => startPointY = value; }
+        public double StartPointX { get => startPointX; set => startPointX = value; }
+
         /// <summary>
-        /// 轨迹开始点的Z轴坐标
+        /// 轨迹开始点的W轴坐标
         /// </summary>
-        /// [CategoryAttribute("开始点"),
         [CategoryAttribute("开始点"),
              DefaultValueAttribute(4)]
-        public  double StartPointZ { get => startPointZ; set => startPointZ = value; }
+        public double StartPointY { get => startPointY; set => startPointY = value; }
+
+
+        /// <summary>
+        /// 轨迹开始点的W轴坐标
+        /// </summary>
+        [CategoryAttribute("开始点"),
+             DefaultValueAttribute(4)]
+        public double StartPointZ { get => startPointZ; set => startPointZ = value; }
+
         /// <summary>
         /// 轨迹开始点的U轴坐标
         /// </summary>
@@ -123,19 +207,33 @@ namespace Test
         /// <summary>
         /// 运行该轨道时的速度
         /// </summary>
+        [CategoryAttribute("行程"),
+            DefaultValueAttribute(100)]
         public  double Speed { get => speed; set => speed = value; }
+        /// <summary>
+        /// Z轴速度
+        /// </summary>
+        [CategoryAttribute("行程"),
+            DefaultValueAttribute(100)]
+        public double ZSpeed { get => zSpeed; set => zSpeed = value; }
         /// <summary>
         /// 运行轨道的胶压
         /// </summary>
+        [CategoryAttribute("行程"),
+            DefaultValueAttribute(2)]
         public  double Quantity { get => quantity; set => quantity = value; }
         /// <summary>
         /// 轨迹的类型
         /// </summary>
+        [CategoryAttribute("行程"),
+            DefaultValueAttribute("线")]
         public  string Type { get => type; set => type = value; }
 
         /// <summary>
         /// 轨迹的序号
         /// </summary>
+        [CategoryAttribute("行程"),
+            DefaultValueAttribute("0")]
         public string Sort
         {
             get { return sort; }
@@ -150,17 +248,46 @@ namespace Test
         /// 结束点的字符串
         /// </summary>
         public string EndPoint {  get => endPoint;set => endPoint = value; }
+        /// <summary>
+        /// 提前关胶
+        /// </summary>
+        [CategoryAttribute("配置"),
+            DefaultValueAttribute("0")]
+        public double InadvanceCloseCoat { get => inAdvanceCloseCoat; set => inAdvanceCloseCoat = value; }
+        /// <summary>
+        /// 提前开胶
+        /// </summary>
+        [CategoryAttribute("配置"),
+            DefaultValueAttribute("0")]
+        public double InAdvanceOpenCoat { get => inAdvanceOpenCoat; set => inAdvanceOpenCoat = value; }
+        /// <summary>
+        /// 关胶延迟
+        /// </summary>
+        [CategoryAttribute("配置"),
+            DefaultValueAttribute("0")]
+        public double DelayOpenCoat { get => delayOpenCoat; set => delayOpenCoat = value;  }
+        /// <summary>
+        /// 开校延迟
+        /// </summary>
+        [CategoryAttribute("配置"),
+            DefaultValueAttribute("0")]
+        public double DelayCloseCoat { get => delayCloseCoat; set => delayCloseCoat = value; }
     }
 
-    public class Trajectory {
-        string XMLPath = "E:\\desket\\GitDevelop\\MySelf\\EasyCoat-WPF\\XML\\Test.xml";
-        /// <summary>
-        /// 创建新文件时，使用构造函数自动创建新的XML轨迹文件
-        /// </summary>
-        public  void Tarjectory() 
-        {
+    public class PointTrajectoryPar : TrajectoryPar
+    {
+        private double spray;
+        public double Spray { get => spray; set => spray = value; }
+    }
+    public class RoudTrajectorypar : TrajectoryPar 
+    {
 
-        }
+    }
+
+
+    public class Trajectory {
+        string XMLPath;
+
         /// <summary>
         /// 创建xml文件
         /// </summary>
@@ -186,7 +313,7 @@ namespace Test
         /// <returns></returns>
         public ObservableCollection<TrajectoryPar> OpenTarjectory(string XMLPath1)
         {
-            XMLPath1 = XMLPath;
+            XMLPath = XMLPath1;
             //后期输入打开的文件的地址
             XmlDocument doc = new XmlDocument();
             doc.Load(XMLPath);
@@ -195,10 +322,6 @@ namespace Test
             XmlNodeList xnl = xn.ChildNodes;
             ObservableCollection<TrajectoryPar> TrajectoryParList = new ObservableCollection<TrajectoryPar>();
 
-            foreach (XmlNode xn2 in xnl)
-            {
-
-            }
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
             {
@@ -281,7 +404,7 @@ namespace Test
         {
 
             //后期输入打开的文件的地址
-            XMLPath1 = XMLPath;
+            XMLPath = XMLPath1;
             XmlDocument doc = new XmlDocument();
             doc.Load(XMLPath);
             //找到根节点
@@ -325,49 +448,46 @@ namespace Test
             }
             return trajectoryPar;
         }
-    }
-
-
-    /// <summary>
-    /// 轨迹起点属性类
-    /// </summary>
-    public class StartPoint 
-    {
-        public StartPoint(double X,double Y) 
+        /// <summary>
+        /// 将软件坐标转化为canvas坐标或者将canvas坐标转化为软件坐标
+        /// </summary>
+        /// <param name="X">传入软件写入坐标或者canvas坐标</param>
+        /// <returns></returns>
+        public double X_PointG_TO_PointC(double X) 
         {
+            double truePointX = 500 - X;
+            return truePointX;
         }
-        
-        
-
-    }
 
 
-    /// <summary>
-    /// 轨迹终点属性类
-    /// </summary>
-    public class EndPoint 
-    {
-        public EndPoint(double X, double Y) 
+        /// <summary>
+        /// 将软件X坐标转化为canvas的X坐标或者将canvas的X坐标转化为软件X坐标
+        /// </summary>
+        /// <param name="X">传入软件写入坐标或者canvas坐标</param>
+        /// <returns></returns>
+        public double Y_PointG_TO_PointC(double X)
         {
+            double truePointX = 300 - X;
+            return truePointX;
         }
-        
-    }
-    /// <summary>
-    /// 轨迹宽高属性类
-    /// </summary>
-    public class sizeF_Property
-    {
-        public sizeF_Property(double Speed,double Quantity) 
-        {
 
+        public Line trajectoryLine(Trajectory3D trajectory3D1,Trajectory3D trajectory3D2) 
+        {
+            Trajectory3D StartPoint = trajectory3D1;
+            Trajectory3D EndPoint = trajectory3D2;
+            double StartTruePointX = X_PointG_TO_PointC(StartPoint.PointX);
+            double StartTruePointY = Y_PointG_TO_PointC(StartPoint.PointY);
+            double EndTruePointX = X_PointG_TO_PointC(EndPoint.PointX);
+            double EndTruePointY = Y_PointG_TO_PointC(EndPoint.PointY);
+            Line LinePath = new Line();
+            LinePath.Stroke = Brushes.Black;
+            LinePath.StrokeThickness = 1;
+            LinePath.X1 = StartTruePointX;
+            LinePath.Y1 = StartTruePointY;
+            LinePath.X2 = EndTruePointX;
+            LinePath.Y2 = EndTruePointY;
+            return LinePath;
         }
-        
     }
-    /// <summary>
-    /// 读取XML文件
-    /// </summary>
-    public class fileXmlread 
-    {
-        
-    }
+
 }

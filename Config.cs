@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Test.FileProcess;
 
 namespace Test
 {
@@ -27,7 +28,7 @@ namespace Test
         public string fixedSpeedthree { get; set; }
     }
 
-    public static class Config
+    public class Config : FileBase
     {
         public static string Port_Name = "COM1";
         public static string Baud_Rate = "9600";
@@ -45,7 +46,7 @@ namespace Test
         public static string fixedSpeedTwo = "8";
         public static string fixedSpeedthree = "20";
 
-        public static void GetGhostConfig ()
+        public void ReadFile()
         {
             if (File.Exists("Ghost.json"))
             {
@@ -71,14 +72,14 @@ namespace Test
                 catch
                 {
 
-                    SetGhostConfig();
+                    WriteFile();
                 }
             }
             else
-                SetGhostConfig();
+                WriteFile();
         }
 
-        public static void SetGhostConfig()
+        public void WriteFile()
         {
             File.WriteAllText("Ghost.Json", JsonConvert.SerializeObject(new Ghost()
             {

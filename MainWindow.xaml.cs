@@ -24,8 +24,10 @@ namespace Test
 
     public partial class MainWindow : Window
     {
+        Edit editForm = new Edit();
         public MainWindow()
         {
+            
             InitializeComponent();
         }
 
@@ -48,7 +50,6 @@ namespace Test
 
         private void btnEdit(object sender, RoutedEventArgs e)
         {
-            Edit editForm = new Edit();
             this.Visibility = Visibility.Hidden;//父窗体隐藏
             editForm.Owner = this;//指定子窗体的父窗体是自己
             editForm.ShowDialog();

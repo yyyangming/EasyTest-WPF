@@ -19,7 +19,7 @@ namespace Test
     /// </summary>
     public partial class JogAndView : Window
     {
-
+        Config config = new Config();
         public JogAndView()
         {
             InitializeComponent();
@@ -77,13 +77,13 @@ namespace Test
         private void markConfigure_Closed(object sender, EventArgs e)
         {
             Config.jogwidth = markConfigure.Width;
-            Config.SetGhostConfig();
+            config.WriteFile();
             //Edit.b = true;
         }
 
         private void JogAndView_Loaded(object sender, RoutedEventArgs e)
         {
-            Config.GetGhostConfig();
+            config.ReadFile();
             markConfigure.Width = Config.jogwidth;
         }
 
