@@ -21,6 +21,7 @@ using Color = System.Windows.Media.Color;
 using Path = System.Windows.Shapes.Path;
 using Point = System.Windows.Point;
 using System.Threading;
+using System.Windows.Controls.Primitives;
 
 namespace Test
 {
@@ -50,11 +51,13 @@ namespace Test
         MySqlConnection conn = new MySqlConnection(connetStr);
         
         ObservableCollection<TrajectoryPar> trajectoryPars = new ObservableCollection<TrajectoryPar>();
+        ObservableCollection<TrajectoryLine> trajectoryLines = new ObservableCollection<TrajectoryLine>();
 
         /// <summary>
         /// 实例化所需要用的类
         /// </summary>
         TrajectoryPar trajectoryPar = new TrajectoryPar();
+        TrajectoryLine trajectoryLine = new TrajectoryLine();
         Trajectory trajectory = new Trajectory();
         Line line1 = new Line();
 
@@ -214,15 +217,6 @@ namespace Test
             
             programWizard.Show();
         }
-
-
-        private void btnOpenFile(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog openFile = new FolderBrowserDialog();
-            openFile.ShowDialog();
-        }
-
-
 
         private void Window_Initialized(object sender, EventArgs e)
         {
@@ -385,7 +379,6 @@ namespace Test
             //int
         }
 
-
         //在选中配置的时候提示选择了**配置
         //private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
@@ -397,118 +390,92 @@ namespace Test
         //    Jog jog = new Jog();
         //    jog.Show();
         //}
-
-
-
-
         private void ProductionConguration(object sender, RoutedEventArgs e)
         {
             ProductionConfiguration productionConfiguration = new ProductionConfiguration();
             productionConfiguration.Show();
         }
-
         private void PressControl(object sender, RoutedEventArgs e)
         {
             PressureState pressureState = new PressureState();
             pressureState.Show();
         }
-
         private void NeederFinder_click(object sender, RoutedEventArgs e)
         {
             NeedleFinderZ finder = new NeedleFinderZ();
             finder.Show();
         }
-
         private void FanWidth_click(object sender, RoutedEventArgs e)
         {
             //弧形宽度的class名好像写错了。。。将就用把
             PressureAdjust pressureAdjust = new PressureAdjust();
             pressureAdjust.Show();
         }
-
         private void MaintenanceConfiguration(object sender, RoutedEventArgs e)
         {
             MaintenanceConfiguration maintenanceConfiguration = new MaintenanceConfiguration(); 
             maintenanceConfiguration.Show();
         }
-
         private void ToolConfigure_click(object sender, RoutedEventArgs e)
         {
             ToolConfigureTab toolConfigure = new ToolConfigureTab();
             toolConfigure.Show();
         }
-
         private void FixtureConfigure_click(object sender, RoutedEventArgs e)
         {
             FixtureConfigure toolConfigure = new FixtureConfigure();    
             toolConfigure .Show();
         }
-
         private void ConveyorSeetings_click(object sender, RoutedEventArgs e)
         {
             ConveyorSettings conveyorSettings= new ConveyorSettings();
             conveyorSettings.Show();
         }
-
         private void logConfigure_click(object sender, RoutedEventArgs e)
         {
             logConfigure logConfigure1= new logConfigure();
             logConfigure1.Show();
         }
-
-
         private void ConfigureProductMap_Click(object sender, RoutedEventArgs e)
         {
             ConfigureProductMap configureProductMap = new ConfigureProductMap();
             configureProductMap.Show();
         }
-
         private void PasswordManager_Click(object sender, RoutedEventArgs e)
         {
             PasswordManager configurePasswordManager = new PasswordManager();
             configurePasswordManager.Show();
         }
-
         private void NewPatternTeach_click(object sender, RoutedEventArgs e)
         {
             NewPatternTeach newPatternTeach = new NewPatternTeach();
             newPatternTeach.Show();
         }
-
         private void Rabbit_Click(object sender, RoutedEventArgs e)
         {
             RobotSettings robotSettings = new RobotSettings();
             robotSettings.Show();
         }
-
         private void Custom_click(object sender, RoutedEventArgs e)
         {
             CustomButtons customButtons = new CustomButtons();
             customButtons.Show();
         }
-
-        
-
         private void ConfigureSpeed_click(object sender, RoutedEventArgs e)
         {
             SpeedConfigure speedConfigure = new SpeedConfigure();
             speedConfigure.Show();
         }
-
         private void btnLive(object sender, RoutedEventArgs e)
         {
             UserView userView = new UserView();
             userView.Show();
         }
-
         private void btnJogShow_click(object sender, RoutedEventArgs e)
         {
             JogCk jogCk = new JogCk();
             jogCk.Show();
         }
-
-
-
         private void btnJogAndViewShow_click(object sender, RoutedEventArgs e)
         {
             //b = false;
@@ -516,25 +483,6 @@ namespace Test
             jogAndView.ShowDialog();
             //btnJogandView.IsEnabled = b;
         }
-
-        //private void EditClosed(object sender, EventArgs e)
-        //{
-
-        //    this.Hide();
-        //}
-
-        
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnHide_click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -667,21 +615,10 @@ namespace Test
             Line line = new Line();
             line.Stroke = Brushes.Black;
             line.StrokeThickness = 1;
-            line.X1 = trajectoryPar.StartPointX;
-            line.Y1 = trajectoryPar.StartPointY;
-            line.X2 = trajectoryPar.EndPointX;
-            line.Y2 = trajectoryPar.EndPointY;
-            this.chartCanvas.Children.Add(line);
-        }
-        private void ShowLines()
-        {
-            Line line = new Line();
-            line.Stroke = Brushes.Black;
-            line.StrokeThickness = 1;
-            line.X1 = 100;
-            line.Y1 = 100;
-            line.X2 = 300;
-            line.Y2 = 300;
+            line.X1 = trajectoryLine.StratPoint.PointX;
+            line.Y1 = trajectoryLine.StratPoint.PointY;
+            line.X2 = trajectoryLine.EndPoint.PointX;
+            line.Y2 = trajectoryLine.EndPoint.PointY;
             this.chartCanvas.Children.Add(line);
         }
         #endregion
@@ -739,12 +676,20 @@ namespace Test
                     // 获取文件名
                     XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
                     trajectoryPars = trajectory.OpenTarjectory(XMLPath);
-                    
+                    trajectoryLines = trajectory.OpenTarjectory2(XMLPath);
+
                     //获取轨迹数量
-                    foreach (TrajectoryPar item in trajectoryPars)
+                    //foreach (TrajectoryPar item in trajectoryPars)
+                    //{
+                    //    trajectoryPar = item;
+                    //    createTrajectoryPar(item);
+                    //    this.Dispatcher.Invoke(updateUIDelegate);
+                    //}
+
+                    foreach (TrajectoryLine item in trajectoryLines)
                     {
-                        trajectoryPar = item;
-                        createTrajectoryPar(item);
+                        trajectoryLine = item;
+                        createTrajectoryLine(item);
                         this.Dispatcher.Invoke(updateUIDelegate);
                     }
                 }
@@ -807,7 +752,58 @@ namespace Test
             });
         }
 
-        
+        private void createTrajectoryLine(TrajectoryLine trajectoryPar)
+        {
+            //加入Dispatcher管理线程工作项队列
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                double height = 20;
+                double width = this.CanvasTrajectory.ActualWidth - 2;
+                System.Windows.Controls.CheckBox CB = new System.Windows.Controls.CheckBox()
+                {
+                    Height = height,
+                    Width = width
+                };
+
+                CanvasTrajectory.Children.Add(CB);
+                CB.FontSize = 7;
+
+                string openCoat;
+                if (trajectoryPar.Open == true)
+                {
+                    openCoat = "开";
+                }
+                else
+                    openCoat = "关";
+                string CoatLift;
+                if (trajectoryPar.Lift == true)
+                {
+                    CoatLift = "升";
+                }
+                else
+                    CoatLift = "降";
+                CB.Content = trajectoryPar.Sort + ": " + trajectoryPar.Type + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.stratPoint + " 终" + trajectoryPar.endPoint;
+            });
+        }
+
+        private void Thumb_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+        {
+            Thumb myThumb = (Thumb)sender;
+            double nTop = Math.Round(Canvas.GetTop(myThumb) + e.VerticalChange,2);
+            double nLeft = Math.Round(Canvas.GetLeft(myThumb) + e.HorizontalChange,2);
+            //防止Thumb控件被拖出容器。
+            if (nTop <= 0)
+                nTop = 0;
+            if (nTop >= (chartCanvas.Height - myThumb.Height))
+                nTop = chartCanvas.Height - myThumb.Height;
+            if (nLeft <= 0)
+                nLeft = 0;
+            if (nLeft >= (chartCanvas.Width - myThumb.Width))
+                nLeft = chartCanvas.Width - myThumb.Width;
+            Canvas.SetTop(myThumb, nTop);
+            Canvas.SetLeft(myThumb, nLeft);
+            tt.Text = "Top:" + nTop.ToString() +"  "+ "Left:" + nLeft.ToString();
+        }
 
     }
 }

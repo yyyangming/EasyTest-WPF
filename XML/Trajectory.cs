@@ -20,27 +20,33 @@ namespace Test
         FileBase fileBase = new FileBase();
         private double pointX;
         private double pointY;
-         
         /// <summary>
         /// X轴坐标
         /// </summary>
+        [CategoryAttribute("状态"),
+              DefaultValueAttribute(4.00)]
         public double PointX { get => pointX; set => pointX = value; }
         /// <summary>
         /// Y轴坐标
         /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
         public double PointY { get => pointY; set => pointY = value; }
     }
-
 
     /// <summary>
     /// 3轴轨迹类
     /// </summary>
+    [CategoryAttribute("状态"),
+         DefaultValueAttribute(4.00)]
     public class Trajectory3D:BaseTrejectory2D
     {
         private double pointZ;
         /// <summary>
         /// Z轴坐标
         /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
         public double PointZ { get => pointZ; set => pointZ = value; }
 
 
@@ -51,12 +57,14 @@ namespace Test
     public class Trajectory4D :Trajectory3D
     {
 
-        private bool pointW;
+        private double pointW;
 
         /// <summary>
         /// 第四轴偏转轴
         /// </summary>
-        public bool PointW { get => pointW; set => pointW = value; }
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(true)]
+        public double PointW { get => pointW; set => pointW = value; }
 
     }
     /// <summary>
@@ -65,14 +73,95 @@ namespace Test
     public class Trejectory5D : Trajectory4D
     {
         private bool pointU;
+        /// <summary>
+        /// 开胶延迟
+        /// </summary>
+        [CategoryAttribute("位置"),
+             DefaultValueAttribute(true)]
         public bool PointU { get => pointU; set => pointU = value; }
     }
-
-    public class TrajectoryParAll
+    /// <summary>
+    /// 点的轨迹类
+    /// </summary>
+    public class TrajectoryPoint
     {
-        Trejectory5D StratPoint = new Trejectory5D();
-        Trejectory5D EndPoint = new Trejectory5D();
+        public Trejectory5D StratPoint = new Trejectory5D();
+
+        private string _sort;
+        /// <summary>
+        /// 开胶延迟
+        /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
+        public string Sort { get => _sort; set => _sort = value; }
+
+        private double _inAOpenTime;
+        /// <summary>
+        /// 开胶延迟
+        /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
+        public double InAOpenTime{ get => _inAOpenTime; set => _inAOpenTime = value; }
+
+        private double _inACloseTime;
+        /// <summary>
+        /// 开胶延迟
+        /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
+        public double InACloseTime { get => _inACloseTime; set => _inACloseTime = value; }
+
+        private double _delayOpenTime;
+        /// <summary>
+        /// 开胶延迟
+        /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
+        public double DelayOpenTime { get => _delayOpenTime; set => _delayOpenTime = value; }
+
+        private double _delayCloseTime;
+        /// <summary>
+        /// 关胶延迟
+        /// </summary>
+        [CategoryAttribute("状态"),
+             DefaultValueAttribute(4.00)]
+        public double DelayClodeTime { get => _delayCloseTime; set => _delayCloseTime = value; }
+
+
+        private bool lift;
+        /// <summary>
+        /// 胶阀升降
+        /// </summary>
+        [CategoryAttribute("状态"),
+            DefaultValueAttribute(true)]
+        public bool Lift { set => lift = value; get => lift; }
+
+        private bool _open;
+        /// <summary>
+        /// 胶阀升降
+        /// </summary>
+        [CategoryAttribute("状态"),
+            DefaultValueAttribute(true)]
+        public bool Open { set => _open = value; get => _open; }
+
+        public string Type = "Point";
+
     }
+
+    /// <summary>
+    /// 线的轨迹类
+    /// </summary>
+    public class TrajectoryLine:TrajectoryPoint
+    {
+        public Trejectory5D EndPoint = new Trejectory5D();
+
+        public string stratPoint;
+        public string endPoint;
+        public string Type = "Line";
+    }
+
+
+
 
 
 
@@ -82,7 +171,7 @@ namespace Test
     /// <summary>
     /// 轨迹的实体类
     /// </summary>
-    public class TrajectoryPar : Trejectory5D
+    public class TrajectoryPar
     {
         private  string sort;
         private double startPointX;
@@ -274,15 +363,6 @@ namespace Test
         public double DelayCloseCoat { get => delayCloseCoat; set => delayCloseCoat = value; }
     }
 
-    public class PointTrajectoryPar : TrajectoryPar
-    {
-        private double spray;
-        public double Spray { get => spray; set => spray = value; }
-    }
-    public class RoudTrajectorypar : TrajectoryPar 
-    {
-
-    }
 
 
     public class Trajectory {
@@ -350,6 +430,52 @@ namespace Test
             }
             return TrajectoryParList;
         }
+
+        /// <summary>
+        /// 打开一个XML文件并返回一个Trajectorypar类型的集合
+        /// </summary>
+        /// <param name="XMLPath1"></param>
+        /// <returns></returns>
+        public ObservableCollection<TrajectoryLine> OpenTarjectory2(string XMLPath1)
+        {
+            XMLPath = XMLPath1;
+            //后期输入打开的文件的地址
+            XmlDocument doc = new XmlDocument();
+            doc.Load(XMLPath);
+            //找到根节点
+            XmlNode xn = doc.SelectSingleNode("Tarjectory");
+            XmlNodeList xnl = xn.ChildNodes;
+            ObservableCollection<TrajectoryLine> TrajectoryParList = new ObservableCollection<TrajectoryLine>();
+
+            //获取所有子节点
+            foreach (XmlNode xn1 in xnl)
+            {
+                TrajectoryLine trajectoryPar = new TrajectoryLine();
+
+                XmlElement xe = (XmlElement)xn1;  //将节点转化为元素
+
+                XmlNodeList xnl0 = xe.ChildNodes; //xe.GetAttribute获得的类型为string，转化为int
+                trajectoryPar.Sort = xe.Attributes["Sort"].Value;
+                trajectoryPar.StratPoint.PointX = double.Parse(xnl0.Item(1).InnerText);
+                trajectoryPar.StratPoint.PointY = double.Parse(xnl0.Item(2).InnerText);
+                trajectoryPar.StratPoint.PointZ = double.Parse(xnl0.Item(3).InnerText);
+                trajectoryPar.StratPoint.PointU = bool.Parse(xnl0.Item(4).InnerText);
+                trajectoryPar.StratPoint.PointW = double.Parse(xnl0.Item(5).InnerText);
+                trajectoryPar.Type = xnl0.Item(6).InnerText;
+                trajectoryPar.Open = bool.Parse(xnl0.Item(7).InnerText);
+                trajectoryPar.EndPoint.PointX = double.Parse(xnl0.Item(8).InnerText);
+                trajectoryPar.EndPoint.PointY = double.Parse(xnl0.Item(9).InnerText);
+                trajectoryPar.EndPoint.PointZ = double.Parse(xnl0.Item(10).InnerText);
+                trajectoryPar.EndPoint.PointU = bool.Parse(xnl0.Item(11).InnerText);
+                trajectoryPar.EndPoint.PointW = double.Parse(xnl0.Item(8).InnerText);
+                trajectoryPar.Lift = bool.Parse(xnl0.Item(13).InnerText);
+                trajectoryPar.stratPoint = trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString();
+                trajectoryPar.endPoint = trajectoryPar.EndPoint.PointX.ToString() + " " + trajectoryPar.EndPoint.PointY.ToString();
+                TrajectoryParList.Add(trajectoryPar);
+            }
+            return TrajectoryParList;
+        }
+
         /// <summary>
         /// 修改
         /// </summary>
@@ -448,6 +574,7 @@ namespace Test
             }
             return trajectoryPar;
         }
+
         /// <summary>
         /// 将软件坐标转化为canvas坐标或者将canvas坐标转化为软件坐标
         /// </summary>
@@ -458,8 +585,6 @@ namespace Test
             double truePointX = 500 - X;
             return truePointX;
         }
-
-
         /// <summary>
         /// 将软件X坐标转化为canvas的X坐标或者将canvas的X坐标转化为软件X坐标
         /// </summary>
@@ -489,5 +614,4 @@ namespace Test
             return LinePath;
         }
     }
-
 }

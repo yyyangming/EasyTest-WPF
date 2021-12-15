@@ -17,24 +17,14 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Border x:Name="outer" 
-     BorderBrush="White" 
-     BorderThickness="2" 
-     Opacity=".9" 
-     Background="Transparent">
-                            <Border x:Name="inner" 
-      Margin="8" 
-      BorderThickness="0" 
-      Background="{ 
-      Binding Background, 
-      RelativeSource={RelativeSource TemplatedParent}}">
+                        <Border x:Name="outer"  BorderBrush="White"  BorderThickness="2"  Opacity=".9"  Background="Transparent">
+                            <Border x:Name="inner"  Margin="8"  BorderThickness="0"  Background="{  Binding Background,  RelativeSource={RelativeSource TemplatedParent}}">
                                 <Grid x:Name="container">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="2*"/>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock x:Name="display" 
-       Grid.Row="1" 
+                                    <TextBlock x:Name="display"  Grid.Row="1" 
        Text="{Binding Content, RelativeSource={ 
        RelativeSource TemplatedParent}}" 
        Foreground="White" 
@@ -58,6 +48,23 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <ControlTemplate x:Key="ct" TargetType="{x:Type Thumb}">
+            <Grid x:Name="bg">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.77,0.9">
+                        <GradientStop Color="#aa0311" Offset="0.1"/>
+                        <GradientStop Color="#cccccc" Offset="0.62"/>
+                        <GradientStop Color="#82C3FF" Offset="0.89"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDragging" Value="True">
+                    <Setter TargetName="bg" Property="Background" Value="Gray"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
     </Window.Resources>
     <Viewbox Stretch="Fill">
         <Grid   Width="904" Height="600">
@@ -251,6 +258,7 @@
                         </Grid>
                         <Grid Margin="607,0,0,0">
                             <TextBlock Name="testTextBlock"></TextBlock>
+                            
                         </Grid>
 
                     </Grid>
@@ -321,8 +329,9 @@
                     <TabControl Margin="0,0,0,0">
                         <TabItem Header="轨迹">
                             <Grid Margin="0,0,0,0" Background="Black">
-                                <Canvas Name="chartCanvas" Background="Wheat" Margin="0,-1,0,0">
-
+                                <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0">
+                                    <Thumb Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
+               DragDelta="Thumb_DragDelta"/>
                                 </Canvas>
 
                             </Grid>
@@ -345,8 +354,10 @@
                 <WrapPanel Height="15">
                     <Label FontSize="8" Height="20" Content="            Progress:               "></Label>
                     <Label FontSize="8" Height="20" Content="            Base:               "></Label>
-                    <Label FontSize="8" Height="20" Content="            Pointor:               "></Label>
                     <Label FontSize="8" Height="20" Content="            Tool:               "></Label>
+                    <Label FontSize="8" Height="20" Content="Pointor:"></Label>
+                    <TextBlock FontSize="10"   x:Name="tt" ></TextBlock>
+                    
                 </WrapPanel>
             </Border>
             <Viewbox HorizontalAlignment="Left" Height="287" Margin="5,111,0,0" VerticalAlignment="Top" Width="32">
