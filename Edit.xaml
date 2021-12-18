@@ -213,7 +213,7 @@
                                         <Button Content="相机"  />
                                         <Separator></Separator>
                                         <Button Content="清除故障"  />
-                                        <Button Content="静音"  />
+                                        <Button Content="静音" Click="Small_Click" />
                                     </ToolBar>
                                 </ToolBarTray>
                             </Viewbox>
@@ -257,8 +257,9 @@
 
                         </Grid>
                         <Grid Margin="607,0,0,0">
-                            <TextBlock Name="testTextBlock"></TextBlock>
-                            
+                            <Button Name="testTextBlock" Width="20" Margin="184,15,91,28" Click="FloatElement_Click"></Button>
+                            <Button x:Name="testTextBlock_Copy" Width="20" Margin="214,15,61,28" Click="FloatElement2_Click"/>
+
                         </Grid>
 
                     </Grid>
@@ -329,8 +330,8 @@
                     <TabControl Margin="0,0,0,0">
                         <TabItem Header="轨迹">
                             <Grid Margin="0,0,0,0" Background="Black">
-                                <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0">
-                                    <Thumb Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
+                                <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0" MouseWheel="ChangeBig_Click">
+                                    <Thumb Name="ThumbFrist" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
                DragDelta="Thumb_DragDelta"/>
                                 </Canvas>
 
@@ -383,6 +384,8 @@
                         <Button ToolTip="返回U终点" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=AlphaUCircle}" Padding="5"/>
                         <Button ToolTip="到Z轴安全位置"  ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=AlphaZBoxOutline}" Padding="5"/>
                         <Button ToolTip="到W轴安全位置" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=AlphaWBoxOutline}" Padding="5"/>
+                        <Button Content="S" FontSize="16" Click="btnGetStratPoint_Click"></Button>
+                        <Button Content="E" FontSize="16" Click="btnGetEndPoint_Click"></Button>
                     </ToolBar>
                 </ToolBarTray>
             </Viewbox>

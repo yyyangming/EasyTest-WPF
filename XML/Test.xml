@@ -1,13 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Tarjectory>
-  <tarjectory Sort ="1">
-    <Sort>1</Sort>
+  <tarjectory Sort="1" Type="线">
     <StartPointX>110.01</StartPointX>
     <StartPointY>110.02</StartPointY>
     <StartPointZ>110.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
-    <Type>线</Type>
     <Open>true</Open>
     <EndPointX>310.01</EndPointX>
     <EndPointY>310.02</EndPointY>
@@ -16,30 +14,21 @@
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
   </tarjectory>
-  <tarjectory Sort ="2">
-    <Sort>1</Sort>
+  <tarjectory Sort="2" Type="点">
     <StartPointX>130.01</StartPointX>
     <StartPointY>120.02</StartPointY>
     <StartPointZ>110.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
-    <Type>点</Type>
     <Open>true</Open>
-    <EndPointX>320.01</EndPointX>
-    <EndPointY>330.01</EndPointY>
-    <EndPointZ>110.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
   </tarjectory>
-  <tarjectory Sort ="3">
-    <Sort>1</Sort>
+  <tarjectory Sort="3" Type="线">
     <StartPointX>110.01</StartPointX>
     <StartPointY>120.01</StartPointY>
     <StartPointZ>10.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
-    <Type>圆</Type>
     <Open>true</Open>
     <EndPointX>210.01</EndPointX>
     <EndPointY>230.02</EndPointY>
@@ -48,14 +37,12 @@
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
   </tarjectory>
-  <tarjectory Sort ="4">
-    <Sort>1</Sort>
+  <tarjectory Sort="4" Type="线">
     <StartPointX>10.01</StartPointX>
     <StartPointY>20.02</StartPointY>
     <StartPointZ>10.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
-    <Type>线</Type>
     <Open>true</Open>
     <EndPointX>410.01</EndPointX>
     <EndPointY>230.02</EndPointY>
@@ -64,14 +51,12 @@
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
   </tarjectory>
-  <tarjectory Sort ="5">
-    <Sort>1</Sort>
+  <tarjectory Sort="5" Type="线">
     <StartPointX>10.01</StartPointX>
     <StartPointY>20.02</StartPointY>
     <StartPointZ>10.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
-    <Type>线</Type>
     <Open>true</Open>
     <EndPointX>10.01</EndPointX>
     <EndPointY>30.02</EndPointY>
@@ -79,5 +64,33 @@
     <EndPointU>true</EndPointU>
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
+  </tarjectory>
+  <tarjectory Sort="6" Type="Line">
+    <StartPointX>242.32</StartPointX>
+    <StartPointY>168.99</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>169.5</EndPointX>
+    <EndPointY>223.04</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
+  </tarjectory>
+  <tarjectory Sort="7" Type="Line">
+    <StartPointX>242.32</StartPointX>
+    <StartPointY>168.99</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>169.5</EndPointX>
+    <EndPointY>223.04</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
   </tarjectory>
 </Tarjectory>
