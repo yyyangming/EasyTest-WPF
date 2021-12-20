@@ -65,32 +65,4 @@
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
   </tarjectory>
-  <tarjectory Sort="6" Type="Line">
-    <StartPointX>242.32</StartPointX>
-    <StartPointY>168.99</StartPointY>
-    <StartPointZ>10</StartPointZ>
-    <StartPointU>True</StartPointU>
-    <StartPointW>10</StartPointW>
-    <Open>True</Open>
-    <EndPointX>169.5</EndPointX>
-    <EndPointY>223.04</EndPointY>
-    <EndPointZ>10</EndPointZ>
-    <EndPointU>True</EndPointU>
-    <EndPointW>11</EndPointW>
-    <Lift>True</Lift>
-  </tarjectory>
-  <tarjectory Sort="7" Type="Line">
-    <StartPointX>242.32</StartPointX>
-    <StartPointY>168.99</StartPointY>
-    <StartPointZ>10</StartPointZ>
-    <StartPointU>True</StartPointU>
-    <StartPointW>10</StartPointW>
-    <Open>True</Open>
-    <EndPointX>169.5</EndPointX>
-    <EndPointY>223.04</EndPointY>
-    <EndPointZ>10</EndPointZ>
-    <EndPointU>True</EndPointU>
-    <EndPointW>11</EndPointW>
-    <Lift>True</Lift>
-  </tarjectory>
 </Tarjectory>

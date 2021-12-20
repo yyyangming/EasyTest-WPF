@@ -63,6 +63,8 @@ namespace Test
         Trajectory trajectory = new Trajectory();
         Line line1 = new Line();
 
+        Path x_Arrow = new Path();//x轴箭头,绘制圆所需要的path
+
         //string XMLPath = "XMLPath";
         string XMLPath;
         public int Checksort = 0;
@@ -601,7 +603,7 @@ namespace Test
         /// <summary>
         /// 绘图方法
         /// </summary>
-        public void DrawTrajectory2()
+        public void DrawTrajectoryLine()
         {
             Line line = new Line();
             line.Stroke = Brushes.Black;
@@ -612,6 +614,34 @@ namespace Test
             line.Y2 = trajectoryLine.EndPoint.PointY;
             this.chartCanvas.Children.Add(line);
         }
+
+        public double x = 10;
+        public double y = 10;
+        public int r = 5;
+        Brush PenColor = Brushes.Black;
+
+        /// <summary>
+        /// 绘制圆
+        /// </summary>
+        public void DrawTrajectoryRound()
+        {
+            Path x_Arrow = new Path();//x轴箭头
+
+            x_Arrow.Fill = PenColor;
+
+            PathFigure x_Figure = new PathFigure();
+            x_Figure.IsClosed = true;
+            x_Figure.StartPoint = new Point(x, y);//路径的起点
+            x_Figure.Segments.Add(new ArcSegment(new Point(x, y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Counterclockwise, true));
+
+            PathGeometry x_Geometry = new PathGeometry();
+
+            x_Geometry.Figures.Add(x_Figure);
+
+            x_Arrow.Data = x_Geometry;
+            chartCanvas.Children.Add(x_Arrow);
+        }
+
         /// <summary>
         /// 弃用原始的类对印的绘图方法
         /// </summary>
@@ -628,9 +658,10 @@ namespace Test
         }
         #endregion
 
-
+        public bool result;
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
+            
             trajectoryLine.EndPoint.PointW = 11.0;
             trajectoryLine.Lift = true;
             if (XMLPath != null)
@@ -649,6 +680,12 @@ namespace Test
                     else if (orderString.IsChecked == true)
                     {
                         trajectoryLine.Type = "Line";
+
+                        trajectoryLine.Sort = MaxSort.ToString();
+                        result = trajectory.AddTrajectory(trajectoryLine, XMLPath);
+                        Thread thread = new Thread(ThreadUpdateUILine);
+                        thread.Start();
+
                     }
                     else if (orderArc.IsChecked == true)
                     {
@@ -657,17 +694,30 @@ namespace Test
                     else if (orderRound.IsChecked == true)
                     {
                         trajectoryLine.Type = "Round";
+
+                        trajectoryLine.Sort = MaxSort.ToString();
+                        result = trajectory.AddTrajectory(trajectoryLine, XMLPath);
+                        Thread thread = new Thread(ThreadUpdateUIRound);
+                        thread.Start();
                     }
-                    trajectoryLine.Sort = MaxSort.ToString();
-                    bool result = trajectory.AddTrajectory(trajectoryLine, XMLPath);
-                    Thread thread = new Thread(ThreadUpdateUI2);
-                    thread.Start();
+                    
+
+                    void ThreadUpdateUIRound()
+                    {
+                        UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                        if (result == true)
+                        {
+                            // 实现事先定义的轨迹类，后面用绘图方法绘制
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                            createTrajectoryLine(trajectoryLine);
+                        }
+                    }
 
 
-                    void ThreadUpdateUI2()
+                    void ThreadUpdateUILine()
                     {
                         // 将绘图方法将给委托，使用线程线程运行
-                        UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectory2);
+                        UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
                         if (result == true)
                         {
                             // 实现事先定义的轨迹类，后面用绘图方法绘制
@@ -713,7 +763,7 @@ namespace Test
             /// </summary>
             void ThreadUpdateUI()
             {
-                UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectory2);
+                UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
                 if (result == true)
                 {
                     // 获取文件名
@@ -853,10 +903,7 @@ namespace Test
             trajectory.ScaleEasingAnimationShow(chartCanvas,point,1,2);
         }
 
-        private void Small_Click(object sender, RoutedEventArgs e)
-        {
-            trajectory.ScaleEasingAnimationShow(chartCanvas, new Point(0, 0), 2, 1);
-        }
+        
         double BiggerB = 1;
         private void ChangeBig_Click(object sender, MouseWheelEventArgs e)
         {
@@ -907,6 +954,11 @@ namespace Test
                 trajectoryLine.EndPoint.PointX = nLeft;
                 trajectoryLine.EndPoint.PointY = nTop;
             }
+        }
+
+        private void Small_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
