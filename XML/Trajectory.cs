@@ -92,6 +92,10 @@ namespace Test
     /// </summary>
     public class TrajectoryPoint
     {
+        [CategoryAttribute("开始点"),
+            DefaultValueAttribute("0")]
+        public string stratPoint;
+
         public Trajectory5D StratPoint = new Trajectory5D();
 
         private string _sort;
@@ -107,7 +111,7 @@ namespace Test
         /// 开胶延迟
         /// </summary>
         [CategoryAttribute("状态"),
-             DefaultValueAttribute(0.00)]
+             DefaultValueAttribute(3.00)]
         public double InAOpenTime{ get => _inAOpenTime; set => _inAOpenTime = value; }
 
         private double _inACloseTime;
@@ -115,7 +119,7 @@ namespace Test
         /// 开胶延迟
         /// </summary>
         [CategoryAttribute("状态"),
-             DefaultValueAttribute(0.00)]
+             DefaultValueAttribute(4.00)]
         public double InACloseTime { get => _inACloseTime; set => _inACloseTime = value; }
 
         private double _delayOpenTime;
@@ -162,10 +166,6 @@ namespace Test
     {
         public Trajectory5D EndPoint = new Trajectory5D();
 
-        [CategoryAttribute("开始点"),
-            DefaultValueAttribute("0")]
-        public string stratPoint;
-
         [CategoryAttribute("结束点"),
             DefaultValueAttribute("0")]
         public string endPoint;
@@ -173,9 +173,14 @@ namespace Test
         public string Type = "Line";
     }
 
-    public class TrajectoryRound:TrajectoryPoint
+    public class TrajectoryRound:TrajectoryLine
     {
-
+        public Trajectory5D MidPoint = new Trajectory5D();
+        public double PointCenterX;
+        public double PointCenterY;
+        public double PointEndX;
+        public double PointEndY;
+        public double RoundR;
     }
 
 
@@ -384,6 +389,9 @@ namespace Test
         string XMLPath;
         XmlDocument doc = new XmlDocument();
         XmlDeclaration xmldecl;
+        TrajectoryPoint trajectoryPoint = new TrajectoryPoint();
+        TrajectoryLine trajectoryLine1 = new TrajectoryLine();
+        public ObservableCollection<object> collection = new ObservableCollection<object>();
 
         /// <summary>
         /// 创建xml文件
@@ -464,7 +472,7 @@ namespace Test
         /// </summary>
         /// <param name="XMLPath1"></param>
         /// <returns></returns>
-        public ObservableCollection<TrajectoryLine> OpenTarjectory2(string XMLPath1)
+        public ObservableCollection<object> OpenTarjectory2(string XMLPath1)
         {
             XMLPath = XMLPath1;
             //后期输入打开的文件的地址
@@ -472,49 +480,77 @@ namespace Test
             //找到根节点
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             XmlNodeList xnl = xn.ChildNodes;
-            ObservableCollection<TrajectoryLine> TrajectoryParList = new ObservableCollection<TrajectoryLine>();
+            ObservableCollection<object> TrajectoryParList = new ObservableCollection<object>();
 
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
             {
-                TrajectoryLine trajectoryPar = new TrajectoryLine();
+                TrajectoryLine trajectoryline = new TrajectoryLine();
+                TrajectoryRound trajectoryRound = new TrajectoryRound();
+                
                 XmlElement xe = (XmlElement)xn1;  //将节点转化为元素
                 XmlNodeList xnl0 = xe.ChildNodes; //xe.GetAttribute获得的类型为string，转化为int
-                if (xe.Attributes["Type"].Value =="线"|| xe.Attributes["Type"].Value == "Line")
+                string TypeCategory = xe.Attributes["Type"].Value;
+                if (TypeCategory =="线"|| TypeCategory == "Line")
                 {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
-                    trajectoryPar.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
-                    trajectoryPar.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
-                    trajectoryPar.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
-                    trajectoryPar.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
-                    trajectoryPar.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(11).InnerText);
-                    trajectoryPar.stratPoint = trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString();
-                    trajectoryPar.endPoint = trajectoryPar.EndPoint.PointX.ToString() + " " + trajectoryPar.EndPoint.PointY.ToString();
-                    TrajectoryParList.Add(trajectoryPar);
+                    trajectoryline.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryline.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryline.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryline.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryline.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryline.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryline.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryline.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
+                    trajectoryline.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
+                    trajectoryline.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
+                    trajectoryline.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
+                    trajectoryline.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
+                    trajectoryline.Lift = bool.Parse(xnl0.Item(11).InnerText);
+                    trajectoryline.stratPoint = trajectoryline.StratPoint.PointX.ToString() + " " + trajectoryline.StratPoint.PointY.ToString();
+                    trajectoryline.endPoint = trajectoryline.EndPoint.PointX.ToString() + " " + trajectoryline.EndPoint.PointY.ToString();
+                    TrajectoryParList.Add(trajectoryline);
                 }
-                else if (xe.Attributes["Type"].Value == "点")
+                else if (TypeCategory == "点")
                 {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
-                    trajectoryPar.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(6).InnerText);
-                    trajectoryPar.stratPoint = trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString();
-                    TrajectoryParList.Add(trajectoryPar);
+                    trajectoryPoint.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryPoint.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryPoint.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryPoint.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryPoint.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryPoint.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryPoint.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryPoint.Lift = bool.Parse(xnl0.Item(6).InnerText);
+                    trajectoryPoint.stratPoint = trajectoryPoint.StratPoint.PointX.ToString() + " " + trajectoryPoint.StratPoint.PointY.ToString();
+                    TrajectoryParList.Add(trajectoryPoint);
+                }
+                else if (TypeCategory == "Round")
+                {
+                    trajectoryRound.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryRound.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryRound.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryRound.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryRound.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryRound.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryRound.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryRound.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
+                    trajectoryRound.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
+                    trajectoryRound.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
+                    trajectoryRound.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
+                    trajectoryRound.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
+                    trajectoryRound.Lift = bool.Parse(xnl0.Item(11).InnerText);
+                    trajectoryRound.MidPoint.PointX = double.Parse(xnl0.Item(12).InnerText);
+                    trajectoryRound.MidPoint.PointY = double.Parse(xnl0.Item(13).InnerText);
+                    trajectoryRound.MidPoint.PointZ = double.Parse(xnl0.Item(14).InnerText);
+                    trajectoryRound.MidPoint.PointU = bool.Parse(xnl0.Item(15).InnerText);
+                    trajectoryRound.MidPoint.PointW = double.Parse(xnl0.Item(16).InnerText);
+                    //在此确认圆心，半径
+
+                    TrajectoryParList.Add(trajectoryline);
                 }
             }
             return TrajectoryParList;
         }
+
         /// <summary>
         /// 添加XML文件
         /// </summary>
@@ -696,12 +732,12 @@ namespace Test
         }
 
         /// <summary>
-        /// 打开XML文件，返回trajectory类型的对象
+        /// 暂定，暂未修改，需要重新修改
         /// </summary>
         /// <param name="XMLPath1"></param>
         /// <param name="Order"></param>
         /// <returns></returns>
-        public TrajectoryLine OpenTarjectory2(string XMLPath1, int Order)
+        public void OpenTarjectory2(string XMLPath1, int Order)
         {
 
             //后期输入打开的文件的地址
@@ -711,7 +747,6 @@ namespace Test
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             //节点集合
             XmlNodeList xnl = xn.ChildNodes;
-            TrajectoryLine trajectoryPar = new TrajectoryLine();
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
             {
@@ -723,33 +758,35 @@ namespace Test
                 XmlNodeList xnl0 = xe.ChildNodes;
                 if (xe.Attributes["Sort"].Value == "线")
                 {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
-                    trajectoryPar.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
-                    trajectoryPar.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
-                    trajectoryPar.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
-                    trajectoryPar.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
-                    trajectoryPar.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(11).InnerText);
-                    trajectoryPar.stratPoint = trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString();
-                    trajectoryPar.endPoint = trajectoryPar.EndPoint.PointX.ToString() + " " + trajectoryPar.EndPoint.PointY.ToString();
+                    trajectoryLine1.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryLine1.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryLine1.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryLine1.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryLine1.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryLine1.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryLine1.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryLine1.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
+                    trajectoryLine1.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
+                    trajectoryLine1.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
+                    trajectoryLine1.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
+                    trajectoryLine1.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
+                    trajectoryLine1.Lift = bool.Parse(xnl0.Item(11).InnerText);
+                    trajectoryLine1.stratPoint = trajectoryLine1.StratPoint.PointX.ToString() + " " + trajectoryLine1.StratPoint.PointY.ToString();
+                    trajectoryLine1.endPoint = trajectoryLine1.EndPoint.PointX.ToString() + " " + trajectoryLine1.EndPoint.PointY.ToString();
+                    collection.Add(trajectoryLine1);
                 }
                 else if (xe.Attributes["Sort"].Value == "点")
                 {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
-                    trajectoryPar.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(6).InnerText);
-                    trajectoryPar.stratPoint = trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString();
+                    trajectoryPoint.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryPoint.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryPoint.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryPoint.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryPoint.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryPoint.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryPoint.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryPoint.Lift = bool.Parse(xnl0.Item(6).InnerText);
+                    trajectoryPoint.stratPoint = trajectoryPoint.StratPoint.PointX.ToString() + " " + trajectoryPoint.StratPoint.PointY.ToString();
+                    collection.Add(trajectoryLine1);
                 }
                 if (inOrder == Order)
                 {
@@ -758,7 +795,6 @@ namespace Test
                 else
                     inOrder += 1;
             }
-            return trajectoryPar;
         }
 
         /// <summary>

@@ -43,7 +43,7 @@ namespace Test
 
 
         Config config = new Config();
-        TrajectoryLine propertyGrid = new TrajectoryLine();
+        object propertyGrid = new object();
         SaveFileDialog saveFile = new SaveFileDialog();
         // 创建打开文件夹
         Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -52,8 +52,7 @@ namespace Test
         string strsql = null;
         MySqlConnection conn = new MySqlConnection(connetStr);
         
-        ObservableCollection<TrajectoryPar> trajectoryPars = new ObservableCollection<TrajectoryPar>();
-        ObservableCollection<TrajectoryLine> trajectoryLines = new ObservableCollection<TrajectoryLine>();
+        ObservableCollection<object> trajectoryPars = new ObservableCollection<object>();
 
         /// <summary>
         /// 实例化所需要用的类
@@ -61,6 +60,7 @@ namespace Test
         TrajectoryPar trajectoryPar = new TrajectoryPar();
         TrajectoryLine trajectoryLine = new TrajectoryLine();
         Trajectory trajectory = new Trajectory();
+        TrajectoryRound trajectoryRound = new TrajectoryRound();
         Line line1 = new Line();
 
         Path x_Arrow = new Path();//x轴箭头,绘制圆所需要的path
@@ -332,14 +332,23 @@ namespace Test
 
         public void Edit_loaded(object sender, RoutedEventArgs e)
         {
-            //配置文件赋值
+            // 配置文件赋值
             config.ReadFile();
             zhengxian.IsChecked = Config.Check_Time;
 
-            
+            // 属性表赋值,暂未完成修改
             Trajectory proPertytrajectory = new Trajectory();
+            foreach (var item in proPertytrajectory.collection)
+            {
+                string typeName = item.GetType().ToString();
+                if (true)
+                {
+
+                }
+            }
             string xmlPathProperty = "E:\\desket\\GitDevelop\\MySelf\\EasyCoat-WPF\\XML\\Test.xml";
-            propertyGrid = proPertytrajectory.OpenTarjectory2(xmlPathProperty,3);
+            
+            //propertyGrid = proPertytrajectory.OpenTarjectory2(xmlPathProperty, 3);
             OptionsPropertyGrid.SelectedObject = propertyGrid;
 
             #region 数据库调用，暂时不用，改用调用xml文件
@@ -376,11 +385,7 @@ namespace Test
             Config.Check_Time = (bool)zhengxian.IsChecked;
             config.WriteFile();
 
-            //CDbMysql cDbMysql = new CDbMysql("127.0.0.1", "root", "123456", "easycoat", "3006");
-            //cDbMysql.db_header.Close();
-
             e.Cancel = true;
-            //main.menuedit.IsEnabled = true;
             this.Hide();
             this.Owner.Visibility = Visibility.Visible;//显示父窗体
         }
@@ -601,7 +606,7 @@ namespace Test
 
         
         /// <summary>
-        /// 绘图方法
+        /// 绘线方法
         /// </summary>
         public void DrawTrajectoryLine()
         {
@@ -615,29 +620,26 @@ namespace Test
             this.chartCanvas.Children.Add(line);
         }
 
-        public double x = 10;
-        public double y = 10;
-        public int r = 5;
+        public double x = 100;
+        public double y = 100;
+        public int r = 50;
         Brush PenColor = Brushes.Black;
 
         /// <summary>
-        /// 绘制圆
+        /// 绘制圆，暂时固定了圆心和半径,起点设置为StratPoint,终点到时候设置为stratpoint-1
         /// </summary>
         public void DrawTrajectoryRound()
         {
             Path x_Arrow = new Path();//x轴箭头
 
-            x_Arrow.Fill = PenColor;
+            x_Arrow.Stroke = PenColor;
 
             PathFigure x_Figure = new PathFigure();
             x_Figure.IsClosed = true;
             x_Figure.StartPoint = new Point(x, y);//路径的起点
-            x_Figure.Segments.Add(new ArcSegment(new Point(x, y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Counterclockwise, true));
-
+            x_Figure.Segments.Add(new ArcSegment(new Point(x, y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Clockwise, true));
             PathGeometry x_Geometry = new PathGeometry();
-
             x_Geometry.Figures.Add(x_Figure);
-
             x_Arrow.Data = x_Geometry;
             chartCanvas.Children.Add(x_Arrow);
         }
@@ -757,31 +759,39 @@ namespace Test
 
             Thread thread = new Thread(ThreadUpdateUI);
             thread.Start();
-
             /// <summary>
             /// 画图线程
             /// </summary>
             void ThreadUpdateUI()
             {
-                UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                
                 if (result == true)
                 {
                     // 获取文件名
                     XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
                     //trajectoryPars = trajectory.OpenTarjectory(XMLPath);
-                    trajectoryLines = trajectory.OpenTarjectory2(XMLPath);
+                    trajectoryPars = trajectory.OpenTarjectory2(XMLPath);
 
                     //获取轨迹数量
-                    foreach (TrajectoryLine item in trajectoryLines)
+                    foreach (var item in trajectoryPars)
                     {
-                        //实现事先定义的轨迹类，后面用绘图方法绘制
-                        trajectoryLine = item;
-                        createTrajectoryLine(item);
-                        this.Dispatcher.Invoke(updateUIDelegate);
+                        if ((item.GetType()).ToString() == "Test.TrajectoryLine")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                            trajectoryLine = (TrajectoryLine)item;
+                            createTrajectoryLine(trajectoryLine);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if ((item.GetType()).ToString() == "Test.TrajectoryRound")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                            trajectoryRound  = (TrajectoryRound)item;
+                            //此处缺少CreateTrajectoryRound的方法，后边补充
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
                     }
                 }
             }
-            
         }
 
         /// <summary>
