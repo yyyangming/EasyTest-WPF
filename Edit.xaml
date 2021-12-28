@@ -185,7 +185,7 @@
                                     <ToolBar  FontWeight="ExtraBlack" Padding="0" FontSize="22"  Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Width="1582" Height="77" VerticalAlignment="Center">
                                         <Button ToolTip="新建工程文件"  Click="btnNewFile" Content="新建" Margin="0" Padding="5" />
                                         <Button ToolTip="打开文件" Content="打开" Padding="5" Click="btnOpenFile_Click" />
-                                        <Button ToolTip="保存工程" Content="保存" ToolBar.OverflowMode="AsNeeded" Padding="5" />
+                                        <Button ToolTip="保存工程" Content="保存" ToolBar.OverflowMode="AsNeeded" Padding="5" Click="btnSave_Click" />
                                         <Separator Width="6" />
                                         <Button  ToolTip="剪切"  Content="运行" Padding="5" />
                                         <Button  ToolTip="复制" ToolBar.OverflowMode="AsNeeded"  Content="单步" Padding="5"/>
@@ -213,7 +213,7 @@
                                         <Button Content="相机"  />
                                         <Separator></Separator>
                                         <Button Content="清除故障"  />
-                                        <Button Content="静音" Click="Small_Click" />
+                                        <Button Content="静音"  />
                                     </ToolBar>
                                 </ToolBarTray>
                             </Viewbox>
@@ -265,18 +265,18 @@
                     </Grid>
                 </WrapPanel>
             </Border>
-            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,530,0,0"
+            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,500,0,0"
                     BorderThickness="0" CornerRadius="8" BorderBrush="Black" Height="37" Grid.Row="0" Width="37">
                 <Button  Content="Jog" Height="25" Width="25" Style="{StaticResource btnTransparentStyle}" Click="btnJogShow_click"></Button>
             </Border>
-            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,490,0,0" Height="37" Grid.Row="0" Width="37" Padding="0">
+            <Border VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,460,0,0" Height="37" Grid.Row="0" Width="37" Padding="0">
                 <Button  Padding="0" FontSize="10" Content="同时" Height="25" Width="25" Name="btnJogandView" Click="btnJogAndViewShow_click"></Button>
             </Border>
             <!--<Button></Button>-->
-            <Border Width="135" Height="260" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+            <Border Width="135" Height="230" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      BorderBrush="Black" BorderThickness="1">
                 <WrapPanel Width="132" Height="260">
-                    <WrapPanel Height="230">
+                    <WrapPanel Height="200">
                         <WindowsFormsHost HorizontalAlignment="Left" Margin="-1,0,-1,0" x:Name="windowsFormsHost1" VerticalAlignment="Top"  Padding="0 0 0 0">
                             <my:PropertyGrid x:Name="OptionsPropertyGrid" HelpVisible="False" ToolbarVisible="False">
                             </my:PropertyGrid>
@@ -309,7 +309,7 @@
 
                 </WrapPanel>
             </Border>
-            <Border BorderThickness="1" BorderBrush="Black" Width="204" Height="460"
+            <Border BorderThickness="1" BorderBrush="Black" Width="204" Height="430"
                    VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="180,110,0,0">
                 <WrapPanel  Height="460" Name="CanvasTrajectory">
 
@@ -324,14 +324,14 @@
             </Border>
 
 
-            <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="367" 
+            <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="334" 
                     Margin="388,110,0,0" VerticalAlignment="Top" Width="512">
                 <Grid Margin="0,0,0,0" HorizontalAlignment ="Center" Width="510" Height="367">
                     <TabControl Margin="0,0,0,0">
                         <TabItem Header="轨迹">
                             <Grid Margin="0,0,0,0" Background="Black">
                                 <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0" MouseWheel="ChangeBig_Click">
-                                    <Thumb Name="ThumbFrist" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
+                                    <Thumb Name="key" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
                DragDelta="Thumb_DragDelta"/>
                                 </Canvas>
 
@@ -346,19 +346,19 @@
                 </Grid>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" 
-                    Margin="388,480,0,0" VerticalAlignment="Top" Width="512">
+                    Margin="388,450,0,0" VerticalAlignment="Top" Width="512">
                 <Grid>
                     <ContentControl Name="pageControl1"></ContentControl>
                 </Grid>
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="17" Margin="0,583,0,0" >
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="17" Margin="0,545,0,0" >
                 <WrapPanel Height="15">
                     <Label FontSize="8" Height="20" Content="            Progress:               "></Label>
                     <Label FontSize="8" Height="20" Content="            Base:               "></Label>
                     <Label FontSize="8" Height="20" Content="            Tool:               "></Label>
                     <Label FontSize="8" Height="20" Content="Pointor:"></Label>
                     <TextBlock FontSize="10"   x:Name="tt" ></TextBlock>
-                    
+
                 </WrapPanel>
             </Border>
             <Viewbox HorizontalAlignment="Left" Height="287" Margin="5,111,0,0" VerticalAlignment="Top" Width="32">

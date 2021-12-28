@@ -1,68 +1,134 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Tarjectory>
-  <tarjectory Sort="1" Type="线">
-    <StartPointX>110.01</StartPointX>
-    <StartPointY>110.02</StartPointY>
-    <StartPointZ>110.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>310.01</EndPointX>
-    <EndPointY>310.02</EndPointY>
-    <EndPointZ>110.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
+  <tarjectory Sort="1" Type="Line">
+    <StartPointX>67.17</StartPointX>
+    <StartPointY>36.94</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>369.13</EndPointX>
+    <EndPointY>192.24</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
   </tarjectory>
-  <tarjectory Sort="2" Type="点">
-    <StartPointX>130.01</StartPointX>
-    <StartPointY>120.02</StartPointY>
-    <StartPointZ>110.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <Lift>true</Lift>
+  <tarjectory Sort="2" Type="Line">
+    <StartPointX>369.13</StartPointX>
+    <StartPointY>192.24</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>362.22</EndPointX>
+    <EndPointY>203.19</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
   </tarjectory>
-  <tarjectory Sort="3" Type="线">
-    <StartPointX>110.01</StartPointX>
-    <StartPointY>120.01</StartPointY>
+  <tarjectory Sort="3" Type="Line">
+    <StartPointX>362.22</StartPointX>
+    <StartPointY>203.19</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>55.86</EndPointX>
+    <EndPointY>54.05</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
+  </tarjectory>
+  <tarjectory Sort="4" Type="Line">
+    <StartPointX>55.86</StartPointX>
+    <StartPointY>54.05</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>50.84</EndPointX>
+    <EndPointY>64.31</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
+  </tarjectory>
+  <tarjectory Sort="5" Type="Round">
+    <StartPointX>0.01</StartPointX>
+    <StartPointY>100.02</StartPointY>
     <StartPointZ>10.00</StartPointZ>
     <StartPointU>true</StartPointU>
     <StartPointW>10.00</StartPointW>
     <Open>true</Open>
-    <EndPointX>210.01</EndPointX>
-    <EndPointY>230.02</EndPointY>
+    <EndPointX>100.01</EndPointX>
+    <EndPointY>0.02</EndPointY>
     <EndPointZ>10.00</EndPointZ>
     <EndPointU>true</EndPointU>
     <EndPointW>10.00</EndPointW>
     <Lift>true</Lift>
+    <MidPointX>200.01</MidPointX>
+    <MidPointY>100.02</MidPointY>
+    <MidPointZ>110.00</MidPointZ>
+    <MidPointU>true</MidPointU>
+    <MidPointW>10.00</MidPointW>
   </tarjectory>
-  <tarjectory Sort="4" Type="线">
-    <StartPointX>10.01</StartPointX>
-    <StartPointY>20.02</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>410.01</EndPointX>
-    <EndPointY>230.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
+  <tarjectory Sort="6" Type="Line">
+    <StartPointX>200.48</StartPointX>
+    <StartPointY>100.66</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>354.7</EndPointX>
+    <EndPointY>217.84</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
   </tarjectory>
-  <tarjectory Sort="5" Type="线">
-    <StartPointX>10.01</StartPointX>
-    <StartPointY>20.02</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>10.01</EndPointX>
-    <EndPointY>30.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
+  <tarjectory Sort="7" Type="Line">
+    <StartPointX>354.69</StartPointX>
+    <StartPointY>219.09</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>345.27</EndPointX>
+    <EndPointY>230.39</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
+  </tarjectory>
+  <tarjectory Sort="8" Type="Line">
+    <StartPointX>345.27</StartPointX>
+    <StartPointY>230.39</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>47.08</EndPointX>
+    <EndPointY>81.61</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
+  </tarjectory>
+  <tarjectory Sort="9" Type="Line">
+    <StartPointX>47.71</StartPointX>
+    <StartPointY>81.61</StartPointY>
+    <StartPointZ>0</StartPointZ>
+    <StartPointU>False</StartPointU>
+    <StartPointW>0</StartPointW>
+    <Open>False</Open>
+    <EndPointX>43.32</EndPointX>
+    <EndPointY>92.28</EndPointY>
+    <EndPointZ>0</EndPointZ>
+    <EndPointU>False</EndPointU>
+    <EndPointW>11</EndPointW>
+    <Lift>True</Lift>
   </tarjectory>
 </Tarjectory>

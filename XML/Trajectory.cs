@@ -18,7 +18,7 @@ namespace Test
     /// </summary>
     public static class trajectoryPath
     {
-       public static string trajectParXmlPath;
+        public static string trajectParXmlPath;
     }
 
     /// <summary>
@@ -46,7 +46,7 @@ namespace Test
     /// <summary>
     /// 3轴轨迹类
     /// </summary>
-    public class Trajectory3D:BaseTrejectory2D
+    public class Trajectory3D : BaseTrejectory2D
     {
         private double pointZ;
         /// <summary>
@@ -61,7 +61,7 @@ namespace Test
     /// <summary>
     /// 四轴轨迹类
     /// </summary>
-    public class Trajectory4D :Trajectory3D
+    public class Trajectory4D : Trajectory3D
     {
 
         private double pointW;
@@ -97,6 +97,7 @@ namespace Test
         public string stratPoint;
 
         public Trajectory5D StratPoint = new Trajectory5D();
+        public Point PointStrat;
 
         private string _sort;
         /// <summary>
@@ -112,7 +113,7 @@ namespace Test
         /// </summary>
         [CategoryAttribute("状态"),
              DefaultValueAttribute(3.00)]
-        public double InAOpenTime{ get => _inAOpenTime; set => _inAOpenTime = value; }
+        public double InAOpenTime { get => _inAOpenTime; set => _inAOpenTime = value; }
 
         private double _inACloseTime;
         /// <summary>
@@ -156,15 +157,15 @@ namespace Test
         public bool Open { set => _open = value; get => _open; }
 
         public string Type = "Point";
-
     }
 
     /// <summary>
     /// 线的轨迹类
     /// </summary>
-    public class TrajectoryLine:TrajectoryPoint
+    public class TrajectoryLine : TrajectoryPoint
     {
         public Trajectory5D EndPoint = new Trajectory5D();
+        public Point PointEnd;
 
         [CategoryAttribute("结束点"),
             DefaultValueAttribute("0")]
@@ -173,230 +174,62 @@ namespace Test
         public string Type = "Line";
     }
 
-    public class TrajectoryRound:TrajectoryLine
+    /// <summary>
+    /// 圆的轨迹类
+    /// </summary>
+    public class TrajectoryRound : TrajectoryLine
     {
         public Trajectory5D MidPoint = new Trajectory5D();
-        public double PointCenterX;
-        public double PointCenterY;
-        public double PointEndX;
-        public double PointEndY;
+        public string Type = "Round";
+        public Point PointMid;
         public double RoundR;
-    }
-
-
-
-
-    /// <summary>
-    /// 轨迹的实体类，弃用
-    /// </summary>
-    public class TrajectoryPar
-    {
-        private  string sort;
-        private double startPointX;
-        private double startPointY;
-        private double startPointZ;
-        private  bool startPointU;
-        private  double startPointW;
-        private  double endPointX;
-        private  double endPointY;
-        private  double endPointZ;
-        private  bool endPointU;
-        private  double endPointW;
-        private  double speed;
-        private  double quantity;
-        private  string type;
-        private bool lift;
-        private  bool open;
-        private string startPoint;
-        private string endPoint;
-        private bool saveOnClose;
-        private double inAdvanceOpenCoat;
-        private double inAdvanceCloseCoat;
-        private double delayOpenCoat;
-        private double delayCloseCoat;
-        private double voidSpeed;
-        private double zSpeed;
-        /// <summary>
-        /// z轴速度
-        /// 完成后到安全高度
-        /// 回抹参数？？？
-        /// 还需要添加基本参数，全局参数
-        /// </summary>
-
-
-        [CategoryAttribute("文档设置"),
-            DefaultValueAttribute(true)]
-        public bool SaveOnClose
-        {
-            get { return saveOnClose; }
-            set { saveOnClose = value; }
-        }
-        
-        /// <summary>
-        /// 胶阀的升降
-        /// </summary>
-        [CategoryAttribute("状态"),
-            DefaultValueAttribute(4.00)]
-        public bool Lift { get => lift; set => lift = value; }
-
-        /// <summary>
-        /// 运行中是否开胶
-        /// </summary>
-        /// 默认开启
-        [CategoryAttribute("状态"),
-            DefaultValueAttribute(4.00)]
-        public bool Open { get => open; set => open = value; }
-
-        /// <summary>
-        /// 轨迹开始点的W轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-             DefaultValueAttribute(4)]
-        public double StartPointX { get => startPointX; set => startPointX = value; }
-
-        /// <summary>
-        /// 轨迹开始点的W轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-             DefaultValueAttribute(4)]
-        public double StartPointY { get => startPointY; set => startPointY = value; }
-
-
-        /// <summary>
-        /// 轨迹开始点的W轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-             DefaultValueAttribute(4)]
-        public double StartPointZ { get => startPointZ; set => startPointZ = value; }
-
-        /// <summary>
-        /// 轨迹开始点的U轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-             DefaultValueAttribute(true)]
-        public  bool StartPointU { get => startPointU; set => startPointU = value; }
-        /// <summary>
-        /// 轨迹开始点的W轴坐标
-        /// </summary>
-        [CategoryAttribute("开始点"),
-             DefaultValueAttribute(4)]
-        public  double StartPointW { get => startPointW; set => startPointW = value; }
-        /// <summary>
-        /// 轨迹结束点的X轴坐标
-        /// </summary>
-        [CategoryAttribute("结束点"),
-             DefaultValueAttribute(4)]
-        public  double EndPointX { get => endPointX; set => endPointX = value; }
-        /// <summary>
-        /// 轨迹结束点的Y轴坐标
-        /// </summary>
-        [CategoryAttribute("结束点"),
-             DefaultValueAttribute(4)]
-        public  double EndPointY { get => endPointY; set => endPointY = value; }
-        /// <summary>
-        /// 轨迹结束点的Z轴坐标
-        /// </summary>
-        [CategoryAttribute("结束点"),
-             DefaultValueAttribute(4)]
-        public  double EndPointZ { get => endPointZ; set => endPointZ = value; }
-        /// <summary>
-        /// 轨迹结束点的U轴坐标
-        /// </summary>
-        [CategoryAttribute("结束点"),
-             DefaultValueAttribute(true)]
-        public  bool EndPointU { get => endPointU; set => endPointU = value; }
-        /// <summary>
-        /// 轨迹结束点的W轴坐标
-        /// </summary>
-        [CategoryAttribute("结束点"),
-             DefaultValueAttribute(4)]
-        public  double EndPointW { get => endPointW; set => endPointW = value; }
-        /// <summary>
-        /// 运行该轨道时的速度
-        /// </summary>
-        [CategoryAttribute("行程"),
-            DefaultValueAttribute(100)]
-        public  double Speed { get => speed; set => speed = value; }
-        /// <summary>
-        /// Z轴速度
-        /// </summary>
-        [CategoryAttribute("行程"),
-            DefaultValueAttribute(100)]
-        public double ZSpeed { get => zSpeed; set => zSpeed = value; }
-        /// <summary>
-        /// 运行轨道的胶压
-        /// </summary>
-        [CategoryAttribute("行程"),
-            DefaultValueAttribute(2)]
-        public  double Quantity { get => quantity; set => quantity = value; }
-        /// <summary>
-        /// 轨迹的类型
-        /// </summary>
-        [CategoryAttribute("行程"),
-            DefaultValueAttribute("线")]
-        public  string Type { get => type; set => type = value; }
-
-        /// <summary>
-        /// 轨迹的序号
-        /// </summary>
-        [CategoryAttribute("行程"),
-            DefaultValueAttribute("0")]
-        public string Sort
-        {
-            get { return sort; }
-            set { sort = value; }
-        }
-
-        /// <summary>
-        /// 开始点的字符串
-        /// </summary>
-        public string StartPoint { get => startPoint; set => startPoint = value; }
-        /// <summary>
-        /// 结束点的字符串
-        /// </summary>
-        public string EndPoint {  get => endPoint;set => endPoint = value; }
-        /// <summary>
-        /// 提前关胶
-        /// </summary>
-        [CategoryAttribute("配置"),
-            DefaultValueAttribute("0")]
-        public double InadvanceCloseCoat { get => inAdvanceCloseCoat; set => inAdvanceCloseCoat = value; }
-        /// <summary>
-        /// 提前开胶
-        /// </summary>
-        [CategoryAttribute("配置"),
-            DefaultValueAttribute("0")]
-        public double InAdvanceOpenCoat { get => inAdvanceOpenCoat; set => inAdvanceOpenCoat = value; }
-        /// <summary>
-        /// 关胶延迟
-        /// </summary>
-        [CategoryAttribute("配置"),
-            DefaultValueAttribute("0")]
-        public double DelayOpenCoat { get => delayOpenCoat; set => delayOpenCoat = value;  }
-        /// <summary>
-        /// 开校延迟
-        /// </summary>
-        [CategoryAttribute("配置"),
-            DefaultValueAttribute("0")]
-        public double DelayCloseCoat { get => delayCloseCoat; set => delayCloseCoat = value; }
+        public Point point1;
     }
 
 
     /// <summary>
     /// 处理轨迹方法类
     /// </summary>
-    public class Trajectory {
-        string XMLPath;
+    public class Trajectory
+    {
         XmlDocument doc = new XmlDocument();
         XmlDeclaration xmldecl;
-        TrajectoryPoint trajectoryPoint = new TrajectoryPoint();
-        TrajectoryLine trajectoryLine1 = new TrajectoryLine();
+        string XMLPath;
+
+        /// <summary>
+        /// 在使用下面方法前，先使用此方法Load需要的XML文件
+        /// </summary>
+        /// <param name="xMLPath"></param>
+        public void trajectoryLoaded(string xMLPath)
+        {
+            XMLPath = xMLPath;
+            doc.Load(XMLPath);
+        }
+
+        /// <summary>
+        /// 在修改文件后必须调用此方法对xml文件进行保存
+        /// </summary>
+        /// <returns></returns>
+        public bool trajectorySave()
+        {
+            try
+            {
+                doc.Save(XMLPath);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
         public ObservableCollection<object> collection = new ObservableCollection<object>();
 
         /// <summary>
         /// 创建xml文件
         /// </summary>
-        public bool newTarjectory(string name, string XmlPath)
+        public bool newTarjectory(string name)
         {
             xmldecl = doc.CreateXmlDeclaration("1.0", "utf-8", null);  // 加入XML的声明段落,<?xml version="1.0" encoding="gb2312"?>
             XmlElement xle = doc.CreateElement("Trajectory");    //定义根结点Trajectory
@@ -406,77 +239,14 @@ namespace Test
             return true;
         }
 
-
-        /// <summary>
-        /// 打开一个XML文件并返回一个Trajectorypar类型的集合
-        /// </summary>
-        /// <param name="XMLPath1"></param>
-        /// <returns></returns>
-        public ObservableCollection<TrajectoryPar> OpenTarjectory(string XMLPath1)
-        {
-            XMLPath = XMLPath1;
-            //后期输入打开的文件的地址
-            doc.Load(XMLPath);
-            //找到根节点
-            XmlNode xn = doc.SelectSingleNode("Tarjectory");
-            XmlNodeList xnl = xn.ChildNodes;
-            ObservableCollection<TrajectoryPar> TrajectoryParList = new ObservableCollection<TrajectoryPar>();
-
-            //获取所有子节点
-            foreach (XmlNode xn1 in xnl)
-            {
-                TrajectoryPar trajectoryPar = new TrajectoryPar();
-                
-                XmlElement xe = (XmlElement)xn1;  //将节点转化为元素
-                
-                XmlNodeList xnl0 = xe.ChildNodes; //xe.GetAttribute获得的类型为string，转化为int
-                if (xe.Attributes["Type"].Value == "线")
-                {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StartPointX = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StartPointY = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StartPointZ = double.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StartPointU = bool.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.StartPointW = double.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.Type = xnl0.Item(6).InnerText;
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(7).InnerText);
-                    trajectoryPar.EndPointX = double.Parse(xnl0.Item(8).InnerText);
-                    trajectoryPar.EndPointY = double.Parse(xnl0.Item(9).InnerText);
-                    trajectoryPar.EndPointZ = double.Parse(xnl0.Item(10).InnerText);
-                    trajectoryPar.EndPointU = bool.Parse(xnl0.Item(11).InnerText);
-                    trajectoryPar.EndPointW = double.Parse(xnl0.Item(8).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(13).InnerText);
-                    trajectoryPar.StartPoint = trajectoryPar.StartPointX.ToString() + " " + trajectoryPar.StartPointY.ToString();
-                    trajectoryPar.EndPoint = trajectoryPar.EndPointX.ToString() + " " + trajectoryPar.EndPointY.ToString();
-                    TrajectoryParList.Add(trajectoryPar);
-                }
-                else if (xe.Attributes["Type"].Value == "点")
-                {
-                    trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryPar.StartPointX = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryPar.StartPointY = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryPar.StartPointZ = double.Parse(xnl0.Item(3).InnerText);
-                    trajectoryPar.StartPointU = bool.Parse(xnl0.Item(4).InnerText);
-                    trajectoryPar.StartPointW = double.Parse(xnl0.Item(5).InnerText);
-                    trajectoryPar.Type = xnl0.Item(6).InnerText;
-                    trajectoryPar.Open = bool.Parse(xnl0.Item(7).InnerText);
-                    trajectoryPar.Lift = bool.Parse(xnl0.Item(8).InnerText);
-                    trajectoryPar.StartPoint = trajectoryPar.StartPointX.ToString() + " " + trajectoryPar.StartPointY.ToString();
-                }
-            }
-            return TrajectoryParList;
-        }
-
         /// <summary>
         /// 打开一个XML文件并返回一个TrajectoryLine类型的集合
         /// </summary>
         /// <param name="XMLPath1"></param>
         /// <returns></returns>
-        public ObservableCollection<object> OpenTarjectory2(string XMLPath1)
+        public ObservableCollection<object> OpenTarjectory2()
         {
-            XMLPath = XMLPath1;
-            //后期输入打开的文件的地址
-            doc.Load(XMLPath);
+
             //找到根节点
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             XmlNodeList xnl = xn.ChildNodes;
@@ -485,14 +255,12 @@ namespace Test
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
             {
-                TrajectoryLine trajectoryline = new TrajectoryLine();
-                TrajectoryRound trajectoryRound = new TrajectoryRound();
-                
                 XmlElement xe = (XmlElement)xn1;  //将节点转化为元素
                 XmlNodeList xnl0 = xe.ChildNodes; //xe.GetAttribute获得的类型为string，转化为int
                 string TypeCategory = xe.Attributes["Type"].Value;
-                if (TypeCategory =="线"|| TypeCategory == "Line")
+                if (TypeCategory == "线" || TypeCategory == "Line")
                 {
+                    TrajectoryLine trajectoryline = new TrajectoryLine();
                     trajectoryline.Sort = xe.Attributes["Sort"].Value;
                     trajectoryline.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
                     trajectoryline.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
@@ -512,6 +280,7 @@ namespace Test
                 }
                 else if (TypeCategory == "点")
                 {
+                    TrajectoryPoint trajectoryPoint = new TrajectoryPoint();
                     trajectoryPoint.Sort = xe.Attributes["Sort"].Value;
                     trajectoryPoint.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
                     trajectoryPoint.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
@@ -525,6 +294,7 @@ namespace Test
                 }
                 else if (TypeCategory == "Round")
                 {
+                    TrajectoryRound trajectoryRound = new TrajectoryRound();
                     trajectoryRound.Sort = xe.Attributes["Sort"].Value;
                     trajectoryRound.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
                     trajectoryRound.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
@@ -543,9 +313,14 @@ namespace Test
                     trajectoryRound.MidPoint.PointZ = double.Parse(xnl0.Item(14).InnerText);
                     trajectoryRound.MidPoint.PointU = bool.Parse(xnl0.Item(15).InnerText);
                     trajectoryRound.MidPoint.PointW = double.Parse(xnl0.Item(16).InnerText);
+                    trajectoryRound.PointStrat.X = trajectoryRound.StratPoint.PointX;
+                    trajectoryRound.PointStrat.Y = trajectoryRound.StratPoint.PointY;
+                    trajectoryRound.PointMid.X = trajectoryRound.MidPoint.PointX;
+                    trajectoryRound.PointMid.Y = trajectoryRound.MidPoint.PointY;
+                    trajectoryRound.PointEnd.X = trajectoryRound.EndPoint.PointX;
+                    trajectoryRound.PointEnd.Y = trajectoryRound.EndPoint.PointY;
                     //在此确认圆心，半径
-
-                    TrajectoryParList.Add(trajectoryline);
+                    TrajectoryParList.Add(trajectoryRound);
                 }
             }
             return TrajectoryParList;
@@ -556,11 +331,10 @@ namespace Test
         /// </summary>
         /// <param name="trajectoryLine"></param>
         /// <param name="xmlpath"></param>
-        public bool AddTrajectory(TrajectoryLine trajectoryLine, string xmlpath)
+        public bool AddTrajectory(TrajectoryLine trajectoryLine)
         {
             try
             {
-                doc.Load(xmlpath);                                                     ///  载入文件
                 XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
                 XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
                 int max = 0;
@@ -625,14 +399,118 @@ namespace Test
                 XmlElement xesub12 = doc.CreateElement("Lift");
                 xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
                 xml.AppendChild(xesub12);//添加到<Node>节点中
-                doc.Save(xmlpath);
+                //doc.Save(XMLPath);
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
-            
+
+        }
+
+        /// <summary>
+        /// 圆的添加入XMl文件方法
+        /// </summary>
+        /// <param name="trajectoryLine">导入的圆的名称</param>
+        /// <param name="xmlpath">需要写入的XML位置</param>
+        /// <returns></returns>
+        public bool AddTrajectory(TrajectoryRound trajectoryLine)
+        {
+            try
+            {
+                XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
+                XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
+                int max = 0;
+                foreach (XmlNode item in xnl)
+                {
+                    XmlElement xe = (XmlElement)item;  //将节点转化为元素
+                    if (int.Parse(xe.Attributes["Sort"].Value) > max)
+                        max = int.Parse(xe.Attributes["Sort"].Value);
+                }
+                max += 1;
+
+                XmlElement xml = doc.CreateElement("tarjectory");
+                xml.SetAttribute("Sort", max.ToString());
+                xml.SetAttribute("Type", trajectoryLine.Type);
+                xn.AppendChild(xml);
+
+                XmlElement xesub1 = doc.CreateElement("StartPointX");
+                xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
+                xml.AppendChild(xesub1);// 添加到<Node>节点中
+
+                XmlElement xesub2 = doc.CreateElement("StartPointY");
+                xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
+                xml.AppendChild(xesub2);// 添加到<Node>节点中
+
+                XmlElement xesub3 = doc.CreateElement("StartPointZ");
+                xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
+                xml.AppendChild(xesub3);// 添加到<Node>节点中
+
+                XmlElement xesub4 = doc.CreateElement("StartPointU");
+                xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
+                xml.AppendChild(xesub4);// 添加到<Node>节点中
+
+                XmlElement xesub5 = doc.CreateElement("StartPointW");
+                xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
+                xml.AppendChild(xesub5);// 添加到<Node>节点中
+
+                XmlElement xesub6 = doc.CreateElement("Open");
+                xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
+                xml.AppendChild(xesub6);// 添加到<Node>节点中
+
+                XmlElement xesub7 = doc.CreateElement("EndPointX");
+                xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
+                xml.AppendChild(xesub7);// 添加到<Node>节点中
+
+                XmlElement xesub8 = doc.CreateElement("EndPointY");
+                xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
+                xml.AppendChild(xesub8);// 添加到<Node>节点中
+
+                XmlElement xesub9 = doc.CreateElement("EndPointZ");
+                xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
+                xml.AppendChild(xesub9);// 添加到<Node>节点中
+
+                XmlElement xesub10 = doc.CreateElement("EndPointU");
+                xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
+                xml.AppendChild(xesub10);// 添加到<Node>节点中
+
+                XmlElement xesub11 = doc.CreateElement("EndPointW");
+                xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
+                xml.AppendChild(xesub11);// 添加到<Node>节点中
+
+                XmlElement xesub12 = doc.CreateElement("Lift");
+                xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
+                xml.AppendChild(xesub12);//添加到<Node>节点中
+
+                XmlElement xesub13 = doc.CreateElement("Lift");
+                xesub13.InnerText = trajectoryLine.MidPoint.PointX.ToString();//设置文本节点
+                xml.AppendChild(xesub13);//添加到<Node>节点中
+
+                XmlElement xesub14 = doc.CreateElement("Lift");
+                xesub14.InnerText = trajectoryLine.MidPoint.PointY.ToString();//设置文本节点
+                xml.AppendChild(xesub14);//添加到<Node>节点中
+
+                XmlElement xesub15 = doc.CreateElement("Lift");
+                xesub15.InnerText = trajectoryLine.MidPoint.PointZ.ToString();//设置文本节点
+                xml.AppendChild(xesub15);//添加到<Node>节点中
+
+                XmlElement xesub16 = doc.CreateElement("EndPointU");
+                xesub16.InnerText = trajectoryLine.MidPoint.PointU.ToString();//设置文本节点
+                xml.AppendChild(xesub16);// 添加到<Node>节点中
+
+                XmlElement xesub17 = doc.CreateElement("EndPointW");
+                xesub17.InnerText = trajectoryLine.MidPoint.PointW.ToString();//设置文本节点
+                xml.AppendChild(xesub17);// 添加到<Node>节点中
+
+                //doc.Save(XMLPath);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
         }
 
         /// <summary>
@@ -642,11 +520,8 @@ namespace Test
         /// <param name="sort"></param>
         /// <param name="BatchTrajectoryPar"></param>
         /// <returns></returns>
-        public TrajectoryPar ReviseTrajectory(string xmlpath, int sort, TrajectoryPar BatchTrajectoryPar)
+        public TrajectoryLine ReviseTrajectory(int sort, TrajectoryLine BatchTrajectoryPar)
         {
-            TrajectoryPar trajectoryPar = BatchTrajectoryPar;//将带入的trajectorypar类赋值给trajectoryPar
-            string XMLPath = xmlpath;//将带入的xmlpath赋值给XMLPath
-            doc.Load(XMLPath);//载入xml文件
             XmlNode Tarjectory = doc.SelectSingleNode("Tarjectory");//在xml文件中找到Teajectorypar节点，并将其命名为Tarjectory节点
             XmlNodeList tarjectory = Tarjectory.ChildNodes;//将Teajectorypar节点的的集合命名为trajectory集合
             foreach (XmlNode xn1 in tarjectory)//遍历
@@ -658,78 +533,26 @@ namespace Test
                     foreach (XmlNode nls1 in nls)
                     {
                         XmlElement xe2 = (XmlElement)nls1;
-                        if (xe2.Name == "StartPointX") { xe2.InnerText = BatchTrajectoryPar.StartPointX.ToString(); break; }
-                        if (xe2.Name == "StartPointY") { xe2.InnerText = BatchTrajectoryPar.StartPointY.ToString(); break; }
-                        if (xe2.Name == "StartPointZ") { xe2.InnerText = BatchTrajectoryPar.StartPointZ.ToString(); break; }
-                        if (xe2.Name == "StartPointU") xe2.InnerText = BatchTrajectoryPar.StartPointU.ToString();
-                        if (xe2.Name == "StartPointW") xe2.InnerText = BatchTrajectoryPar.StartPointW.ToString();
+                        if (xe2.Name == "StartPointX") { xe2.InnerText = BatchTrajectoryPar.StratPoint.PointX.ToString(); break; }
+                        if (xe2.Name == "StartPointY") { xe2.InnerText = BatchTrajectoryPar.StratPoint.PointY.ToString(); break; }
+                        if (xe2.Name == "StartPointZ") { xe2.InnerText = BatchTrajectoryPar.StratPoint.PointZ.ToString(); break; }
+                        if (xe2.Name == "StartPointU") xe2.InnerText = BatchTrajectoryPar.StratPoint.PointU.ToString();
+                        if (xe2.Name == "StartPointW") xe2.InnerText = BatchTrajectoryPar.StratPoint.PointW.ToString();
                         if (xe2.Name == "Type") xe2.InnerText = BatchTrajectoryPar.Type.ToString();
                         if (xe2.Name == "Open") xe2.InnerText = BatchTrajectoryPar.Open.ToString();
-                        if (xe2.Name == "EndPointX") xe2.InnerText = BatchTrajectoryPar.EndPointX.ToString();
-                        if (xe2.Name == "EndPointY") xe2.InnerText = BatchTrajectoryPar.EndPointY.ToString();
-                        if (xe2.Name == "EndPointZ") xe2.InnerText = BatchTrajectoryPar.EndPointZ.ToString();
-                        if (xe2.Name == "EndPointU") xe2.InnerText = BatchTrajectoryPar.EndPointU.ToString();
-                        if (xe2.Name == "EndPointW") xe2.InnerText = BatchTrajectoryPar.EndPointW.ToString();
+                        if (xe2.Name == "EndPointX") xe2.InnerText = BatchTrajectoryPar.EndPoint.PointX.ToString();
+                        if (xe2.Name == "EndPointY") xe2.InnerText = BatchTrajectoryPar.EndPoint.PointY.ToString();
+                        if (xe2.Name == "EndPointZ") xe2.InnerText = BatchTrajectoryPar.EndPoint.PointZ.ToString();
+                        if (xe2.Name == "EndPointU") xe2.InnerText = BatchTrajectoryPar.EndPoint.PointU.ToString();
+                        if (xe2.Name == "EndPointW") xe2.InnerText = BatchTrajectoryPar.EndPoint.PointW.ToString();
                         if (xe2.Name == "Lift") xe2.InnerText = BatchTrajectoryPar.Lift.ToString();
                     }
                 }
             }
             doc.Save(XMLPath);
-            return trajectoryPar;
+            return BatchTrajectoryPar;
         }
 
-        /// <summary>
-        /// 打开XML文件，返回trajectory类型的对象
-        /// </summary>
-        /// <param name="XMLPath1"></param>
-        /// <param name="Order"></param>
-        /// <returns></returns>
-        public TrajectoryPar OpenTarjectory(string XMLPath1,int Order)
-        {
-
-            //后期输入打开的文件的地址
-            XMLPath = XMLPath1;
-            doc.Load(XMLPath);
-            //找到根节点
-            XmlNode xn = doc.SelectSingleNode("Tarjectory");
-            //节点集合
-            XmlNodeList xnl = xn.ChildNodes;
-            ObservableCollection<TrajectoryPar> TrajectoryParList = new ObservableCollection<TrajectoryPar>();
-            TrajectoryPar trajectoryPar = new TrajectoryPar();
-            //获取所有子节点
-            foreach (XmlNode xn1 in xnl)
-            {
-                int inOrder = 0;
-                //将节点转化为元素
-                XmlElement xe = (XmlElement)xn1;
-                //xe.GetAttribute获得的类型为string，转化为int
-                XmlNodeList xnl0 = xe.ChildNodes;
-                trajectoryPar.Sort = xe.Attributes["Sort"].Value;
-                trajectoryPar.StartPointX = double.Parse(xnl0.Item(1).InnerText);
-                trajectoryPar.StartPointY = double.Parse(xnl0.Item(2).InnerText);
-                trajectoryPar.StartPointZ = double.Parse(xnl0.Item(3).InnerText);
-                trajectoryPar.StartPointU = bool.Parse(xnl0.Item(4).InnerText);
-                trajectoryPar.StartPointW = double.Parse(xnl0.Item(5).InnerText);
-                trajectoryPar.Type = xnl0.Item(6).InnerText;
-                trajectoryPar.Open = bool.Parse(xnl0.Item(7).InnerText);
-                trajectoryPar.EndPointX = double.Parse(xnl0.Item(8).InnerText);
-                trajectoryPar.EndPointY = double.Parse(xnl0.Item(9).InnerText);
-                trajectoryPar.EndPointZ = double.Parse(xnl0.Item(10).InnerText);
-                trajectoryPar.EndPointU = bool.Parse(xnl0.Item(11).InnerText);
-                trajectoryPar.EndPointW = double.Parse(xnl0.Item(12).InnerText);
-                trajectoryPar.Lift = bool.Parse(xnl0.Item(13).InnerText);
-                trajectoryPar.StartPoint = trajectoryPar.StartPointX.ToString() + " " + trajectoryPar.StartPointY.ToString();
-                trajectoryPar.EndPoint = trajectoryPar.EndPointX.ToString() + " " + trajectoryPar.EndPointY.ToString();
-
-                if (inOrder == Order)
-                {
-                    break;
-                }
-                else
-                    inOrder += 1;
-            }
-            return trajectoryPar;
-        }
 
         /// <summary>
         /// 暂定，暂未修改，需要重新修改
@@ -737,12 +560,8 @@ namespace Test
         /// <param name="XMLPath1"></param>
         /// <param name="Order"></param>
         /// <returns></returns>
-        public void OpenTarjectory2(string XMLPath1, int Order)
+        public void OpenTarjectory2(int Order)
         {
-
-            //后期输入打开的文件的地址
-            XMLPath = XMLPath1;
-            doc.Load(XMLPath);
             //找到根节点
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             //节点集合
@@ -758,25 +577,27 @@ namespace Test
                 XmlNodeList xnl0 = xe.ChildNodes;
                 if (xe.Attributes["Sort"].Value == "线")
                 {
-                    trajectoryLine1.Sort = xe.Attributes["Sort"].Value;
-                    trajectoryLine1.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
-                    trajectoryLine1.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
-                    trajectoryLine1.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
-                    trajectoryLine1.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
-                    trajectoryLine1.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
-                    trajectoryLine1.Open = bool.Parse(xnl0.Item(5).InnerText);
-                    trajectoryLine1.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
-                    trajectoryLine1.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
-                    trajectoryLine1.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
-                    trajectoryLine1.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
-                    trajectoryLine1.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
-                    trajectoryLine1.Lift = bool.Parse(xnl0.Item(11).InnerText);
-                    trajectoryLine1.stratPoint = trajectoryLine1.StratPoint.PointX.ToString() + " " + trajectoryLine1.StratPoint.PointY.ToString();
-                    trajectoryLine1.endPoint = trajectoryLine1.EndPoint.PointX.ToString() + " " + trajectoryLine1.EndPoint.PointY.ToString();
-                    collection.Add(trajectoryLine1);
+                    TrajectoryLine trajectoryLine = new TrajectoryLine();
+                    trajectoryLine.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryLine.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryLine.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryLine.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryLine.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryLine.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryLine.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryLine.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
+                    trajectoryLine.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
+                    trajectoryLine.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
+                    trajectoryLine.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
+                    trajectoryLine.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
+                    trajectoryLine.Lift = bool.Parse(xnl0.Item(11).InnerText);
+                    trajectoryLine.stratPoint = trajectoryLine.StratPoint.PointX.ToString() + " " + trajectoryLine.StratPoint.PointY.ToString();
+                    trajectoryLine.endPoint = trajectoryLine.EndPoint.PointX.ToString() + " " + trajectoryLine.EndPoint.PointY.ToString();
+                    collection.Add(trajectoryLine);
                 }
                 else if (xe.Attributes["Sort"].Value == "点")
                 {
+                    TrajectoryPoint trajectoryPoint = new TrajectoryPoint();
                     trajectoryPoint.Sort = xe.Attributes["Sort"].Value;
                     trajectoryPoint.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
                     trajectoryPoint.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
@@ -786,7 +607,7 @@ namespace Test
                     trajectoryPoint.Open = bool.Parse(xnl0.Item(5).InnerText);
                     trajectoryPoint.Lift = bool.Parse(xnl0.Item(6).InnerText);
                     trajectoryPoint.stratPoint = trajectoryPoint.StratPoint.PointX.ToString() + " " + trajectoryPoint.StratPoint.PointY.ToString();
-                    collection.Add(trajectoryLine1);
+                    collection.Add(trajectoryPoint);
                 }
                 if (inOrder == Order)
                 {
@@ -802,7 +623,7 @@ namespace Test
         /// </summary>
         /// <param name="X">传入软件写入坐标或者canvas坐标</param>
         /// <returns></returns>
-        public double X_PointG_TO_PointC(double X) 
+        public double X_PointG_TO_PointC(double X)
         {
             double truePointX = 500 - X;
             return truePointX;
@@ -818,7 +639,7 @@ namespace Test
             return truePointX;
         }
 
-        public Line trajectoryLine(Trajectory3D trajectory3D1,Trajectory3D trajectory3D2) 
+        public Line trajectoryLine(Trajectory3D trajectory3D1, Trajectory3D trajectory3D2)
         {
             Trajectory3D StartPoint = trajectory3D1;
             Trajectory3D EndPoint = trajectory3D2;
@@ -858,8 +679,8 @@ namespace Test
                 DoubleAnimation scaleAnimation = new DoubleAnimation()
                 {
                     From = from,                                   //起始值
-                    To = from+to,                                     //结束值
-                    
+                    To = from + to,                                     //结束值
+
                     EasingFunction = easeFunction,                    //缓动函数
                     Duration = new TimeSpan(0, 0, 0, 1, 0)  //动画播放时间
                 };
@@ -899,7 +720,7 @@ namespace Test
         /// </summary>
         /// <param name="elem"></param>
         /// <param name="to"></param>
-        public  void FloatElement(UIElement elem, double to)
+        public void FloatElement(UIElement elem, double to)
         {
             lock (elem)
             {
@@ -909,7 +730,7 @@ namespace Test
                 }
                 DoubleAnimation opacity = new DoubleAnimation()
                 {
-                    To = to-0.01,
+                    To = to - 0.01,
                     Duration = new TimeSpan(0, 0, 0, 1, 0)
                 };
                 EventHandler handler = null;
