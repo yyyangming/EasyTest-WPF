@@ -60,6 +60,8 @@ namespace Test
         TrajectoryLine trajectoryLine = new TrajectoryLine();
         Trajectory trajectory = new Trajectory();
         TrajectoryRound trajectoryRound = new TrajectoryRound();
+        Point pointStrat,pointMid,pointEnd;
+        CircleData circleData = new CircleData();
         Line line1 = new Line();
 
         Path x_Arrow = new Path();//x轴箭头,绘制圆所需要的path
@@ -76,6 +78,9 @@ namespace Test
         /// 滑块的X轴
         /// </summary>
         static double nLeft;
+
+
+
 
 
 
@@ -624,19 +629,63 @@ namespace Test
         public int r = 50;
         Brush PenColor = Brushes.Black;
 
+
+        /// <summary>
+        /// 圆的结构体，point为圆心，radius为半径
+        /// </summary>
+        public struct CircleData
+        {
+            public Point center;
+            public int radius;
+            public Point StratPoint;
+        }
+
+        /// <summary>
+        ///  输入三个点，返回经过三个圆的结构体
+        /// </summary>
+        /// <param name="pt1"></param>
+        /// <param name="pt2"></param>
+        /// <param name="pt3"></param>
+        /// <returns></returns>
+        public void findCircle1(Point pt1, Point pt2, Point pt3)
+        {
+            //定义两个点，分别表示两个中点
+            Point midpt1 = new Point(); Point midpt2 = new Point();
+            //求出点1和点2的中点
+            midpt1.X = (pt2.X + pt1.X) / 2;
+            midpt1.Y = (pt2.Y + pt1.Y) / 2;
+            //求出点3和点1的中点
+            midpt2.X = (pt3.X + pt1.X) / 2;
+            midpt2.Y = (pt3.Y + pt1.Y) / 2;
+            //求出分别与直线pt1pt2，pt1pt3垂直的直线的斜率
+            double k1 = -(pt2.X - pt1.X) / (pt2.Y - pt1.Y);
+            double k2 = -(pt3.X - pt1.X) / (pt3.Y - pt1.Y);
+            //然后求出过中点midpt1，斜率为k1的直线方程（既pt1pt2的中垂线）：y - midPt1.y = k1( x - midPt1.x)
+            //以及过中点midpt2，斜率为k2的直线方程（既pt1pt3的中垂线）：y - midPt2.y = k2( x - midPt2.x)
+            //定义一个圆的数据的结构体对象CD
+            CircleData CD = new CircleData();
+            //连立两条中垂线方程求解交点得到：
+            CD.center.X = (midpt2.Y - midpt1.Y - k2 * midpt2.X + k1 * midpt1.X) / (k1 - k2);
+            CD.center.Y = midpt1.Y + k1 * (midpt2.Y - midpt1.Y - k2 * midpt2.X + k2 * midpt1.X) / (k1 - k2);
+            //用圆心和其中一个点求距离得到半径：
+            CD.radius = (int)(Math.Sqrt((CD.center.X - pt1.X) * (CD.center.X - pt1.X) + (CD.center.Y - pt1.Y) * (CD.center.Y - pt1.Y)));
+            CD.StratPoint.X = CD.center.X - CD.radius;
+            CD.StratPoint.Y = CD.center.Y - CD.radius;
+            circleData = CD;
+        }
+
+
         /// <summary>
         /// 绘制圆，暂时固定了圆心和半径,起点设置为StratPoint,终点到时候设置为stratpoint-1
         /// </summary>
         public void DrawTrajectoryRound()
         {
-            Path x_Arrow = new Path();//x轴箭头
-
+            Path x_Arrow = new Path();
             x_Arrow.Stroke = PenColor;
-
             PathFigure x_Figure = new PathFigure();
             x_Figure.IsClosed = true;
-            x_Figure.StartPoint = new Point(x, y);//路径的起点
-            x_Figure.Segments.Add(new ArcSegment(new Point(x, y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Clockwise, true));
+            x_Figure.StartPoint = circleData.StratPoint;//路径的起点
+            x_Figure.Segments.Add(new ArcSegment(new Point(circleData.StratPoint.X+1, circleData.StratPoint.Y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Clockwise, false));
             PathGeometry x_Geometry = new PathGeometry();
             x_Geometry.Figures.Add(x_Figure);
             x_Arrow.Data = x_Geometry;
@@ -746,7 +795,6 @@ namespace Test
                     // 获取文件名
                     XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
                     trajectory.trajectoryLoaded(XMLPath);
-                    //trajectoryPars = trajectory.OpenTarjectory(XMLPath);
                     trajectoryPars = trajectory.OpenTarjectory2();
 
                     //获取轨迹数量
@@ -763,7 +811,14 @@ namespace Test
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
                             trajectoryRound  = (TrajectoryRound)item;
-                            //此处缺少CreateTrajectoryRound的方法，后边补充
+                            pointStrat.X = trajectoryRound.StratPoint.PointX;
+                            pointStrat.Y = trajectoryRound.StratPoint.PointY;
+                            pointMid.X = trajectoryRound.MidPoint.PointX;
+                            pointMid.Y = trajectoryRound.MidPoint.PointY;
+                            pointEnd.X = trajectoryRound.EndPoint.PointX;
+                            pointEnd.Y = trajectoryRound.EndPoint.PointY;
+                            findCircle1(pointStrat,pointMid,pointEnd);
+                            createTrajectory(trajectoryRound); 
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
                     }
