@@ -333,6 +333,7 @@
                                 <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0" MouseWheel="ChangeBig_Click">
                                     <Thumb Name="key" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
                DragDelta="Thumb_DragDelta"/>
+                                    <Canvas Name="CanvasDraw" Background="Transparent"></Canvas>
                                 </Canvas>
 
                             </Grid>

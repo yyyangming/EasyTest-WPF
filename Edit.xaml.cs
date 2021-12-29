@@ -621,12 +621,9 @@ namespace Test
             line.Y1 = trajectoryLine.StratPoint.PointY;
             line.X2 = trajectoryLine.EndPoint.PointX;
             line.Y2 = trajectoryLine.EndPoint.PointY;
-            this.chartCanvas.Children.Add(line);
+            CanvasDraw.Children.Add(line);
         }
 
-        public double x = 100;
-        public double y = 100;
-        public int r = 50;
         Brush PenColor = Brushes.Black;
 
 
@@ -670,28 +667,43 @@ namespace Test
             //用圆心和其中一个点求距离得到半径：
             CD.radius = (int)(Math.Sqrt((CD.center.X - pt1.X) * (CD.center.X - pt1.X) + (CD.center.Y - pt1.Y) * (CD.center.Y - pt1.Y)));
             CD.StratPoint.X = CD.center.X - CD.radius;
-            CD.StratPoint.Y = CD.center.Y - CD.radius;
+            CD.StratPoint.Y = CD.center.Y;
             circleData = CD;
         }
 
 
         /// <summary>
-        /// 绘制圆，暂时固定了圆心和半径,起点设置为StratPoint,终点到时候设置为stratpoint-1
+        /// 绘制圆，首先绘制上半圆，再绘制下半圆，两个半圆不闭合，就完成了整个圆的绘制
         /// </summary>
         public void DrawTrajectoryRound()
         {
+            //绘制上半圆
             Path x_Arrow = new Path();
             x_Arrow.Stroke = PenColor;
             PathFigure x_Figure = new PathFigure();
-            x_Figure.IsClosed = true;
+            x_Figure.IsClosed = false;
             x_Figure.StartPoint = circleData.StratPoint;//路径的起点
-            x_Figure.Segments.Add(new ArcSegment(new Point(circleData.StratPoint.X+1, circleData.StratPoint.Y + r / 2), new Size(2 * r, 2 * r), 1, true, SweepDirection.Clockwise, false));
+            Point RoundEndPoint = new Point(circleData.StratPoint.X+circleData.radius*2,circleData.StratPoint.Y);
+            x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, true, SweepDirection.Clockwise, true));
             PathGeometry x_Geometry = new PathGeometry();
             x_Geometry.Figures.Add(x_Figure);
             x_Arrow.Data = x_Geometry;
-            chartCanvas.Children.Add(x_Arrow);
-        }
+            CanvasDraw.Children.Add(x_Arrow);
 
+
+            //绘制下半圆
+            Path Y_Arrow = new Path();
+            Y_Arrow.Stroke = PenColor;
+            PathFigure Y_Figure = new PathFigure();
+            Y_Figure.IsClosed = false;
+            Y_Figure.StartPoint = circleData.StratPoint;//路径的起点
+            Point RoundEndPoint2 = new Point(circleData.StratPoint.X + circleData.radius * 2, circleData.StratPoint.Y);
+            Y_Figure.Segments.Add(new ArcSegment(RoundEndPoint2, new Size(circleData.radius, circleData.radius), 0, true, SweepDirection.Counterclockwise, true));
+            PathGeometry Y_Geometry = new PathGeometry();
+            Y_Geometry.Figures.Add(Y_Figure);
+            Y_Arrow.Data = Y_Geometry;
+            CanvasDraw.Children.Add(Y_Arrow);
+        }
         #endregion
 
         public bool result;
@@ -780,6 +792,8 @@ namespace Test
             dlg.Filter = "轨迹文件(.XML)|*.XML";
             // 显示窗口
             Nullable<bool> result = dlg.ShowDialog();
+            CanvasDraw.Children.Clear();
+            
             CanvasTrajectory.Children.Clear();
 
             Thread thread = new Thread(ThreadUpdateUI);
@@ -817,7 +831,7 @@ namespace Test
                             pointMid.Y = trajectoryRound.MidPoint.PointY;
                             pointEnd.X = trajectoryRound.EndPoint.PointX;
                             pointEnd.Y = trajectoryRound.EndPoint.PointY;
-                            findCircle1(pointStrat,pointMid,pointEnd);
+                            findCircle1(pointMid,pointStrat,pointEnd);
                             createTrajectory(trajectoryRound); 
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
