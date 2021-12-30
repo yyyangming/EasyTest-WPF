@@ -342,9 +342,8 @@ namespace Test
 
 
 
+
             
-            //propertyGrid = proPertytrajectory.OpenTarjectory2(xmlPathProperty, 3);
-            OptionsPropertyGrid.SelectedObject = propertyGrid;
 
             #region 数据库调用，暂时不用，改用调用xml文件
             //string insertsql = "";
@@ -683,20 +682,15 @@ namespace Test
                 //else
                 //    trajectoryArc.Superior = false;
 
+                //判断优劣弧，(OA.X-OB.X)*(OA.Y-OB.Y)是否大于0，大于则是劣弧
                 if ((CD.StratPoint.X-CD.center.X)*(trajectoryArc.EndPoint.PointX-CD.center.X)+(CD.StratPoint.Y-CD.center.Y)*(trajectoryArc.EndPoint.PointY-CD.center.Y)>0)
+                {
+                    trajectoryArc.Superior = false;
+                }
+                else if ((CD.StratPoint.X - CD.center.X) * (trajectoryArc.EndPoint.PointX - CD.center.X) + (CD.StratPoint.Y - CD.center.Y) * (trajectoryArc.EndPoint.PointY - CD.center.Y) <= 0)
                 {
                     trajectoryArc.Superior = true;
                 }
-                else
-                    trajectoryArc.Superior = false;
-
-
-                //if (trajectoryArc.ForWardRatation == true)
-                //{
-                //    trajectoryArc.Superior = true;
-                //}
-                //else
-                //    trajectoryArc.Superior = false;
             }
             circleData = CD;
         }
@@ -902,6 +896,11 @@ namespace Test
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
                     }
+                    propertyGrid = trajectory.OpenTarjectory2(1);
+                    if (propertyGrid.GetType().ToString() == "Test.TrajectoryLine")
+                    {
+                        OptionsPropertyGrid.SelectedObject = propertyGrid;
+                    } 
                 }
             }
         }
@@ -1143,7 +1142,6 @@ namespace Test
 
         private void CoatKeyMove_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
             if (e.Key == Key.Left)
             {
                 Canvas.SetLeft(key, nLeft -= 1);
@@ -1160,6 +1158,7 @@ namespace Test
             {
                 Canvas.SetTop(key, nTop += 1);
             }
+
 
             //不应该是增加距离，而是应该缩小移动距离，缩小响应时间
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Shift && e.Key == Key.Left)
