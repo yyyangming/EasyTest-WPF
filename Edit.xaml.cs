@@ -57,17 +57,17 @@ namespace Test
         /// <summary>
         /// 实例化所需要用的类
         /// </summary>
-        TrajectoryLine trajectoryLine = new TrajectoryLine();
         Trajectory trajectory = new Trajectory();
+        TrajectoryLine trajectoryLine = new TrajectoryLine();
         TrajectoryRound trajectoryRound = new TrajectoryRound();
+        TrajectoryArc trajectoryArc = new TrajectoryArc();
         Point pointStrat,pointMid,pointEnd;
         CircleData circleData = new CircleData();
         Line line1 = new Line();
 
         Path x_Arrow = new Path();//x轴箭头,绘制圆所需要的path
 
-        //string XMLPath = "XMLPath";
-        string XMLPath;
+        public string XMLPath;//文件路径
         public int Checksort = 0;
 
         /// <summary>
@@ -340,17 +340,8 @@ namespace Test
             config.ReadFile();
             zhengxian.IsChecked = Config.Check_Time;
 
-            // 属性表赋值,暂未完成修改
-            Trajectory proPertytrajectory = new Trajectory();
-            foreach (var item in proPertytrajectory.collection)
-            {
-                string typeName = item.GetType().ToString();
-                if (true)
-                {
 
-                }
-            }
-            string xmlPathProperty = "E:\\desket\\GitDevelop\\MySelf\\EasyCoat-WPF\\XML\\Test.xml";
+
             
             //propertyGrid = proPertytrajectory.OpenTarjectory2(xmlPathProperty, 3);
             OptionsPropertyGrid.SelectedObject = propertyGrid;
@@ -644,7 +635,7 @@ namespace Test
         /// <param name="pt2"></param>
         /// <param name="pt3"></param>
         /// <returns></returns>
-        public void findCircle1(Point pt1, Point pt2, Point pt3)
+        public void findCircle1(Point pt1, Point pt2, Point pt3,bool A)
         {
             //定义两个点，分别表示两个中点
             Point midpt1 = new Point(); Point midpt2 = new Point();
@@ -666,8 +657,47 @@ namespace Test
             CD.center.Y = midpt1.Y + k1 * (midpt2.Y - midpt1.Y - k2 * midpt2.X + k2 * midpt1.X) / (k1 - k2);
             //用圆心和其中一个点求距离得到半径：
             CD.radius = (int)(Math.Sqrt((CD.center.X - pt1.X) * (CD.center.X - pt1.X) + (CD.center.Y - pt1.Y) * (CD.center.Y - pt1.Y)));
-            CD.StratPoint.X = CD.center.X - CD.radius;
-            CD.StratPoint.Y = CD.center.Y;
+            if (A == true)
+            {
+                CD.StratPoint.X = CD.center.X - CD.radius;
+                CD.StratPoint.Y = CD.center.Y;
+            }
+            else if (A == false)
+            {
+                CD.StratPoint.X = trajectoryArc.StratPoint.PointX;
+                CD.StratPoint.Y = trajectoryArc.StratPoint.PointY;
+
+
+                //const double M_PI = 3.1415926535897;
+                //double ma_x = CD.StratPoint.X - CD.center.X;
+                //double ma_y = CD.StratPoint.Y - CD.center.Y;
+                //double mb_x = trajectoryArc.EndPoint.PointX - CD.center.X;
+                //double mb_y = trajectoryArc.EndPoint.PointY - CD.center.Y;
+                //double v1 = (ma_x * mb_x) + (ma_y * mb_y);
+                //double ma_val = Math.Sqrt(ma_x * ma_x + ma_y * ma_y);
+                //double mb_val = Math.Sqrt(mb_x * mb_x + mb_y * mb_y);
+                //double cosM = v1 / (ma_val * mb_val);
+                //double angleAMB = Math.Acos(cosM) * 180 / M_PI;
+                //if (angleAMB<180)
+                //    trajectoryArc.Superior = true;
+                //else
+                //    trajectoryArc.Superior = false;
+
+                if ((CD.StratPoint.X-CD.center.X)*(trajectoryArc.EndPoint.PointX-CD.center.X)+(CD.StratPoint.Y-CD.center.Y)*(trajectoryArc.EndPoint.PointY-CD.center.Y)>0)
+                {
+                    trajectoryArc.Superior = true;
+                }
+                else
+                    trajectoryArc.Superior = false;
+
+
+                //if (trajectoryArc.ForWardRatation == true)
+                //{
+                //    trajectoryArc.Superior = true;
+                //}
+                //else
+                //    trajectoryArc.Superior = false;
+            }
             circleData = CD;
         }
 
@@ -690,7 +720,6 @@ namespace Test
             x_Arrow.Data = x_Geometry;
             CanvasDraw.Children.Add(x_Arrow);
 
-
             //绘制下半圆
             Path Y_Arrow = new Path();
             Y_Arrow.Stroke = PenColor;
@@ -704,12 +733,35 @@ namespace Test
             Y_Arrow.Data = Y_Geometry;
             CanvasDraw.Children.Add(Y_Arrow);
         }
+
+        /// <summary>
+        /// 绘制弧
+        /// </summary>
+        public void DrawTrajectoryArc()
+        {
+            Path x_Arrow = new Path();
+            x_Arrow.Stroke = PenColor;
+            PathFigure x_Figure = new PathFigure();
+            x_Figure.IsClosed = false;
+            x_Figure.StartPoint = circleData.StratPoint;//路径的起点
+            Point RoundEndPoint = new Point(trajectoryArc.EndPoint.PointX, trajectoryArc.EndPoint.PointY);
+            if (trajectoryArc.ForWardRatation == true)
+            {
+                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, trajectoryArc.Superior, SweepDirection.Clockwise, true));
+            }
+            else
+                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, trajectoryArc.Superior, SweepDirection.Counterclockwise, true));
+
+            PathGeometry x_Geometry = new PathGeometry();
+            x_Geometry.Figures.Add(x_Figure);
+            x_Arrow.Data = x_Geometry;
+            CanvasDraw.Children.Add(x_Arrow);
+         }
         #endregion
 
         public bool result;
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
-            
             trajectoryLine.EndPoint.PointW = 11.0;
             trajectoryLine.Lift = true;
             if (XMLPath != null)
@@ -814,14 +866,14 @@ namespace Test
                     //获取轨迹数量
                     foreach (var item in trajectoryPars)
                     {
-                        if ((item.GetType()).ToString() == "Test.TrajectoryLine")
+                        if (item.GetType().ToString() == "Test.TrajectoryLine")
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
                             trajectoryLine = (TrajectoryLine)item;
                             createTrajectory(trajectoryLine);
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
-                        if ((item.GetType()).ToString() == "Test.TrajectoryRound")
+                        if (item.GetType().ToString() == "Test.TrajectoryRound")
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
                             trajectoryRound  = (TrajectoryRound)item;
@@ -831,8 +883,22 @@ namespace Test
                             pointMid.Y = trajectoryRound.MidPoint.PointY;
                             pointEnd.X = trajectoryRound.EndPoint.PointX;
                             pointEnd.Y = trajectoryRound.EndPoint.PointY;
-                            findCircle1(pointMid,pointStrat,pointEnd);
+                            findCircle1(pointMid,pointStrat,pointEnd,true);
                             createTrajectory(trajectoryRound); 
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if (item.GetType().ToString() == "Test.TrajectoryArc")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                            trajectoryArc = (TrajectoryArc)item;
+                            pointStrat.X = trajectoryArc.StratPoint.PointX;
+                            pointStrat.Y = trajectoryArc.StratPoint.PointY;
+                            pointMid.X = trajectoryArc.MidPoint.PointX;
+                            pointMid.Y = trajectoryArc.MidPoint.PointY;
+                            pointEnd.X = trajectoryArc.EndPoint.PointX;
+                            pointEnd.Y = trajectoryArc.EndPoint.PointY;
+                            findCircle1(pointMid, pointStrat, pointEnd,false);
+                            createTrajectory(trajectoryArc);
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
                     }
@@ -873,6 +939,7 @@ namespace Test
 
                 CanvasTrajectory.Children.Add(CB);
                 CB.FontSize = 7;
+                //CB.Name = trajectoryPar.Sort;
 
                 string openCoat;
                 if (trajectoryPar.Open == true)
@@ -888,7 +955,8 @@ namespace Test
                 }
                 else
                     CoatLift = "降";
-                CB.Content = trajectoryPar.Sort + ": " + trajectoryPar.Type + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString()+" "+trajectoryPar.StratPoint.PointY.ToString() + " 终" + trajectoryPar.EndPoint.PointX.ToString()+" "+trajectoryPar.EndPoint.PointY.ToString() ;
+                CB.Content = trajectoryPar.Sort + ": " + " 线 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString()+" "+trajectoryPar.StratPoint.PointY.ToString() + " 终" + trajectoryPar.EndPoint.PointX.ToString()+" "+trajectoryPar.EndPoint.PointY.ToString() ;
+                CB.ToolTip = CB.Content;
             });
         }
 
@@ -908,6 +976,7 @@ namespace Test
 
                 CanvasTrajectory.Children.Add(CB);
                 CB.FontSize = 7;
+                //CB.Name = trajectoryPar.Sort;
 
                 string openCoat;
                 if (trajectoryPar.Open == true)
@@ -923,7 +992,43 @@ namespace Test
                 }
                 else
                     CoatLift = "降";
-                CB.Content = trajectoryPar.Sort + ": " + trajectoryPar.Type + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + " 终" + trajectoryPar.EndPoint.PointX.ToString() + " " + trajectoryPar.EndPoint.PointY.ToString();
+                CB.Content = trajectoryPar.Sort + ": " + " 圆 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针："+trajectoryRound.ForWardRatation.ToString();
+                CB.ToolTip = CB.Content;
+            });
+        }
+        private void createTrajectory(TrajectoryArc trajectoryPar)
+        {
+            //加入Dispatcher管理线程工作项队列
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                double height = 20;
+                double width = this.CanvasTrajectory.ActualWidth - 2;
+                System.Windows.Controls.CheckBox CB = new System.Windows.Controls.CheckBox()
+                {
+                    Height = height,
+                    Width = width
+                };
+
+                CanvasTrajectory.Children.Add(CB);
+                CB.FontSize = 7;
+                //CB.Name = trajectoryPar.Sort;
+
+                string openCoat;
+                if (trajectoryPar.Open == true)
+                {
+                    openCoat = "开";
+                }
+                else
+                    openCoat = "关";
+                string CoatLift;
+                if (trajectoryPar.Lift == true)
+                {
+                    CoatLift = "升";
+                }
+                else
+                    CoatLift = "降";
+                CB.Content = trajectoryPar.Sort + ": " + " 弧 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针：" + trajectoryRound.ForWardRatation.ToString();
+                CB.ToolTip = CB.Content;
             });
         }
 

@@ -181,9 +181,17 @@ namespace Test
     {
         public Trajectory5D MidPoint = new Trajectory5D();
         public string Type = "Round";
+        public bool ForWardRatation;
+
+
         public Point PointMid;
         public double RoundR;
         public Point point1;
+    }
+
+    public class TrajectoryArc : TrajectoryRound
+    {
+        public bool Superior;
     }
 
 
@@ -224,7 +232,6 @@ namespace Test
             }
         }
 
-        public ObservableCollection<object> collection = new ObservableCollection<object>();
 
         /// <summary>
         /// 创建xml文件
@@ -319,8 +326,52 @@ namespace Test
                     trajectoryRound.PointMid.Y = trajectoryRound.MidPoint.PointY;
                     trajectoryRound.PointEnd.X = trajectoryRound.EndPoint.PointX;
                     trajectoryRound.PointEnd.Y = trajectoryRound.EndPoint.PointY;
+                    //借助三点向量成绩，判断他是正向还是反向
+                    if ((trajectoryRound.MidPoint.PointX - trajectoryRound.StratPoint.PointX) * (trajectoryRound.EndPoint.PointY - trajectoryRound.MidPoint.PointY) - (trajectoryRound.MidPoint.PointY - trajectoryRound.StratPoint.PointY) * (trajectoryRound.EndPoint.PointX - trajectoryRound.MidPoint.PointX) > 0)
+                    {
+                        trajectoryRound.ForWardRatation = true;
+                    }
+                    else
+                        trajectoryRound.ForWardRatation = false;
                     //在此确认圆心，半径
                     TrajectoryParList.Add(trajectoryRound);
+                }
+                else if (TypeCategory == "Arc")
+                {
+                    TrajectoryArc trajectoryArc = new TrajectoryArc();
+                    trajectoryArc.Sort = xe.Attributes["Sort"].Value;
+                    trajectoryArc.StratPoint.PointX = double.Parse(xnl0.Item(0).InnerText);
+                    trajectoryArc.StratPoint.PointY = double.Parse(xnl0.Item(1).InnerText);
+                    trajectoryArc.StratPoint.PointZ = double.Parse(xnl0.Item(2).InnerText);
+                    trajectoryArc.StratPoint.PointU = bool.Parse(xnl0.Item(3).InnerText);
+                    trajectoryArc.StratPoint.PointW = double.Parse(xnl0.Item(4).InnerText);
+                    trajectoryArc.Open = bool.Parse(xnl0.Item(5).InnerText);
+                    trajectoryArc.EndPoint.PointX = double.Parse(xnl0.Item(6).InnerText);
+                    trajectoryArc.EndPoint.PointY = double.Parse(xnl0.Item(7).InnerText);
+                    trajectoryArc.EndPoint.PointZ = double.Parse(xnl0.Item(8).InnerText);
+                    trajectoryArc.EndPoint.PointU = bool.Parse(xnl0.Item(9).InnerText);
+                    trajectoryArc.EndPoint.PointW = double.Parse(xnl0.Item(10).InnerText);
+                    trajectoryArc.Lift = bool.Parse(xnl0.Item(11).InnerText);
+                    trajectoryArc.MidPoint.PointX = double.Parse(xnl0.Item(12).InnerText);
+                    trajectoryArc.MidPoint.PointY = double.Parse(xnl0.Item(13).InnerText);
+                    trajectoryArc.MidPoint.PointZ = double.Parse(xnl0.Item(14).InnerText);
+                    trajectoryArc.MidPoint.PointU = bool.Parse(xnl0.Item(15).InnerText);
+                    trajectoryArc.MidPoint.PointW = double.Parse(xnl0.Item(16).InnerText);
+                    trajectoryArc.PointStrat.X = trajectoryArc.StratPoint.PointX;
+                    trajectoryArc.PointStrat.Y = trajectoryArc.StratPoint.PointY;
+                    trajectoryArc.PointMid.X = trajectoryArc.MidPoint.PointX;
+                    trajectoryArc.PointMid.Y = trajectoryArc.MidPoint.PointY;
+                    trajectoryArc.PointEnd.X = trajectoryArc.EndPoint.PointX;
+                    trajectoryArc.PointEnd.Y = trajectoryArc.EndPoint.PointY;
+                    //借助三点向量成绩，判断他是正向还是反向
+                    if ((trajectoryArc.MidPoint.PointX - trajectoryArc.StratPoint.PointX) * (trajectoryArc.EndPoint.PointY - trajectoryArc.MidPoint.PointY) - (trajectoryArc.MidPoint.PointY - trajectoryArc.StratPoint.PointY) * (trajectoryArc.EndPoint.PointX - trajectoryArc.MidPoint.PointX) > 0)
+                    {
+                        trajectoryArc.ForWardRatation = true;
+                    }
+                    else
+                        trajectoryArc.ForWardRatation = false;
+                    //在此确认圆心，半径
+                    TrajectoryParList.Add(trajectoryArc);
                 }
             }
             return TrajectoryParList;
@@ -554,6 +605,8 @@ namespace Test
         }
 
 
+
+        ObservableCollection<object> collection = new ObservableCollection<object>();
         /// <summary>
         /// 暂定，暂未修改，需要重新修改
         /// </summary>
