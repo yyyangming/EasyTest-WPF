@@ -29,8 +29,8 @@
     <Lift>True</Lift>
   </tarjectory>
   <tarjectory Sort="3" Type="Line">
-    <StartPointX>362</StartPointX>
-    <StartPointY>203</StartPointY>
+    <StartPointX>361</StartPointX>
+    <StartPointY>202</StartPointY>
     <StartPointZ>0</StartPointZ>
     <StartPointU>False</StartPointU>
     <StartPointW>0</StartPointW>
@@ -43,8 +43,8 @@
     <Lift>True</Lift>
   </tarjectory>
   <tarjectory Sort="4" Type="Line">
-    <StartPointX>54</StartPointX>
-    <StartPointY>53</StartPointY>
+    <StartPointX>55.22</StartPointX>
+    <StartPointY>54.22</StartPointY>
     <StartPointZ>0</StartPointZ>
     <StartPointU>False</StartPointU>
     <StartPointW>0</StartPointW>

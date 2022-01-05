@@ -267,7 +267,7 @@
                                         <Button Content="相机"  />
                                         <Separator></Separator>
                                         <Button Content="清除故障"  />
-                                        <Button Content="静音"  />
+                                        <Button Name="TestN" Content="静音"  />
                                     </ToolBar>
                                 </ToolBarTray>
                             </Viewbox>
@@ -329,10 +329,10 @@
             <!--<Button></Button>-->
             <Border Width="135" Height="230" Margin="40,310,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
                      BorderBrush="Black" BorderThickness="1">
-                <WrapPanel Width="132" Height="260">
+                <WrapPanel Width="132" Height="230">
                     <WrapPanel Height="200">
                         <WindowsFormsHost HorizontalAlignment="Left" Margin="-1,0,-1,0" x:Name="windowsFormsHost1" VerticalAlignment="Top"  Padding="0 0 0 0">
-                            <my:PropertyGrid x:Name="OptionsPropertyGrid" HelpVisible="False" ToolbarVisible="False">
+                            <my:PropertyGrid x:Name="OptionsPropertyGrid" HelpVisible="False" ToolbarVisible="False" PropertyValueChanged="OptionsPropertyGrid_PropertyValueChanged" >
                             </my:PropertyGrid>
                         </WindowsFormsHost>
                         <!--<DataGrid  FontSize="10" Name="DATA_GRID" ItemsSource="{Binding}"  AutoGenerateColumns="False" Margin="0 -5 0 0 " Padding="-10 10 -10 0 "   Width="auto" VerticalScrollBarVisibility="Hidden" Loaded="DataGrid_Loaded">
@@ -357,7 +357,7 @@
                         </DataGrid>-->
                     </WrapPanel>
                     <Button FontSize="8" Margin="30 6 0 0" Padding="0" Content="结束" Height="20" Width="30"/>
-                    <Button FontSize="8" Margin="20 6 0 0" Padding="0" Content="确认" Height="20" Width="30" Click="trajectoryBatch_Click"/>
+                    <Button FontSize="8" Margin="20 6 0 0" Padding="0" Content="确认" Height="20" Width="30" Click="Porperty_Click" />
 
 
 
@@ -379,14 +379,13 @@
 
 
             <Border  BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="334" 
-                    Margin="388,110,0,0" VerticalAlignment="Top" Width="512">
-                <Grid Margin="0,0,0,0" HorizontalAlignment ="Center" Width="510" Height="367">
+                    Margin="388,110,0,0" VerticalAlignment="Top" Width="498">
+                <Grid Margin="0,0,0,0">
                     <TabControl Margin="0,0,0,0">
                         <TabItem Header="轨迹">
                             <Grid Margin="0,0,0,0" Background="Black">
                                 <Canvas Name="chartCanvas" Background="Wheat" Margin="0,0,0,0" MouseWheel="ChangeBig_Click">
-                                    <Thumb Name="key" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}"
-               DragDelta="Thumb_DragDelta" KeyDown="CoatKeyMove_KeyDown"/>
+                                    <Thumb Name="key" Canvas.Top="0" Canvas.Left="0" Width="5" Height="5" Template="{StaticResource ct}" DragDelta="Thumb_DragDelta" KeyDown="CoatKeyMove_KeyDown"/>
                                     <Canvas Name="CanvasDraw" Background="Transparent"></Canvas>
                                 </Canvas>
 
@@ -418,7 +417,7 @@
             </Border>
             <Viewbox HorizontalAlignment="Left" Height="287" Margin="5,111,0,0" VerticalAlignment="Top" Width="32">
                 <ToolBarTray Orientation="Vertical" Background="White" Margin="0">
-                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Background="White" Width="45" Padding="0">
+                    <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False" Background="White" Width="58" Padding="0">
                         <ToggleButton Name="orderPoint" Content="点"  Click="orderPoint_click" IsChecked="False" ToolTip="做一个点" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}">
                         </ToggleButton>
                         <ToggleButton Name="orderString" Content="线" Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}" Click="orderString_click" IsChecked="False" ToolTip="做一个线" Cursor="Hand"/>
@@ -441,6 +440,7 @@
                         <Button ToolTip="到W轴安全位置" ToolBar.OverflowMode="AsNeeded" Content="{materialDesign:PackIcon Kind=AlphaWBoxOutline}" Padding="5"/>
                         <Button Content="S" FontSize="16" Click="btnGetStratPoint_Click"></Button>
                         <Button Content="E" FontSize="16" Click="btnGetEndPoint_Click"></Button>
+                        <Button Content="O" FontSize="16" Click="trajectoryBatch_Click"></Button>
                     </ToolBar>
                 </ToolBarTray>
             </Viewbox>
