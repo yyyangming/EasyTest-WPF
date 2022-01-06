@@ -17,13 +17,11 @@ namespace Test
     {
         public static string trajectParXmlPath;
     }
-
     /// <summary>
     /// 两轴轨迹类
     /// </summary>
     public class BaseTrejectory2D
     {
-        FileBase fileBase = new FileBase();
         private double pointX;
         private double pointY;
         /// <summary>
@@ -31,6 +29,7 @@ namespace Test
         /// </summary>
         [CategoryAttribute("状态"),
               DefaultValueAttribute(0.00)]
+
         public double PointX { get => pointX; set => pointX = value; }
         /// <summary>
         /// Y轴坐标
@@ -252,6 +251,7 @@ namespace Test
         XmlDocument doc = new XmlDocument();
         XmlDeclaration xmldecl;
         string XMLPath;
+        ObservableCollection<object> TrajectoryParList = new ObservableCollection<object>();
 
         /// <summary>
         /// 在使用下面方法前，先使用此方法Load需要的XML文件
@@ -276,7 +276,6 @@ namespace Test
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
@@ -295,7 +294,7 @@ namespace Test
         }
 
         /// <summary>
-        /// 打开一个XML文件并返回一个TrajectoryLine类型的集合
+        /// 打开一个XML文件并返回一个Object类型的集合
         /// </summary>
         /// <param name="XMLPath1"></param>
         /// <returns></returns>
@@ -305,7 +304,7 @@ namespace Test
             //找到根节点
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             XmlNodeList xnl = xn.ChildNodes;
-            ObservableCollection<object> TrajectoryParList = new ObservableCollection<object>();
+            
 
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
@@ -425,6 +424,242 @@ namespace Test
             return TrajectoryParList;
         }
 
+        public void writeXmlFile(TrajectoryLine trajectoryLine)
+        {
+            XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
+
+
+        }
+
+        /// <summary>
+        /// 在指定节点添加序列号为指定数字的线的基类，注意需要使用save方法才能保存到文件中
+        /// </summary>
+        /// <param name="trajectoryLine">需要保存的线的类</param>
+        /// <param name="Sort">在文件中的序号</param>
+        /// <param name="xmlNode">指定的节点</param>
+        public void AddLine(TrajectoryLine trajectoryLine,int Sort, XmlNode xmlNode) 
+        {
+            XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
+            xml.SetAttribute("Sort", Sort.ToString());
+            xml.SetAttribute("Type", trajectoryLine.Type);
+
+            XmlElement xesub1 = doc.CreateElement("StartPointX");
+            xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub1);// 添加到<Node>节点中
+
+            XmlElement xesub2 = doc.CreateElement("StartPointY");
+            xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub2);// 添加到<Node>节点中
+
+            XmlElement xesub3 = doc.CreateElement("StartPointZ");
+            xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub3);// 添加到<Node>节点中
+
+            XmlElement xesub4 = doc.CreateElement("StartPointU");
+            xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub4);// 添加到<Node>节点中
+
+            XmlElement xesub5 = doc.CreateElement("StartPointW");
+            xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub5);// 添加到<Node>节点中
+
+            XmlElement xesub6 = doc.CreateElement("Open");
+            xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
+            xml.AppendChild(xesub6);// 添加到<Node>节点中
+
+            XmlElement xesub7 = doc.CreateElement("EndPointX");
+            xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub7);// 添加到<Node>节点中
+
+            XmlElement xesub8 = doc.CreateElement("EndPointY");
+            xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub8);// 添加到<Node>节点中
+
+            XmlElement xesub9 = doc.CreateElement("EndPointZ");
+            xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub9);// 添加到<Node>节点中
+
+            XmlElement xesub10 = doc.CreateElement("EndPointU");
+            xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub10);// 添加到<Node>节点中
+
+            XmlElement xesub11 = doc.CreateElement("EndPointW");
+            xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub11);// 添加到<Node>节点中
+
+
+            XmlElement xesub12 = doc.CreateElement("Lift");
+            xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
+            xml.AppendChild(xesub12);//添加到<Node>节点中
+            xmlNode.AppendChild(xml);
+        }
+
+        /// <summary>
+        /// 在指定节点添加序列号为指定数字的圆的基类，注意需要使用save方法才能保存到文件中
+        /// </summary>
+        /// <param name="trajectoryLine">需要保存的线的类</param>
+        /// <param name="Sort">在文件中的序号</param>
+        /// <param name="xmlNode">指定的节点</param>
+        public void AddRound(TrajectoryRound trajectoryLine, int Sort, XmlNode xmlNode) 
+        {
+            XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
+            xml.SetAttribute("Sort", Sort.ToString());
+            xml.SetAttribute("Type", trajectoryLine.Type);
+
+            XmlElement xesub1 = doc.CreateElement("StartPointX");
+            xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub1);// 添加到<Node>节点中
+
+            XmlElement xesub2 = doc.CreateElement("StartPointY");
+            xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub2);// 添加到<Node>节点中
+
+            XmlElement xesub3 = doc.CreateElement("StartPointZ");
+            xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub3);// 添加到<Node>节点中
+
+            XmlElement xesub4 = doc.CreateElement("StartPointU");
+            xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub4);// 添加到<Node>节点中
+
+            XmlElement xesub5 = doc.CreateElement("StartPointW");
+            xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub5);// 添加到<Node>节点中
+
+            XmlElement xesub6 = doc.CreateElement("Open");
+            xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
+            xml.AppendChild(xesub6);// 添加到<Node>节点中
+
+            XmlElement xesub7 = doc.CreateElement("EndPointX");
+            xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub7);// 添加到<Node>节点中
+
+            XmlElement xesub8 = doc.CreateElement("EndPointY");
+            xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub8);// 添加到<Node>节点中
+
+            XmlElement xesub9 = doc.CreateElement("EndPointZ");
+            xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub9);// 添加到<Node>节点中
+
+            XmlElement xesub10 = doc.CreateElement("EndPointU");
+            xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub10);// 添加到<Node>节点中
+
+            XmlElement xesub11 = doc.CreateElement("EndPointW");
+            xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub11);// 添加到<Node>节点中
+
+            XmlElement xesub12 = doc.CreateElement("Lift");
+            xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
+            xml.AppendChild(xesub12);//添加到<Node>节点中
+
+            XmlElement xesub13 = doc.CreateElement("MidPointX");
+            xesub13.InnerText = trajectoryLine.MidPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub13);//添加到<Node>节点中
+
+            XmlElement xesub14 = doc.CreateElement("MidPointY");
+            xesub14.InnerText = trajectoryLine.MidPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub14);//添加到<Node>节点中
+
+            XmlElement xesub15 = doc.CreateElement("MidPointZ");
+            xesub15.InnerText = trajectoryLine.MidPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub15);//添加到<Node>节点中
+
+            XmlElement xesub16 = doc.CreateElement("MidPointU");
+            xesub16.InnerText = trajectoryLine.MidPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub16);// 添加到<Node>节点中
+
+            XmlElement xesub17 = doc.CreateElement("MidPointW");
+            xesub17.InnerText = trajectoryLine.MidPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub17);// 添加到<Node>节点中
+
+            xmlNode.AppendChild(xml);
+        }
+
+        /// <summary>
+        /// 在指定节点添加序列号为指定数字的弧的基类，注意需要使用save方法才能保存到文件中
+        /// </summary>
+        /// <param name="trajectoryLine">需要保存的弧的类</param>
+        /// <param name="Sort">在文件中的序号</param>
+        /// <param name="xmlNode">指定的节点</param>
+        public void AddArc(TrajectoryArc trajectoryLine, int Sort, XmlNode xmlNode)
+        {
+            XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
+            xml.SetAttribute("Sort", Sort.ToString());
+            xml.SetAttribute("Type", trajectoryLine.Type);
+
+            XmlElement xesub1 = doc.CreateElement("StartPointX");
+            xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub1);// 添加到<Node>节点中
+
+            XmlElement xesub2 = doc.CreateElement("StartPointY");
+            xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub2);// 添加到<Node>节点中
+
+            XmlElement xesub3 = doc.CreateElement("StartPointZ");
+            xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub3);// 添加到<Node>节点中
+
+            XmlElement xesub4 = doc.CreateElement("StartPointU");
+            xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub4);// 添加到<Node>节点中
+
+            XmlElement xesub5 = doc.CreateElement("StartPointW");
+            xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub5);// 添加到<Node>节点中
+
+            XmlElement xesub6 = doc.CreateElement("Open");
+            xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
+            xml.AppendChild(xesub6);// 添加到<Node>节点中
+
+            XmlElement xesub7 = doc.CreateElement("EndPointX");
+            xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub7);// 添加到<Node>节点中
+
+            XmlElement xesub8 = doc.CreateElement("EndPointY");
+            xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub8);// 添加到<Node>节点中
+
+            XmlElement xesub9 = doc.CreateElement("EndPointZ");
+            xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub9);// 添加到<Node>节点中
+
+            XmlElement xesub10 = doc.CreateElement("EndPointU");
+            xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub10);// 添加到<Node>节点中
+
+            XmlElement xesub11 = doc.CreateElement("EndPointW");
+            xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub11);// 添加到<Node>节点中
+
+            XmlElement xesub12 = doc.CreateElement("Lift");
+            xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
+            xml.AppendChild(xesub12);//添加到<Node>节点中
+
+            XmlElement xesub13 = doc.CreateElement("MidPointX");
+            xesub13.InnerText = trajectoryLine.MidPoint.PointX.ToString();//设置文本节点
+            xml.AppendChild(xesub13);//添加到<Node>节点中
+
+            XmlElement xesub14 = doc.CreateElement("MidPointY");
+            xesub14.InnerText = trajectoryLine.MidPoint.PointY.ToString();//设置文本节点
+            xml.AppendChild(xesub14);//添加到<Node>节点中
+
+            XmlElement xesub15 = doc.CreateElement("MidPointZ");
+            xesub15.InnerText = trajectoryLine.MidPoint.PointZ.ToString();//设置文本节点
+            xml.AppendChild(xesub15);//添加到<Node>节点中
+
+            XmlElement xesub16 = doc.CreateElement("MidPointU");
+            xesub16.InnerText = trajectoryLine.MidPoint.PointU.ToString();//设置文本节点
+            xml.AppendChild(xesub16);// 添加到<Node>节点中
+
+            XmlElement xesub17 = doc.CreateElement("MidPointW");
+            xesub17.InnerText = trajectoryLine.MidPoint.PointW.ToString();//设置文本节点
+            xml.AppendChild(xesub17);// 添加到<Node>节点中
+
+            xmlNode.AppendChild(xml);
+        }
+
         /// <summary>
         /// 添加XML文件:线
         /// </summary>
@@ -445,59 +680,7 @@ namespace Test
                 }
                 max += 1;
 
-                XmlElement xml = doc.CreateElement("tarjectory");
-                xml.SetAttribute("Sort", max.ToString());
-                xml.SetAttribute("Type", trajectoryLine.Type);
-                xn.AppendChild(xml);
-
-                XmlElement xesub1 = doc.CreateElement("StartPointX");
-                xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
-                xml.AppendChild(xesub1);// 添加到<Node>节点中
-
-                XmlElement xesub2 = doc.CreateElement("StartPointY");
-                xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
-                xml.AppendChild(xesub2);// 添加到<Node>节点中
-
-                XmlElement xesub3 = doc.CreateElement("StartPointZ");
-                xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
-                xml.AppendChild(xesub3);// 添加到<Node>节点中
-
-                XmlElement xesub4 = doc.CreateElement("StartPointU");
-                xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
-                xml.AppendChild(xesub4);// 添加到<Node>节点中
-
-                XmlElement xesub5 = doc.CreateElement("StartPointW");
-                xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
-                xml.AppendChild(xesub5);// 添加到<Node>节点中
-
-                XmlElement xesub6 = doc.CreateElement("Open");
-                xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
-                xml.AppendChild(xesub6);// 添加到<Node>节点中
-
-                XmlElement xesub7 = doc.CreateElement("EndPointX");
-                xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
-                xml.AppendChild(xesub7);// 添加到<Node>节点中
-
-                XmlElement xesub8 = doc.CreateElement("EndPointY");
-                xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
-                xml.AppendChild(xesub8);// 添加到<Node>节点中
-
-                XmlElement xesub9 = doc.CreateElement("EndPointZ");
-                xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
-                xml.AppendChild(xesub9);// 添加到<Node>节点中
-
-                XmlElement xesub10 = doc.CreateElement("EndPointU");
-                xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
-                xml.AppendChild(xesub10);// 添加到<Node>节点中
-
-                XmlElement xesub11 = doc.CreateElement("EndPointW");
-                xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
-                xml.AppendChild(xesub11);// 添加到<Node>节点中
-
-
-                XmlElement xesub12 = doc.CreateElement("Lift");
-                xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
-                xml.AppendChild(xesub12);//添加到<Node>节点中
+                AddLine(trajectoryLine,max, xn);
                 //doc.Save(XMLPath);
                 return true;
             }
@@ -529,89 +712,48 @@ namespace Test
                         max = int.Parse(xe.Attributes["Sort"].Value);
                 }
                 max += 1;
-
-                XmlElement xml = doc.CreateElement("tarjectory");
-                xml.SetAttribute("Sort", max.ToString());
-                xml.SetAttribute("Type", trajectoryLine.Type);
-                xn.AppendChild(xml);
-
-                XmlElement xesub1 = doc.CreateElement("StartPointX");
-                xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
-                xml.AppendChild(xesub1);// 添加到<Node>节点中
-
-                XmlElement xesub2 = doc.CreateElement("StartPointY");
-                xesub2.InnerText = trajectoryLine.StratPoint.PointY.ToString();//设置文本节点
-                xml.AppendChild(xesub2);// 添加到<Node>节点中
-
-                XmlElement xesub3 = doc.CreateElement("StartPointZ");
-                xesub3.InnerText = trajectoryLine.StratPoint.PointZ.ToString();//设置文本节点
-                xml.AppendChild(xesub3);// 添加到<Node>节点中
-
-                XmlElement xesub4 = doc.CreateElement("StartPointU");
-                xesub4.InnerText = trajectoryLine.StratPoint.PointU.ToString();//设置文本节点
-                xml.AppendChild(xesub4);// 添加到<Node>节点中
-
-                XmlElement xesub5 = doc.CreateElement("StartPointW");
-                xesub5.InnerText = trajectoryLine.StratPoint.PointW.ToString();//设置文本节点
-                xml.AppendChild(xesub5);// 添加到<Node>节点中
-
-                XmlElement xesub6 = doc.CreateElement("Open");
-                xesub6.InnerText = trajectoryLine.Open.ToString();//设置文本节点
-                xml.AppendChild(xesub6);// 添加到<Node>节点中
-
-                XmlElement xesub7 = doc.CreateElement("EndPointX");
-                xesub7.InnerText = trajectoryLine.EndPoint.PointX.ToString();//设置文本节点
-                xml.AppendChild(xesub7);// 添加到<Node>节点中
-
-                XmlElement xesub8 = doc.CreateElement("EndPointY");
-                xesub8.InnerText = trajectoryLine.EndPoint.PointY.ToString();//设置文本节点
-                xml.AppendChild(xesub8);// 添加到<Node>节点中
-
-                XmlElement xesub9 = doc.CreateElement("EndPointZ");
-                xesub9.InnerText = trajectoryLine.EndPoint.PointZ.ToString();//设置文本节点
-                xml.AppendChild(xesub9);// 添加到<Node>节点中
-
-                XmlElement xesub10 = doc.CreateElement("EndPointU");
-                xesub10.InnerText = trajectoryLine.EndPoint.PointU.ToString();//设置文本节点
-                xml.AppendChild(xesub10);// 添加到<Node>节点中
-
-                XmlElement xesub11 = doc.CreateElement("EndPointW");
-                xesub11.InnerText = trajectoryLine.EndPoint.PointW.ToString();//设置文本节点
-                xml.AppendChild(xesub11);// 添加到<Node>节点中
-
-                XmlElement xesub12 = doc.CreateElement("Lift");
-                xesub12.InnerText = trajectoryLine.Lift.ToString();//设置文本节点
-                xml.AppendChild(xesub12);//添加到<Node>节点中
-
-                XmlElement xesub13 = doc.CreateElement("Lift");
-                xesub13.InnerText = trajectoryLine.MidPoint.PointX.ToString();//设置文本节点
-                xml.AppendChild(xesub13);//添加到<Node>节点中
-
-                XmlElement xesub14 = doc.CreateElement("Lift");
-                xesub14.InnerText = trajectoryLine.MidPoint.PointY.ToString();//设置文本节点
-                xml.AppendChild(xesub14);//添加到<Node>节点中
-
-                XmlElement xesub15 = doc.CreateElement("Lift");
-                xesub15.InnerText = trajectoryLine.MidPoint.PointZ.ToString();//设置文本节点
-                xml.AppendChild(xesub15);//添加到<Node>节点中
-
-                XmlElement xesub16 = doc.CreateElement("EndPointU");
-                xesub16.InnerText = trajectoryLine.MidPoint.PointU.ToString();//设置文本节点
-                xml.AppendChild(xesub16);// 添加到<Node>节点中
-
-                XmlElement xesub17 = doc.CreateElement("EndPointW");
-                xesub17.InnerText = trajectoryLine.MidPoint.PointW.ToString();//设置文本节点
-                xml.AppendChild(xesub17);// 添加到<Node>节点中
-
-                //doc.Save(XMLPath);
+                AddRound(trajectoryLine,max,xn);
                 return true;
             }
             catch (Exception)
             {
                 return false;
             }
-
         }
+
+
+
+
+        /// <summary>
+        /// 添加XMl文件:弧
+        /// </summary>
+        /// <param name="trajectoryLine">导入的圆的名称</param>
+        /// <param name="xmlpath">需要写入的XML位置</param>
+        /// <returns></returns>
+        public bool AddTrajectory(TrajectoryArc trajectoryLine)
+        {
+            try
+            {
+                XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
+                XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
+                int max = 0;
+                foreach (XmlNode item in xnl)
+                {
+                    XmlElement xe = (XmlElement)item;  //将节点转化为元素
+                    if (int.Parse(xe.Attributes["Sort"].Value) > max)
+                        max = int.Parse(xe.Attributes["Sort"].Value);
+                }
+                max += 1;
+                AddArc(trajectoryLine,max,xn);
+                
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// 修改XML文件:线
@@ -643,33 +785,53 @@ namespace Test
                     nls.Item(10).InnerText = trajectoryLine.EndPoint.PointW.ToString();
                     nls.Item(11).InnerText = trajectoryLine.Lift.ToString();
                     xle.SetAttribute("Type", trajectoryLine.Type.ToString()); 
-
-
-                    //foreach (XmlNode nls1 in nls)
-                    //{
-                    //    XmlElement xe2 = (XmlElement)nls1;
-                    //    if (xe2.Name == "StartPointX")  xe2.InnerText = trajectoryLine.StratPoint.PointX.ToString(); 
-                    //    if (xe2.Name == "StartPointY") xe2.InnerText = trajectoryLine.StratPoint.PointY.ToString(); 
-                    //    if (xe2.Name == "StartPointZ") xe2.InnerText = trajectoryLine.StratPoint.PointZ.ToString(); 
-                    //    if (xe2.Name == "StartPointU") xe2.InnerText = trajectoryLine.StratPoint.PointU.ToString();
-                    //    if (xe2.Name == "StartPointW") xe2.InnerText = trajectoryLine.StratPoint.PointW.ToString();
-                    //    if (xe2.Name == "Type") xe2.InnerText = trajectoryLine.Type.ToString();
-                    //    if (xe2.Name == "Open") xe2.InnerText = trajectoryLine.Open.ToString();
-                    //    if (xe2.Name == "EndPointX") xe2.InnerText = trajectoryLine.EndPoint.PointX.ToString();
-                    //    if (xe2.Name == "EndPointY") xe2.InnerText = trajectoryLine.EndPoint.PointY.ToString();
-                    //    if (xe2.Name == "EndPointZ") xe2.InnerText = trajectoryLine.EndPoint.PointZ.ToString();
-                    //    if (xe2.Name == "EndPointU") xe2.InnerText = trajectoryLine.EndPoint.PointU.ToString();
-                    //    if (xe2.Name == "EndPointW") xe2.InnerText = trajectoryLine.EndPoint.PointW.ToString();
-                    //    if (xe2.Name == "Lift") xe2.InnerText = trajectoryLine.Lift.ToString();
-                    //}
                 }
                 doc.Save(XMLPath);
             }
             return trajectoryLine;
         }
 
-        public void ReviseTrajectory2()
-        { }
+        public void SaveTrojectory2() 
+        {
+
+        }
+
+
+        public void ReviseTrajectory2(ObservableCollection<object> TrajectoryPars)
+        {
+            XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
+            xn.RemoveAll();
+            int Sort = 1;
+            TrajectoryPoint trajectoryPointWrite = new TrajectoryPoint();
+            TrajectoryLine trajectoryLineWrite = new TrajectoryLine();
+            TrajectoryRound trajectoryRoundWrite = new TrajectoryRound();
+            TrajectoryArc trajectoryArcWrite = new TrajectoryArc();
+            ///遍历传进来的参数中的数据，准备写入
+            foreach (var item in TrajectoryPars)
+            {
+                if (item.GetType().ToString() == "Test.TrajectoryPoint")
+                {
+                    trajectoryPointWrite = (TrajectoryPoint)item;
+                    
+                }
+                if (item.GetType().ToString() == "Test.TrajectoryLine")
+                {
+                    trajectoryLineWrite = (TrajectoryLine)item;
+                    AddLine(trajectoryLineWrite, Sort++, xn);
+                }
+                if (item.GetType().ToString() == "Test.TrajectoryRound")
+                {
+                    trajectoryRoundWrite = (TrajectoryRound)item;
+                    AddRound(trajectoryRoundWrite, Sort++, xn);
+                }
+                if (item.GetType().ToString() == "Test.TrajectoryArc")
+                {
+                    trajectoryArcWrite = (TrajectoryArc)item;
+                    AddArc(trajectoryArcWrite,Sort++,xn);
+                }
+            }
+
+        }
 
         ObservableCollection<object> collection = new ObservableCollection<object>();
         /// <summary>
@@ -877,6 +1039,6 @@ namespace Test
             }
         }
 
-
     }
+
 }

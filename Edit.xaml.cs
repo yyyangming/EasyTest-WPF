@@ -36,7 +36,6 @@ namespace Test
 
 
         Config config = new Config();
-        object propertyGrid = new object();
         SaveFileDialog saveFile = new SaveFileDialog();
         // 创建打开文件夹
         Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -56,14 +55,10 @@ namespace Test
         TrajectoryArc trajectoryArc = new TrajectoryArc();
         Point pointStrat,pointMid,pointEnd;
         CircleData circleData = new CircleData();
-        Line line1 = new Line();
-
-        Path x_Arrow = new Path();//x轴箭头,绘制圆所需要的path
 
         public string XMLPath;//文件路径
         public int Checksort = 0;
 
-        System.Collections.Hashtable Ht = new System.Collections.Hashtable();
 
         /// <summary>
         /// 滑块的Y
@@ -103,14 +98,18 @@ namespace Test
             Path y_axisArrow = new Path();//y轴箭头
             x_axisArrow.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             y_axisArrow.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            PathFigure x_axisFigure = new PathFigure();
-            x_axisFigure.IsClosed = true;
-            x_axisFigure.StartPoint = new Point(500, 16); // 路径的起点
+            PathFigure x_axisFigure = new PathFigure
+            {
+                IsClosed = true,
+                StartPoint = new Point(500, 16) // 路径的起点
+            };
             x_axisFigure.Segments.Add(new LineSegment(new Point(500, 24), false)); //第2个点
             x_axisFigure.Segments.Add(new LineSegment(new Point(510, 20), false)); //第3个点
-            PathFigure y_axisFigure = new PathFigure();
-            y_axisFigure.IsClosed = true;
-            y_axisFigure.StartPoint = new Point(16, 330);                          //路径的起点
+            PathFigure y_axisFigure = new PathFigure
+            {
+                IsClosed = true,
+                StartPoint = new Point(16, 330)                          //路径的起点
+            };
             y_axisFigure.Segments.Add(new LineSegment(new Point(24, 330), false)); //第2个点
             y_axisFigure.Segments.Add(new LineSegment(new Point(20, 340), false)); //第3个点
             PathGeometry x_axisGeometry = new PathGeometry();
@@ -132,23 +131,27 @@ namespace Test
         {
             for (int i = 1; i < 13; i++)
             {
-                Line x_scale = new Line(); //主x轴标尺
-                x_scale.StrokeEndLineCap = PenLineCap.Triangle;
-                x_scale.StrokeThickness = 1;
-                x_scale.Stroke = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-                x_scale.X1 = 20 + i * 45;
+                Line x_scale = new Line
+                {
+                    StrokeEndLineCap = PenLineCap.Triangle,
+                    StrokeThickness = 1,
+                    Stroke = new SolidColorBrush(Color.FromRgb(0, 0, 0)),
+                    X1 = 20 + i * 45
+                }; //主x轴标尺
                 x_scale.X2 = x_scale.X1;
                 x_scale.Y1 = 30;
                 x_scale.StrokeThickness = 2;
                 x_scale.Y2 = x_scale.Y1 - 10;
                 this.chartCanvas.Children.Add(x_scale);
-                Line x_in = new Line();//x轴轴辅助标尺
-                x_in.Stroke = System.Windows.Media.Brushes.LightGray;
-                x_in.StrokeThickness = 0.5;
-                x_in.X1 = 20 + i * 45;
-                x_in.Y1 = 310;
-                x_in.X2 = 20 + i * 45;
-                x_in.Y2 = 30;
+                Line x_in = new Line
+                {
+                    Stroke = System.Windows.Media.Brushes.LightGray,
+                    StrokeThickness = 0.5,
+                    X1 = 20 + i * 45,
+                    Y1 = 310,
+                    X2 = 20 + i * 45,
+                    Y2 = 30
+                };//x轴轴辅助标尺
                 this.chartCanvas.Children.Add(x_in);
             }
             for (int j = 0; j < 30; j++)
@@ -604,13 +607,15 @@ namespace Test
         /// </summary>
         public void DrawTrajectoryLine()
         {
-            Line line = new Line();
-            line.Stroke = Brushes.Black;
-            line.StrokeThickness = 1;
-            line.X1 = trajectoryLine.StratPoint.PointX;
-            line.Y1 = trajectoryLine.StratPoint.PointY;
-            line.X2 = trajectoryLine.EndPoint.PointX;
-            line.Y2 = trajectoryLine.EndPoint.PointY;
+            Line line = new Line
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                X1 = trajectoryLine.StratPoint.PointX,
+                Y1 = trajectoryLine.StratPoint.PointY,
+                X2 = trajectoryLine.EndPoint.PointX,
+                Y2 = trajectoryLine.EndPoint.PointY
+            };
             CanvasDraw.Children.Add(line);
         }
 
@@ -761,8 +766,8 @@ namespace Test
         /// <param name="e"></param>
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
-            trajectoryLine.EndPoint.PointW = 11.0;
-            trajectoryLine.Lift = true;
+            trajectoryLine.EndPoint.PointW = 20.0;
+            trajectoryLine.Lift = false;
             if (XMLPath != null)
             {
 
@@ -779,12 +784,9 @@ namespace Test
                     else if (orderString.IsChecked == true)
                     {
                         trajectoryLine.Type = "Line";
-
-                        trajectoryLine.Sort = MaxSort.ToString();
                         result = trajectory.AddTrajectory(trajectoryLine);
                         Thread thread = new Thread(ThreadUpdateUILine);
                         thread.Start();
-
                     }
                     else if (orderArc.IsChecked == true)
                     {
@@ -793,8 +795,6 @@ namespace Test
                     else if (orderRound.IsChecked == true)
                     {
                         trajectoryLine.Type = "Round";
-
-                        trajectoryLine.Sort = MaxSort.ToString();
                         result = trajectory.AddTrajectory(trajectoryLine);
                         Thread thread = new Thread(ThreadUpdateUIRound);
                         thread.Start();
@@ -869,7 +869,6 @@ namespace Test
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
                             trajectoryLine = (TrajectoryLine)item;
-                            Ht.Add(i++, trajectoryLine);
                             createTrajectory(trajectoryLine);
                             this.Dispatcher.Invoke(updateUIDelegate);
                         }
@@ -877,7 +876,6 @@ namespace Test
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
                             trajectoryRound  = (TrajectoryRound)item;
-                            Ht.Add(i++, trajectoryRound);
                             pointStrat.X = trajectoryRound.StratPoint.PointX;
                             pointStrat.Y = trajectoryRound.StratPoint.PointY;
                             pointMid.X = trajectoryRound.MidPoint.PointX;
@@ -892,7 +890,6 @@ namespace Test
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
                             trajectoryArc = (TrajectoryArc)item;
-                            Ht.Add(i++, trajectoryArc);
                             pointStrat.X = trajectoryArc.StratPoint.PointX;
                             pointStrat.Y = trajectoryArc.StratPoint.PointY;
                             pointMid.X = trajectoryArc.MidPoint.PointX;
@@ -932,15 +929,52 @@ namespace Test
         /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string Name = OptionsPropertyGrid.SelectedObject.GetType().ToString();
+            bool? result = trajectory.trajectorySave();
+            MessageBox.Show(result.ToString());
+            
+        }
+
+        /// <summary>
+        /// 属性框确认按钮的事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Porperty_Click(object sender, RoutedEventArgs e)
+        {
             if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryLine")
             {
                 trajectoryLine = (TrajectoryLine)OptionsPropertyGrid.SelectedObject;
-                trajectory.ReviseTrajectory(int.Parse(trajectoryLine.Sort), trajectoryLine);
+
+                for (int i = 0; i < trajectoryPars.Count; i++)
+                {
+                    if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryLine")
+                    {
+                        TrajectoryLine trajectory = (TrajectoryLine)trajectoryPars[i];
+                        if (trajectory.Sort == trajectoryLine.Sort)
+                        {
+                            trajectoryPars[i] = trajectoryLine;
+                            break;
+                        }
+                    }
+                }
             }
 
-            bool? result = trajectory.trajectorySave();
-            MessageBox.Show(result.ToString());
+            if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryRound")
+            {
+                trajectoryRound = (TrajectoryRound)OptionsPropertyGrid.SelectedObject;
+                for (int i = 0; i < trajectoryPars.Count; i++)
+                {
+                    if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryRound")
+                    {
+                        TrajectoryRound trajectory = (TrajectoryRound)trajectoryPars[i];
+                        if (trajectory.Sort == trajectoryRound.Sort)
+                        {
+                            trajectoryPars[i] = trajectoryRound;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -1070,18 +1104,18 @@ namespace Test
         void CheckBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var d = sender as System.Windows.Controls.CheckBox;
-            int sort = (int)((d.Height - 20)*1000)+1;
-            if (Ht[sort].GetType().ToString() == "Test.TrajectoryArc")
+            int sort = (int)((d.Height - 20)*1000);
+            if (trajectoryPars[sort].GetType().ToString() == "Test.TrajectoryArc")
             {
-                OptionsPropertyGrid.SelectedObject = (TrajectoryArc)Ht[sort];
+                OptionsPropertyGrid.SelectedObject = (TrajectoryArc)trajectoryPars[sort];
             }
-            if (Ht[sort].GetType().ToString() == "Test.TrajectoryLine")
+            if (trajectoryPars[sort].GetType().ToString() == "Test.TrajectoryLine")
             {
-                OptionsPropertyGrid.SelectedObject = (TrajectoryLine)Ht[sort];
+                OptionsPropertyGrid.SelectedObject = (TrajectoryLine)trajectoryPars[sort];
             }
-            if (Ht[sort].GetType().ToString() == "Test.TrajectoryRound")
+            if (trajectoryPars[sort].GetType().ToString() == "Test.TrajectoryRound")
             {
-                OptionsPropertyGrid.SelectedObject = (TrajectoryRound)Ht[sort];
+                OptionsPropertyGrid.SelectedObject = (TrajectoryRound)trajectoryPars[sort];
             }
         }
 
@@ -1186,15 +1220,7 @@ namespace Test
                 MessageBox.Show("请选择命令类型或指定文件");
         }
 
-        /// <summary>
-        /// 属性框确认按钮的事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Porperty_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
+        
 
         /// <summary>
         /// 当属性值发生改变时执行的方法
