@@ -372,8 +372,22 @@
             <Border BorderBrush="Black" BorderThickness="1"  Height="195" Width="135" Margin="40,110,0,0" 
                     VerticalAlignment="Top" HorizontalAlignment="Left">
                 <WrapPanel>
-                    <Border/>
-
+                    <Viewbox >
+                    <TreeView MinWidth="220">
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Width="16" Height="16" Margin="-30 0 0 0">
+                                            <Canvas Width="24" Height="24">
+                                                
+                                            </Canvas>
+                                        </Viewbox>
+                                        <TextBlock Margin="0 0 0 0" Text="Apple" Padding="0 0 0 0" />
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+                            </TreeViewItem>
+                        </TreeView>
+                    </Viewbox>
                 </WrapPanel>
             </Border>
 

@@ -505,6 +505,9 @@ namespace Test
                 orderString.IsChecked = false;
                 orderArc.IsChecked = false;
                 orderRound.IsChecked = false;
+
+                StratTrue = null;
+                EndTrue = null;
             }
         }
 
@@ -515,6 +518,9 @@ namespace Test
                 orderPoint.IsChecked = false;
                 orderArc.IsChecked = false;
                 orderRound.IsChecked = false;
+
+                StratTrue = null;
+                EndTrue = null;
             }
         }
 
@@ -525,6 +531,9 @@ namespace Test
                 orderPoint.IsChecked = false;
                 orderString.IsChecked = false;
                 orderRound.IsChecked = false;
+
+                StratTrue = null;
+                EndTrue = null;
             }
         }
 
@@ -535,6 +544,9 @@ namespace Test
                 orderPoint.IsChecked = false;
                 orderString.IsChecked = false;
                 orderArc.IsChecked = false;
+
+                StratTrue = null;
+                EndTrue = null;
             }
         }
         #endregion
@@ -766,69 +778,80 @@ namespace Test
         /// <param name="e"></param>
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
+            // 设置默认值
             trajectoryLine.EndPoint.PointW = 20.0;
+            trajectoryRound.EndPoint.PointW = 20.0;
+            trajectoryArc.EndPoint.PointW = 20.0;
             trajectoryLine.Lift = false;
+
+
             if (XMLPath != null)
             {
-
-                if (orderPoint.IsChecked == false && orderString.IsChecked == false && orderArc.IsChecked == false && orderRound.IsChecked == false)
+                if (StratTrue != null && EndTrue != null)
                 {
-                    MessageBox.Show("请选择命令后再点击确认");
+                    if (orderPoint.IsChecked == false && orderString.IsChecked == false && orderArc.IsChecked == false && orderRound.IsChecked == false)
+                    {
+                        MessageBox.Show("请选择命令后再点击确认");
+                    }
+                    else
+                    {
+                        if (orderPoint.IsChecked == true)
+                        {
+                            trajectoryLine.Type = "Point";
+                        }
+                        else if (orderString.IsChecked == true)
+                        {
+                            trajectoryLine.Type = "Line";
+                            result = trajectory.AddTrajectory(trajectoryLine);
+                            trajectoryPars.Add((object)trajectoryLine);
+                            Thread thread = new Thread(ThreadUpdateUILine);
+                            thread.Start();
+                        }
+                        else if (orderArc.IsChecked == true)
+                        {
+                            trajectoryLine.Type = "Arc";
+                        }
+                        else if (orderRound.IsChecked == true)
+                        {
+                            trajectoryLine.Type = "Round";
+                            result = trajectory.AddTrajectory(trajectoryLine);
+                            Thread thread = new Thread(ThreadUpdateUIRound);
+                            thread.Start();
+                        }
+
+
+                        void ThreadUpdateUIRound()
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                            if (result == true)
+                            {
+                                // 实现事先定义的轨迹类，后面用绘图方法绘制
+                                this.Dispatcher.Invoke(updateUIDelegate);
+                                createTrajectory(trajectoryLine);
+                            }
+                        }
+
+
+                        void ThreadUpdateUILine()
+                        {
+                            // 将绘图方法将给委托，使用线程线程运行
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                            if (result == true)
+                            {
+                                // 实现事先定义的轨迹类，后面用绘图方法绘制
+                                this.Dispatcher.Invoke(updateUIDelegate);
+                                createTrajectory(trajectoryLine);
+                            }
+                        }
+                    }
                 }
                 else
-                {
-                    if (orderPoint.IsChecked == true)
-                    {
-                        trajectoryLine.Type = "Point";
-                    }
-                    else if (orderString.IsChecked == true)
-                    {
-                        trajectoryLine.Type = "Line";
-                        result = trajectory.AddTrajectory(trajectoryLine);
-                        Thread thread = new Thread(ThreadUpdateUILine);
-                        thread.Start();
-                    }
-                    else if (orderArc.IsChecked == true)
-                    {
-                        trajectoryLine.Type = "Arc";
-                    }
-                    else if (orderRound.IsChecked == true)
-                    {
-                        trajectoryLine.Type = "Round";
-                        result = trajectory.AddTrajectory(trajectoryLine);
-                        Thread thread = new Thread(ThreadUpdateUIRound);
-                        thread.Start();
-                    }
-                    
-
-                    void ThreadUpdateUIRound()
-                    {
-                        UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
-                        if (result == true)
-                        {
-                            // 实现事先定义的轨迹类，后面用绘图方法绘制
-                            this.Dispatcher.Invoke(updateUIDelegate);
-                            createTrajectory(trajectoryLine);
-                        }
-                    }
-
-
-                    void ThreadUpdateUILine()
-                    {
-                        // 将绘图方法将给委托，使用线程线程运行
-                        UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
-                        if (result == true)
-                        {
-                            // 实现事先定义的轨迹类，后面用绘图方法绘制
-                            this.Dispatcher.Invoke(updateUIDelegate);
-                            createTrajectory(trajectoryLine);
-                        }
-                    }
-                }
+                    MessageBox.Show("未指定开始点或结束点，请重新设置");
             }
             else
                 MessageBox.Show("未指定轨迹文件");
         }
+            
 
 
         /// <summary>
@@ -861,6 +884,7 @@ namespace Test
                     XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
                     trajectory.trajectoryLoaded(XMLPath);
                     trajectoryPars = trajectory.OpenTarjectory2();
+                    MaxSort = trajectoryPars.Count+1;
                     int i = 1;
                     //获取轨迹数量
                     foreach (var item in trajectoryPars)
@@ -929,9 +953,8 @@ namespace Test
         /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            trajectory.ReviseTrajectory2(trajectoryPars);
             bool? result = trajectory.trajectorySave();
-            MessageBox.Show(result.ToString());
-            
         }
 
         /// <summary>
@@ -941,41 +964,63 @@ namespace Test
         /// <param name="e"></param>
         private void Porperty_Click(object sender, RoutedEventArgs e)
         {
-            if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryLine")
+            if (OptionsPropertyGrid.SelectedObject != null)
             {
-                trajectoryLine = (TrajectoryLine)OptionsPropertyGrid.SelectedObject;
-
-                for (int i = 0; i < trajectoryPars.Count; i++)
+                if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryLine")
                 {
-                    if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryLine")
+                    trajectoryLine = (TrajectoryLine)OptionsPropertyGrid.SelectedObject;
+
+                    for (int i = 0; i < trajectoryPars.Count; i++)
                     {
-                        TrajectoryLine trajectory = (TrajectoryLine)trajectoryPars[i];
-                        if (trajectory.Sort == trajectoryLine.Sort)
+                        if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryLine")
                         {
-                            trajectoryPars[i] = trajectoryLine;
-                            break;
+                            TrajectoryLine trajectory = (TrajectoryLine)trajectoryPars[i];
+                            if (trajectory.Sort == trajectoryLine.Sort)
+                            {
+                                trajectoryPars[i] = trajectoryLine;
+                                break;
+                            }
                         }
                     }
                 }
-            }
-
-            if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryRound")
-            {
-                trajectoryRound = (TrajectoryRound)OptionsPropertyGrid.SelectedObject;
-                for (int i = 0; i < trajectoryPars.Count; i++)
+                if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryRound")
                 {
-                    if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryRound")
+                    trajectoryRound = (TrajectoryRound)OptionsPropertyGrid.SelectedObject;
+                    for (int i = 0; i < trajectoryPars.Count; i++)
                     {
-                        TrajectoryRound trajectory = (TrajectoryRound)trajectoryPars[i];
-                        if (trajectory.Sort == trajectoryRound.Sort)
+                        if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryRound")
                         {
-                            trajectoryPars[i] = trajectoryRound;
-                            break;
+                            TrajectoryRound trajectory = (TrajectoryRound)trajectoryPars[i];
+                            if (trajectory.Sort == trajectoryRound.Sort)
+                            {
+                                trajectoryPars[i] = trajectoryRound;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (OptionsPropertyGrid.SelectedObject.GetType().ToString() == "Test.TrajectoryArc")
+                {
+                    trajectoryRound = (TrajectoryRound)OptionsPropertyGrid.SelectedObject;
+                    for (int i = 0; i < trajectoryPars.Count; i++)
+                    {
+                        if (trajectoryPars[i].GetType().ToString() == "Test.TrajectoryArc")
+                        {
+                            TrajectoryRound trajectory = (TrajectoryArc)trajectoryPars[i];
+                            if (trajectory.Sort == trajectoryRound.Sort)
+                            {
+                                trajectoryPars[i] = trajectoryRound;
+                                break;
+                            }
                         }
                     }
                 }
             }
         }
+            
+
+            
 
 
         #region 创建CheckBox，对应创建的轨迹文件和编的轨迹的数据
@@ -1054,6 +1099,8 @@ namespace Test
                 CB.Content = trajectoryPar.Sort + ": " + " 圆 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针："+trajectoryRound.ForWardRatation.ToString();
                 CB.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseLeftButtonDown);
                 CB.ToolTip = CB.Content;
+                // CB.PreviewMouseRightButtonDown += new MouseButtonEventHandler(此处添加右击事件方法);
+                // 需要在这个地方添加一个右击事件，右击添加，包含序号和一个选择的命令类型。
             });
         }
         private void createTrajectory(TrajectoryArc trajectoryPar)
@@ -1195,6 +1242,11 @@ namespace Test
             FloatElement = FloatElement + 0.01;
         }
 
+
+        bool? StratTrue = null;
+
+        bool? EndTrue = null;
+
         #region 获取开始点和结束点的事件
         /// <summary>
         /// 获取开始点的坐标
@@ -1209,11 +1261,13 @@ namespace Test
                 {
                     trajectoryLine.StratPoint.PointX = nLeft;
                     trajectoryLine.StratPoint.PointY = nTop;
+                    StratTrue = true;
                 }
                 else if (orderRound.IsChecked == true)
                 {
                     trajectoryRound.MidPoint.PointX = nLeft;
                     trajectoryRound.MidPoint.PointY = nTop;
+                    StratTrue = true;
                 }
             }
             else
@@ -1245,11 +1299,13 @@ namespace Test
                 {
                     trajectoryLine.EndPoint.PointX = nLeft;
                     trajectoryLine.EndPoint.PointY = nTop;
+                    EndTrue = true;
                 }
                 else if (orderRound.IsChecked == true)
                 {
                     trajectoryRound.EndPoint.PointX = nLeft;
                     trajectoryRound.EndPoint.PointY = nTop;
+                    EndTrue = true;
                 }
             }
             else

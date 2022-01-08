@@ -97,7 +97,7 @@ namespace Test
 
         private string _sort;
         /// <summary>
-        /// 开胶延迟
+        /// 轨迹序号
         /// </summary>  
         [CategoryAttribute("A序号"),
              DefaultValueAttribute("??"),]
@@ -113,7 +113,7 @@ namespace Test
 
         private double _inACloseTime;
         /// <summary>
-        /// 开胶延迟
+        /// 关胶前延迟
         /// </summary>
         [CategoryAttribute("E状态"),
              DefaultValueAttribute(4.00)]
@@ -660,6 +660,7 @@ namespace Test
             xmlNode.AppendChild(xml);
         }
 
+
         /// <summary>
         /// 添加XML文件:线
         /// </summary>
@@ -671,14 +672,8 @@ namespace Test
             {
                 XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
                 XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
-                int max = 0;
-                foreach (XmlNode item in xnl)
-                {
-                    XmlElement xe = (XmlElement)item;  //将节点转化为元素
-                    if (int.Parse(xe.Attributes["Sort"].Value) > max)
-                        max = int.Parse(xe.Attributes["Sort"].Value);
-                }
-                max += 1;
+                int max =xnl.Count + 1;
+                trajectoryLine.Sort = max.ToString();
 
                 AddLine(trajectoryLine,max, xn);
                 //doc.Save(XMLPath);
@@ -688,9 +683,7 @@ namespace Test
             {
                 return false;
             }
-
         }
-
 
         /// <summary>
         /// 添加XMl文件:圆
@@ -704,14 +697,7 @@ namespace Test
             {
                 XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
                 XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
-                int max = 0;
-                foreach (XmlNode item in xnl)
-                {
-                    XmlElement xe = (XmlElement)item;  //将节点转化为元素
-                    if (int.Parse(xe.Attributes["Sort"].Value) > max)
-                        max = int.Parse(xe.Attributes["Sort"].Value);
-                }
-                max += 1;
+                int  max = xnl.Count + 1;
                 AddRound(trajectoryLine,max,xn);
                 return true;
             }
@@ -720,8 +706,6 @@ namespace Test
                 return false;
             }
         }
-
-
 
 
         /// <summary>
@@ -736,14 +720,7 @@ namespace Test
             {
                 XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
                 XmlNodeList xnl = xn.ChildNodes;                             ///  载入其所有子节点的集合
-                int max = 0;
-                foreach (XmlNode item in xnl)
-                {
-                    XmlElement xe = (XmlElement)item;  //将节点转化为元素
-                    if (int.Parse(xe.Attributes["Sort"].Value) > max)
-                        max = int.Parse(xe.Attributes["Sort"].Value);
-                }
-                max += 1;
+                int max = xnl.Count + 1;
                 AddArc(trajectoryLine,max,xn);
                 
                 return true;
@@ -800,7 +777,7 @@ namespace Test
         public void ReviseTrajectory2(ObservableCollection<object> TrajectoryPars)
         {
             XmlNode xn = doc.SelectSingleNode("Tarjectory"); ///  载入根节点
-            xn.RemoveAll();
+            xn.RemoveAll(); 
             int Sort = 1;
             TrajectoryPoint trajectoryPointWrite = new TrajectoryPoint();
             TrajectoryLine trajectoryLineWrite = new TrajectoryLine();
