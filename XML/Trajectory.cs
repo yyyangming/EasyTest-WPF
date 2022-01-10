@@ -441,7 +441,7 @@ namespace Test
         {
             XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
             xml.SetAttribute("Sort", Sort.ToString());
-            xml.SetAttribute("Type", trajectoryLine.Type);
+            xml.SetAttribute("Type", "Line");
 
             XmlElement xesub1 = doc.CreateElement("StartPointX");
             xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
@@ -504,7 +504,7 @@ namespace Test
         {
             XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
             xml.SetAttribute("Sort", Sort.ToString());
-            xml.SetAttribute("Type", trajectoryLine.Type);
+            xml.SetAttribute("Type", "Round");
 
             XmlElement xesub1 = doc.CreateElement("StartPointX");
             xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点
@@ -587,7 +587,7 @@ namespace Test
         {
             XmlElement xml = doc.CreateElement("tarjectory"); // 创建单独的一个轨迹节点
             xml.SetAttribute("Sort", Sort.ToString());
-            xml.SetAttribute("Type", trajectoryLine.Type);
+            xml.SetAttribute("Type", "Arc");
 
             XmlElement xesub1 = doc.CreateElement("StartPointX");
             xesub1.InnerText = trajectoryLine.StratPoint.PointX.ToString();//设置文本节点

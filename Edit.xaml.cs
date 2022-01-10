@@ -683,7 +683,7 @@ namespace Test
                 CD.StratPoint.X = trajectoryArc.StratPoint.PointX;
                 CD.StratPoint.Y = trajectoryArc.StratPoint.PointY;
 
-
+                #region 判断角度，存在问题
                 //const double M_PI = 3.1415926535897;
                 //double ma_x = CD.StratPoint.X - CD.center.X;
                 //double ma_y = CD.StratPoint.Y - CD.center.Y;
@@ -698,6 +698,8 @@ namespace Test
                 //    trajectoryArc.Superior = true;
                 //else
                 //    trajectoryArc.Superior = false;
+                #endregion
+
 
                 //判断优劣弧，(OA.X-OB.X)*(OA.Y-OB.Y)是否大于0，大于则是劣弧
                 if ((CD.StratPoint.X-CD.center.X)*(trajectoryArc.EndPoint.PointX-CD.center.X)+(CD.StratPoint.Y-CD.center.Y)*(trajectoryArc.EndPoint.PointY-CD.center.Y)>0)
@@ -708,6 +710,24 @@ namespace Test
                 {
                     trajectoryArc.Superior = true;
                 }
+
+
+                if (trajectoryArc.ForWardRatation == true)
+                {
+                    if (CD.StratPoint.X >= CD.center.X && CD.StratPoint.Y >= CD.center.Y)
+                    {
+                        if (trajectoryArc.EndPoint.PointX>CD.StratPoint.X)
+                        {
+                            trajectoryArc.Superior = true;
+                        }
+                        else if (true)
+                        {
+
+                        }
+                    }
+                }
+
+                
             }
             circleData = CD;
         }
@@ -762,7 +782,6 @@ namespace Test
             }
             else
                 x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, trajectoryArc.Superior, SweepDirection.Counterclockwise, true));
-
             PathGeometry x_Geometry = new PathGeometry();
             x_Geometry.Figures.Add(x_Figure);
             x_Arrow.Data = x_Geometry;
