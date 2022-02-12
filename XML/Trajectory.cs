@@ -93,14 +93,34 @@ namespace Test
         public string stratPoint;
 
         public Trajectory5D StratPoint = new Trajectory5D();
-        public Point PointStrat;
+
+        private Point pointStrat;
+        /// <summary>
+        /// 开始点的点类型变量
+        /// </summary>
+        public Point PointStrat
+        {
+            get 
+            {
+                pointStrat.X = StratPoint.PointX;
+                pointStrat.Y = StratPoint.PointY;
+                return pointStrat;
+            }
+            set 
+            {
+                value.X = StratPoint.PointX;
+                value.Y = StratPoint.PointY;
+                pointStrat = value;
+            }
+        }
 
         private string _sort;
         /// <summary>
         /// 轨迹序号
         /// </summary>  
         [CategoryAttribute("A序号"),
-             DefaultValueAttribute("??"),]
+             DefaultValueAttribute("??"),
+            Browsable(false)]
         public string Sort { get => _sort; set => _sort = value; }
 
         private double _inAOpenTime;
@@ -161,7 +181,20 @@ namespace Test
     public class TrajectoryLine : TrajectoryPoint
     {
         public Trajectory5D EndPoint = new Trajectory5D();
-        public Point PointEnd;
+        private Point pointEnd;
+
+        /// <summary>
+        /// 结束点的点类型变量
+        /// </summary>
+        public Point PointEnd 
+        {
+            get 
+            {
+                pointEnd.X = EndPoint.PointX;
+                pointEnd.Y = EndPoint.PointY;
+                return pointEnd;
+            }
+        }
 
         [CategoryAttribute("B开始点"),
             DefaultValueAttribute("0")]
@@ -211,10 +244,26 @@ namespace Test
         /// 中间点的对象
         /// </summary>
         public Trajectory5D MidPoint = new Trajectory5D();
-        public string Type = "Round";
-        public bool ForWardRatation;
 
-        [CategoryAttribute("D中间点"),
+        public string Type = "Round";
+
+        private bool forWardRatation;
+        /// <summary>
+        /// 通过三点坐标来限定正负方向。
+        /// </summary>
+        public bool ForWardRatation
+        {
+            get
+            {
+                if ((MidPoint.PointX - StratPoint.PointX) * (EndPoint.PointY - MidPoint.PointY) - (MidPoint.PointY - StratPoint.PointY) * (EndPoint.PointX - MidPoint.PointX) > 0)
+                    forWardRatation = true;
+                else
+                    forWardRatation = false;
+                return forWardRatation;
+            }
+        }
+
+        [CategoryAttribute("D中间点"), 
             DefaultValueAttribute("0")]
         public double MidW { set => MidPoint.PointW = value; get => MidPoint.PointW; }
         [CategoryAttribute("D中间点"),
@@ -230,17 +279,237 @@ namespace Test
             DefaultValueAttribute("0")]
         public double MidX { set => MidPoint.PointX = value; get => MidPoint.PointX; }
 
+        private Point center;
+        public Point Center 
+        {
+            get 
+            {
+                //定义两个点，分别表示两个中点
+                Point midpt1 = new Point(); Point midpt2 = new Point();
+                //求出点1和点2的中点
+                midpt1.X = (MidPoint.PointX + StratPoint.PointX) / 2;
+                midpt1.Y = (MidPoint.PointY + StratPoint.PointY) / 2;
+                //求出点3和点1的中点
+                midpt2.X = (MidPoint.PointX + EndPoint.PointX) / 2;
+                midpt2.Y = (MidPoint.PointY + EndPoint.PointY) / 2;
+                //然后求出过中点midpt1，斜率为k1的直线方程（既pt1pt2的中垂线）：y - midPt1.y = k1( x - midPt1.x)
+                //以及过中点midpt2，斜率为k2的直线方程（既pt1pt3的中垂线）：y - midPt2.y = k2( x - midPt2.x)
+                double k1 = (MidPoint.PointX - StratPoint.PointX) / (StratPoint.PointY - MidPoint.PointY);
+                double k2 = (EndPoint.PointX - MidPoint.PointX) / (MidPoint.PointY - EndPoint.PointY);
+                //连立两条中垂线方程求解交点得到：
+                center.X = (midpt2.Y - midpt1.Y - k2 * midpt2.X + k1 * midpt1.X) / (k1 - k2);
+                center.Y = midpt1.Y + k1 * (midpt2.Y - midpt1.Y - k2 * midpt2.X + k2 * midpt1.X) / (k1 - k2);
 
-        public Point PointMid;
-        public double RoundR;
+                return center;
+            }
+        }
+        /// <summary>
+        /// 半径的字段
+        /// </summary>
+        private double roundR;
+        /// <summary>
+        /// 半径的属性，只读
+        /// </summary>
+        public double RoundR
+        {
+            get 
+            {
+                roundR = (int)(Math.Sqrt((center.X - MidPoint.PointX) * (center.X - MidPoint.PointX) + (center.Y - MidPoint.PointY) * (center.Y - MidPoint.PointY)));
+                return roundR; 
+            }
+        }
+
+        private Point pointMid;
+
+        /// <summary>
+        /// 中间点的点的XY坐标点
+        /// </summary>
+        public Point PointMid
+        {
+            get 
+            {
+                pointMid.X = MidPoint.PointX;
+                pointMid.Y = MidPoint.PointY;
+                return pointMid;
+            }
+        }
+        
         public Point point1;
+
+        /// <summary>
+        /// 圆的结构体，point为圆心，radius为半径
+        /// </summary>
+       
+        public TrajectoryRound()
+        { }
+
+
+
     }
+
+
     /// <summary>
     /// 弧的轨迹类
     /// </summary>
     public class TrajectoryArc : TrajectoryRound
     {
-        public bool Superior;
+        private bool superior;
+        public bool Superior 
+        {
+            set=>superior = value;
+            get 
+            {
+                #region 逆时针情况下
+                //if (ForWardRatation == false)
+                //{
+                //    if (StratPoint.PointX > Center.X && StratPoint.PointY < Center.Y) // 在第一象限
+                //    {
+                //        if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX < Center.X)
+                //                superior = false;
+                //        }
+                //        else if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX <= 2 * (Center.X) - StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX > 2 * (Center.X) - StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //    }
+                //    if (StratPoint.PointX < Center.X && StratPoint.PointY < Center.Y) // 在第二象限
+                //    {
+                //        if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //        else if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX <= 2 * Center.X - StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX > 2 * (Center.X) - StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //    }
+                //    if (StratPoint.PointX < Center.X && StratPoint.PointY > Center.Y) // 在第三象限
+                //    {
+                //        if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //        else if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > 2 * Center.X - StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX < 2 * Center.X - StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //    }
+                //    if (StratPoint.PointX > Center.X && StratPoint.PointY > Center.Y) // 在第四象限
+                //    {
+                //        if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //        else if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > 2 * Center.X - StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX < 2 * Center.X - StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //    }
+                //}
+                #endregion
+
+                #region 顺时针情况下的优弧劣弧问题
+                //if (ForWardRatation == true)
+                //{
+                //    if (StratPoint.PointX > Center.X && StratPoint.PointY < Center.Y) // 在第一象限
+                //    {
+                //        if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX < Center.X)
+                //                superior = true;
+                //        }
+                //        else if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX <= 2 * (Center.X) - StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX > 2 * (Center.X) - StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //    }
+                //    if (StratPoint.PointX < Center.X && StratPoint.PointY < Center.Y) // 在第二象限
+                //    {
+                //        if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //        else if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX <= 2 * Center.X - StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX > 2 * (Center.X) - StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //    }
+                //    if (StratPoint.PointX < Center.X && StratPoint.PointX > Center.Y) // 在第三象限
+                //    {
+                //        if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = false;
+                //            else if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = true;
+                //        }
+                //        else if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > 2 * Center.X - StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX < 2 * Center.X - StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //    }
+                //    if (StratPoint.PointX > Center.X && StratPoint.PointY > Center.Y) // 在第四象限
+                //    {
+                //        if (EndPoint.PointY > Center.Y)
+                //        {
+                //            if (EndPoint.PointX > StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX < StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //        else if (EndPoint.PointY < Center.Y)
+                //        {
+                //            if (EndPoint.PointX > 2 * Center.X - StratPoint.PointX)
+                //                superior = true;
+                //            else if (EndPoint.PointX < 2 * Center.X - StratPoint.PointX)
+                //                superior = false;
+                //        }
+                //    }
+                //}
+                #endregion
+
+                return superior;
+            }
+        }
     }
 
     /// <summary>
@@ -252,6 +521,168 @@ namespace Test
         XmlDeclaration xmldecl;
         string XMLPath;
         ObservableCollection<object> TrajectoryParList = new ObservableCollection<object>();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StratPoint">圆弧的起点，属性中存在</param>
+        /// <param name="Center">圆弧的圆心，在属性中已经计算过center，不需要重复计算</param>
+        /// <param name="EndPoint">圆弧的结束点，属性中存在</param>
+        /// <param name="ForWardRatation">圆弧的属性中存在正向还是反向</param>
+        /// <returns></returns>
+        public bool GetSuperior(Point StratPoint,Point Center, Point EndPoint,bool ForWardRatation) 
+        {
+            bool superior = false;
+            #region 逆时针情况下
+            if (ForWardRatation == false)
+            {
+                if (StratPoint.X > Center.X && StratPoint.Y < Center.Y) // 在第一象限
+                {
+                    if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X < Center.X)
+                            superior = false;
+                    }
+                    else if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X <= 2 * (Center.X) - StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X > 2 * (Center.X) - StratPoint.X)
+                            superior = true;
+                    }
+                }
+                if (StratPoint.X < Center.X && StratPoint.Y < Center.Y) // 在第二象限
+                {
+                    if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X < StratPoint.X)
+                            superior = false;
+                    }
+                    else if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X <= 2 * Center.X - StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X > 2 * (Center.X) - StratPoint.X)
+                            superior = true;
+                    }
+                }
+                if (StratPoint.X < Center.X && StratPoint.Y > Center.Y) // 在第三象限
+                {
+                    if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X < StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X > StratPoint.X)
+                            superior = false;
+                    }
+                    else if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > 2 * Center.X - StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X < 2 * Center.X - StratPoint.X)
+                            superior = true;
+                    }
+                }
+                if (StratPoint.X > Center.X && StratPoint.Y > Center.Y) // 在第四象限
+                {
+                    if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X < StratPoint.X)
+                            superior = true;
+                    }
+                    else if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > 2 * Center.X - StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X < 2 * Center.X - StratPoint.X)
+                            superior = true;
+                    }
+                }
+            }
+            #endregion
+
+            #region 顺时针情况下的优弧劣弧问题
+            if (ForWardRatation == true)
+            {
+                if (StratPoint.X > Center.X && StratPoint.Y < Center.Y) // 在第一象限
+                {
+                    if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X < Center.X)
+                            superior = true;
+                    }
+                    else if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X <= 2 * (Center.X) - StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X > 2 * (Center.X) - StratPoint.X)
+                            superior = false;
+                    }
+                }
+                if (StratPoint.X < Center.X && StratPoint.Y < Center.Y) // 在第二象限
+                {
+                    if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X < StratPoint.X)
+                            superior = true;
+                    }
+                    else if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X <= 2 * Center.X - StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X > 2 * (Center.X) - StratPoint.X)
+                            superior = false;
+                    }
+                }
+                if (StratPoint.X < Center.X && StratPoint.X > Center.Y) // 在第三象限
+                {
+                    if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X < StratPoint.X)
+                            superior = false;
+                        else if (EndPoint.X > StratPoint.X)
+                            superior = true;
+                    }
+                    else if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > 2 * Center.X - StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X < 2 * Center.X - StratPoint.X)
+                            superior = false;
+                    }
+                }
+                if (StratPoint.X > Center.X && StratPoint.Y > Center.Y) // 在第四象限
+                {
+                    if (EndPoint.Y > Center.Y)
+                    {
+                        if (EndPoint.X > StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X < StratPoint.X)
+                            superior = false;
+                    }
+                    else if (EndPoint.Y < Center.Y)
+                    {
+                        if (EndPoint.X > 2 * Center.X - StratPoint.X)
+                            superior = true;
+                        else if (EndPoint.X < 2 * Center.X - StratPoint.X)
+                            superior = false;
+                    }
+                }
+            }
+            #endregion
+
+            return superior;
+        }
 
         /// <summary>
         /// 在使用下面方法前，先使用此方法Load需要的XML文件
@@ -305,7 +736,6 @@ namespace Test
             XmlNode xn = doc.SelectSingleNode("Tarjectory");
             XmlNodeList xnl = xn.ChildNodes;
             
-
             //获取所有子节点
             foreach (XmlNode xn1 in xnl)
             {
@@ -367,19 +797,8 @@ namespace Test
                     trajectoryRound.MidPoint.PointZ = double.Parse(xnl0.Item(14).InnerText);
                     trajectoryRound.MidPoint.PointU = bool.Parse(xnl0.Item(15).InnerText);
                     trajectoryRound.MidPoint.PointW = double.Parse(xnl0.Item(16).InnerText);
-                    trajectoryRound.PointStrat.X = trajectoryRound.StratPoint.PointX;
-                    trajectoryRound.PointStrat.Y = trajectoryRound.StratPoint.PointY;
-                    trajectoryRound.PointMid.X = trajectoryRound.MidPoint.PointX;
-                    trajectoryRound.PointMid.Y = trajectoryRound.MidPoint.PointY;
-                    trajectoryRound.PointEnd.X = trajectoryRound.EndPoint.PointX;
-                    trajectoryRound.PointEnd.Y = trajectoryRound.EndPoint.PointY;
-                    //借助三点向量成绩，判断他是正向还是反向
-                    if ((trajectoryRound.MidPoint.PointX - trajectoryRound.StratPoint.PointX) * (trajectoryRound.EndPoint.PointY - trajectoryRound.MidPoint.PointY) - (trajectoryRound.MidPoint.PointY - trajectoryRound.StratPoint.PointY) * (trajectoryRound.EndPoint.PointX - trajectoryRound.MidPoint.PointX) > 0)
-                    {
-                        trajectoryRound.ForWardRatation = true;
-                    }
-                    else
-                        trajectoryRound.ForWardRatation = false;
+
+
                     //在此确认圆心，半径
                     TrajectoryParList.Add(trajectoryRound);
                 }
@@ -404,19 +823,7 @@ namespace Test
                     trajectoryArc.MidPoint.PointZ = double.Parse(xnl0.Item(14).InnerText);
                     trajectoryArc.MidPoint.PointU = bool.Parse(xnl0.Item(15).InnerText);
                     trajectoryArc.MidPoint.PointW = double.Parse(xnl0.Item(16).InnerText);
-                    trajectoryArc.PointStrat.X = trajectoryArc.StratPoint.PointX;
-                    trajectoryArc.PointStrat.Y = trajectoryArc.StratPoint.PointY;
-                    trajectoryArc.PointMid.X = trajectoryArc.MidPoint.PointX;
-                    trajectoryArc.PointMid.Y = trajectoryArc.MidPoint.PointY;
-                    trajectoryArc.PointEnd.X = trajectoryArc.EndPoint.PointX;
-                    trajectoryArc.PointEnd.Y = trajectoryArc.EndPoint.PointY;
-                    //借助三点向量成绩，判断他是正向还是反向
-                    if ((trajectoryArc.MidPoint.PointX - trajectoryArc.StratPoint.PointX) * (trajectoryArc.EndPoint.PointY - trajectoryArc.MidPoint.PointY) - (trajectoryArc.MidPoint.PointY - trajectoryArc.StratPoint.PointY) * (trajectoryArc.EndPoint.PointX - trajectoryArc.MidPoint.PointX) > 0)
-                    {
-                        trajectoryArc.ForWardRatation = true;
-                    }
-                    else
-                        trajectoryArc.ForWardRatation = false;
+
                     //在此确认圆心，半径
                     TrajectoryParList.Add(trajectoryArc);
                 }
@@ -807,8 +1214,8 @@ namespace Test
                     AddArc(trajectoryArcWrite,Sort++,xn);
                 }
             }
-
         }
+
 
         ObservableCollection<object> collection = new ObservableCollection<object>();
         /// <summary>
@@ -855,35 +1262,50 @@ namespace Test
             return "超过最大长度";
         }
 
+
+        ///在做以下方法时首先要明确，所有的方法最终都要转换为程序内的绘图的坐标系，能看到的都要转换为程序里面的程序坐标系，最终由绘图坐标系向机械坐标系转换达到目标
+
         /// <summary>
-        /// 将软件坐标转化为canvas坐标或者将canvas坐标转化为软件坐标
+        /// 将程序坐标系（人们能看到的坐标系）转化为绘图坐标系（程序的绘图坐标）
         /// </summary>
-        /// <param name="X">传入软件写入坐标或者canvas坐标</param>
+        /// <param name="PointX">程序原点的坐标，单轴</param>
+        /// <param name="X">在软件中显示的单轴坐标</param>
         /// <returns></returns>
-        public double X_PointG_TO_PointC(double X)
+        public double PointC_TO_PointH(double PointX, double X)
         {
-            double truePointX = 500 - X;
-            return truePointX;
-        }
-        /// <summary>
-        /// 将软件X坐标转化为canvas的X坐标或者将canvas的X坐标转化为软件X坐标
-        /// </summary>
-        /// <param name="X">传入软件写入坐标或者canvas坐标</param>
-        /// <returns></returns>
-        public double Y_PointG_TO_PointC(double X)
-        {
-            double truePointX = 300 - X;
+            double truePointX = PointX - X;
             return truePointX;
         }
 
-        public Line trajectoryLine(Trajectory3D trajectory3D1, Trajectory3D trajectory3D2)
+        /// <summary>
+        /// 将绘图坐标系（程序的绘图坐标）转化为程序内坐标系（人们能看到的坐标系）
+        /// </summary>
+        /// <param name="X">传入软件写入坐标或者canvas坐标</param>
+        /// <param name="PointX">程序原点的坐标值</param>
+        /// <returns></returns>
+        public double PointH_TO_PointC(double X,double PointX)
+        {
+            double truePointX = PointX - X;
+            return truePointX;
+        }
+
+        /// <summary>
+        /// 在此将绘图坐标系转化为机械坐标系，此方法尚未完成。
+        /// </summary>
+        /// <returns></returns>
+        public double mechanicalPoint() 
+        {
+            return 2.0;
+        }
+
+        public Line trajectoryLine(Trajectory3D trajectory3D1, Trajectory3D trajectory3D2,Point point)
         {
             Trajectory3D StartPoint = trajectory3D1;
             Trajectory3D EndPoint = trajectory3D2;
-            double StartTruePointX = X_PointG_TO_PointC(StartPoint.PointX);
-            double StartTruePointY = Y_PointG_TO_PointC(StartPoint.PointY);
-            double EndTruePointX = X_PointG_TO_PointC(EndPoint.PointX);
-            double EndTruePointY = Y_PointG_TO_PointC(EndPoint.PointY);
+            double StartTruePointX = PointH_TO_PointC(StartPoint.PointX,point.X);
+            double StartTruePointY = PointH_TO_PointC(StartPoint.PointY,point.Y);
+            double EndTruePointX = PointH_TO_PointC(EndPoint.PointX,point.X);
+            double EndTruePointY = PointH_TO_PointC(EndPoint.PointY,point.Y);
             Line LinePath = new Line();
             LinePath.Stroke = Brushes.Black;
             LinePath.StrokeThickness = 1;
@@ -907,7 +1329,7 @@ namespace Test
             {
                 ScaleTransform scale = new ScaleTransform();
                 element.RenderTransform = scale;
-                element.RenderTransformOrigin = point;//定义圆心位置        
+                element.RenderTransformOrigin = point;//定义圆心位置
                 EasingFunctionBase easeFunction = new PowerEase()
                 {
                     EasingMode = EasingMode.EaseOut,

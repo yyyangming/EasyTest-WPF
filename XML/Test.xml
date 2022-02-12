@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Tarjectory doubleSided="false">
+<Tarjectory>
   <tarjectory Sort="1" Type="Line">
     <StartPointX>67.17</StartPointX>
     <StartPointY>36.94</StartPointY>
@@ -57,23 +57,23 @@
     <Lift>True</Lift>
   </tarjectory>
   <tarjectory Sort="5" Type="Round">
-    <StartPointX>200.01</StartPointX>
-    <StartPointY>251.02</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>302.01</EndPointX>
-    <EndPointY>251.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
-    <MidPointX>250.01</MidPointX>
-    <MidPointY>200.02</MidPointY>
-    <MidPointZ>110.00</MidPointZ>
-    <MidPointU>true</MidPointU>
-    <MidPointW>10.00</MidPointW>
+    <StartPointX>100.1</StartPointX>
+    <StartPointY>0.02</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>102.01</EndPointX>
+    <EndPointY>201.02</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>10</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>0.01</MidPointX>
+    <MidPointY>100.02</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
   </tarjectory>
   <tarjectory Sort="6" Type="Line">
     <StartPointX>200.48</StartPointX>
@@ -114,83 +114,197 @@
     <EndPointY>81.61</EndPointY>
     <EndPointZ>0</EndPointZ>
     <EndPointU>False</EndPointU>
-    <EndPointW>11</EndPointW>
-    <Lift>True</Lift>
+    <EndPointW>20</EndPointW>
+    <Lift>False</Lift>
   </tarjectory>
   <tarjectory Sort="9" Type="Round">
-    <StartPointX>302.01</StartPointX>
-    <StartPointY>250.03</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>200.01</EndPointX>
-    <EndPointY>251.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
-    <MidPointX>250.01</MidPointX>
-    <MidPointY>204.02</MidPointY>
-    <MidPointZ>110.00</MidPointZ>
-    <MidPointU>true</MidPointU>
-    <MidPointW>10.00</MidPointW>
+    <StartPointX>137.21</StartPointX>
+    <StartPointY>198.73</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>166.74</EndPointX>
+    <EndPointY>226.42</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>121.21</MidPointX>
+    <MidPointY>224.57</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
   </tarjectory>
   <tarjectory Sort="10" Type="Arc">
     <StartPointX>101.01</StartPointX>
     <StartPointY>99.03</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
     <EndPointX>200.01</EndPointX>
     <EndPointY>98.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>10</EndPointW>
+    <Lift>True</Lift>
     <MidPointX>152.01</MidPointX>
     <MidPointY>270.02</MidPointY>
-    <MidPointZ>110.00</MidPointZ>
-    <MidPointU>true</MidPointU>
-    <MidPointW>10.00</MidPointW>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
   </tarjectory>
   <tarjectory Sort="11" Type="Arc">
     <StartPointX>250.01</StartPointX>
     <StartPointY>50.03</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
     <EndPointX>300.01</EndPointX>
     <EndPointY>60.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>10</EndPointW>
+    <Lift>True</Lift>
     <MidPointX>272.01</MidPointX>
     <MidPointY>120.02</MidPointY>
-    <MidPointZ>110.00</MidPointZ>
-    <MidPointU>true</MidPointU>
-    <MidPointW>10.00</MidPointW>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
   </tarjectory>
   <tarjectory Sort="12" Type="Arc">
-    <StartPointX>351.01</StartPointX>
-    <StartPointY>99.03</StartPointY>
-    <StartPointZ>10.00</StartPointZ>
-    <StartPointU>true</StartPointU>
-    <StartPointW>10.00</StartPointW>
-    <Open>true</Open>
-    <EndPointX>410.01</EndPointX>
-    <EndPointY>43.02</EndPointY>
-    <EndPointZ>10.00</EndPointZ>
-    <EndPointU>true</EndPointU>
-    <EndPointW>10.00</EndPointW>
-    <Lift>true</Lift>
-    <MidPointX>392.01</MidPointX>
-    <MidPointY>50.02</MidPointY>
-    <MidPointZ>110.00</MidPointZ>
-    <MidPointU>true</MidPointU>
-    <MidPointW>10.00</MidPointW>
+    <StartPointX>154.43</StartPointX>
+    <StartPointY>119.98</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>153.2</EndPointX>
+    <EndPointY>219.65</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>110.75</MidPointX>
+    <MidPointY>167.97</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="13" Type="Round">
+    <StartPointX>392.48</StartPointX>
+    <StartPointY>172.48</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>373.41</EndPointX>
+    <EndPointY>136.79</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>415.86</MidPointX>
+    <MidPointY>133.1</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="14" Type="Arc">
+    <StartPointX>348.18</StartPointX>
+    <StartPointY>122.64</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>287.88</EndPointX>
+    <EndPointY>85.72</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>356.18</MidPointX>
+    <MidPointY>80.8</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="15" Type="Round">
+    <StartPointX>397</StartPointX>
+    <StartPointY>141</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>398.84</EndPointX>
+    <EndPointY>93.01</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>416.07</MidPointX>
+    <MidPointY>113.93</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="16" Type="Arc">
+    <StartPointX>398.84</StartPointX>
+    <StartPointY>93.01</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>387.15</EndPointX>
+    <EndPointY>56.1</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>413.61</MidPointX>
+    <MidPointY>71.48</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="17" Type="Round">
+    <StartPointX>397</StartPointX>
+    <StartPointY>141</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>398.84</EndPointX>
+    <EndPointY>93.01</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>416.07</MidPointX>
+    <MidPointY>113.93</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
+  </tarjectory>
+  <tarjectory Sort="18" Type="Arc">
+    <StartPointX>398.84</StartPointX>
+    <StartPointY>93.01</StartPointY>
+    <StartPointZ>10</StartPointZ>
+    <StartPointU>True</StartPointU>
+    <StartPointW>10</StartPointW>
+    <Open>True</Open>
+    <EndPointX>387.15</EndPointX>
+    <EndPointY>56.1</EndPointY>
+    <EndPointZ>10</EndPointZ>
+    <EndPointU>True</EndPointU>
+    <EndPointW>20</EndPointW>
+    <Lift>True</Lift>
+    <MidPointX>413.61</MidPointX>
+    <MidPointY>71.48</MidPointY>
+    <MidPointZ>110</MidPointZ>
+    <MidPointU>True</MidPointU>
+    <MidPointW>10</MidPointW>
   </tarjectory>
 </Tarjectory>

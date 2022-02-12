@@ -19,6 +19,7 @@ namespace Test
     /// </summary>
     public partial class ProgramWizard : Window
     {
+        Config config = new Config();
         public ProgramWizard()
         {
             InitializeComponent();
@@ -66,6 +67,13 @@ namespace Test
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+        }
+
+        private void ProgramWizard_Loaded(object sender, RoutedEventArgs e)
+        {
+            config.ReadFile();
+            Newlength.Text = Config.originpointX.ToString();
+            NewWidth.Text = Config.originpointY.ToString();
         }
     }
 }

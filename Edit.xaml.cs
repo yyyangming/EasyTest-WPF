@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using System.Windows;
-using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using MySql.Data.MySqlClient;
 using Color = System.Windows.Media.Color;
+using ContextMenu = System.Windows.Controls.ContextMenu;
+using MenuItem = System.Windows.Controls.MenuItem;
 using MessageBox = System.Windows.MessageBox;
 using Path = System.Windows.Shapes.Path;
 using Point = System.Windows.Point;
-using System.ComponentModel;
 
 namespace Test
 {
@@ -24,6 +25,121 @@ namespace Test
     /// </summary>
     public partial class Edit : Window
     {
+
+        /// <summary>
+        /// 程序原点
+        /// </summary>
+        Point Programorigin = new Point(Config.originpointX, Config.originpointX);
+
+        bool isMoving = false;
+        Point startMovePosition;
+        TranslateTransform totalTranslate = new TranslateTransform(); // 总共移动
+        TranslateTransform tempTranslate = new TranslateTransform(); // 每一步移动
+        ScaleTransform totalScale = new ScaleTransform();
+        Double scaleLevel = 1;
+
+        /// <summary>
+        /// 向下的定时器
+        /// </summary>
+        private System.Timers.Timer aTimerDown = new System.Timers.Timer();
+
+        /*
+        /// <summary>
+        /// 向上的定时器
+        /// </summary>
+        private System.Timers.Timer aTimerUp = new System.Timers.Timer();
+        /// <summary>
+        /// 向左的定时器
+        /// </summary>
+        private System.Timers.Timer aTimerLeft = new System.Timers.Timer();
+        /// <summary>
+        /// 向右的定时器
+        /// </summary>
+        private System.Timers.Timer aTimerRight = new System.Timers.Timer();
+        */
+
+        
+        public Edit()
+        {
+            InitializeComponent();
+
+            CanvasDraw.Focusable = true; // 默认不接收鼠标事件
+            TimerLni();
+
+        }
+
+
+        #region 对画布进行放大缩小的工作，此方法存在问题，暂时无法解决
+        /*
+                private void canvas1_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+                {
+                    startMovePosition = e.GetPosition((Canvas)sender);
+                    isMoving = true;
+                }
+
+                private void canvas1_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+                {
+                    isMoving = false;
+                    Point endMovePosition = e.GetPosition((Canvas)sender);
+
+                    //为了避免跳跃式的变换，单次有效变化 累加入 totalTranslate中。   
+                    totalTranslate.X += (endMovePosition.X - startMovePosition.X) / scaleLevel;
+                    totalTranslate.Y += (endMovePosition.Y - startMovePosition.Y) / scaleLevel;
+                }
+
+                private void canvas1_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+                {
+                    if (isMoving)
+                    {
+                        Point currentMousePosition = e.GetPosition((Canvas)sender);//当前鼠标位置
+
+                        Point deltaPt = new Point(0, 0);
+                        deltaPt.X = (currentMousePosition.X - startMovePosition.X) / scaleLevel;
+                        deltaPt.Y = (currentMousePosition.Y - startMovePosition.Y) / scaleLevel;
+
+                        tempTranslate.X = totalTranslate.X + deltaPt.X;
+                        tempTranslate.Y = totalTranslate.Y + deltaPt.Y;
+
+                        adjustGraph();
+                    }
+                }
+
+                private void canvas1_MouseWheel(object sender, MouseWheelEventArgs e)
+                {
+                    Point scaleCenter = e.GetPosition((Canvas)sender);
+
+                    if (e.Delta > 0)
+                    {
+                        scaleLevel *= 1.08;
+                    }
+                    else
+                    {
+                        scaleLevel /= 1.08;
+                    }
+                    //Console.WriteLine("scaleLevel: {0}", scaleLevel);
+
+                    totalScale.ScaleX = scaleLevel;
+                    totalScale.ScaleY = scaleLevel;
+                    totalScale.CenterX = scaleCenter.X;
+                    totalScale.CenterY = scaleCenter.Y;
+
+                    adjustGraph();
+                }
+
+                private void adjustGraph()
+                {
+                    TransformGroup tfGroup = new TransformGroup();
+                    tfGroup.Children.Add(tempTranslate);
+                    tfGroup.Children.Add(totalScale);
+
+                    foreach (UIElement ue in CanvasDraw.Children)
+                    {
+                        ue.RenderTransform = tfGroup;
+                    }
+                }
+        */
+        #endregion
+
         int MaxSort = 1;
 
         /// <summary>
@@ -31,6 +147,7 @@ namespace Test
         /// </summary>
         NewFileBaseConfigure sub = new NewFileBaseConfigure();
         ProgramWizard programWizard = new ProgramWizard();
+
         ControlPage2 controlPage2 = new ControlPage2();
         SaveFileDialog XmlSaveFile = new SaveFileDialog();
 
@@ -43,7 +160,7 @@ namespace Test
         static String connetStr = "server=127.0.0.1;port=3306;user=root;password=123456;database=easycoat;";
         string strsql = null;
         MySqlConnection conn = new MySqlConnection(connetStr);
-        
+
         ObservableCollection<object> trajectoryPars = new ObservableCollection<object>();
 
         /// <summary>
@@ -53,11 +170,9 @@ namespace Test
         TrajectoryLine trajectoryLine = new TrajectoryLine();
         TrajectoryRound trajectoryRound = new TrajectoryRound();
         TrajectoryArc trajectoryArc = new TrajectoryArc();
-        Point pointStrat,pointMid,pointEnd;
-        CircleData circleData = new CircleData();
+        Point pointStrat, pointMid, pointEnd;
 
         public string XMLPath;//文件路径
-        public int Checksort = 0;
 
 
         /// <summary>
@@ -127,7 +242,7 @@ namespace Test
         /// <summary>
         /// 生成其坐标，箭头，刻度等
         /// </summary>
-        public void DrawScale() 
+        public void DrawScale()
         {
             for (int i = 1; i < 13; i++)
             {
@@ -317,20 +432,16 @@ namespace Test
                 mySqlCommand.ExecuteNonQuery();
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
 
-        public Edit()
-        {
-            InitializeComponent();
-        }
-
         private void btnNewFile(object sender, RoutedEventArgs e)
         {
-            XmlSaveFile.ShowDialog();
+            //XmlSaveFile.ShowDialog();
+            programWizard.ShowDialog();
         }
 
 
@@ -339,6 +450,11 @@ namespace Test
             // 配置文件赋值
             config.ReadFile();
             zhengxian.IsChecked = Config.Check_Time;
+
+            // 暂时在这两个按钮上显示一下程序原点的坐标
+            testTextBlock.Content = Config.originpointX;
+            testTextBlock_Copy.Content = Config.originpointY;
+
 
             #region 数据库调用，暂时不用，改用调用xml文件
             //string insertsql = "";
@@ -378,6 +494,7 @@ namespace Test
             this.Owner.Visibility = Visibility.Visible;//显示父窗体
         }
 
+
         private void btnChage_click(object sender, RoutedEventArgs e)
         {
             ControlPage1 controlPage1 = new ControlPage1();
@@ -407,7 +524,7 @@ namespace Test
         }
         private void MaintenanceConfiguration(object sender, RoutedEventArgs e)
         {
-            MaintenanceConfiguration maintenanceConfiguration = new MaintenanceConfiguration(); 
+            MaintenanceConfiguration maintenanceConfiguration = new MaintenanceConfiguration();
             maintenanceConfiguration.Show();
         }
         private void ToolConfigure_click(object sender, RoutedEventArgs e)
@@ -417,17 +534,17 @@ namespace Test
         }
         private void FixtureConfigure_click(object sender, RoutedEventArgs e)
         {
-            FixtureConfigure toolConfigure = new FixtureConfigure();    
-            toolConfigure .Show();
+            FixtureConfigure toolConfigure = new FixtureConfigure();
+            toolConfigure.Show();
         }
         private void ConveyorSeetings_click(object sender, RoutedEventArgs e)
         {
-            ConveyorSettings conveyorSettings= new ConveyorSettings();
+            ConveyorSettings conveyorSettings = new ConveyorSettings();
             conveyorSettings.Show();
         }
         private void logConfigure_click(object sender, RoutedEventArgs e)
         {
-            logConfigure logConfigure1= new logConfigure();
+            logConfigure logConfigure1 = new logConfigure();
             logConfigure1.Show();
         }
         private void ConfigureProductMap_Click(object sender, RoutedEventArgs e)
@@ -491,10 +608,10 @@ namespace Test
             this.Hide();
         }
         private MainWindow main = null;
-        public Edit(MainWindow mainwindow) 
+        public Edit(MainWindow mainwindow)
         {
             InitializeComponent();
-           main = mainwindow;
+            main = mainwindow;
         }
 
         #region 选择轨迹命令，点线弧圆
@@ -528,6 +645,12 @@ namespace Test
         {
             if (orderArc.IsChecked == true)
             {
+
+
+                trajectoryArc.StratPoint.PointX = trajectory.PointH_TO_PointC(nLeft, Config.originpointX);
+                trajectoryArc.StratPoint.PointY = trajectory.PointH_TO_PointC(nTop, Config.originpointY);
+
+
                 orderPoint.IsChecked = false;
                 orderString.IsChecked = false;
                 orderRound.IsChecked = false;
@@ -541,6 +664,9 @@ namespace Test
         {
             if (orderRound.IsChecked == true)
             {
+                trajectoryRound.StratPoint.PointX = trajectory.PointH_TO_PointC(nLeft, Config.originpointX);
+                trajectoryRound.StratPoint.PointY = trajectory.PointH_TO_PointC(nTop, Config.originpointY);
+
                 orderPoint.IsChecked = false;
                 orderString.IsChecked = false;
                 orderArc.IsChecked = false;
@@ -551,20 +677,13 @@ namespace Test
         }
         #endregion
 
-        public class DGCommond_list
-        {
-            public string property { get; set; }
-        }
-
-        
-
 
         void item_click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
-        
+
 
         private void btnChage_click2(object sender, RoutedEventArgs e)
         {
@@ -583,7 +702,7 @@ namespace Test
             }
             else if (ConfigureSub.IsSelected == true)
             {
-                
+
             }
         }
 
@@ -611,7 +730,7 @@ namespace Test
         /// <summary>
         /// 执行wpf页面委托
         /// </summary>
-        private delegate void UpdateUIDelegate( );
+        private delegate void UpdateUIDelegate();
 
         
         /// <summary>
@@ -623,10 +742,10 @@ namespace Test
             {
                 Stroke = Brushes.Black,
                 StrokeThickness = 1,
-                X1 = trajectoryLine.StratPoint.PointX,
-                Y1 = trajectoryLine.StratPoint.PointY,
-                X2 = trajectoryLine.EndPoint.PointX,
-                Y2 = trajectoryLine.EndPoint.PointY
+                X1 = trajectory.PointC_TO_PointH(Config.originpointX, trajectoryLine.StratPoint.PointX),
+                Y1 = trajectory.PointC_TO_PointH(Config.originpointY, trajectoryLine.StratPoint.PointY),
+                X2 = trajectory.PointC_TO_PointH(Config.originpointX, trajectoryLine.EndPoint.PointX),
+                Y2 = trajectory.PointC_TO_PointH(Config.originpointY, trajectoryLine.EndPoint.PointY)
             };
             CanvasDraw.Children.Add(line);
         }
@@ -634,103 +753,8 @@ namespace Test
         Brush PenColor = Brushes.Black;
 
 
-        /// <summary>
-        /// 圆的结构体，point为圆心，radius为半径
-        /// </summary>
-        public struct CircleData
-        {
-            public Point center;
-            public int radius;
-            public Point StratPoint;
-        }
-
-        /// <summary>
-        ///  输入三个点，返回经过三个圆的结构体
-        /// </summary>
-        /// <param name="pt1"></param>
-        /// <param name="pt2"></param>
-        /// <param name="pt3"></param>
-        /// <returns></returns>
-        public void findCircle1(Point pt1, Point pt2, Point pt3,bool A)
-        {
-            //定义两个点，分别表示两个中点
-            Point midpt1 = new Point(); Point midpt2 = new Point();
-            //求出点1和点2的中点
-            midpt1.X = (pt2.X + pt1.X) / 2;
-            midpt1.Y = (pt2.Y + pt1.Y) / 2;
-            //求出点3和点1的中点
-            midpt2.X = (pt3.X + pt1.X) / 2;
-            midpt2.Y = (pt3.Y + pt1.Y) / 2;
-            //求出分别与直线pt1pt2，pt1pt3垂直的直线的斜率
-            double k1 = -(pt2.X - pt1.X) / (pt2.Y - pt1.Y);
-            double k2 = -(pt3.X - pt1.X) / (pt3.Y - pt1.Y);
-            //然后求出过中点midpt1，斜率为k1的直线方程（既pt1pt2的中垂线）：y - midPt1.y = k1( x - midPt1.x)
-            //以及过中点midpt2，斜率为k2的直线方程（既pt1pt3的中垂线）：y - midPt2.y = k2( x - midPt2.x)
-            //定义一个圆的数据的结构体对象CD
-            CircleData CD = new CircleData();
-            //连立两条中垂线方程求解交点得到：
-            CD.center.X = (midpt2.Y - midpt1.Y - k2 * midpt2.X + k1 * midpt1.X) / (k1 - k2);
-            CD.center.Y = midpt1.Y + k1 * (midpt2.Y - midpt1.Y - k2 * midpt2.X + k2 * midpt1.X) / (k1 - k2);
-            //用圆心和其中一个点求距离得到半径：
-            CD.radius = (int)(Math.Sqrt((CD.center.X - pt1.X) * (CD.center.X - pt1.X) + (CD.center.Y - pt1.Y) * (CD.center.Y - pt1.Y)));
-            if (A == true)
-            {
-                CD.StratPoint.X = CD.center.X - CD.radius;
-                CD.StratPoint.Y = CD.center.Y;
-            }
-            else if (A == false)
-            {
-                CD.StratPoint.X = trajectoryArc.StratPoint.PointX;
-                CD.StratPoint.Y = trajectoryArc.StratPoint.PointY;
-
-                #region 判断角度，存在问题
-                //const double M_PI = 3.1415926535897;
-                //double ma_x = CD.StratPoint.X - CD.center.X;
-                //double ma_y = CD.StratPoint.Y - CD.center.Y;
-                //double mb_x = trajectoryArc.EndPoint.PointX - CD.center.X;
-                //double mb_y = trajectoryArc.EndPoint.PointY - CD.center.Y;
-                //double v1 = (ma_x * mb_x) + (ma_y * mb_y);
-                //double ma_val = Math.Sqrt(ma_x * ma_x + ma_y * ma_y);
-                //double mb_val = Math.Sqrt(mb_x * mb_x + mb_y * mb_y);
-                //double cosM = v1 / (ma_val * mb_val);
-                //double angleAMB = Math.Acos(cosM) * 180 / M_PI;
-                //if (angleAMB<180)
-                //    trajectoryArc.Superior = true;
-                //else
-                //    trajectoryArc.Superior = false;
-                #endregion
 
 
-                //判断优劣弧，(OA.X-OB.X)*(OA.Y-OB.Y)是否大于0，大于则是劣弧
-                if ((CD.StratPoint.X-CD.center.X)*(trajectoryArc.EndPoint.PointX-CD.center.X)+(CD.StratPoint.Y-CD.center.Y)*(trajectoryArc.EndPoint.PointY-CD.center.Y)>0)
-                {
-                    trajectoryArc.Superior = false;
-                }
-                else if ((CD.StratPoint.X - CD.center.X) * (trajectoryArc.EndPoint.PointX - CD.center.X) + (CD.StratPoint.Y - CD.center.Y) * (trajectoryArc.EndPoint.PointY - CD.center.Y) <= 0)
-                {
-                    trajectoryArc.Superior = true;
-                }
-
-
-                if (trajectoryArc.ForWardRatation == true)
-                {
-                    if (CD.StratPoint.X >= CD.center.X && CD.StratPoint.Y >= CD.center.Y)
-                    {
-                        if (trajectoryArc.EndPoint.PointX>CD.StratPoint.X)
-                        {
-                            trajectoryArc.Superior = true;
-                        }
-                        else if (true)
-                        {
-
-                        }
-                    }
-                }
-
-                
-            }
-            circleData = CD;
-        }
 
 
         /// <summary>
@@ -743,26 +767,44 @@ namespace Test
             x_Arrow.Stroke = PenColor;
             PathFigure x_Figure = new PathFigure();
             x_Figure.IsClosed = false;
-            x_Figure.StartPoint = circleData.StratPoint;//路径的起点
-            Point RoundEndPoint = new Point(circleData.StratPoint.X+circleData.radius*2,circleData.StratPoint.Y);
-            x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, true, SweepDirection.Clockwise, true));
-            PathGeometry x_Geometry = new PathGeometry();
-            x_Geometry.Figures.Add(x_Figure);
-            x_Arrow.Data = x_Geometry;
-            CanvasDraw.Children.Add(x_Arrow);
+            Point RoundStratPoint = new Point(trajectoryRound.Center.X-trajectoryRound.RoundR, trajectoryRound.Center.Y);
+
+            // 将程序内坐标系转化为绘图坐标系（起点）
+            RoundStratPoint.X = trajectory.PointC_TO_PointH(Config.originpointX, RoundStratPoint.X);
+            RoundStratPoint.Y = trajectory.PointC_TO_PointH(Config.originpointY, RoundStratPoint.Y);
+
+            x_Figure.StartPoint = RoundStratPoint;  // 将转化后的点赋值给点
+            
+
+            Point RoundEndPoint = new Point(trajectoryRound.Center.X + trajectoryRound.RoundR, trajectoryRound.Center.Y); // 路径终点
+
+            // 将程序内坐标系转化为绘图坐标系
+            RoundEndPoint.X = trajectory.PointC_TO_PointH(Config.originpointX, RoundEndPoint.X);
+            RoundEndPoint.Y = trajectory.PointC_TO_PointH(Config.originpointY, RoundEndPoint.Y);
+
+            x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(trajectoryRound.RoundR, trajectoryRound.RoundR), 0, true, SweepDirection.Clockwise, true)); // 此路径的上半圆参数
+
+            PathGeometry x_Geometry = new PathGeometry(); //  表示新建了一个形状
+            x_Geometry.Figures.Add(x_Figure); // 将上半圆的路径的参数加入到形状中
+
+            x_Arrow.Data = x_Geometry; // 将形状的参数传入到Path类中
+            CanvasDraw.Children.Add(x_Arrow); // 将此Path类代表的图形加入到canvas中
 
             //绘制下半圆
             Path Y_Arrow = new Path();
             Y_Arrow.Stroke = PenColor;
             PathFigure Y_Figure = new PathFigure();
             Y_Figure.IsClosed = false;
-            Y_Figure.StartPoint = circleData.StratPoint;//路径的起点
-            Point RoundEndPoint2 = new Point(circleData.StratPoint.X + circleData.radius * 2, circleData.StratPoint.Y);
-            Y_Figure.Segments.Add(new ArcSegment(RoundEndPoint2, new Size(circleData.radius, circleData.radius), 0, true, SweepDirection.Counterclockwise, true));
+
+            Y_Figure.StartPoint = RoundStratPoint;
+
+            Y_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(trajectoryRound.RoundR, trajectoryRound.RoundR), 0, true, SweepDirection.Counterclockwise, true));
+
             PathGeometry Y_Geometry = new PathGeometry();
             Y_Geometry.Figures.Add(Y_Figure);
             Y_Arrow.Data = Y_Geometry;
             CanvasDraw.Children.Add(Y_Arrow);
+            orderRound.IsChecked = false ;
         }
 
         /// <summary>
@@ -774,22 +816,104 @@ namespace Test
             x_Arrow.Stroke = PenColor;
             PathFigure x_Figure = new PathFigure();
             x_Figure.IsClosed = false;
-            x_Figure.StartPoint = circleData.StratPoint;//路径的起点
-            Point RoundEndPoint = new Point(trajectoryArc.EndPoint.PointX, trajectoryArc.EndPoint.PointY);
+            Point RoundStratPoint = new Point();
+
+            RoundStratPoint.X = trajectory.PointC_TO_PointH(Config.originpointX, trajectoryArc.StratPoint.PointX);
+            RoundStratPoint.Y = trajectory.PointC_TO_PointH(Config.originpointY, trajectoryArc.StratPoint.PointY);
+
+            x_Figure.StartPoint = RoundStratPoint;//路径的起点
+
+            Point RoundEndPoint = new Point(trajectoryArc.EndPoint.PointX, trajectoryArc.EndPoint.PointY); // 路径终点
+
+            // 将程序内坐标系转化为绘图坐标系
+            RoundEndPoint.X = trajectory.PointC_TO_PointH(Config.originpointX, RoundEndPoint.X);
+            RoundEndPoint.Y = trajectory.PointC_TO_PointH(Config.originpointY, RoundEndPoint.Y);
+
+            trajectoryArc.Superior = trajectory.GetSuperior(trajectoryArc.PointStrat, trajectoryArc.Center, trajectoryArc.PointEnd, trajectoryArc.ForWardRatation);
+
             if (trajectoryArc.ForWardRatation == true)
-            {
-                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, trajectoryArc.Superior, SweepDirection.Clockwise, true));
-            }
+                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(trajectoryArc.RoundR, trajectoryArc.RoundR), 0, trajectoryArc.Superior, SweepDirection.Clockwise, true));
             else
-                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(circleData.radius, circleData.radius), 0, trajectoryArc.Superior, SweepDirection.Counterclockwise, true));
+                x_Figure.Segments.Add(new ArcSegment(RoundEndPoint, new Size(trajectoryArc.RoundR, trajectoryArc.RoundR), 0, trajectoryArc.Superior, SweepDirection.Counterclockwise, true));
+
             PathGeometry x_Geometry = new PathGeometry();
+
             x_Geometry.Figures.Add(x_Figure);
             x_Arrow.Data = x_Geometry;
             CanvasDraw.Children.Add(x_Arrow);
+
+            orderArc.IsChecked = false;
          }
         #endregion
 
-        public bool result;
+        /// <summary>
+        /// 利用OpenfileDiaglog控件打开轨迹文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            // 为文件扩展名和默认文件扩展名设置过滤器
+            dlg.DefaultExt = ".XML";  
+            dlg.Filter = "轨迹文件(.XML)|*.XML";
+            // 显示窗口
+            result = dlg.ShowDialog();
+
+            CanvasDraw.Children.Clear();
+            CanvasTrajectory.Items.Clear();
+
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()  //这里应该封装成一个方法，绘图一个，生成列表一个
+            {
+                if (result == true)
+                {
+                    // 获取文件名
+                    XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
+                    trajectory.trajectoryLoaded(XMLPath);
+                    trajectoryPars.Clear();
+                    trajectoryPars = trajectory.OpenTarjectory2();
+                    MaxSort = trajectoryPars.Count + 1;
+                    int i = 1;
+                    CheckSort = 1;
+                    CheckBoxheight = 12.000;
+                    //获取轨迹数量
+                    foreach (var item in trajectoryPars)
+                    {
+                        if (item.GetType().ToString() == "Test.TrajectoryLine")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                            trajectoryLine = (TrajectoryLine)item;
+                            createTrajectory(trajectoryLine);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if (item.GetType().ToString() == "Test.TrajectoryRound")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                            trajectoryRound = (TrajectoryRound)item;
+
+                            createTrajectory(trajectoryRound);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if (item.GetType().ToString() == "Test.TrajectoryArc")
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                            trajectoryArc = (TrajectoryArc)item;
+
+                            createTrajectory(trajectoryArc);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool? result;
+
         /// <summary>
         /// 在文件中添加轨迹
         /// </summary>
@@ -797,12 +921,11 @@ namespace Test
         /// <param name="e"></param>
         private void trajectoryBatch_Click(object sender, RoutedEventArgs e)
         {
-            // 设置默认值
+            // 设置默认值，后面引入配置
             trajectoryLine.EndPoint.PointW = 20.0;
             trajectoryRound.EndPoint.PointW = 20.0;
             trajectoryArc.EndPoint.PointW = 20.0;
             trajectoryLine.Lift = false;
-
 
             if (XMLPath != null)
             {
@@ -821,24 +944,28 @@ namespace Test
                         else if (orderString.IsChecked == true)
                         {
                             trajectoryLine.Type = "Line";
-                            result = trajectory.AddTrajectory(trajectoryLine);
-                            trajectoryPars.Add((object)trajectoryLine);
+                            //result = trajectory.AddTrajectory(trajectoryLine);
+                            trajectoryPars.Add(trajectoryLine);
                             Thread thread = new Thread(ThreadUpdateUILine);
                             thread.Start();
                         }
                         else if (orderArc.IsChecked == true)
                         {
-                            trajectoryLine.Type = "Arc";
+
+                            trajectoryPars.Add(trajectoryArc);
+
+                            Thread thread = new Thread(ThreadUpdateUIArc);
+                            thread.Start();
                         }
                         else if (orderRound.IsChecked == true)
                         {
-                            trajectoryLine.Type = "Round";
-                            result = trajectory.AddTrajectory(trajectoryLine);
+                            trajectoryPars.Add(trajectoryRound);
+
                             Thread thread = new Thread(ThreadUpdateUIRound);
                             thread.Start();
                         }
 
-
+                        // 绘制圆的过程和绘制圆弧的过程都需要将
                         void ThreadUpdateUIRound()
                         {
                             UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
@@ -846,7 +973,18 @@ namespace Test
                             {
                                 // 实现事先定义的轨迹类，后面用绘图方法绘制
                                 this.Dispatcher.Invoke(updateUIDelegate);
-                                createTrajectory(trajectoryLine);
+                                createTrajectory(trajectoryRound);
+                            }
+                        }
+
+                        void ThreadUpdateUIArc()
+                        {
+                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                            if (result == true)
+                            {
+                                // 实现事先定义的轨迹类，后面用绘图方法绘制
+                                this.Dispatcher.Invoke(updateUIDelegate);
+                                createTrajectory(trajectoryArc);
                             }
                         }
 
@@ -870,83 +1008,9 @@ namespace Test
             else
                 MessageBox.Show("未指定轨迹文件");
         }
-            
 
 
-        /// <summary>
-        /// 利用OpenfileDiaglog控件打开轨迹文件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
-        {
-            // 为文件扩展名和默认文件扩展名设置过滤器
-            dlg.DefaultExt = ".XML";
-            dlg.Filter = "轨迹文件(.XML)|*.XML";
-            // 显示窗口
-            Nullable<bool> result = dlg.ShowDialog();
-            CanvasDraw.Children.Clear();
-            
-            CanvasTrajectory.Children.Clear();
 
-            Thread thread = new Thread(ThreadUpdateUI);
-            thread.Start();
-            /// <summary>
-            /// 画图线程
-            /// </summary>
-            void ThreadUpdateUI()
-            {
-                
-                if (result == true) 
-                {
-                    // 获取文件名
-                    XMLPath = System.IO.Path.GetFullPath(dlg.FileName);
-                    trajectory.trajectoryLoaded(XMLPath);
-                    trajectoryPars = trajectory.OpenTarjectory2();
-                    MaxSort = trajectoryPars.Count+1;
-                    int i = 1;
-                    //获取轨迹数量
-                    foreach (var item in trajectoryPars)
-                    {
-                        if (item.GetType().ToString() == "Test.TrajectoryLine")
-                        {
-                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
-                            trajectoryLine = (TrajectoryLine)item;
-                            createTrajectory(trajectoryLine);
-                            this.Dispatcher.Invoke(updateUIDelegate);
-                        }
-                        if (item.GetType().ToString() == "Test.TrajectoryRound")
-                        {
-                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
-                            trajectoryRound  = (TrajectoryRound)item;
-                            pointStrat.X = trajectoryRound.StratPoint.PointX;
-                            pointStrat.Y = trajectoryRound.StratPoint.PointY;
-                            pointMid.X = trajectoryRound.MidPoint.PointX;
-                            pointMid.Y = trajectoryRound.MidPoint.PointY;
-                            pointEnd.X = trajectoryRound.EndPoint.PointX;
-                            pointEnd.Y = trajectoryRound.EndPoint.PointY;
-                            findCircle1(pointMid,pointStrat,pointEnd,true);
-                            createTrajectory(trajectoryRound); 
-                            this.Dispatcher.Invoke(updateUIDelegate);
-                        }
-                        if (item.GetType().ToString() == "Test.TrajectoryArc")
-                        {
-                            UpdateUIDelegate updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
-                            trajectoryArc = (TrajectoryArc)item;
-                            pointStrat.X = trajectoryArc.StratPoint.PointX;
-                            pointStrat.Y = trajectoryArc.StratPoint.PointY;
-                            pointMid.X = trajectoryArc.MidPoint.PointX;
-                            pointMid.Y = trajectoryArc.MidPoint.PointY;
-                            pointEnd.X = trajectoryArc.EndPoint.PointX;
-                            pointEnd.Y = trajectoryArc.EndPoint.PointY;
-                            findCircle1(pointMid, pointStrat, pointEnd,false);
-                            createTrajectory(trajectoryArc);
-                            this.Dispatcher.Invoke(updateUIDelegate);
-                        }
-                    }
-                }
-            }
-        }
 
         /// <summary>
         ///  ！！！文件另存为，利用SavefileDiaglog控件打开轨迹文件，还未完成，需要修改
@@ -1043,24 +1107,28 @@ namespace Test
 
 
         #region 创建CheckBox，对应创建的轨迹文件和编的轨迹的数据
-        public double CheckBoxheight = 20.000;
+        public double CheckBoxheight = 12.000;
+        public int CheckSort = 1;
         private void createTrajectory(TrajectoryLine trajectoryPar)
         {
             //加入Dispatcher管理线程工作项队列
             App.Current.Dispatcher.Invoke(() =>
             {
-                double height = CheckBoxheight;
-                CheckBoxheight = CheckBoxheight + 0.001;
-
                 double width = this.CanvasTrajectory.ActualWidth - 2;
+
+                double height = Math.Round(CheckBoxheight,3);
+                CheckBoxheight =Math.Round( CheckBoxheight + 0.001,3);
+
+                
                 System.Windows.Controls.CheckBox CB = new System.Windows.Controls.CheckBox()
                 {
                     Height = height,
                     Width = width
                 };
 
-                CanvasTrajectory.Children.Add(CB);
+                CanvasTrajectory.Items.Add(CB);
                 CB.FontSize = 7;
+                CB.Padding = new Thickness(0);
                 //CB.Name = trajectoryPar.Sort;
 
                 string openCoat;
@@ -1077,9 +1145,39 @@ namespace Test
                 }
                 else
                     CoatLift = "降";
-                CB.Content = trajectoryPar.Sort + ": " + " 线 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString()+" "+trajectoryPar.StratPoint.PointY.ToString() + " 终" + trajectoryPar.EndPoint.PointX.ToString()+" "+trajectoryPar.EndPoint.PointY.ToString() ;
+                CB.Content = CheckSort++ + ": " + " 线 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString()+" "+trajectoryPar.StratPoint.PointY.ToString() + " 终" + trajectoryPar.EndPoint.PointX.ToString()+" "+trajectoryPar.EndPoint.PointY.ToString() ;
                 CB.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseLeftButtonDown);
+                CB.PreviewMouseRightButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseRightButtonDown);
                 CB.ToolTip = CB.Content;
+
+                ContextMenu aMenu = new ContextMenu();
+                MenuItem deleteMenu = new MenuItem();
+                MenuItem InsertLine = new MenuItem();
+                MenuItem InsertRound = new MenuItem();
+                MenuItem InsertArc = new MenuItem();
+
+                deleteMenu.Height = CB.Height;
+                deleteMenu.Header = "删除";
+
+                InsertLine.Height = CB.Height;
+                InsertLine.Header = "插入线";
+
+                InsertRound.Height = CB.Height;
+                InsertRound.Header = "插入圆";
+
+                InsertArc.Height = CB.Height;
+                InsertArc.Header = "插入弧";
+
+                deleteMenu.Click += Delete_click;
+                InsertLine.Click += InsertLine_click;
+                InsertRound.Click += InsertRound_click;
+                InsertArc.Click += InsertArc_click;
+                aMenu.Items.Add(deleteMenu);
+                aMenu.Items.Add(InsertLine);
+                aMenu.Items.Add(InsertRound);
+                aMenu.Items.Add(InsertArc);
+
+                CB.ContextMenu = aMenu;
             });
         }
         private void createTrajectory(TrajectoryRound trajectoryPar)
@@ -1097,7 +1195,7 @@ namespace Test
                     Width = width
                 };
 
-                CanvasTrajectory.Children.Add(CB);
+                CanvasTrajectory.Items.Add(CB);
                 CB.FontSize = 7;
                 //CB.Name = trajectoryPar.Sort;
 
@@ -1115,9 +1213,39 @@ namespace Test
                 }
                 else
                     CoatLift = "降";
-                CB.Content = trajectoryPar.Sort + ": " + " 圆 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针："+trajectoryRound.ForWardRatation.ToString();
+                CB.Content = CheckSort++ + ": " + " 圆 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针："+trajectoryRound.ForWardRatation.ToString();
                 CB.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseLeftButtonDown);
+                CB.PreviewMouseRightButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseRightButtonDown);
                 CB.ToolTip = CB.Content;
+
+                ContextMenu aMenu = new ContextMenu();
+                MenuItem deleteMenu = new MenuItem();
+                MenuItem InsertLine = new MenuItem();
+                MenuItem InsertRound = new MenuItem();
+                MenuItem InsertArc = new MenuItem();
+
+                deleteMenu.Height = CB.Height;
+                deleteMenu.Header = "删除";
+
+                InsertLine.Height = CB.Height;
+                InsertLine.Header = "插入线";
+
+                InsertRound.Height = CB.Height;
+                InsertRound.Header = "插入圆";
+
+                InsertArc.Height = CB.Height;
+                InsertArc.Header = "插入弧";
+
+                deleteMenu.Click += Delete_click;
+                InsertLine.Click += InsertLine_click;
+                InsertRound.Click += InsertRound_click;
+                InsertArc.Click += InsertArc_click;
+                aMenu.Items.Add(deleteMenu);
+                aMenu.Items.Add(InsertLine);
+                aMenu.Items.Add(InsertRound);
+                aMenu.Items.Add(InsertArc);
+
+                CB.ContextMenu = aMenu;
                 // CB.PreviewMouseRightButtonDown += new MouseButtonEventHandler(此处添加右击事件方法);
                 // 需要在这个地方添加一个右击事件，右击添加，包含序号和一个选择的命令类型。
             });
@@ -1154,13 +1282,281 @@ namespace Test
                 }
                 else
                     CoatLift = "降";
-                CB.Content = trajectoryPar.Sort + ": " + " 弧 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针：" + trajectoryRound.ForWardRatation.ToString();
+                CB.Content = CheckSort++ + ": " + " 弧 " + " 升降:" + CoatLift + " " + " 胶阀:" + openCoat + " 起:" + trajectoryPar.StratPoint.PointX.ToString() + " " + trajectoryPar.StratPoint.PointY.ToString() + "顺时针：" + trajectoryRound.ForWardRatation.ToString();
                 CB.ToolTip = CB.Content;
                 CB.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseLeftButtonDown);
-                CanvasTrajectory.Children.Add(CB);
+                CanvasTrajectory.Items.Add(CB);
+                CB.PreviewMouseRightButtonDown += new MouseButtonEventHandler(CheckBox_PreviewMouseRightButtonDown);
+
+                ContextMenu aMenu = new ContextMenu();
+                MenuItem deleteMenu = new MenuItem();
+                MenuItem InsertLine = new MenuItem();
+                MenuItem InsertRound = new MenuItem();
+                MenuItem InsertArc = new MenuItem();
+
+                deleteMenu.Height = CB.Height;
+                deleteMenu.Header = "删除";
+
+                InsertLine.Height = CB.Height;
+                InsertLine.Header = "插入线";
+
+                InsertRound.Height = CB.Height;
+                InsertRound.Header = "插入圆";
+
+                InsertArc.Height = CB.Height;
+                InsertArc.Header = "插入弧";
+
+                deleteMenu.Click += Delete_click;
+                InsertLine.Click += InsertLine_click;
+                InsertRound.Click += InsertRound_click;
+                InsertArc.Click += InsertArc_click;
+                aMenu.Items.Add(deleteMenu);
+                aMenu.Items.Add(InsertLine);
+                aMenu.Items.Add(InsertRound);
+                aMenu.Items.Add(InsertArc);
+
+                CB.ContextMenu = aMenu;
             });
         }
         #endregion
+
+        public int GetSort;
+        void CheckBox_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var d = sender as System.Windows.Controls.CheckBox;
+            GetSort = int.Parse(d.Content.ToString().Split(':')[0]) - 1;
+        }
+
+
+            /// <summary>
+            /// 插入线,在这里应该更新列表
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private void InsertLine_click(object sender, RoutedEventArgs e)
+        {
+            var d = sender as MenuItem;
+            int sort = (int)((d.Height - 10) * 1000) + 1; // 获得所选的控件所对应的数据的序号
+
+            TrajectoryLine trajectoryLineTemp = new TrajectoryLine();
+            trajectoryPars.Insert(sort-1, trajectoryLineTemp);
+            CanvasTrajectory.Items.Clear();
+            CanvasDraw.Children.Clear();
+
+
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()  //这里应该封装成一个方法，绘图一个，生成列表一个
+            {
+                    MaxSort = trajectoryPars.Count + 1;
+                    int i = 1;
+                    CheckSort = 1;
+                    CheckBoxheight = 12.000;
+                    //获取轨迹数量
+                    foreach (var item in trajectoryPars)
+                    {
+                        if (item.GetType().ToString() == "Test.TrajectoryLine")
+                        {
+                            updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                            trajectoryLine = (TrajectoryLine)item;
+                            createTrajectory(trajectoryLine);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if (item.GetType().ToString() == "Test.TrajectoryRound")
+                        {
+                            updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                            trajectoryRound = (TrajectoryRound)item;
+
+
+                            createTrajectory(trajectoryRound);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                        if (item.GetType().ToString() == "Test.TrajectoryArc")
+                        {
+                            updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                            trajectoryArc = (TrajectoryArc)item;
+                            pointStrat.X = trajectoryArc.StratPoint.PointX;
+
+                            createTrajectory(trajectoryArc);
+                            this.Dispatcher.Invoke(updateUIDelegate);
+                        }
+                    }
+            }
+        }
+
+        /// <summary>
+        /// 插入圆
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsertRound_click(object sender, RoutedEventArgs e)
+        {
+            var d = sender as MenuItem;
+            int sort = (int)((d.Height - 20) * 1000) + 1; // 获得所选的控件所对应的数据的序号
+
+            TrajectoryRound trajectoryRoundTemp = new TrajectoryRound();
+            trajectoryPars.Insert(sort - 1, trajectoryRoundTemp);
+            CanvasTrajectory.Items.Clear();
+            CanvasDraw.Children.Clear();
+
+
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()  //这里应该封装成一个方法，绘图一个，生成列表一个
+            {
+                MaxSort = trajectoryPars.Count + 1;
+                int i = 1;
+                CheckSort = 1;
+                CheckBoxheight = 12.000;
+                //获取轨迹数量
+                foreach (var item in trajectoryPars)
+                {
+                    if (item.GetType().ToString() == "Test.TrajectoryLine")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                        trajectoryLine = (TrajectoryLine)item;
+                        createTrajectory(trajectoryLine);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryRound")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                        trajectoryRound = (TrajectoryRound)item;
+
+
+                        createTrajectory(trajectoryRound);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryArc")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                        trajectoryArc = (TrajectoryArc)item;
+
+
+                        createTrajectory(trajectoryArc);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 插入弧
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InsertArc_click(object sender, RoutedEventArgs e)
+        {
+            var d = sender as MenuItem;
+            int sort = (int)((d.Height - 12) * 1000) + 1; // 获得所选的控件所对应的数据的序号
+            TrajectoryArc trajectoryArcTemp = new TrajectoryArc();
+            trajectoryPars.Insert(sort - 1, trajectoryArcTemp);
+            CanvasTrajectory.Items.Clear();
+            CanvasDraw.Children.Clear();
+
+
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()  //这里应该封装成一个方法，绘图一个，生成列表一个
+            {
+                MaxSort = trajectoryPars.Count + 1;
+                int i = 1;
+                CheckSort = 1;
+                CheckBoxheight = 12.000;
+                //获取轨迹数量
+                foreach (var item in trajectoryPars)
+                {
+                    if (item.GetType().ToString() == "Test.TrajectoryLine")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                        trajectoryLine = (TrajectoryLine)item;
+                        createTrajectory(trajectoryLine);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryRound")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                        trajectoryRound = (TrajectoryRound)item;
+                        createTrajectory(trajectoryRound);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryArc")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                        trajectoryArc = (TrajectoryArc)item;
+                        createTrajectory(trajectoryArc);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                }
+            }
+        }
+        UpdateUIDelegate updateUIDelegate = null;
+
+        /// <summary>
+        /// 在trajectoryPars中将特定位置的集合元素删除，并将列表更新，将轨迹图更新
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Delete_click(object sender, RoutedEventArgs e)
+        {   
+            trajectoryPars.RemoveAt(GetSort);
+            CanvasDraw.Children.Clear();
+            CanvasTrajectory.Items.Clear();
+            CheckBoxheight = 12.0;
+            CheckSort = 1;
+
+            Thread thread = new Thread(ThreadUpdateUI);
+            thread.Start();
+            /// <summary>
+            /// 画图线程
+            /// </summary>
+            void ThreadUpdateUI()
+            {
+                    MaxSort = trajectoryPars.Count + 1;
+                    int i = 1;
+                //获取轨迹数量
+                foreach (var item in trajectoryPars)
+                {
+                    if (item.GetType().ToString() == "Test.TrajectoryLine")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryLine);
+                        trajectoryLine = (TrajectoryLine)item;
+                        createTrajectory(trajectoryLine);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryRound")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryRound);
+                        trajectoryRound = (TrajectoryRound)item;
+
+
+                        createTrajectory(trajectoryRound);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                    if (item.GetType().ToString() == "Test.TrajectoryArc")
+                    {
+                        updateUIDelegate = new UpdateUIDelegate(DrawTrajectoryArc);
+                        trajectoryArc = (TrajectoryArc)item;
+
+                        createTrajectory(trajectoryArc);
+                        this.Dispatcher.Invoke(updateUIDelegate);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// 将PorpertyGrid数据源随着点击对应的CheckBox而切换数据源
@@ -1170,7 +1566,8 @@ namespace Test
         void CheckBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var d = sender as System.Windows.Controls.CheckBox;
-            int sort = (int)((d.Height - 20)*1000);
+            int sort =int.Parse( d.Content.ToString().Split(':')[0])-1;
+
             if (trajectoryPars[sort].GetType().ToString() == "Test.TrajectoryArc")
             {
                 OptionsPropertyGrid.SelectedObject = (TrajectoryArc)trajectoryPars[sort];
@@ -1207,7 +1604,7 @@ namespace Test
                 nLeft = chartCanvas.Width - myThumb.Width;
             Canvas.SetTop(myThumb, nTop); 
             Canvas.SetLeft(myThumb, nLeft);
-            tt.Text = "Top:" + nTop.ToString() +"  "+ "Left:" + nLeft.ToString();
+            tt.Text = "X:" +Math.Round(  trajectory.PointH_TO_PointC(nLeft, Config.originpointX),2) +"  "+ "Y:" +Math.Round( trajectory.PointH_TO_PointC(nTop,Config.originpointY),2);
         }
 
         private void Bigger_Click(object sender, RoutedEventArgs e)
@@ -1280,13 +1677,68 @@ namespace Test
                 {
                     trajectoryLine.StratPoint.PointX = nLeft;
                     trajectoryLine.StratPoint.PointY = nTop;
+                    trajectoryLine.StratPoint.PointX = trajectory.PointH_TO_PointC(trajectoryLine.StratPoint.PointX, Config.originpointX);
+                    trajectoryLine.StratPoint.PointY = trajectory.PointH_TO_PointC(trajectoryLine.StratPoint.PointY, Config.originpointY);
                     StratTrue = true;
                 }
                 else if (orderRound.IsChecked == true)
                 {
                     trajectoryRound.MidPoint.PointX = nLeft;
                     trajectoryRound.MidPoint.PointY = nTop;
+
+                    trajectoryRound.MidPoint.PointX = trajectory.PointH_TO_PointC(trajectoryRound.MidPoint.PointX, Config.originpointX);
+                    trajectoryRound.MidPoint.PointY = trajectory.PointH_TO_PointC(trajectoryRound.MidPoint.PointY, Config.originpointY);
+
                     StratTrue = true;
+                }
+                else if (orderArc.IsChecked == true)
+                {
+                    trajectoryArc.MidPoint.PointX = nLeft;
+                    trajectoryArc.MidPoint.PointY = nTop;
+
+                    trajectoryArc.MidPoint.PointX = trajectory.PointH_TO_PointC(trajectoryArc.MidPoint.PointX, Config.originpointX);
+                    trajectoryArc.MidPoint.PointY = trajectory.PointH_TO_PointC(trajectoryArc.MidPoint.PointY, Config.originpointY);
+                    StratTrue = true;
+                }
+            }
+            else
+                MessageBox.Show("请选择命令类型或指定文件");
+        }
+
+        /// <summary>
+        /// 获取结束点的坐标
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGetEndPoint_Click(object sender, RoutedEventArgs e)
+        {
+            if (XMLPath != null && (orderPoint.IsChecked == true || orderString.IsChecked == true || orderArc.IsChecked == true || orderRound.IsChecked == true))
+            {
+                if (orderString.IsChecked == true)
+                {
+                    trajectoryLine.EndPoint.PointX = nLeft;
+                    trajectoryLine.EndPoint.PointY = nTop;
+                    trajectoryLine.EndPoint.PointX = trajectory.PointH_TO_PointC(trajectoryLine.EndPoint.PointX, Config.originpointX);
+                    trajectoryLine.EndPoint.PointY = trajectory.PointH_TO_PointC(trajectoryLine.EndPoint.PointY, Config.originpointY);
+                    EndTrue = true;
+                }
+                else if (orderRound.IsChecked == true)
+                {
+                    trajectoryRound.EndPoint.PointX = nLeft;
+                    trajectoryRound.EndPoint.PointY = nTop;
+
+                    trajectoryRound.EndPoint.PointX = trajectory.PointH_TO_PointC(trajectoryRound.EndPoint.PointX, Config.originpointX);
+                    trajectoryRound.EndPoint.PointY = trajectory.PointH_TO_PointC(trajectoryRound.EndPoint.PointY, Config.originpointY);
+                    EndTrue = true;
+                }
+                else if (orderArc.IsChecked == true)
+                {
+                    trajectoryArc.EndPoint.PointX = nLeft;
+                    trajectoryArc.EndPoint.PointY = nTop;
+
+                    trajectoryArc.EndPoint.PointX = trajectory.PointH_TO_PointC(trajectoryArc.EndPoint.PointX, Config.originpointX);
+                    trajectoryArc.EndPoint.PointY = trajectory.PointH_TO_PointC(trajectoryArc.EndPoint.PointY, Config.originpointY);
+                    EndTrue = true;
                 }
             }
             else
@@ -1305,32 +1757,54 @@ namespace Test
             
         }
 
-        /// <summary>
-        /// 获取街书店的坐标
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnGetEndPoint_Click(object sender, RoutedEventArgs e)
-        {
-            if (XMLPath != null && (orderPoint.IsChecked == true || orderString.IsChecked == true || orderArc.IsChecked == true || orderRound.IsChecked == true))
-            {
-                if (orderString.IsChecked == true)
-                {
-                    trajectoryLine.EndPoint.PointX = nLeft;
-                    trajectoryLine.EndPoint.PointY = nTop;
-                    EndTrue = true;
-                }
-                else if (orderRound.IsChecked == true)
-                {
-                    trajectoryRound.EndPoint.PointX = nLeft;
-                    trajectoryRound.EndPoint.PointY = nTop;
-                    EndTrue = true;
-                }
-            }
-            else
-                MessageBox.Show("请选择命令类型或指定文件");
-        }
+
         #endregion
+
+        #region DispatcherTimer此定时器在UI页面过于复杂的情况下，效率会较低
+        /*
+          
+         
+        private DispatcherTimer dispatcherTimer = null; // 声明定时器
+
+        
+
+        
+
+        //  System.Windows.Threading.DispatcherTimer.Tick handler
+        //
+        //  Updates the current seconds display and calls
+        //  InvalidateRequerySuggested on the CommandManager to force 
+        //  the Command to raise the CanExecuteChanged event.
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current second
+            Canvas.SetTop(key, nTop += 0.1);
+
+            // Forcing the CommandManager to raise the RequerySuggested event
+            CommandManager.InvalidateRequerySuggested();
+        }
+
+        */
+        #endregion
+
+        private void CoatKeyMoveDown() 
+        {
+            Canvas.SetTop(key, nTop += 20);
+        }
+        private void CoatKeyMoveUp()
+        {
+            Canvas.SetTop(key, nTop -= 0.3);
+        }
+        private void CoatKeyMoveLeft()
+        {
+            Canvas.SetLeft(key, nLeft -= 0.3);
+        }
+        private void CoatKeyMoveRight()
+        {
+            Canvas.SetLeft(key, nLeft += 0.3);
+        }
+
+        
 
         /// <summary>
         /// 键盘操作移动滑块
@@ -1339,41 +1813,133 @@ namespace Test
         /// <param name="e"></param>
         private void CoatKeyMove_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if (e.Key == Key.Down)
+            {
+                aTimerDown.Interval = 20;
+                aTimerDown.Enabled = true;
+            }
+            /*
+            if (e.Key == Key.Up)
+            {
+                aTimerUp.Interval = 15;
+                aTimerUp.Enabled = true;
+            }
             if (e.Key == Key.Left)
             {
-                Canvas.SetLeft(key, nLeft -= 1);
+                aTimerLeft.Interval = 15;
+                aTimerLeft.Enabled = true;
             }
             if (e.Key == Key.Right)
             {
-                Canvas.SetLeft(key, nLeft += 1);
+                aTimerRight.Interval = 15;
+                aTimerRight.Enabled = true;
+            }
+            */
+
+
+            #region
+            /*
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Left)
+            {
+                aTimerLeft.Interval = 50;
+                aTimerLeft.Enabled = true;
+            }
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Right)
+            {
+                aTimerRight.Interval = 50;
+                aTimerRight.Enabled = true;
+            }
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Up)
+            {
+                aTimerUp.Interval = 50;
+                aTimerUp.Enabled = true;
+            }*/
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && e.Key == Key.Down)
+            {
+                aTimerDown.Interval = 2520;
+                aTimerDown.Start();
+            }
+
+            #endregion
+        }
+ 
+        private void ATimer_ElapsedDown(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            updateUIDelegate = new UpdateUIDelegate(CoatKeyMoveDown);
+            this.Dispatcher.Invoke(updateUIDelegate);
+        }
+
+        /*
+        private void ATimer_ElapsedUp(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            updateUIDelegate = new UpdateUIDelegate(CoatKeyMoveUp);
+            this.Dispatcher.Invoke(updateUIDelegate);
+        }
+        private void ATimer_ElapsedLeft(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            updateUIDelegate = new UpdateUIDelegate(CoatKeyMoveLeft);
+            this.Dispatcher.Invoke(updateUIDelegate);
+        }
+        private void ATimer_ElapsedRight(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            updateUIDelegate = new UpdateUIDelegate(CoatKeyMoveRight);
+            this.Dispatcher.Invoke(updateUIDelegate);
+        }
+        */
+
+        private void CoatKeyMove(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                Canvas.SetTop(key, nTop += 0.3);
             }
             if (e.Key == Key.Up)
             {
-                Canvas.SetTop(key, nTop -= 1);
+                Canvas.SetTop(key, nTop -= 0.3);
             }
-            if (e.Key == Key.Down)
+            if (e.Key == Key.Left)
             {
-                Canvas.SetTop(key, nTop += 1);
+                Canvas.SetLeft(key, nLeft -= 0.3);
             }
-
-
-            //不应该是增加距离，而是应该缩小移动距离，缩小响应时间
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Shift && e.Key == Key.Left)
+            if (e.Key == Key.Right)
             {
-                Canvas.SetLeft(key, nLeft -= 10);
-            }
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Shift && e.Key == Key.Right)
-            {
-                Canvas.SetLeft(key, nLeft += 10);
-            }
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Shift && e.Key == Key.Up)
-            {
-                Canvas.SetLeft(key, nTop -= 10);
-            }
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Shift && e.Key == Key.Down)
-            {
-                Canvas.SetLeft(key, nTop += 10);
+                Canvas.SetLeft(key, nLeft += 0.3);
             }
         }
+
+        /// <summary>
+        /// 初始化各个定时器
+        /// </summary>
+        public void TimerLni()
+        {
+            aTimerDown.Interval = 10;
+            //aTimerUp.Interval =15;
+           // aTimerLeft.Interval = 15;
+           // aTimerRight.Interval = 15;
+
+         //   aTimerUp.Elapsed += ATimer_ElapsedUp;
+          //  aTimerLeft.Elapsed += ATimer_ElapsedLeft;
+            aTimerDown.Elapsed += ATimer_ElapsedDown;
+         //   aTimerRight.Elapsed += ATimer_ElapsedRight;
+
+          //  aTimerRight.AutoReset = true;
+          //  aTimerLeft.AutoReset = true;
+            aTimerDown.AutoReset = true;
+         //   aTimerUp.AutoReset = true;
+        }
+        /// <summary>
+        ///  在按键松开时胶阀点变化情况
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+       private void CoatKeyMove_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            aTimerDown.Stop();
+           // aTimerUp.Stop();
+           // aTimerLeft.Stop();
+           // aTimerRight.Stop();
+        }
+
     }
 }

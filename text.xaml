@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" 
         x:Class="exSplitter.MainWindow"
        Title="text" Height="350" Width="525" >
+    <Window.Resources>
+        <Storyboard x:Key="Test">
+
+        </Storyboard>
+    </Window.Resources>
 
     <Grid>
-        <DataGrid AutoGenerateColumns="True"/>
+        
     </Grid>
 </Window>
 

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Newtonsoft.Json;
 using Test.FileProcess;
 
@@ -26,8 +27,13 @@ namespace Test
         public string fixedSpeedOne { get; set; }
         public string fixedSpeedTwo { get; set; }
         public string fixedSpeedthree { get; set; }
+        public double originpointX { get; set; }
+        public double originpointY { get; set; }
     }
 
+    /// <summary>
+    /// 配置文件基类
+    /// </summary>
     public class Config : FileBase
     {
         public static string Port_Name = "COM1";
@@ -45,7 +51,12 @@ namespace Test
         public static string fixedSpeedOne = "2";
         public static string fixedSpeedTwo = "8";
         public static string fixedSpeedthree = "20";
-
+        public static double originpointX = 470;
+        public static double originpointY = 290;
+        
+        /// <summary>
+        /// 将配置从配置文件中读取做出来
+        /// </summary>
         public void ReadFile()
         {
             if (File.Exists("Ghost.json"))
@@ -68,10 +79,12 @@ namespace Test
                     fixedSpeedOne = Ghostconfig.fixedSpeedOne;
                     fixedSpeedTwo  = Ghostconfig.fixedSpeedTwo;
                     fixedSpeedthree = Ghostconfig.fixedSpeedthree;
+                    originpointX = Ghostconfig.originpointX;
+                    originpointY = Ghostconfig.originpointY;
+                    //point = Ghostconfig.point; //这里json好像不能用point格式的数据，这里要修改一下
                 }
                 catch
                 {
-
                     WriteFile();
                 }
             }
@@ -79,6 +92,9 @@ namespace Test
                 WriteFile();
         }
 
+        /// <summary>
+        /// 将配置写入配置文件中
+        /// </summary>
         public void WriteFile()
         {
             File.WriteAllText("Ghost.Json", JsonConvert.SerializeObject(new Ghost()
@@ -98,6 +114,8 @@ namespace Test
                 fixedSpeedOne= fixedSpeedOne,
                 fixedSpeedTwo= fixedSpeedTwo,
                 fixedSpeedthree= fixedSpeedthree,
+                originpointX = originpointX,
+                originpointY = originpointY,
             }), Encoding.UTF8);
         }
     }
